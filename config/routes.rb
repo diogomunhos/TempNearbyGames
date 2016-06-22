@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   match "/404" => "errors#error404", via: [:get, :post, :patch, :delete]
 
+  get "/login" => "login#login"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
