@@ -53,3 +53,10 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.image-logo{
+	background-image: url(<%= asset_path 'google_logo.png' %>);
+	display: block;
+	height: 100%;
+	max-width: 100%;
+}
