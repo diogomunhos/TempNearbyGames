@@ -39,6 +39,9 @@ end
 
 group :production do
 	gem 'pg'
+
 	gem 'rails_12factor'
+
+	gem 'coffee-rails', '~> 4.1.0'
 	
 end
