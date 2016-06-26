@@ -16,42 +16,37 @@
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 180px;
+	/* Margin bottom by footer height */
+	margin-bottom: 180px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 180px;
-  background-color: #f5f5f5;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 180px;
+	background-color: #f5f5f5;
 }
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
 body > .container {
-  /*padding: 60px 15px 0;*/
-  padding-bottom: 180px;
+	/*padding: 60px 15px 0;*/
+	padding-bottom: 180px;
 }
 .container .text-muted {
-  margin: 20px 0;
+	margin: 20px 0;
 }
 
 .footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+	padding-right: 15px;
+	padding-left: 15px;
 }
 
 code {
-  font-size: 80%;
+	font-size: 80%;
 }
 
 .image-logo{
@@ -60,3 +55,36 @@ code {
 	height: 100%;
 	max-width: 100%;
 }
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+@media (min-width: 992px) { 
+	body {
+		margin-bottom: 325px;
+	}
+	.footer {
+		height: 325px;
+	}
+	body > .container {
+		padding-bottom: 325px;
+	}
+
+}
+
+@media (min-width: 1200px) { 
+	body {
+		margin-bottom: 325px;
+	}
+	.footer {
+		height: 325px;
+	}
+	body > .container {
+		padding-bottom: 325px;
+	}
+
+}
+
