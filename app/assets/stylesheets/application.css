@@ -41,8 +41,8 @@ body > .container-fluid{
 	padding-bottom: 180px;	
 }
 
-body > .my-container{
-	padding-bottom: 180px;
+.box > .img-thumbnail{
+	border: none;
 }
 
 .container .text-muted {
@@ -70,9 +70,27 @@ code {
 	margin-top: 110px;
 }
 
+.top-buffer{
+	margin-top: 10px;
+}
+
+.box-h4 > h4{
+		font-size: 1.35rem;
+	}
+
+
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
+
+@media (min-width: 1px) { 
+
+}
+
+
+@media (min-width: 768px) { 
+
+}
 
 
 @media (min-width: 992px) { 
@@ -106,6 +124,5 @@ code {
 	body > .container-fluid{
 		padding-bottom: 360px;	
 	}
-
 }
 
