@@ -75,15 +75,22 @@ code {
 }
 
 .box-h4 > h4{
-		font-size: 1.35rem;
-	}
-
+	font-size: 1.35rem;
+}
 
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
 @media (min-width: 1px) { 
+	.container-text-main > h4{
+		font-size: 14px;
+	}
+
+	.container-text-main > p{
+		font-size: 10px;
+	}
+
 
 }
 
