@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
+  resources :documents
   root "home#home"
 
   get "/home" => "home#default"
+
+  get '/images/show_image/:id' => "home#show_image"
 
   match "/404" => "errors#error404", via: [:get, :post, :patch, :delete]
 
   get "/signin" => "signin#signin"
 
   get "articles/:friendly_url/:id" => "articles#articles"
+
+  get "/temp" => "temp#temp"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

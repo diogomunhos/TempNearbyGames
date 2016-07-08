@@ -1,7 +1,7 @@
-class ArticlesController < ApplicationController
-	
-	def articles
+class ArticlesController < ApplicationController	
 
+	def articles
+	
 	end
 
 end

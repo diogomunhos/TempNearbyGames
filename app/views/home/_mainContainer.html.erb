@@ -1,85 +1,26 @@
+<% @articles.each do |a| %>
+
 <div class="row" style="padding-top: 1.3em; padding-bottom: 1.3em;">
-	<a href="/articles/url_friendly/id123">
+	<a href="/articles/url_friendly/<%= a.id %>">
 		<div class="row" style="width: 100%;">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-				<div style="width: 100%; position: relative;">
-					<img src="assets/images/fnal-fantasy-xv.jpg" class="img-thumbnail" style="border: none;"/>
-				</div>
+				<% a.article_documents.each do |ad| %>
+					<% if ad.document_type === "thumb" %>
+						<div style="width: 100%; position: relative;">
+							<img src="/images/show_image/<%= ad.document.id %>" class="img-thumbnail" style="border: none;"/>
+						</div>
+					<% end %>
+				<% end %>
+
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 				<div class="container-text-main" style="width: 100%; position: relative; color: black;">
-					<h4 style="position: absolute;"><b>Header text</b></h4>
-					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;">Your text to explain this media here Your text to explain this media hereYour text to explain this media hereYour text to explain this media here</p>
+					<h4 style="position: absolute;"><b><%= a.title %></b></h4>
+					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;"><%= a.preview %> ID is: <%= a.id %> Created: <%= time_ago_in_words a.created_at %> ago</p>
 				</div>
 			</div>
 		</div>
 	</a>
 </div>
-<div class="row" style="padding-top: 1.3em; padding-bottom: 1.3em;">
-	<a href="/articles/url_friendly/id123">
-		<div class="row" style="width: 100%;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-				<div style="width: 100%; position: relative;">
-					<img src="assets/images/fnal-fantasy-xv.jpg" class="img-thumbnail" style="border: none;"/>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-				<div class="container-text-main" style="width: 100%; position: relative; color: black;">
-					<h4 style="position: absolute;"><b>Header text</b></h4>
-					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;">Your text to explain this media here Your text to explain this media hereYour text to explain this media hereYour text to explain this media here</p>
-				</div>
-			</div>
-		</div>
-	</a>
-</div>
-<div class="row" style="padding-top: 1.3em; padding-bottom: 1.3em;">
-	<a href="/articles/url_friendly/id123">
-		<div class="row" style="width: 100%;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-				<div style="width: 100%; position: relative;">
-					<img src="assets/images/fnal-fantasy-xv.jpg" class="img-thumbnail" style="border: none;"/>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-				<div class="container-text-main" style="width: 100%; position: relative; color: black;">
-					<h4 style="position: absolute;"><b>Header text</b></h4>
-					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;">Your text to explain this media here Your text to explain this media hereYour text to explain this media hereYour text to explain this media here</p>
-				</div>
-			</div>
-		</div>
-	</a>
-</div>
-<div class="row" style="padding-top: 1.3em; padding-bottom: 1.3em;">
-	<a href="/articles/url_friendly/id123">
-		<div class="row" style="width: 100%;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-				<div style="width: 100%; position: relative;">
-					<img src="assets/images/fnal-fantasy-xv.jpg" class="img-thumbnail" style="border: none;"/>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-				<div class="container-text-main" style="width: 100%; position: relative; color: black;">
-					<h4 style="position: absolute;"><b>Header text</b></h4>
-					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;">Your text to explain this media here Your text to explain this media hereYour text to explain this media hereYour text to explain this media here</p>
-				</div>
-			</div>
-		</div>
-	</a>
-</div>
-<div class="row" style="padding-top: 1.3em; padding-bottom: 1.3em;">
-	<a href="/articles/url_friendly/id123">
-		<div class="row" style="width: 100%;">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-				<div style="width: 100%; position: relative;">
-					<img src="assets/images/fnal-fantasy-xv.jpg" class="img-thumbnail" style="border: none;"/>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-				<div class="container-text-main" style="width: 100%; position: relative; color: black;">
-					<h4 style="position: absolute;"><b>Header text</b></h4>
-					<p class="lead" style="position: absolute; top: 40px; font-size: 14px;">Your text to explain this media here Your text to explain this media hereYour text to explain this media hereYour text to explain this media here</p>
-				</div>
-			</div>
-		</div>
-	</a>
-</div>
+
+<% end %> 

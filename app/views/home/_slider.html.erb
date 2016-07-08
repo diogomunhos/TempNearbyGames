@@ -26,24 +26,22 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="/assets/images/fnal-fantasy-xv.jpg" style="height: 325px; width: 100%; margin-top: 12.5px;"/>
+      <% @slider.each do |s| %>
+        <% if @slider[0].id === s.id %>
+          <div class="item active">
+        <% else %>
+          <div class="item">
+        <% end %>
+        <% s.article_documents.each do |ad| %>
+        <% if ad.document_type === "thumb" %>
+          <img src="/images/show_image/<%= ad.document.id %>" style="height: 325px; width: 100%; margin-top: 12.5px;"/>
+        <% end %>
+        <% end %>
         <div class="carousel-caption">
-          ...
+          <%= s.preview %> ID is: <%= s.id %> Created: <%= time_ago_in_words s.created_at %> ago
         </div>
       </div>
-      <div class="item">
-        <img src="/assets/images/witcher3.jpg" style="height: 325px; width: 100%; margin-top: 12.5px;"/>
-        <div class="carousel-caption">
-          ...
-        </div>
-      </div>
-      <div class="item">
-        <img src="/assets/images/zelda.jpg" style="height: 325px; width: 100%; margin-top: 12.5px;"/>
-        <div class="carousel-caption">
-          ...
-        </div>
-      </div>
+      <% end %>
       ...
     </div>
 
