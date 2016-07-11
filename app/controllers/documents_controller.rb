@@ -25,6 +25,9 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
+    Advertising.create(is_active: true, position: 1, html_body: '<div style="width: 100%; position: relative; margin-top: 10px;">
+    <img src="https://s.dynad.net/stack/4BgnrAZSVmtsYZEoVHY3LVIHRm6n4DYLj_gEGn1ccdE.gif" style="width: 100%;">
+  </div>', is_default: true)
     article = Article.create(title: "Dinamic Test", subtitle: "subtitle dinamic test", preview: "this is a preview dinamic test", body: "this is a body for dinamic test", is_highlight: true)
     @document = Document.new(document_params)
     if @document.save

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707172850) do
+ActiveRecord::Schema.define(version: 20160711005519) do
+
+  create_table "advertisings", force: :cascade do |t|
+    t.boolean  "is_active"
+    t.string   "advertising_type"
+    t.integer  "position"
+    t.string   "html_body"
+    t.string   "tags"
+    t.integer  "quantity"
+    t.string   "pages"
+    t.boolean  "is_default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "article_documents", force: :cascade do |t|
     t.string   "document_type"
@@ -30,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160707172850) do
     t.datetime "updated_at"
     t.string   "article_type"
     t.boolean  "is_highlight"
+    t.string   "tags"
+    t.string   "friendly_url"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -38,6 +53,34 @@ ActiveRecord::Schema.define(version: 20160707172850) do
     t.binary   "file_contents"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "tags"
+    t.decimal  "file_size"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "nickname"
+    t.integer  "profile_id"
+    t.integer  "role_id"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+    t.string   "password_confirmation"
   end
 
 end

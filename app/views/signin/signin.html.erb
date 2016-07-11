@@ -1,6 +1,15 @@
 <div class="container" >
 	<div class="col-lg-6 col-lg-offset-3 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3">
-		<form>	
+			<h1>Login</h1>
+
+		<%= form_tag '/login' do %>
+
+		  Email: <%= text_field_tag :email %>
+		  Password: <%= password_field_tag :password %>
+		  <%= submit_tag "Submit" %>
+
+		<% end %>
+		<!-- <form>	
 			<div class="form-group">
 				<label for="email_login">Email</label>
 				<input type="email" class="form-control" placeholder="Email" autofocus required name="email" id="email_login"/>	
@@ -27,6 +36,6 @@
 					<span class="fa fa-google"></span> Sign in with Google
 				</button>
 			</div>
-		</form>
+		</form> -->
 	</div>
 </div>

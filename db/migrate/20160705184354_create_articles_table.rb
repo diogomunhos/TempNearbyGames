@@ -8,6 +8,8 @@ class CreateArticleTable < ActiveRecord::Migration
   		a.string :preview
   		a.string :article_type
   		a.boolean :is_highlight
+      a.string :tags
+      a.string :friendly_url
 
   		a.timestamps
   	end
