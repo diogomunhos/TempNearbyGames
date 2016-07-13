@@ -2,22 +2,15 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 	
-	# attr_accessor :password
-	# EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-	# validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
-	# validates_length_of :password, :in => 6..20, :on => :create
-
-
-	# before_save :encrypt_password
-	# after_save :clear_password
-	# def encrypt_password
-	# 	if password.present?
-	# 		self.salt = BCrypt::Engine.generate_salt
-	# 		self.encrypt_password = BCrypt::Engine.hash_secret(password, salt)
-	# 	end
-	# end
-	# def clear_password
-	# 	self.password = nil
-	# end
+	def self.from_omniauth(auth)
+	    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+	      user.provider = auth.provider
+	      user.uid = auth.uid
+	      user.name = auth.info.name
+	      user.oauth_token = auth.credentials.token
+	      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+	      user.save!
+	    end
+	end
 
 end

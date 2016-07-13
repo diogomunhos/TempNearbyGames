@@ -1,41 +1,33 @@
 <div class="container" >
-	<div class="col-lg-6 col-lg-offset-3 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3">
-			<h1>Login</h1>
-
-		<%= form_tag '/login' do %>
-
-		  Email: <%= text_field_tag :email %>
-		  Password: <%= password_field_tag :password %>
-		  <%= submit_tag "Submit" %>
-
+	<div class="col-lg-6 col-lg-offset-3 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3">		
+		<%= form_tag '/login' do %>	
+		<div class="form-group">
+			<label for="email_login">Email</label>
+			<input type="email" class="form-control" placeholder="Email" autofocus required name="email" id="email"/>	
+		</div>
+		<div class="form-group">
+			<label for="password-login">Password</label>
+			<input type="password" class="form-control" placeholder="Password" required name="password" id="password"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</div>
 		<% end %>
-		<!-- <form>	
-			<div class="form-group">
-				<label for="email_login">Email</label>
-				<input type="email" class="form-control" placeholder="Email" autofocus required name="email" id="email_login"/>	
-			</div>
-			<div class="form-group">
-				<label for="password-login">Password</label>
-				<input type="password" class="form-control" placeholder="Password" required name="password" id="password_login"/>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-block btn-social btn-facebook" type="submit">
-					<span class="fa fa-facebook"></span> Sign in with Facebook
-				</button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-block btn-social btn-twitter" type="submit">
-					<span class="fa fa-twitter"></span> Sign in with Twitter
-				</button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-block btn-social btn-google" type="submit">
-					<span class="fa fa-google"></span> Sign in with Google
-				</button>
-			</div>
-		</form> -->
+		<div class="form-group">
+			<%= link_to "Sign in with Facebook", "/auth/facebook", id: "signin_facebook" %>
+			<a href="/auth/facebook" id="signin_facebook"><button class="btn btn-block btn-social btn-facebook">
+				<span class="fa fa-facebook"></span> Sign in with Facebook
+			</button></a>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-block btn-social btn-twitter" type="submit">
+				<span class="fa fa-twitter"></span> Sign in with Twitter
+			</button>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-block btn-social btn-google" type="submit">
+				<span class="fa fa-google"></span> Sign in with Google
+			</button>
+		</div>
 	</div>
 </div>
