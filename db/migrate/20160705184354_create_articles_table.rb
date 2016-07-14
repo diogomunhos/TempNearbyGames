@@ -1,4 +1,4 @@
-class CreateArticleTable < ActiveRecord::Migration
+class CreateArticlesTable < ActiveRecord::Migration
   
   def change
   	create_table :articles do |a|
