@@ -16,16 +16,16 @@
 //= require_tree .
 
 
-(function() {
-	"use strict";
-	console.log('iniciou');
-	if (window.location && window.location.hash) {
-		console.log('Entrou');
-		if (window.location.hash === '#_=_') {
-			window.location.hash = '';
-			return;
-		}
-		var facebookFubarLoginHash = RegExp('_\=_', 'g');
-		window.location.hash = window.location.hash.replace(facebookFubarLoginHash,     '');
-	}
-}());
+// (function() {
+// 	"use strict";
+// 	console.log('iniciou');
+// 	if (window.location && window.location.hash) {
+// 		console.log('Entrou');
+// 		if (window.location.hash === '#_=_') {
+// 			window.location.hash = '';
+// 			return;
+// 		}
+// 		var facebookFubarLoginHash = RegExp('_\=_', 'g');
+// 		window.location.hash = window.location.hash.replace(facebookFubarLoginHash,     '');
+// 	}
+// }());
