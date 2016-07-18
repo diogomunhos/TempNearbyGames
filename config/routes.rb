@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy'
 
-  match 'auth/:provider/callback', to: 'sessions#create_facebook', via: [:get, :post]
+  match 'auth/:provider/callback', to: 'sessions#create_social', via: [:get, :post]
 
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
