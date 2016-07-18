@@ -14,7 +14,9 @@ jQuery ->
       console.log('click')
       e.preventDefault()
       FB.login (response) ->
+        window.location.hash = ""
         window.location = '/auth/facebook/callback' if response.authResponse
+
 
         $('#signout_facebook').click (e) ->
           FB.getLoginStatus (response) ->
