@@ -1,4 +1,13 @@
 class User < ActiveRecord::Base
+	before_create :confirmation_token
+
+	validates :password, :confirmation => true
+	validates :nickname, :uniqueness => {:case_sensitive => false, :message => "Email is already registered by another user, please choose another"}
+	validates :email, :uniqueness => {:case_sensitive => false, :message => "Nickname is already registered by another user, please choose another"}
+
+	has_one :user_preference, foreign_key: :user_id, dependent: :destroy
+
+	scope :getUserByEmailOrNickname, -> (email = nil, nickname = nil) { where("email=? OR nickname=?", email, nickname)}	
 
 	has_secure_password
 	
@@ -13,5 +22,18 @@ class User < ActiveRecord::Base
 	      user.save!
 	    end
 	end
+
+	def email_activate
+	    self.email_confirmed = true
+	    self.confirm_token = nil
+	    self.save
+	end
+
+	private
+	def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
 
 end

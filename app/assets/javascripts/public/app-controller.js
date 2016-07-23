@@ -13,7 +13,24 @@ angular.module('mgcrea.ngStrapDocs')
     html: true
   });
 })
+.config(function($datepickerProvider) {
+  angular.extend($datepickerProvider.defaults, {
+    dateFormat: 'dd/MM/yyyy',
+    startWeek: 1
+  });
+})
 
 .controller('AsideDemoCtrl', function($scope) {
   $scope.aside = {title: 'Menu', content: 'Hello Aside<br />This is a multiline message!'};
-});
+})
+
+.controller('signup-controller', function() {
+  
+  this.constructor = function(){
+    this.birthdate = null;
+    this.email = ''; 
+  }
+
+  this.constructor();
+})
+

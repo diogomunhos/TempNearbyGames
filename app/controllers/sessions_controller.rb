@@ -5,28 +5,75 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		user = User.find_by_email(params[:email])
-   		 # If the user exists AND the password entered is correct.
-	    if user && user.authenticate(params[:password])
-	      # Save the user id inside the browser cookie. This is how we keep the user 
-	      # logged in when they navigate around our website.
-	      session[:user_id] = user.id
-	      redirect_to '/'
-		  else
+		user = User.find_by_email(session_params[:email])
+		
+	    if user && user.authenticate(session_params[:password])
+		    session[:user_id] = user.id
+		    redirect_to root_path
+		else
+		  	flash[:danger] = "Your username or password was incorrect"
 		    # If user's login doesn't work, send them back to the login form.
 		    redirect_to '/signin'
 		end
 	end
 
+	def create_session_social
+		user = User.find_by_email(session_params[:email])
+   		social = session[:social]
+   		if social === nil
+   			redirect_to '/signin'
+   		end
+
+	    if user && user.authenticate(session_params[:password])
+	    	if user.email_confirmed
+				if(social['user_id'] === nil)
+					 SocialIdentity.updateUserId(user.id, social['uid'], social['provider'], social['id'])
+				end
+				session[:user_id] = user.id
+				redirect_to root_path
+			else
+				flash[:danger] = "Your account was not verified yet" #TODO implement error messages
+				redirect_to "/social-login/#{social['provider']}"
+			end	
+		else
+			flash[:danger] = "Your username or password was incorrect"
+			redirect_to "/social-login/#{social['provider']}"
+		end
+	end
+
 	def create_social
-	    user = User.from_omniauth(env["omniauth.auth"])
-	    session[:user_id] = user.id
-	    redirect_to root_path
+		social = SocialIdentity.find_for_oauth(env["omniauth.auth"])
+		session[:social] = social
+		user = User.new
+		user.name = env["omniauth.auth"].info.name
+		user.nickname = env["omniauth.auth"].info.nickname
+		user.email = env["omniauth.auth"].info.email
+		#TODO Implement image
+		session[:user] = user;
+		print "DEBUG #{social.user_id}"
+		if social.user_id?
+			user = User.find(social.user_id)
+			print "DEBUG #{user.email_confirmed}"
+			if user.email_confirmed
+				session[:user_id] = user.id
+	   			redirect_to root_path
+	   		else
+	   			flash[:danger] = "Your account was not verified yet" #TODO implement error messages
+	   			redirect_to '/signin'
+	   		end
+		else
+			redirect_to "/social-login/#{social.provider}"
+		end
 	end
 
 	def destroy
-		session[:user_id] = nil
+		reset_session
 		redirect_to '/signin'
+	end
+
+	private
+	def session_params
+		params.permit(:email, :password)
 	end
 
 end

@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :documents
-  resources :users
+  
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
+
   root "home#home"
 
   get "/home" => "home#default"
@@ -17,8 +23,12 @@ Rails.application.routes.draw do
 
   get "/signup" => "signup#signup"
 
+  get "/social-login/:provider" => "social_login#social"
+
 
   #temp
+
+  post '/login-social' => 'sessions#create_session_social'
 
   get '/login' => 'sessions#new'
 
@@ -33,6 +43,11 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
   
+
+
+  #ADM Pages
+
+  get '/private/index' => "private#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
