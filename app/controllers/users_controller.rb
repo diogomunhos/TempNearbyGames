@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 										if userTemp['email'] === @user.email then 
 											true 
 										else 
-											false 
+											false
+										end
 									else 
 										false 
 									end

@@ -2,5 +2,7 @@
 	<!-- <div style="width: 100%; position: relative; margin-top: 10px;">
 		<img src="https://s.dynad.net/stack/4BgnrAZSVmtsYZEoVHY3LVIHRm6n4DYLj_gEGn1ccdE.gif" style="width: 100%;">
 	</div> -->
-	<%= raw @advertising1[0].html_body %> 
+	<% @advertising1.each do |a| %>
+		<%= raw a.html_body %> 
+	<% end %>
 </div>
