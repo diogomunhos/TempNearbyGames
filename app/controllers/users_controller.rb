@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 				UserMailer.registration_confirmation(@user).deliver
 			end
 
-			reset_session
+			session[:user] = nil;
 
 			redirect_to root_path
 			# UserPreference.create("user_id": @user.id, "email_content": user_preference_params[:email_content], "accepted_terms_date": Date.today);

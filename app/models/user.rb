@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	has_many :user_documents, foreign_key: :user_id, dependent: :destroy
+	has_many :documents, through: :user_documents
+
 	before_create :confirmation_token
 
 	validates :password, :confirmation => true
@@ -7,7 +10,8 @@ class User < ActiveRecord::Base
 
 	has_one :user_preference, foreign_key: :user_id, dependent: :destroy
 
-	scope :getUserByEmailOrNickname, -> (email = nil, nickname = nil) { where("email=? OR nickname=?", email, nickname)}	
+	scope :getUserByEmailOrNickname, -> (email = nil, nickname = nil) { where("email=? OR nickname=?", email, nickname)}
+	scope :getUserAndDocumentsByType, -> (user_id = nil, document_type = nil) {where("users.id=?", user_id).limit(1).includes(:documents).where('user_documents.document_type=?', document_type).references(:documents)}	
 
 	has_secure_password
 	

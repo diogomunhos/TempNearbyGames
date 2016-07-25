@@ -49,6 +49,12 @@ Rails.application.routes.draw do
 
   get '/private/index' => "private#index"
 
+  get '/private/profile/show' => "profiles_secured#show"
+
+  get '/private/articles/new' => "articles_secured#new"
+
+  get '/private/articles/my-articles' => "articles_secured#my_articles"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

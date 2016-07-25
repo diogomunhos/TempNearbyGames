@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721001107) do
+ActiveRecord::Schema.define(version: 20160724200951) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -64,9 +64,12 @@ ActiveRecord::Schema.define(version: 20160721001107) do
   end
 
   create_table "social_identities", force: :cascade do |t|
-    t.string  "uid"
-    t.string  "provider"
-    t.integer "user_id"
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -75,10 +78,20 @@ ActiveRecord::Schema.define(version: 20160721001107) do
     t.datetime "updated_at"
   end
 
+  create_table "user_documents", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.string   "document_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_preferences", force: :cascade do |t|
     t.boolean  "email_content"
     t.datetime "accepted_terms_date"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
