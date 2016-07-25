@@ -1,3 +1,3 @@
 
 
-@url_base = "http://localhost:3000/"
+@url_base = "https://www.wahiga.com/"
