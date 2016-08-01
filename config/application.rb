@@ -8,6 +8,18 @@ Bundler.require(*Rails.groups)
 
 module GameSiteApp
   class Application < Rails::Application
+    @url_base = "http://localhost:3000"
+    @signin_url = "#{@url_base}/signin"
+
+    @logout_url = "#{@url_base}/logout"
+
+    @secured_new_article_url = "#{@url_base}/private/articles/new"
+
+    @secured_my_article_url = "#{@url_base}/private/articles/my-articles"
+
+    @secured_show_profile_url = "#{@url_base}/private/profile/show"
+
+    @secured_home_url = "#{@url_base}/private/index"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

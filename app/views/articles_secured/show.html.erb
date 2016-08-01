@@ -1,0 +1,248 @@
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow"><%= @article.title %></h1>
+    </div>
+
+    <div id="page-content">
+            <div class="panel">
+                <div class="panel-footer text-center">
+                    <% if @showEdit %>
+                        <a class="btn btn-primary" href="/private/articles/edit/<%= @article.id %>">Edit</a>
+                    <% end %>
+                    <% if @showSendApproval %>
+                        <a class="btn btn-warning">Send to Approval</a>
+                    <% end %>
+                    <% if @showReject %>
+                        <a class="btn btn-danger">Reject</a>
+                    <% end %>
+                    <% if @showApprove %>
+                        <a class="btn btn-info">Approve</a>
+                    <% end %>
+                    <% if @showPublish %>
+                        <a class="btn btn-success">Publish</a>
+                    <% end %>
+                    <% if @showSchedule %>
+                        <a class="btn btn-success">Schedule</a>
+                    <% end %>
+                    <% if @showDelete %>
+                        <a class="btn btn-danger" href="/private/articles/destroy/<%= @article.id %>">Delete</a>
+                    <% end %>
+                </div>
+                <form class="panel-body form-horizontal">
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Article information</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Title:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.title %></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Subtitle:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.subtitle %></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Created by:</label>
+                            <div class="col-md-3">
+                                <p class="form-control-static"><%= @article.created_by_name %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4" >
+                            <label class="col-md-3 control-label text-bold">Article type:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.article_type %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Friendly URL:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.friendly_url %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Status:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.status %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Preview:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.preview %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Is Highlight:</label>
+                            <div class="col-md-9">
+                                <div class="checkbox">
+                                    <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @article.is_highlight %> checked="" <% end %> disabled="">
+                                    <label for="disabled-form-inline-checkbox"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label text-bold">Body:</label>
+                            <div class="col-md-9">
+                                <textarea rows="9" class="form-control" placeholder="Your content here.." disabled=""><%= @article.body %></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Tags</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-9">
+                            <% @tags.each do |tag| %>
+                                <span class="label label-info"><%= tag %></span>
+                            <% end %>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">System information</p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Created date:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.created_at %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Last updated date:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.updated_at %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Last updated by:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @article.last_updated_by_name %></p>
+                            </div>
+                        </div>
+                    </div>
+     
+                </form>
+                <div class="panel-footer text-center">
+                    <% if @showEdit %>
+                        <a class="btn btn-primary" href="/private/articles/edit/<%= @article.id %>">Edit</a>
+                    <% end %>
+                    <% if @showSendApproval %>
+                        <a class="btn btn-warning">Send to Approval</a>
+                    <% end %>
+                    <% if @showReject %>
+                        <a class="btn btn-danger">Reject</a>
+                    <% end %>
+                    <% if @showApprove %>
+                        <a class="btn btn-info">Approve</a>
+                    <% end %>
+                    <% if @showPublish %>
+                        <a class="btn btn-success">Publish</a>
+                    <% end %>
+                    <% if @showSchedule %>
+                        <a class="btn btn-success">Schedule</a>
+                    <% end %>
+                    <% if @showDelete %>
+                        <a class="btn btn-danger">Delete</a>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-footer text-center">
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Documents</p>
+                    </div>
+                    <div class="col-md-9">
+                        <% if @article.article_documents.any? %>
+                         <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th></th>
+                                    <th>Document Name</th>
+                                    <th>Document Type</th>  
+                                </thead>
+                                <tbody>
+                                    <% @article.article_documents.each do |doc| %>
+                                    <tr>
+                                        <td style="width: 110px;"><a href="/images/show_image/<%= doc.document_id %>" target="_blank" ><div style="background-image: url('/images/show_image/<%= doc.document_id %>'); width: 100px; height: 100px; background-size: cover;"> </div></a></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document.file_name %></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document_type %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                
+
+                <div class="panel-footer text-center">
+                </div>
+            </div>
+
+
+
+            <div class="panel">
+                <div class="panel-footer text-center">
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Historic</p>
+                    </div>
+                    <div class="col-md-9">
+                        <% if @historic.any? %>
+                         <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Field</th>
+                                    <th>Before update</th>
+                                    <th>After update</th>
+                                    <th>Updated date</th>
+                                    <th>Changed by</th> 
+                                </thead>
+                                <tbody>
+                                    <% @historic.each do |historic| %>
+                                        <tr>
+                                            <% historic.each_pair do |key, value| %>
+                                                <td style="text-align: left; vertical-align: middle; line-height: 100%; ">
+                                                    <%= value %>
+                                                </td>
+                                            <% end %>
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                
+
+                <div class="panel-footer text-center">
+                </div>
+            </div>
+        </div>
+</div>

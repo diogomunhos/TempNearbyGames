@@ -1,0 +1,51 @@
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">New Profile</h1>
+    </div>
+    
+    <div id="page-content">
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+        <div class="panel">
+
+            <div class="panel-footer">
+
+            </div>
+            <%= form_for :profile, :url => {:controller => 'profiles_secured', :action => 'create'}, html: { class: "form-horizontal"} do |f| %>
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Article information</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label" for="profile_name">Profile name:*</label>
+                        <div class="col-md-10">
+                            <input type="text" required="" class="form-control" name="profile[name]" id="profile_name" value="<%= @profile.name %>"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-2 control-label" for="profile_active">Is active:</label>
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" name="profile[active]" id="profile_active" <% if @profile.active %> checked="" <% end %> >
+                                <label for="disabled-form-inline-checkbox"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-footer text-right">
+                <button type="submit" class="btn btn-success btn-bock">Save</button>
+            </div>
+
+            <% end %>
+        </div>
+    </div>
+</div>

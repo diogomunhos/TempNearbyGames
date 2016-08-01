@@ -49,11 +49,40 @@ Rails.application.routes.draw do
 
   get '/private/index' => "private#index"
 
-  get '/private/profile/show' => "profiles_secured#show"
+  get '/private/profiles/my-profile' => "profiles_secured#my_profile"
+
+  get '/private/profiles/new' => "profiles_secured#new"
+
+  get '/private/profiles/show/:profileid' => "profiles_secured#show"
+
+  get '/private/profiles/:profileid/object/:objectid' => "object_permissions_secured#show"
 
   get '/private/articles/new' => "articles_secured#new"
 
-  get '/private/articles/my-articles' => "articles_secured#my_articles"
+  get '/private/articles' => "articles_secured#my_articles"
+
+  get '/private/articles/all-articles/:numberPerPage/:pageNumber' => "articles_secured#all_articles"
+
+  get '/private/articles/all-articles/count' => "articles_secured#count_articles"
+
+  get '/private/articles/all-articles/count/:fieldToSearch/:searchValue' => "articles_secured#count_search_articles"
+
+  get '/private/articles/all-articles/search/:fieldToSearch/:searchValue/:numberPerPage/:pageNumber' => "articles_secured#search_all_articles"
+
+  get '/private/articles/show/:articleid' => "articles_secured#show"
+
+  get '/private/articles/edit/:articleid' => "articles_secured#edit"
+
+  get '/private/articles/destroy/:articleid' => "articles_secured#destroy"
+
+
+  #POST
+
+  post '/private/articles/create-new-article' => "articles_secured#create"
+
+  post '/private/articles/update-article' => "articles_secured#update"
+
+  post '/private/profiles/create-new-profile' => "profiles_secured#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

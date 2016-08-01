@@ -3,31 +3,116 @@
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
-        <h1 class="page-header text-overflow">My Profile</h1>
-
-        <!--Searchbox-->
-        <!-- <div class="searchbox">
-            <div class="input-group custom-search-form">
-                <input type="text" class="form-control" placeholder="Search..">
-                <span class="input-group-btn">
-                    <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
-                </span>
-            </div>
-        </div> -->
+        <h1 class="page-header text-overflow"><%= @profile.name %></h1>
     </div>
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--End page title-->
 
-    <!--Page content-->
-    <!--===================================================-->
     <div id="page-content">
+        <div class="panel">
+            <div class="panel-footer text-center">
 
-        
+            </div>
+            <form class="panel-body form-horizontal">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Profile information</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Profile:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @profile.name %></p>
+                        </div>
+                    </div>
 
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Active:</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @profile.active %> checked="" <% end %> disabled="">
+                                <label for="disabled-form-inline-checkbox"></label>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Created by:</label>
+                        <div class="col-md-3">
+                            <p class="form-control-static"><%= @usernamecreate %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">System information</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Created date:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @profile.created_at %></p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Last updated date:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @profile.updated_at %></p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Last updated by:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @usernameupdate %></p>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+            <div class="panel-footer text-center">
 
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-footer text-center">
+
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Object Permissions</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Object</th>
+                                    <th>Permissions</th>
+                                    <th>Last updated date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% @objects.each do |ob| %>
+                                    <tr>
+                                        <% ob.each_pair do |key, value| %>
+                                            <% if key.to_s == "name" %>
+                                                <%= raw value %>
+                                            <% end %>
+                                            <% if key.to_s == "permissions" %>
+                                                <td><%= value %></td>
+                                            <% end %>
+                                            <% if key.to_s == "last_updated_date" %>
+                                                <td><%= value %></td>
+                                            <% end %>
+                                            
+                                            
+                                        <% end %>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-center">
+
+            </div>
+        </div>
     </div>
-    <!--===================================================-->
-    <!--End page content-->
-
 </div>

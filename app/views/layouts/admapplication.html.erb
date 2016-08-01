@@ -3,9 +3,7 @@
 <head>
 	<title>Admnin Wahiga</title>
 	
-	<%= stylesheet_link_tag    'admapplication', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'admapplication', 'data-turbolinks-track' => true %>
-	<%= csrf_meta_tags %>
+	
 	<!--Open Sans Font [ OPTIONAL ]-->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
@@ -36,6 +34,7 @@
 
 	<link href="<%= @url_base %>/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
+ 	<link href="<%= @url_base %>/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css" rel="stylesheet">
 
 
 
@@ -61,7 +60,7 @@
 
 
 
-
+	<script src="<%= @url_base %>/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
 
 	<!--=================================================-->
@@ -82,10 +81,16 @@
 	<!--Specify page [ SAMPLE ]-->
 	<script src="<%= @url_base %>/assets/js/demo/dashboard.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+	<%= stylesheet_link_tag    'admapplication', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'admapplication', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<body data-no-turbolink ng-app="admin-module">
 	<div id="container" class="effect aside-float aside-bright mainnav-lg">
 		<!--NAVBAR-->
 		<!--===================================================-->

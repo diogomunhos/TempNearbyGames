@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724200951) do
+ActiveRecord::Schema.define(version: 20160731223646) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 20160724200951) do
     t.boolean  "is_highlight"
     t.string   "tags"
     t.string   "friendly_url"
+    t.integer  "created_by_id"
+    t.string   "last_updated_by_id"
+    t.string   "created_by_name"
+    t.string   "last_updated_by_name"
+    t.string   "status"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -57,10 +62,46 @@ ActiveRecord::Schema.define(version: 20160724200951) do
     t.decimal  "file_size"
   end
 
+  create_table "field_permissions", force: :cascade do |t|
+    t.string   "field_name"
+    t.boolean  "read_record"
+    t.boolean  "edit_record"
+    t.integer  "object_permission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "last_updated_by"
+  end
+
+  create_table "historics", force: :cascade do |t|
+    t.string   "entity"
+    t.string   "changed_fields"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "object_id"
+  end
+
+  create_table "object_permissions", force: :cascade do |t|
+    t.string   "object_name"
+    t.boolean  "read_record"
+    t.boolean  "create_record"
+    t.boolean  "edit_record"
+    t.boolean  "delete_record"
+    t.boolean  "read_all_record"
+    t.boolean  "approve_record"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "last_updated_by"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
+    t.integer  "created_by"
+    t.integer  "last_updated_by"
   end
 
   create_table "social_identities", force: :cascade do |t|
