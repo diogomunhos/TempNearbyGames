@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :user_documents, foreign_key: :user_id, dependent: :destroy
 	has_many :documents, through: :user_documents
+	has_one :user_login_info, foreign_key: :user_id, dependent: :destroy
 
 	before_create :confirmation_token
 
@@ -12,7 +13,8 @@ class User < ActiveRecord::Base
 
 	scope :getUserByEmailOrNickname, -> (email = nil, nickname = nil) { where("email=? OR nickname=?", email, nickname)}
 	scope :getUserAndDocumentsByType, -> (user_id = nil, document_type = nil) {where("users.id=?", user_id).limit(1).includes(:documents).where('user_documents.document_type=?', document_type).references(:documents)}	
-
+	scope :getUserPaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order('name') } 
+	
 	has_secure_password
 	
 	def self.from_omniauth(auth)

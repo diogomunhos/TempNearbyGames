@@ -1,12 +1,12 @@
-<div id="content-container" ng-controller="all-profiles-controller as controller">
+<div id="content-container" ng-controller="all-users-controller as controller">
 
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
-        <h1 class="page-header text-overflow">All Profiles</h1>
+        <h1 class="page-header text-overflow">All Users</h1>
         <ol class="breadcrumb">
             <li><a href="/private/index">Home</a></li>
-            <li class="active" >Profiles</li>
+            <li class="active" >Users</li>
         </ol>
     </div>
     
@@ -17,7 +17,7 @@
                 <div class="pad-btm form-inline">
                      <div class="row">
                         <div class="col-sm-6 table-toolbar-left">
-                            <a id="demo-btn-addrow" href="/private/profiles/new" class="btn btn-default"><i class="demo-pli-add"></i> Create new profile</a>
+                            <a id="demo-btn-addrow" href="/private/users/new" class="btn btn-default"><i class="demo-pli-add"></i> Create new user</a>
                         </div>
                         <div class="col-sm-6 table-toolbar-right">
                             <!-- <div class="form-group">
@@ -45,19 +45,25 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Nickname</th>
                                 <th>Profile</th>
-                                <th>Active</th>
-                                <th>Last updated date</th>
+                                <th>Email confirmed</th>
+                                <th>Registred date</th>
                             </tr>
                         </thead>
                         <tbody>
-                                <tr ng-repeat="profile in profiles">
-                                    <td><a class="btn-link" href="/private/profiles/show/{{profile.id}}">{{profile.name}}</a></td>
+                                <tr ng-repeat="user in users">
+                                    <td><a class="btn-link" href="/private/users/{{user.id}}/show">{{user.name}}</a></td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.nickname}}</td>
+                                    <td><a class="btn-link" href="/private/profiles/show/{{user.profile_id}}">{{user.profile}}</a></td>
                                     <td>
-                                        <input id="demo-disabled-form-checkbox" class="magic-checkbox" type="checkbox" disabled="" ng-checked="profile.active">
+                                        <input id="demo-disabled-form-checkbox" class="magic-checkbox" type="checkbox" disabled="" ng-checked="user.email_confirmed">
                                         <label for="demo-disabled-form-checkbox"></label>
                                     </td>
-                                    <td><i class="demo-pli-clock"></i> {{profile.updated_at | date:'MM-dd-yyyy HH:mm:ss'}}</td>
+                                    <td><i class="demo-pli-clock"></i> {{user.created_at | date:'MM-dd-yyyy HH:mm:ss'}}</td>
                                 </tr>
                         </tbody>
                     </table>

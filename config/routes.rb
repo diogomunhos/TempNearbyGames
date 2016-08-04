@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :documents
-  
+  resources :user_login_info_secured do 
+    member do 
+      get :reset_password
+    end
+  end
   resources :users do
     member do
       get :confirm_email
@@ -47,16 +51,36 @@ Rails.application.routes.draw do
 
   #ADM Pages
 
+  #INDEX
   get '/private/index' => "private#index"
 
+  
+  #PROFILES
   get '/private/profiles/my-profile' => "profiles_secured#my_profile"
 
   get '/private/profiles/new' => "profiles_secured#new"
 
   get '/private/profiles/show/:profileid' => "profiles_secured#show"
 
+  get 'private/profiles' => "profiles_secured#all_profiles"
+
+  get '/private/profiles/all-profiles/:numberPerPage/:pageNumber' => "profiles_secured#all_profiles_service"
+
+  get '/private/profiles/all-profiles/count' => "profiles_secured#count_all_profiles_service"
+
+  get '/private/profiles/:profileid/destroy' => "profiles_secured#destroy"
+
+  get '/private/profiles/:profileid/activate' => "profiles_secured#activate"
+
+  get '/private/profiles/:profileid/deactivate' => "profiles_secured#deactivate"
+
+  
+  #Objects
+  get '/private/profiles/:profileid/object/:objectid/edit' => "object_permissions_secured#edit"
+  
   get '/private/profiles/:profileid/object/:objectid' => "object_permissions_secured#show"
 
+  #Articles
   get '/private/articles/new' => "articles_secured#new"
 
   get '/private/articles' => "articles_secured#my_articles"
@@ -75,14 +99,42 @@ Rails.application.routes.draw do
 
   get '/private/articles/destroy/:articleid' => "articles_secured#destroy"
 
+  #Users
+
+  get '/private/users' => "users_secured#all_users"
+
+  get '/private/users/:userid/show' => "users_secured#show"
+
+  get '/private/users/:userid/edit' => "users_secured#edit"
+
+  get '/private/users/new' => "users_secured#new"
+
+  get '/private/users/all-users/:numberPerPage/:pageNumber' => "users_secured#all_users_service"
+
+  get '/private/users/all-users/count' => "users_secured#count_all_users_service"
+
+  #User Login Info
+
+  get '/private/users/:userid/reset-password' => "user_login_infos_secured#create"
+
 
   #POST
-
+  #Articles
   post '/private/articles/create-new-article' => "articles_secured#create"
 
   post '/private/articles/update-article' => "articles_secured#update"
 
+  # Profiles
   post '/private/profiles/create-new-profile' => "profiles_secured#create"
+
+  #Objects
+
+  post '/private/profiles/objects/update-object' => "object_permissions_secured#update"
+
+  #User
+
+  post '/private/users/update' => "users_secured#update"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

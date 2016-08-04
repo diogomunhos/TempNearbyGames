@@ -1,0 +1,201 @@
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">New User</h1>
+
+        <!--Searchbox-->
+        <!-- <div class="searchbox">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Search..">
+                <span class="input-group-btn">
+                    <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                </span>
+            </div>
+        </div> -->
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+        <div class="panel">
+            
+        <!-- DISABLED FORM ELEMENTS-->
+        <!--===================================================-->
+        <%= form_for :user, :url => {:controller => 'users_secured', :action => 'create'}, html: { class: "form-horizontal"} do |f| %>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <p class="bord-btm pad-ver text-main text-bold">User information</p>
+            </div>
+            <!--Static-->
+            <div class="col-md-12">
+                <div class="form-group col-md-6">
+                    <label class="col-md-2 control-label" for="article_title">Name:*</label>
+                    <div class="col-md-10">
+                        <input type="text" required="" class="form-control" name="article[title]" id="article_title" value="<%= @article.title %>"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-6">
+                    <label class="col-md-2 control-label" for="article_subtitle">Subtitle:*</label>
+                    <div class="col-md-10">
+                        <input type="text" required="" class="form-control" name="article[subtitle]" id="article_subtitle" value="<%= @article.subtitle %>">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-2 col-md-offset-6 control-label" for="article_is_highlight">Is Highlighted:</label>
+                    <div class="col-md-3">
+                        <div class="checkbox">
+                            <!-- Inline Checkboxes -->
+                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" name="article[is_highlight]" id="article_is_highlight" <% if @article.is_highlight %> checked="" <% end %> >
+                            <label for="disabled-form-inline-checkbox"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="article_type">Article type:</label>
+                        <div class="col-md-9">
+                            <select class="form-control" data-style="btn-primary" name="article[article_type]" id="article_type">
+                                <% if @article_type != nil %>
+                                    <% @article_type.each do |type| %>
+                                            <option <% if type === @article.article_type %> selected="" <% end %>><%= type %></option>
+                                    <% end %>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="article_friendly_url">Friendly URL:*</label>
+                        <div class="col-md-9">
+                            <input type="text" required="" class="form-control" name="article[friendly_url]" id="article_friendly_url" value="<%= @article.friendly_url %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="article_preview">Preview:*</label>
+                    <div class="col-md-11">
+                        <input type="text" required="" class="form-control" name="article[preview]" id="article_preview" value="<%= @article.preview %>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-1 control-label" for="article_body">Body:*</label>
+                    <div class="col-md-11">
+                        <textarea rows="9" required="" class="form-control" name="article[body]" id="article_body"><%= @article.body %></textarea>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Files</p>
+                </div>
+                <div class="col-md-12">
+                    <table class="table  table-condensed">
+                        <tbody>
+                            <tr>
+                                <td>Header</td>
+                                <td>1200x325</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <%= f.file_field :file1 , required: true %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thumb</td>
+                                <td>300x250</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <%= f.file_field :file2 , required: true %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Article image</td>
+                                <td>800x600</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <%= f.file_field :file3 , required: true %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Tags</p>
+                </div>
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Add a tag" required="" value="<%= @article.tags %>" name="article[tags]" id="article_tags" data-role="tagsinput">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel-footer text-right">
+            <button type="submit" class="btn btn-success btn-bock">Save</button>
+        </div>
+        
+
+        
+
+        <!--Disabled Text Input-->
+
+
+        <!--Disabled Email Input-->
+
+
+        <!--Disabled Password-->
+
+
+        <!--Readonly Input-->
+
+
+
+
+        <!--Disabled Textarea-->       
+        <% end %>
+        <!--===================================================-->
+        <!-- END DISABLED FORM ELEMENTS -->
+
+    </div>
+
+
+
+
+</div>
+<!--===================================================-->
+<!--End page content-->
+
+</div>

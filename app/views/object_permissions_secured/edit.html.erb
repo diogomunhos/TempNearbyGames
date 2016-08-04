@@ -3,17 +3,17 @@
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
-        <h1 class="page-header text-overflow"><%= @object.object_name %></h1>
+        <h1 class="page-header text-overflow">Edit permissions</h1>
     </div>
 
     <div id="page-content">
+        <%= form_for :object, :url => {:controller => 'object_permissions_secured', :action => 'update'}, html: { class: "form-horizontal"} do |f| %>
         <div class="panel">
             <div class="panel-footer text-center">
-                <% if @showEdit %>
-                    <a class="btn btn-primary" href="/private/profiles/<%= @object.profile_id %>/object/<%= @object.id %>/edit">Edit permissions</a>
-                <% end %>
+                <a class="btn btn-danger" href="/private/profiles/<%= @object.profile_id %>/object/<%= @object.id %>">Cancel</a>
+                <button class="btn btn-success" type="submit">Save</button>
             </div>
-            <form class="panel-body form-horizontal">
+            <div class="panel-body">
                 <div class="col-md-12">
                     <p class="bord-btm pad-ver text-main text-bold">Object information</p>
                 </div>
@@ -33,10 +33,7 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label class="col-md-3 control-label text-bold">Last updated date:</label>
-                        <div class="col-md-9">
-                            <p class="form-control-static"><%= @object.updated_at %></p>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -56,8 +53,8 @@
                                     <td>Read</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.read_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_read_record" name="object[read_record]" class="magic-checkbox" type="checkbox" <% if @object.read_record %> checked="" <% end %>>
+                                            <label for="object_read_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -65,8 +62,8 @@
                                     <td>Read all</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.read_all_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_read_all_record" name="object[read_all_record]" class="magic-checkbox" type="checkbox" <% if @object.read_all_record %> checked="" <% end %>>
+                                            <label for="object_read_all_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -74,8 +71,8 @@
                                     <td>Create</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.create_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_create_record" name="object[create_record]" class="magic-checkbox" type="checkbox" <% if @object.create_record %> checked="" <% end %>>
+                                            <label for="object_create_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -83,8 +80,8 @@
                                     <td>Edit</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.edit_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_edit_record" name="object[edit_record]" class="magic-checkbox" type="checkbox" <% if @object.edit_record %> checked="" <% end %> >
+                                            <label for="object_edit_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -92,8 +89,8 @@
                                     <td>Delete</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.delete_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_delete_record" name="object[delete_record]" class="magic-checkbox" type="checkbox" <% if @object.delete_record %> checked="" <% end %> >
+                                            <label for="object_delete_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -101,8 +98,8 @@
                                     <td>Approve</td>
                                     <td>
                                         <div class="checkbox">
-                                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if @object.approve_record %> checked="" <% end %> disabled="">
-                                            <label for="disabled-form-inline-checkbox"></label>
+                                            <input id="object_approve_record" name="object[approve_record]" class="magic-checkbox" type="checkbox" <% if @object.approve_record %> checked="" <% end %>>
+                                            <label for="object_approve_record"></label>
                                         </div>
                                     </td>
                                 </tr>
@@ -111,7 +108,7 @@
                         </table>
                     </div>
                 </div> 
-            </form>
+            </div>
             <div class="panel-footer text-center">
                 
             </div>
@@ -133,7 +130,6 @@
                                     <th>Field</th>
                                     <th>Read</th>
                                     <th>Edit</th>
-                                    <th>Last updated date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -142,17 +138,16 @@
                                         <td><%= fd.field_name %></td>
                                         <td>
                                             <div class="checkbox">
-                                                <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if fd.read_record %> checked="" <% end %> disabled="">
-                                                <label for="disabled-form-inline-checkbox"></label>
+                                                <input id="fields_read_record_<%= fd.id %>" name="fields[<%= fd.field_name %>][read_record]" class="magic-checkbox" type="checkbox" <% if fd.read_record %> checked="" <% end %>>
+                                                <label for="fields_read_record_<%= fd.id %>"></label>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="checkbox">
-                                                <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" <% if fd.edit_record %> checked="" <% end %> disabled="">
-                                                <label for="disabled-form-inline-checkbox"></label>
+                                                <input id="fields_edit_record_<%= fd.id %>" name="fields[<%= fd.field_name %>][edit_record]" class="magic-checkbox" type="checkbox" <% if fd.edit_record %> checked="" <% end %> >
+                                                <label for="fields_edit_record_<%= fd.id %>"></label>
                                             </div>
                                         </td>
-                                        <td><%= fd.updated_at %></td>
                                     </tr>
                                 <% end %>
                             </tbody>
@@ -161,10 +156,10 @@
                 </div>
             </div>
             <div class="panel-footer text-center">
-                <% if @showEdit %>
-                    <a class="btn btn-primary" href="/private/profiles/<%= @object.profile_id %>/object/<%= @object.id %>/edit">Edit permissions</a>
-                <% end %>
+                <a class="btn btn-danger" href="/private/profiles/<%= @object.profile_id %>/object/<%= @object.id %>/edit">Cancel</a>
+                <button class="btn btn-success" type="submit">Save</button>
             </div>
         </div>
+        <% end %>
     </div>
 </div>

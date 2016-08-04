@@ -9,7 +9,15 @@
     <div id="page-content">
         <div class="panel">
             <div class="panel-footer text-center">
-
+                <% if @showDelete %>
+                    <a class="btn btn-danger" href="/private/profiles/<%= @profile.id %>/destroy">Delete</a>
+                <% end %>
+                <% if @showDeactivate %>
+                    <a class="btn btn-warning" href="/private/profiles/<%= @profile.id %>/deactivate">Deactivate</a>
+                <% end %>
+                <% if @showActivate %>
+                    <a class="btn btn-success" href="/private/profiles/<%= @profile.id %>/activate">Activate</a>
+                <% end %>
             </div>
             <form class="panel-body form-horizontal">
                 <div class="col-md-12">

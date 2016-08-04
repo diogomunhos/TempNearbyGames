@@ -17,7 +17,7 @@
                 <div class="pad-btm form-inline">
                     <div class="row">
                         <div class="col-sm-6 table-toolbar-left">
-                            
+                            <a id="demo-btn-addrow" href="/private/articles/new" class="btn btn-default"><i class="demo-pli-add"></i> Create new article</a>
                         </div>
                         <div class="col-sm-6 table-toolbar-right">
                             <div class="form-group">
@@ -59,10 +59,8 @@
                                     <td>{{article.created_by_name}}</td>
                                     <td><i class="demo-pli-clock"></i> {{article.updated_at | date:'MM-dd-yyyy HH:mm:ss'}}</td>
                                     <td>
-                                        <div class="checkbox">
-                                            <input id="demo-disabled-form-checkbox" class="magic-checkbox" type="checkbox" disabled="" ng-checked="article.is_highlight">
-                                            <label for="demo-disabled-form-checkbox"></label>
-                                        </div>
+                                        <input id="demo-disabled-form-checkbox" class="magic-checkbox" type="checkbox" disabled="" ng-checked="article.is_highlight">
+                                        <label for="demo-disabled-form-checkbox"></label>
                                     </td>
                                     <td>
                                         <div class="label label-table" ng-class="article.status === 'Draft' ? 'label-default' : (article.status === 'Reject' ? 'label-danger' 

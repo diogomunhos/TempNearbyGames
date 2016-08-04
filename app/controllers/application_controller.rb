@@ -27,8 +27,27 @@ class ApplicationController < ActionController::Base
     return objects = ["Advertising", "Article", "Document", "ArticleDocument", "Profile", "User", "UserDocument", "UserPreference"]
   end
 
-  def system_fields
-    # return "[{\"Object\": \"Advertising\", \"Fields\": [{}]}]"
+  def system_fields(object)
+    case object 
+    when "Advertising"  
+      return ["is_active", "advertising_type", "position", "html_body", "tags", "quantity", "pages", "is_default", "created_at", "updated_at"] 
+    when "Article"  
+      return ["title", "body", "subtitle", "preview", "created_at", "updated_at", "article_type", "is_highlight", "tags", "friendly_url", "created_by_id", "last_updated_by_id", "created_by_name", "last_updated_by_name", "status"]
+    when "Document"
+      return ["file_name", "content_type", "file_contents", "created_at", "updated_at", "tags", "file_size"] 
+    when "ArticleDocument"
+      return ["document_type", "created_at", "updated_at", "article_id", "document_id"]
+    when "Profile"
+      return ["name", "created_at", "updated_at", "active", "created_by", "last_updated_by"]
+    when "User"
+      return ["name", "last_name", "email", "nickname", "profile_id", "role_id", "password", "created_at", "updated_at", "password_confirmation", "birthdate", "email_confirmed", "confirm_token"] 
+    when "UserDocument"
+      return ["user_id", "document_id", "document_type", "created_at", "updated_at"]
+    when "UserPreference"
+      return ["email_content", "accepted_terms_date", "user_id", "created_at", "updated_at"]
+    else
+      return []
+    end
   end
 
   def error_messages(messages)

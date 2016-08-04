@@ -6,12 +6,57 @@ class ProfilesSecuredController < ApplicationController
 
 	end
 
+	def all_profiles
+		
+	end
+
+	def destroy
+		profile = Profile.find(params[:profileid])
+		if(profile.destroy)
+			redirect_to '/private/profiles'
+		end
+	end
+
+	def activate
+		profile = Profile.find(params[:profileid])
+		if(profile.update(id: profile.id, active: true))
+			redirect_to "/private/profiles/show/#{profile.id}"
+		end
+	end
+
+	def deactivate
+		profile = Profile.find(params[:profileid])
+		if(profile.update(id: profile.id, active: false))
+			redirect_to "/private/profiles/show/#{profile.id}"
+		end
+	end
+
+	def all_profiles_service
+		offset_page = (params[:numberPerPage].to_i * params[:pageNumber].to_i) - params[:numberPerPage].to_i 
+		@profiles = Profile.getProfilePaged(params[:numberPerPage], offset_page)
+
+		respond_to do |format|
+		    format.json { render json: @profiles }
+		end
+	end
+
+	def count_all_profiles_service
+		@profiles = Profile.all.count
+
+		respond_to do |format|
+		    format.json { render json: @profiles }
+		end
+	end
+
 	def new
 		@profile = Profile.new
 	end
 
 	def show
 		@profile = Profile.find(params[:profileid])
+		@showActivate = if @profile.active then false else true end
+		@showDeactivate = if @profile.active then true else false end
+		@showDelete = if @profile.active then false else true end
 		@usernamecreate = ""
 		@usernameupdate = ""
 		user = User.find(@profile.created_by)
@@ -68,18 +113,25 @@ class ProfilesSecuredController < ApplicationController
 				object[:last_updated_by] = session[:user_id]
 				objects.push(object)
 			end
-			if(ObjectPermission.create(objects))
-				redirect_to "/private/profiles/show/#{@profile.id}"
-			else
-				if @profile.errors.full_messages.any?
-					@profile.errors.full_messages.each do |error|
-						flash.now[:danger] = if flash[:danger] != nil then flash.now[:danger] + "<br/>" + error else error end 
-					end
-				end
-				respond_to do |format|
-					format.html { render :template => "/profiles_secured/new" }
+			permissions = ObjectPermission.create(objects)
+
+			fields = Array.new {Hash.new}
+			permissions.each do |p|
+				print "DEBUG OBJECT NAME #{p.object_name}"
+				system_fields(p.object_name).each do |sf|
+					print "DEBUG SF #{sf}"
+					field = Hash.new
+					field[:field_name] = sf
+					field[:read_record] = false
+					field[:edit_record] = false
+					field[:object_permission_id] = p.id
+					fields.push(field)
 				end
 			end
+
+			FieldPermission.create(fields)
+
+			redirect_to "/private/profiles/show/#{@profile.id}"
 		else
 			if @profile.errors.full_messages.any?
 				@profile.errors.full_messages.each do |error|

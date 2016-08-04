@@ -3,4 +3,6 @@ class Profile < ActiveRecord::Base
 
 	
 	validates :name, :uniqueness => {:case_sensitive => false, :message => "This name is already registered, please choose another"}
+
+	scope :getProfilePaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order('name') }
 end

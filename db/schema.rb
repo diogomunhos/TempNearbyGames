@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731223646) do
+ActiveRecord::Schema.define(version: 20160803213942) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -81,6 +81,14 @@ ActiveRecord::Schema.define(version: 20160731223646) do
     t.integer  "object_id"
   end
 
+  create_table "login_histories", force: :cascade do |t|
+    t.string   "device"
+    t.boolean  "is_success"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "object_permissions", force: :cascade do |t|
     t.string   "object_name"
     t.boolean  "read_record"
@@ -123,6 +131,15 @@ ActiveRecord::Schema.define(version: 20160731223646) do
     t.integer  "user_id"
     t.integer  "document_id"
     t.string   "document_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_login_infos", force: :cascade do |t|
+    t.boolean  "is_locked"
+    t.string   "reset_password_token"
+    t.date     "reset_request_date"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
