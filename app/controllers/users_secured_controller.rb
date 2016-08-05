@@ -1,6 +1,18 @@
 class UsersSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize
+	before_filter :authorize, :profile_authorize
+	before_action only: [:all_users, :all_users_service, :count_all_users_service] do 
+		check_access("User", "read_all_record")
+	end
+	before_action only: :show do 
+		check_access("User", "read_record")
+	end
+	before_action only: [:new, :create] do 
+		check_access("User", "create_record")
+	end
+	before_action only: [:edit, :update] do 
+		check_access("User", "edit_record")
+	end
 
 	def all_users_service
 		offset_page = (params[:numberPerPage].to_i * params[:pageNumber].to_i) - params[:numberPerPage].to_i 
@@ -52,7 +64,8 @@ class UsersSecuredController < ApplicationController
 	end
 
 	def new
-
+		@user = User.new
+		@profilename = ""
 	end
 
 	def show
@@ -87,9 +100,56 @@ class UsersSecuredController < ApplicationController
 		end
 	end
 
+	def create
+		@user = User.new(create_user_params)
+		profile = Profile.where("name=?", create_profile_params["name"])
+		@user.password = "wahiga@2016"
+
+		if profile.any?
+			@user.profile_id = profile[0].id
+			if @user.save
+				userinfo = UserLoginInfo.create(is_locked: false, user_id: @user.id, reset_password_token: SecureRandom.urlsafe_base64)
+
+				UserMailer.registration_confirmation_with_password_set(@user, userinfo.reset_password_token).deliver
+
+				redirect_to "/private/users"
+			else
+				if @user.errors.full_messages.any?
+					@user.errors.full_messages.each do |error|
+						flash.now[:danger] = if flash[:danger] != nil then flash.now[:danger] + "<br/>" + error else error end 
+					end
+				end
+				respond_to do |format|
+					format.html { render :template => "/users_secured/new" }
+				end 
+			end
+		else
+			flash.now[:danger] = "Profile not founded, please click on search button than select one profile of the list"
+			respond_to do |format|
+				format.html { render :template => "/users_secured/new" }
+			end
+		end
+
+		
+	end
+
+	def confirm_email_set_password
+
+	end
+
 
 	private 
 	def update_user_params
 		params.require(:user).permit(:name, :email, :last_name, :nickname, :profile_name)
+	end
+
+	private 
+	def create_user_params
+		params.require(:user).permit(:name, :email, :last_name, :nickname)
+	end
+
+	private 
+	def create_profile_params
+		params.require(:profile).permit(:name)
 	end
 end

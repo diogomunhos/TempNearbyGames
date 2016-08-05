@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	before_create :confirmation_token
 
 	validates :password, :confirmation => true
-	validates :nickname, :uniqueness => {:case_sensitive => false, :message => "Email is already registered by another user, please choose another"}
+	validates :nickname, :uniqueness => {:case_sensitive => false, :message => "Email is already registered by another user, please choose another"}, allow_blank: true
 	validates :email, :uniqueness => {:case_sensitive => false, :message => "Nickname is already registered by another user, please choose another"}
 
 	has_one :user_preference, foreign_key: :user_id, dependent: :destroy
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 	scope :getUserPaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order('name') } 
 	
 	has_secure_password
-	
+
 	def self.from_omniauth(auth)
 	    where(auth.slice(provider: auth.provider, uid: auth.uid)).first_or_create do |user|
 	      user.provider = auth.provider

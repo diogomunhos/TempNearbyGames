@@ -1,10 +1,49 @@
 class ArticlesSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize
+	before_filter :authorize, :profile_authorize
 	before_action :init_article_type, only: [:new, :create, :edit]
+	before_action only: [:my_articles, :all_articles, :count_articles, :count_search_articles, :search_all_articles] do 
+		check_access("Article", "read_all_record")
+	end
+	before_action only: :show do 
+		check_access("Article", "read_record")
+	end
+	before_action only: [:new, :create] do 
+		check_access("Article", "create_record")
+	end
+	before_action only: [:edit, :update] do 
+		check_access("Article", "edit_record")
+	end
+
+	before_action only: [:approve] do 
+		check_access("Article", "approve_record")
+	end
+
+	before_action only: [:destroy] do 
+		check_access("Article", "delete_record")
+	end
+
+	before_action only: [:publish] do 
+		check_access_to_publish("Administrator")
+	end
+
 
 	def my_articles
 		
+	end
+
+	def approve
+		article = Article.find(params[:articleid])
+		article.status = "Approved"
+		article.save
+		redirect_to "/private/articles/show/#{article.id}"
+	end
+
+	def publish
+		article = Article.find(params[:articleid])
+		article.status = "Published"
+		article.save
+		redirect_to "/private/articles/show/#{article.id}"
 	end
 
 	def all_articles
@@ -152,13 +191,14 @@ class ArticlesSecuredController < ApplicationController
 		article = Article.where(id: params[:articleid]).includes(:documents)
 		@article = if article.any? then article[0] else Article.new end	
 		@tags = if @article.tags != "" && @article.tags != nil then @article.tags.split(',') else Array.new end
-		@showEdit = if @article.status === "Draft" || @article.status === "Reject" then true else false end
-		@showDelete = if @showEdit then true else false end
+		@showEdit = if (@article.status === "Draft" || @article.status === "Reject") && !check_access_helper("Article", "edit_record").nil? then true else false end
+		@showDelete = if (@article.status === "Draft" || @article.status === "Reject") && !check_access_helper("Article", "delete_record").nil? then true else false end
 		@showSendApproval = if @article.status === "Draft" then true else false end
-		@showReject = if @article.status === "Waiting for approval" then true else false end
-		@showApprove = if @article.status === "Waiting for approval" then true else false end
-		@showPublish = if @article.status === "Approved" then true else false end
-		@showSchedule = if @article.status === "Approved" then true else false end
+		@showReject = if @article.status === "Waiting for approval" && !check_access_helper("Article", "approve_record").nil? then true else false end
+		@showApprove = if @article.status === "Waiting for approval" && !check_access_helper("Article", "approve_record").nil? then true else false end
+		@showPublish = if @article.status === "Approved" && !check_access_to_publish("Administrator").nil? then true else false end
+		# @showSchedule = if @article.status === "Approved" then true else false end
+		@showSchedule = false
 		historic = Historic.where("entity=? AND object_id=?", "article", @article.id)
 		@historic = Array.new
 		historic.each do |h|
@@ -174,8 +214,6 @@ class ArticlesSecuredController < ApplicationController
 				@historic.push(historic_hash)
 			end
 		end
-
-		print "DEBUG #{@historic}"
 	end
 
 	def create

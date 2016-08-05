@@ -1,6 +1,6 @@
 class PrivateController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize
+	before_filter :authorize, :profile_authorize
 
 	def index 
 		@currentUser = User.find(session[:user_id])
@@ -19,5 +19,9 @@ class PrivateController < ApplicationController
 				@profile_image_url = social['image_url']
 			end
 		end
+	end
+
+	def unauthorized_401
+		
 	end
 end

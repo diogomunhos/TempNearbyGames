@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   root "home#home"
 
   get "/home" => "home#default"
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
 
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-  
+  get '/private/unauthorized' => "private#unauthorized_401" 
 
 
   #ADM Pages
@@ -99,6 +100,10 @@ Rails.application.routes.draw do
 
   get '/private/articles/destroy/:articleid' => "articles_secured#destroy"
 
+  get '/private/articles/approve/:articleid' => "articles_secured#approve"
+
+  get '/private/articles/publish/:articleid' => "articles_secured#publish"
+
   #Users
 
   get '/private/users' => "users_secured#all_users"
@@ -112,6 +117,8 @@ Rails.application.routes.draw do
   get '/private/users/all-users/:numberPerPage/:pageNumber' => "users_secured#all_users_service"
 
   get '/private/users/all-users/count' => "users_secured#count_all_users_service"
+
+  # get 'acceptInvitation/:confirm_token/password-change-secur/:password_token' => 'users_secured#confirm_email_set_password'
 
   #User Login Info
 
@@ -134,6 +141,8 @@ Rails.application.routes.draw do
   #User
 
   post '/private/users/update' => "users_secured#update"
+
+  post '/private/users/create-new-user' => "users_secured#create"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

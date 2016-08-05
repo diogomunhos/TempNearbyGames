@@ -1,6 +1,6 @@
 class ProfilesSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize
+	before_filter :authorize, :profile_authorize
 	
 	def my_profile
 
