@@ -1,6 +1,6 @@
 class ArticlesSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize, :profile_authorize
+	before_filter :authorize, :profile_authorize, :has_to_change_password
 	before_action :init_article_type, only: [:new, :create, :edit]
 	before_action only: [:my_articles, :all_articles, :count_articles, :count_search_articles, :search_all_articles] do 
 		check_access("Article", "read_all_record")

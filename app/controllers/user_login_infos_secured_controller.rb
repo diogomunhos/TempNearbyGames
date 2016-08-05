@@ -1,6 +1,6 @@
 class UserLoginInfosSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize, :profile_authorize
+	before_filter :authorize, :profile_authorize, :has_to_change_password
 
 	def create 
 		@user = User.find(params[:userid])

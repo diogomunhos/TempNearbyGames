@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper
+  helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper, :check_has_to_change_password
 
 
   def current_user
@@ -28,6 +28,18 @@ class ApplicationController < ActionController::Base
       return @currentUser
 
     end
+  end
+
+  def check_has_to_change_password
+    unless @currentUser.user_login_info.nil?
+      unless @currentUser.user_login_info.reset_password_token.nil?
+        return nil
+      else
+        return true
+      end
+    else
+      return true
+    end 
   end
 
   def check_profile
@@ -81,6 +93,10 @@ class ApplicationController < ActionController::Base
 
   def profile_authorize
     redirect_to '/404' unless check_profile
+  end
+
+  def has_to_change_password
+    redirect_to '/private/change-password-invitation' unless check_has_to_change_password
   end
 
   def check_access_helper(object, permission)

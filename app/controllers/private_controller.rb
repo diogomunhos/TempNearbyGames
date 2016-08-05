@@ -1,6 +1,6 @@
 class PrivateController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize, :profile_authorize
+	before_filter :authorize, :profile_authorize, :has_to_change_password
 
 	def index 
 		@currentUser = User.find(session[:user_id])

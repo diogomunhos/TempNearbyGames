@@ -1,6 +1,6 @@
 class UsersSecuredController < ApplicationController
 	layout "admapplication"
-	before_filter :authorize, :profile_authorize
+	before_filter :authorize, :profile_authorize, :has_to_change_password
 	before_action only: [:all_users, :all_users_service, :count_all_users_service] do 
 		check_access("User", "read_all_record")
 	end

@@ -125,6 +125,12 @@ Rails.application.routes.draw do
 
   get '/private/users/:userid/reset-password' => "user_login_infos_secured#create"
 
+  #User Invitation
+
+  get '/private/change-password-invitation' => "user_invitations_secured#change_password"
+
+  get '/private/accept-invitation/:confirmToken/change-password/:resetPasswordToken' => "user_invitations_secured#confirm_invitation"
+
 
   #POST
   #Articles
@@ -144,6 +150,11 @@ Rails.application.routes.draw do
   post '/private/users/update' => "users_secured#update"
 
   post '/private/users/create-new-user' => "users_secured#create"
+
+  #User Invitation
+
+  post '/private/update-password' => "user_invitations_secured#update"
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

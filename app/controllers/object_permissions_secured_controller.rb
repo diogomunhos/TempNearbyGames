@@ -1,5 +1,5 @@
 class ObjectPermissionsSecuredController < ApplicationController
-	before_filter :authorize, :profile_authorize
+	before_filter :authorize, :profile_authorize, :has_to_change_password
 	layout "admapplication"
 	def show
 		@object = ObjectPermission.find(params[:objectid])
