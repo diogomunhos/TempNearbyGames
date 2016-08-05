@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   #INDEX
   get '/private/index' => "private#index"
 
+  get '/private/index/get-permissions' => "private#get_permissions_service"
   
   #PROFILES
   get '/private/profiles/my-profile' => "profiles_secured#my_profile"

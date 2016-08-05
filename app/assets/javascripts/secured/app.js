@@ -3,7 +3,9 @@ angular.module('admin-module', [
 	'admin-module.article-services',
 	'admin-module.profile-services',
 	'admin-module.user-services',
+	'admin-module.application-services',
     'admin-module.article-controller',
     'admin-module.profile-controller',
-    'admin-module.user-controller'
+    'admin-module.user-controller',
+    'admin-module.application-controller'
 ])
