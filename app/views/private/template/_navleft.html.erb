@@ -76,7 +76,7 @@
 						<li class="list-header">Navigation</li>
 
 						<!--Menu list item-->
-						<li class="active-link">
+						<li ng-class=" (activeLinkFirst === 'home') ? 'active-link' : '' ">
 							<a href="/private/index">
 								<i class="demo-psi-home"></i>
 								<span class="menu-title">
@@ -86,7 +86,7 @@
 						</li>
 
 						<!--Menu list item-->
-						<li>
+						<li ng-class=" (activeLinkFirst === 'article') ? 'active-link' : '' ">
 							<a href="#" ng-show="articles.showArticles">
 								<i class="fa fa-newspaper-o"></i>
 								<span class="menu-title">
@@ -97,11 +97,11 @@
 
 							<!--Submenu-->
 							<ul class="collapse">
-								<li><a href="/private/articles" ng-show="articles.showAll">All Articles</a></li>
-								<li><a href="/private/articles/new" ng-show="articles.showNew">New Article</a></li>
+								<li ng-class=" (activeLinkSecond === 'all-article') ? 'active-link' : '' "><a href="/private/articles" ng-show="articles.showAll">All Articles</a></li>
+								<li ng-class=" (activeLinkSecond === 'new-article') ? 'active-link' : '' "><a href="/private/articles/new" ng-show="articles.showNew">New Article</a></li>
 							</ul>
 						</li>
-						<li ng-show="management.showManagement">
+						<li ng-show="management.showManagement" ng-class=" (activeLinkFirst === 'management') ? 'active-link' : '' ">
 							<a href="#">
 								<i class="demo-psi-gear-2"></i>
 								<span class="menu-title">
@@ -112,22 +112,22 @@
 
 							<!--Submenu-->
 							<ul class="collapse">
-								<li class="" ng-show="management.profile.showProfile">
+								<li class="" ng-show="management.profile.showProfile" ng-class=" (activeLinkSecond === 'profile') ? 'active-link' : '' ">
                                     <a href="#" aria-expanded="true"><i class="fa fa-thumbs-up"></i> Profile<i class="arrow"></i></a>
 
                                     <!--Submenu-->
                                     <ul class="collapse" aria-expanded="false" style="height: 0px;">
-                                        <li><a href="/private/profiles" ng-show="management.profile.showAll">All Profiles</a></li>
-                                        <li><a href="/private/profiles/new" ng-show="management.profile.showNew">New Profile</a></li>
+                                        <li ng-class=" (activeLinkThird === 'all-profile') ? 'active-link' : '' "><a href="/private/profiles" ng-show="management.profile.showAll">All Profiles</a></li>
+                                        <li ng-class=" (activeLinkThird === 'new-profile') ? 'active-link' : '' "><a href="/private/profiles/new" ng-show="management.profile.showNew">New Profile</a></li>
                                     </ul>
                                 </li>
-								<li class="" ng-show="management.user.showUsers">
+								<li class="" ng-show="management.user.showUsers" ng-class=" (activeLinkSecond === 'user') ? 'active-link' : '' ">
                                     <a href="#" aria-expanded="true">
                                     	<i class="fa fa-users"></i> User<i class="arrow"></i>
                                     </a>
                                     <ul class="collapse" aria-expanded="false" style="height: 0px;">
-                                        <li><a href="/private/users" ng-show="management.user.showAll">All Users</a></li>
-                                        <li><a href="/private/users/new" ng-show="management.user.showNew">New User</a></li>
+                                        <li ng-class=" (activeLinkThird === 'all-user') ? 'active-link' : '' "><a href="/private/users" ng-show="management.user.showAll">All Users</a></li>
+                                        <li ng-class=" (activeLinkThird === 'new-user') ? 'active-link' : '' "><a href="/private/users/new" ng-show="management.user.showNew">New User</a></li>
                                     </ul>
                                 </li>
 							</ul>

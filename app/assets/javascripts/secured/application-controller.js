@@ -2,7 +2,7 @@
 
 angular.module('admin-module.application-controller', [])
 
-.controller('navleft-controller', ['applicationServices', '$scope', '$timeout', function(applicationServices, $scope, $timeout) {
+.controller('navleft-controller', ['applicationServices', '$scope', '$timeout', '$location', function(applicationServices, $scope, $timeout, $location) {
 
   $scope.articles = {
     showArticles: false,
@@ -23,6 +23,49 @@ angular.module('admin-module.application-controller', [])
       showNew: false
     }
   };
+
+  $scope.activeLinkFirst = "home"
+  $scope.activeLinkSecond = ""
+  $scope.activeLinkThird = ""
+  
+
+  $scope.setActiveLinks = function(){
+    var path = $location.absUrl();
+    if(path.indexOf("/articles") !== -1){
+      $scope.activeLinkFirst = "article";
+      $scope.activeLinkSecond = "all-article";
+      $scope.activeLinkThird = "";
+      if(path.indexOf("/new") !== -1){
+        $scope.activeLinkSecond = "new-article";
+      }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
+        $scope.activeLinkSecond = "";
+      }
+    }else if(path.indexOf("/users") !== -1){
+      $scope.activeLinkFirst = "management";
+      $scope.activeLinkSecond = "user"
+       $scope.activeLinkThird = "all-user"
+      if(path.indexOf("/new") !== -1){
+        $scope.activeLinkThird = "new-user";
+      }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
+        $scope.activeLinkThird = ""
+      }
+    }else if(path.indexOf("/profiles") !== -1){
+      $scope.activeLinkFirst = "management";
+      $scope.activeLinkSecond = "profile"
+       $scope.activeLinkThird = "all-profile"
+      if(path.indexOf("/new") !== -1){
+        $scope.activeLinkThird = "new-profile";
+      }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
+        $scope.activeLinkThird = ""
+      }
+    }else{
+      $scope.activeLinkFirst = "home"
+      $scope.activeLinkSecond = ""
+      $scope.activeLinkThird = ""
+    }
+     
+  }
+  
 
   $scope.permissions = null;
   
@@ -65,5 +108,6 @@ angular.module('admin-module.application-controller', [])
   }
 
    $scope.getPermissions();
+   $scope.setActiveLinks();
 
 }]);
