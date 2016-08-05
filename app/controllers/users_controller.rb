@@ -22,7 +22,8 @@ class UsersController < ApplicationController
 										false 
 									end
 		end
-
+		profile = Profile.find_by_name('Guest')
+		@user.profile_id = profile.id
 		if @user.save
 			UserPreference.create("user_id": @user.id, "email_content": user_preference_params[:email_content], "accepted_terms_date": Date.today)
 			print "SOCIAL #{social['uid']}" 
