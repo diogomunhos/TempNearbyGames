@@ -237,7 +237,7 @@ class ArticlesSecuredController < ApplicationController
 			ArticleDocument.create(article_id: @article.id, document_id: @document1.id, document_type: "header");
 			ArticleDocument.create(article_id: @article.id, document_id: @document2.id, document_type: "thumb");
 			ArticleDocument.create(article_id: @article.id, document_id: @document3.id, document_type: "article");
-			redirect_to "/private/articles/my-articles"
+			redirect_to "/private/articles"
 		else
 			if @article.errors.full_messages.any?
 				@article.errors.full_messages.each do |error|
@@ -252,7 +252,8 @@ class ArticlesSecuredController < ApplicationController
 
 	def destroy
 		Article.find(params[:articleid]).destroy
-		redirect_to "/private/articles/my-articles"
+		User.find(12312312312312)
+		redirect_to "/private/articles"
 	end
 
 	def document_params
