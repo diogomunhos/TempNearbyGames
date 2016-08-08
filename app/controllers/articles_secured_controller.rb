@@ -252,7 +252,6 @@ class ArticlesSecuredController < ApplicationController
 
 	def destroy
 		Article.find(params[:articleid]).destroy
-		User.find(12312312312312)
 		redirect_to "/private/articles"
 	end
 
