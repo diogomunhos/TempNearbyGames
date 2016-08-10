@@ -826,7 +826,7 @@ img.mfp-img {
 }
 
 .site-content .middle-content {
-	padding-bottom:0;
+	padding-bottom:1px;
 }
 
 .middle-content .post:first-child {

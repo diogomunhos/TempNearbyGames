@@ -1,9 +1,8 @@
 class HomeController < ApplicationController
 
 	def home
-		@slider = Article.getLast3ArticlesSlider		
-		@highlight = Article.getLast4HighlightedArticles(@slider)
-		@articles = Article.getLast10Articles(@slider, @highlight)
+		@slider = Article.getLast4ArticlesSlider		
+		@articles = Article.getLast10Articles(@slider)
 		@advertising1 = Advertising.getDefaultAdvertising;
 		if @advertising1 === nil
 			@advertising1 = Advertising.getDefaultAdvertising

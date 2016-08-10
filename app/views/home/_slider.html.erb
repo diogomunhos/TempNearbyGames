@@ -1,40 +1,16 @@
 <div class="section" id="main-slider" style="margin-top: -20px;">
-  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
-    <div class="post-content">
-      <div class="catagory"><a href="#">World</a></div>
-      <h2 class="entry-title">
-        <a href="news-details.html">David's character argued that women and children shouldn't be let</a>
-      </h2>
-    </div>
-  </div><!--/post-->
-  <div class="post feature-post video-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
-    <div class="post-content">
-      <div class="video-icon">
-        <a href="news-details2.html"><i class="fa fa-youtube-play"></i></a>
-      </div>
-      <div class="catagory"><a href="#">Music</a></div>
-      <h2 class="entry-title">
-        <a href="news-details2.html">David's character argued that women and children shouldn't be let</a>
-      </h2>
-    </div>
-  </div><!--/post-->
-  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
-    <div class="post-content">
-      <div class="video-icon">
-        <a href="news-details2.html"><i class="fa fa-youtube-play"></i></a>
-      </div>
-      <div class="catagory"><a href="#">Lifestyle</a></div>
-      <h2 class="entry-title">
-        <a href="news-details2.html">The sketch had David once again impersonating Sanders as voters cussed</a>
-      </h2>
-    </div>
-  </div><!--/post-->
-  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
-    <div class="post-content">
-      <div class="catagory"><a href="#">Sports</a></div>
-      <h2 class="entry-title">
-        <a href="news-details.html">Those people later turn out to be key to his slim loss to Hillary </a>
-      </h2>
-    </div>
-  </div><!--/post-->
+  <% @slider.each do |s| %>
+    <% s.article_documents.each do |image| %>
+      <% if image.document_type === "header" %>
+        <div class="post feature-post" style="background-image:url(/images/show_image/<%= image.document.id %>); background-size:cover;">
+          <div class="post-content">
+            <!-- <div class="catagory"><a href="#">World</a></div> -->
+            <h2 class="entry-title">
+              <a href="news-details.html"><%= s.title %></a>
+            </h2>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
