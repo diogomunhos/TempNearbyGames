@@ -1,0 +1,503 @@
+/* lg */ 
+@media (min-width: 1400px) {
+	
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+	.nav > li > a{
+		padding:10px 8px;
+		line-height:27px;
+		font-size:14px;
+	}
+	.searchNlogin{
+		position: absolute;
+		top: 0px;
+		right: 25px;
+	}
+	#topbar-right{
+		margin-right:100px;
+	}
+	.cat-menu{
+		right:15px;
+	}
+	.social-icons li {
+		margin-right: 0px;
+	}
+	.gallery-turner {
+		right:0;
+		bottom: 30px;
+	}
+	.footer-widget ul li {
+		width: 65px;
+		height: 65px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.footer-widget ul li:last-child, 
+	.footer-widget ul li:nth-child(4) {
+		margin-right: 0;
+	}
+	.health-section .small-post .entry-header {
+		margin-bottom: 0px;
+		margin-right: 12px;
+	}
+	.feature-post .post-content, 
+	.post-content{
+		padding:25px 20px;
+	}
+	
+	.video-post-list .post, 
+	.widget .post-list .post {
+		max-height: 120px;
+	}
+	.health-section .small-post .entry-header,
+	.health-section .small-post .post-content {
+		width: 35%;
+	}
+	.health-section .small-post .post-content {
+		width:55%;
+		padding: 10px 0;
+	}
+	.health-section .entry-thumbnail {
+		margin-left:15px;
+		margin-top:15px;
+	}
+	#photo-gallery .item h2{
+		padding:25px 20px;
+	}
+	.gallery-indicators {
+		padding:5px 20px;
+	}
+	.gallery-indicators li, 
+	.gallery-indicators li.active {
+		margin:0;
+	}
+	.widget .post-list .entry-thumbnail {
+		margin-top:10px;
+	}
+	.widget .post-list li {
+		padding:15px;
+	}
+	#news-listing .middle-content .post {
+		height: 250px;
+	}
+	.medium-post .entry-thumbnail iframe{
+		height:120px;
+	}
+	
+}
+
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+	#navigation .navbar-left, 
+	#navigation .navbar-nav, 
+	#navigation .navbar-nav > li {
+		float: none;
+	}
+	#menubar .navbar-header {
+		margin-right:0;
+	}
+	#navigation .navbar-left{
+		width:100%;
+	}
+	.searchNlogin {
+		margin-right: 0px;
+		position: absolute;
+		top: 0px;
+		right: 100px;
+	}
+	.navbar-nav > li > .dropdown-menu{
+		position:absolute;
+		top:inherit;
+	}
+	.navbar-nav .open .dropdown-menu{
+		position:absolute;
+	}
+	.navbar-nav > li > a{
+		line-height:12px;
+	}
+	#mainmenu .mega-cat-menu{
+		padding:25px;
+	}
+	.feature-post .post-content{
+		padding:20px;
+	}
+	.post-content {
+		padding: 20px;
+	}
+	.middle-content, .left-sidebar {
+		padding: 20px;
+	}
+	.small-post img {
+		width:100%;
+	}
+	.video-post-list .post, 
+	.widget .post-list .post {
+		max-height: 200px;
+	}
+	.health-feature{
+		max-height:initial;
+	}
+	.health-section .entry-header, 
+	.health-section .post-content, 
+	.video-post-list .entry-header, 
+	.video-post-list .post-content {
+		width:100%;
+		float:none;
+	}
+	.health-section .small-post{
+		max-height:initial;
+	}
+	.health-section .small-post .post-content {
+		padding: 12px;
+		width: 100%;
+		float: none;
+	}
+	.health-section .small-post .entry-header{
+		margin-bottom:15px;
+	}
+	.health-section .small-post .entry-title{
+		margin-bottom:0;
+	}
+	.social-icons li {
+		margin-right: 0px;
+		margin-bottom:10px;
+	}
+	.cat-menu{
+		position:static;
+		margin-bottom:30px;
+	}
+	.cat-menu a{
+		padding-bottom:0;
+	}
+	.footer-widget ul li {
+		width: 60px;
+		height: 60px;
+		margin-right: 15px;
+		margin-bottom: 15px;
+	}
+	.footer-widget ul li:nth-child(4){
+		margin-right: 10px;
+	}
+	.footer-widget ul li:last-child, 
+	.footer-widget ul li:nth-child(3), 
+	.footer-widget ul li:nth-child(6) {
+		margin-right: 0;
+	}
+	.health-section .small-post .entry-header {
+		margin-bottom: 0px;
+		margin-right: 12px;
+	}
+	.widget .post-list .entry-thumbnail {
+		margin-top:10px;
+	}
+	.widget .post-list li {
+		padding:15px;
+	}
+	
+	.sb {
+		margin-left: -350px;
+		width: 700px;
+		padding:45px;
+	}
+	.footer-top ul li {
+		margin-right: 5px;
+	}
+	.box-width .health-feature .post-content {
+		padding: 25px 0;
+	}
+	.box-width .health-section .post {
+		padding-bottom:0;
+	}
+	.details-news .entry-thumbnail iframe{
+		height:300px;
+	}
+	.medium-post .entry-thumbnail iframe{
+		height:137px;
+	}
+	#news-listing .middle-content .post{
+		height:auto;
+		margin-top:0;
+	}
+}
+
+
+/* xs */
+@media (max-width: 767px) {
+	body, 
+	.bottom-widgets .widget h2{
+		font-size:14px;
+	}
+	.section-title {
+		font-size:18px;
+	}
+	.section-title.title {
+		margin-bottom: 35px;
+	}
+	.post .entry-title{
+		font-size:16px;
+	}
+	.navbar-toggle{
+		position:absolute;
+		top:0;
+		right:0;
+	}
+	.navbar-brand{
+		padding:10px 15px;
+	}
+	#topbar-right {
+		float: left;
+	}
+	.navbar-nav{
+		margin:0;
+	}
+	.navbar-nav > li > a{
+		line-height:15px;
+	}
+	#mainmenu .dropdown-menu > li > a, 
+	.dropdown-menu{
+		font-size:13px;
+	}
+	#mainmenu .mega-menu h2{
+		font-size:15px;
+	}
+	#mainmenu .mega-menu{
+		padding-left:15px;
+	}
+	#mainmenu .mega-cat-menu{
+		padding:20px 15px;
+	}
+	#mainmenu .sub-catagory .section-title{
+		margin-bottom:60px;
+	}
+	#navigation .dropdown-menu.mega-menu .container {
+		padding-left:15px !important;
+		padding-right:15px !important;
+	}
+	#navigation .dropdown-menu.top-user-section{
+		top:35px;
+	}
+	.searchNlogin{
+		margin-right:0;
+		position:absolute;
+		top:10px;
+		right:75px;
+	}
+	.searchNlogin li {
+		padding: 8px 15px;
+	}
+	.search-form{
+		height:38px;
+	}
+	.search{
+		right:85px;
+	}
+	.expanded .search {
+		width: 280px;
+	}
+	#navigation .sticky-nav .navbar-nav{
+		margin-left:0;
+	}	
+	.post{
+		margin-top:25px;
+	}
+	.feature-post .post-content{
+		padding:30px
+	}
+	.owl-controls .owl-pagination {
+		margin-top: -30px;
+		padding-right: 15px;
+	}
+	.catagory a{
+		font-size:10px;
+	}
+	.entry-thumbnail img{
+		width:100%;
+	}
+	#latest-news .owl-controls .owl-pagination {    
+		top: 14px;
+		right: 15px;
+	}
+	.post-content{
+		padding:30px 25px;
+	}
+	.world-nav.cat-menu {
+		position:initial;
+		margin-bottom:25px;
+	}	
+	.world-nav.cat-menu li a{
+		padding-bottom:3px;
+		font-size:10px;
+	}
+	#photo-gallery .item h2{
+		padding:25px o;
+		font-size:16px;
+	}
+	.gallery-indicators{
+		padding:0;
+	}
+	.gallery-turner {
+		right: 20px;
+		bottom: 15px;
+	}
+	.health-feature{
+		max-height:initial;
+	}
+	.health-section .entry-header, 
+	.health-section .post-content {
+		width:100%;
+		float:none;
+	}
+	.footer-widget{
+		padding-top:30px;
+		padding-bottom:40px;
+	}
+	.footer-widget ul li{
+		height:60px;
+		width:60px;
+		margin-right:10px;
+	}
+	.footer-menu .navbar-nav li {
+		display:inline-block;
+	}
+	.bottom-widgets{
+		padding:25px 0;
+	}
+	.bottom-widgets .widget{
+		overflow:hidden;
+	}
+	#twitter-feed h2{
+		font-size:20px;
+	}
+	.gallery-indicators li, 
+	.gallery-indicators li.active {
+		height: 37px;
+		width: 37px;
+		margin: 0px;
+	}
+	.widget {
+		overflow:hidden;
+	}
+	.box-width {
+		max-width: 450px;
+	}
+
+	.post-inner-image {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.post-inner-image img {
+		margin-bottom:15px;
+	}
+	.comments-wrapper{
+		margin-top:0;
+	}
+	.comments-wrapper .media{
+		padding: 15px 20px 20px;
+	}
+	.comments-wrapper .media.media-child{
+		margin-left:25px;
+	}
+	.add.featured-add {
+		display:none
+	}
+	
+	.listing-news .post {
+		max-height: inherit;
+	}
+	.listing-news .entry-header {
+		width: 100%;
+		float: none;
+	}
+	.listing-news .post-content {
+		width: 100%;
+		padding: 20px;
+	}
+	.error-content h1 {
+		font-size:110px;
+	}
+	.error-content h2{
+		font-size:35px;
+	}
+	.error-content .btn-primary {
+		padding: 15px 30px;
+		font-size: 16px;
+	}
+	.middle-content, .left-sidebar {
+		margin-bottom:25px;
+	}
+	.footer-top ul li {
+		margin-right: 15px;
+		margin-bottom: 20px;
+	}
+	.box-width .health-feature .post-content {
+		padding: 20px 0;
+	}
+	.box-width .health-section .post {
+		padding-bottom:0;
+	}
+	.details-news .entry-thumbnail iframe{
+		height:250px;
+	}
+	#news-listing .middle-content .post{
+		height:auto;
+		margin-top:0;
+	}
+	.load-more{
+		margin-bottom:25px;
+	}
+}
+
+/* XS Portrait */
+@media (max-width: 479px) {
+	#navigation .dropdown-menu.top-user-section{
+		right: 0px;
+		min-width: 288px;
+	}
+	.expanded .search {
+		width: 175px;
+	}
+	.search {
+		right:57px;
+	}
+	.post{
+		margin-top:15px;
+	}
+	.feature-post .post-content{
+		padding:30px 15px;
+	}
+	.owl-controls .owl-pagination {
+		margin-top: -27px;
+	}
+	.gallery-indicators li, 
+	.gallery-indicators li.active {
+		height: 40px;
+		width: 40px;
+		margin: 3px;
+	}
+	.gallery-turner {
+		right: 20px;
+		bottom: 20px;
+	}
+	
+	.box-width {
+		max-width: 300px;
+	}
+	.searchNlogin li {
+		padding: 8px;
+	}
+	.navbar-brand>img{
+		width:85%;
+	}
+	#navigation .dropdown-menu.top-user-section {
+		min-width: 235px;
+		margin-right: -40px;
+	}
+	.top-user-form {
+		padding: 20px;
+	}
+}
+

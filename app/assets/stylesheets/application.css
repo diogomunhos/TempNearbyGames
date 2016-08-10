@@ -19,6 +19,8 @@ html {
 	position: relative;
 	min-height: 100%;
 }
+
+
 body {
 	/* Margin bottom by footer height */
 	margin-bottom: 180px;
@@ -31,6 +33,11 @@ body {
 	height: 180px;
 	background-color: #f5f5f5;
 }
+
+.entry-title > a:hover{
+	color:#ED1C24!important;
+}
+
 
 body > .container{
 	/*padding: 60px 15px 0;*/
@@ -78,6 +85,109 @@ code {
 	font-size: 1.35rem;
 }
 
+.aside-header{
+	background-color: #262324!important;
+	border: none!important;
+	color:  #262324!important;
+	font-weight: bold!important;
+}
+
+.aside-content{
+	background-color: #414141!important;
+}
+
+.aside{
+	background-color: #414141;
+}
+
+.aside-header > .close{
+	color:  #262324!important;
+}
+
+.aside-body{
+	background-color: #414141!important;
+	border: none!important;
+}
+
+.aside-footer{;
+	color: #E7BB51!important;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.img-home-menu{
+	height: 150px;
+	width: auto;
+	display: block;
+}
+
+.wahiga-backgroung-light-orange-color{
+	background-color: #EFD298 !important; 
+}
+
+.wahiga-backgroung-medium-orange-color{
+	background-color: #EAC87A !important;
+}
+.wahiga-backgroung-strong-orange-color{
+	background-color: #E7BB51 !important;
+}
+
+.wahiga-backgroung-gray-color{
+	background-color: #414141 !important;
+}
+
+.wahiga-backgroung-black-color{
+	background-color: #262324 !important;
+}
+
+.wahiga-background-medium-gray-color{
+	background-color: #5C5C5F!important;
+}
+
+.wahiga-font-light-orange-color{
+	color: #EFD298 !important;
+}
+
+.wahiga-font-medium-orange-color{
+	color: #EAC87A !important;
+}
+.wahiga-font-strong-orange-color{
+	color: #E7BB51 !important;
+}
+
+.wahiga-font-gray-color{
+	color: #414141 !important;
+}
+
+.wahiga-font-black-color{
+	color: #262324 !important;
+}
+
+.wahiga-navbar-font-weight{
+	font-weight: bold !important;
+}
+
+.search-input{
+	border: none!important;
+    background-color: inherit!important;
+    border-radius: 0!important;
+    color: white!important;
+}
+.search-input:focus{
+	border: none!important;
+	outline: 0;
+	-webkit-box-shadow: none!important;
+	          box-shadow: none!important;
+}
+
+.navbar-toggle > a{
+	color: white;
+}
+
+.nav > a{
+	color: white;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -102,34 +212,31 @@ code {
 
 @media (min-width: 992px) { 
 	body {
-		margin-bottom: 325px;
+		margin-bottom: 180spx;
 	}
-	.footer {
-		height: 325px;
-	}
+	
 	body > .container{
 		padding-bottom: 325px;
 	}
 
 	body > .container-fluid{
-		padding-bottom: 360px;	
+		padding-bottom: 180px;	
 	}
+
 
 }
 
 @media (min-width: 1200px) { 
 	body {
-		margin-bottom: 325px;
+		margin-bottom: 180px;
 	}
-	.footer {
-		height: 325px;
-	}
+	
 	body > .container{
 		padding-bottom: 325px;
 	}
 
 	body > .container-fluid{
-		padding-bottom: 360px;	
+		padding-bottom: 180px;	
 	}
 }
 

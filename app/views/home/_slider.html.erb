@@ -1,58 +1,40 @@
-<!-- <div class="container container-slider">
-  <div class="col-lg-7 div-slider" style="background-color: purple;"> 
-       <img src="/assets/images/zelda.jpg" style="width:100%; height: 100%;"/>
-  </div> 
-  <div class="col-lg-5 div-slider"> 
-    <div class="row div-slider-min"> 
-      <div class="col-lg-12" style="height: 100%; background-color: white;">
-          <img src="/assets/images/witcher3.jpg" style="width:100%; height: 100%;"/>
-      </div> 
+<div class="section" id="main-slider" style="margin-top: -20px;">
+  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
+    <div class="post-content">
+      <div class="catagory"><a href="#">World</a></div>
+      <h2 class="entry-title">
+        <a href="news-details.html">David's character argued that women and children shouldn't be let</a>
+      </h2>
     </div>
-    <div class="row div-slider-min"> 
-      <div class="col-lg-12" style="height: 100%; background-color: yellow;"> 
-          <img src="/assets/images/fnal-fantasy-xv.jpg" style="width:100%; height: 100%;"/>
+  </div><!--/post-->
+  <div class="post feature-post video-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
+    <div class="post-content">
+      <div class="video-icon">
+        <a href="news-details2.html"><i class="fa fa-youtube-play"></i></a>
       </div>
+      <div class="catagory"><a href="#">Music</a></div>
+      <h2 class="entry-title">
+        <a href="news-details2.html">David's character argued that women and children shouldn't be let</a>
+      </h2>
     </div>
-  </div>  
-</div> -->
-<div class="container">
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <% @slider.each do |s| %>
-        <% if @slider[0].id === s.id %>
-          <div class="item active">
-        <% else %>
-          <div class="item">
-        <% end %>
-        <% s.article_documents.each do |ad| %>
-        <% if ad.document_type === "thumb" %>
-          <img src="/images/show_image/<%= ad.document.id %>" style="height: 325px; width: 100%; margin-top: 12.5px;"/>
-        <% end %>
-        <% end %>
-        <div class="carousel-caption">
-          <%= s.preview %> ID is: <%= s.id %> Created: <%= time_ago_in_words s.created_at %> ago
-        </div>
+  </div><!--/post-->
+  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
+    <div class="post-content">
+      <div class="video-icon">
+        <a href="news-details2.html"><i class="fa fa-youtube-play"></i></a>
       </div>
-      <% end %>
-      ...
+      <div class="catagory"><a href="#">Lifestyle</a></div>
+      <h2 class="entry-title">
+        <a href="news-details2.html">The sketch had David once again impersonating Sanders as voters cussed</a>
+      </h2>
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>  
+  </div><!--/post-->
+  <div class="post feature-post" style="background-image:url(/assets/images/fnal-fantasy-xv.jpg); background-size:cover;">
+    <div class="post-content">
+      <div class="catagory"><a href="#">Sports</a></div>
+      <h2 class="entry-title">
+        <a href="news-details.html">Those people later turn out to be key to his slim loss to Hillary </a>
+      </h2>
+    </div>
+  </div><!--/post-->
 </div>
