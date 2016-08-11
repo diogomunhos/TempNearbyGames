@@ -34,7 +34,19 @@ body {
 	background-color: #f5f5f5;
 }
 
+.search-box-content-list{
+	height: 100px;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: lightgray;
+	margin-bottom: 20px;
+}
+
 .entry-title > a:hover{
+	color:#ED1C24!important;
+}
+
+.post-content > h2:hover{
 	color:#ED1C24!important;
 }
 

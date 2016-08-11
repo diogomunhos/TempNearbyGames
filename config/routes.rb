@@ -22,13 +22,15 @@ Rails.application.routes.draw do
 
   get "/signin" => "signin#signin"
 
-  get "article/:friendly_url" => "articles#show"
+  get "/article/:friendly_url" => "articles#show"
 
   get "/temp" => "temp#temp"
 
   get "/signup" => "signup#signup"
 
   get "/social-login/:provider" => "social_login#social"
+
+  get "/platform/:platform" => "articles#platform"
 
 
   #temp

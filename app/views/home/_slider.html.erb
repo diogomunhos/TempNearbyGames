@@ -2,14 +2,16 @@
   <% @slider.each do |s| %>
     <% s.article_documents.each do |image| %>
       <% if image.document_type === "header" %>
+        <a href="/<%= s.article_type.downcase %>/<%= s.friendly_url %>">
         <div class="post feature-post" style="background-image:url(/images/show_image/<%= image.document.id %>); background-size:cover;">
           <div class="post-content">
             <!-- <div class="catagory"><a href="#">World</a></div> -->
             <h2 class="entry-title">
-              <a href="news-details.html"><%= s.title %></a>
+              <%= s.title %>
             </h2>
           </div>
         </div>
+        </a>
       <% end %>
     <% end %>
   <% end %>
