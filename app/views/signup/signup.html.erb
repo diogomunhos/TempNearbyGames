@@ -1,4 +1,96 @@
-<div class="container" ng-controller="signup-controller as controller">
+<title>Signup - Wahiga</title>
+<div class="container">
+  <div class="col-lg-9 col-lg-offset-2 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3" style="background-color: white; border-radius: 10px;">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4" style="height: 100px; background-image: url('/assets/images/wahiga_logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+        
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-6">
+        <div class="form-group" style="margin-top: 20px;">
+          
+        </div>
+        <div class="form-group" >
+          <a href="/auth/facebook" id="signin_facebook" class="btn btn-block btn-social btn-facebook">
+            <span class="fa fa-facebook"></span> Sign up with Facebook
+          </a>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-block btn-social btn-twitter" href="/auth/twitter" id="signin_twitter">
+            <span class="fa fa-twitter"></span> Sign up with Twitter
+          </a>
+        </div>
+        <div class="form-group">
+          <a class="btn btn-block btn-social btn-google" href="auth/google_oauth2">
+            <span class="fa fa-google"></span> Sign up with Google
+          </a>
+        </div>
+        <div class="form-group">
+          <p class="text-muted">We will never post without your permission!</p>
+        </div>
+      </div>
+      <div class="col-lg-5 col-lg-offset-1">
+        <div class="form-group" style="margin-top: 20px;">
+          <p class="text-muted">Create a new Wahiga account.</p>
+        </div>
+        <%= form_for :user, :url => {:controller => 'users', :action => 'create'} do %>
+          <div class="form-group" id="messages">
+            <%= raw flash_message %>
+          </div>
+          <div class="form-group">
+            <label for="user_name">Name</label>
+            <input type="text" class="form-control" placeholder="Name" autofocus required name="user[name]" id="user_name"/> 
+          </div>
+          <div class="form-group">
+            <label for="user_last_name">Last name</label>
+            <input type="text" class="form-control" placeholder="Last name" required name="user[last_name]" id="user_last_name"/> 
+          </div>
+          <div class="form-group">
+            <label for="user_nickname">Nickname</label>
+            <input type="text" class="form-control" placeholder="Nickname" required name="user[nickname]" id="user_nickname"/> 
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="user_birthdate">Birthdate</label>
+            <input type="text" class="form-control" name="user_birthdate" ng-model="controller.birthdate" id="user_birthdate" bs-datepicker required placeholder="Birthdate" data-autoclose="1">
+          </div>
+          <div class="form-group">
+            <label for="user_email">Email</label>
+            <input type="email" class="form-control" placeholder="Email" required name="user[email]" id="user_email"/> 
+          </div>
+          <div class="form-group">
+            <label for="user_password">Password</label>
+            <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="user_password"/>
+          </div>
+          <div class="form-group">
+            <label for="user_password_confirmation">Confirm password</label>
+            <input type="password" class="form-control" placeholder="Confirm password" required name="user[password_confirmation]" id="user_password_confirmation"/>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="user_preference[terms_of_use]" required id="user_terms_of_use"> Accept terms of use
+              </label>
+            </div>  
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="user_preference[email_content]" id="user_email_content"> Accept receive content in email
+              </label>
+            </div>  
+          </div>
+          <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container" ng-controller="signup-controller as controller">
   <div class="page-header">
     <h1>Signup</h1>
   </div>
@@ -68,8 +160,8 @@
         <span class="fa fa-google"></span> Sign in with Google
       </a>
     </div> -->
-  </div>
-</div>
+<!--   </div>
+</div> -->
 
 
 <!-- <div class="Sign_Form">

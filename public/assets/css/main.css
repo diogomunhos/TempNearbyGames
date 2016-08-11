@@ -144,25 +144,6 @@ h1, h2, h3, h4, h5, h6 {
 	border:3px solid #a0d48c;
 }
 
-.btn-primary{
-	background-color:#ed1c24;
-	color:#fff;
-	border:0;
-	font-size:12px;
-	font-weight:700;
-	padding:10px 45px;
-	outline:none;
-	text-transform:uppercase;
-}
-
-.btn-primary:hover, 
-.btn-primary:focus {
-	background-color:#333;
-	color:#fff;
-	outline:none;
-	border:0;
-}
-
 .parallax-section { 	
 	background-position: 50% 0;
 	background-repeat: no-repeat;
@@ -180,32 +161,6 @@ h1, h2, h3, h4, h5, h6 {
 	left:0;
 	width:100%;
 	height:100%;
-}
-
-.form-control {
-  height: 35px;
-  padding:6px 12px;
-  color: #000;
-  border:2px solid #ececec;
-  border-radius:2px;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  outline: none;
-  background-color:#fff;
-  font-weight:500;
-}
-
-.form-control:focus {
-  outline: 0;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  border:2px solid #ed1c24;
-  background-color:#fff;
-}
-
-textarea.form-control {
-    padding: 15px 20px;
-	resize:none;
 }
 
 label {
