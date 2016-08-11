@@ -26,19 +26,19 @@
 											<% a.article_documents.each do |image| %>
 												<% if image.document_type === "thumb" %>
 													<div class="entry-thumbnail">
-														<a href="news-details.html"><img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" /></a>
+														<a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" /></a>
 													</div>
 												<% end %>
 											<% end %>
 										</div>
 										<div class="post-content">								
 											<h2 class="entry-title">
-												<a href="news-details.html" style="font-weight: bold;"><%= a.title %></a>
+												<a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>" style="font-weight: bold;"><%= a.title %></a>
 											</h2>
 											<p class="visible-lg visible-md text-muted"><%= a.preview %></p>
 											<div class="entry-meta visible-lg visible-md">
 												<ul class="list-inline">
-													<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> <%= a.created_at %></a></li>
+													<li class="publish-date"><a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><i class="fa fa-clock-o"></i> <%= a.created_at %></a></li>
 													<!-- <li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
 													<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>372</a></li> -->
 												</ul>

@@ -1,0 +1,379 @@
+<title>Wahiga article</title>
+
+<div style="background-color: #F8C175; margin-bottom: -20px; margin-top: -19px;">
+	<div class="container-fluid">
+		<%= render '/home/publishTop' %>
+	</div>	
+
+</div>
+<div id="newsdetails" class="container">			
+	<div class="section">
+		<div class="row">
+			<div class="col-sm-9">
+				<div id="site-content" class="site-content">
+					<div class="row">
+						<div class="col-sm-12" style="background-color: #FDD7B0;">
+							<div class="left-content">
+								<div class="details-news">											
+									<div class="post">
+										<div class="entry-header">
+											<div class="entry-thumbnail">
+												<% @article.article_documents.each do |image| %>
+													<% if image.document_type === "header" %>
+														<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
+													<% end %>
+												<% end %>
+											</div>
+										</div>
+										<div class="post-content">								
+											<!-- <div class="entry-meta">
+												<ul class="list-inline">
+													<li class="posted-by"><i class="fa fa-user"></i> <a href="#">Adams Kev</a></li>
+													<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+													<li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
+													<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>231</a></li>
+													<li class="comments"><i class="fa fa-comment-o"></i><a href="#">172</a></li>
+												</ul>
+											</div> -->
+											<h2 class="entry-title">
+												<%= @article.title %>
+											</h2>
+											<div class="entry-content">
+												<p><%= @article.body %></p>
+
+												<div class="news-tags">
+													<span>Tags:</span>
+													<ul class="list-inline">
+														<% @article.tags.split(',').each do |tag| %>
+														<li><a href="#"><%= tag %></a> </li>
+														<% end %>
+													</ul>
+												</div>
+
+												<ul class="list-inline share-link">
+													<li><a href="#"><img src="/assets/images/others/social1.png" alt="" /></a></li>
+													<li><a href="#"><img src="/assets/images/others/social2.png" alt="" /></a></li>
+													<li><a href="#"><img src="/assets/images/others/social3.png" alt="" /></a></li>
+													<li><a href="#"><img src="/assets/images/others/social4.png" alt="" /></a></li>
+												</ul>
+											</div>
+										</div>
+									</div><!--/post--> 
+								</div><!--/.section-->
+							</div><!--/.left-content-->
+						</div>
+					</div>
+				</div><!--/#site-content-->
+
+				<div class="section related-news-section">
+					<h1 class="section-title" style="color: #E7BB51; font-weight: bold;">Related News</h1>
+					<div class="row">
+						<div class="col-sm-12" style="background-color: #FDD7B0;">
+							<div class="left-content">
+								<div class="related-news">
+									<div id="related-news-carousel">
+										<div class="post medium-post">
+											<div class="entry-header">
+												<div class="entry-thumbnail">
+													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/1.jpg" alt="" /></a>
+												</div>
+											</div>
+											<div class="post-content">								
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+													</ul>
+												</div>
+												<h2 class="entry-title">
+													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+												</h2>
+											</div>
+										</div><!--/post--> 
+										<div class="post medium-post">
+											<div class="entry-header">
+												<div class="entry-thumbnail">
+													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/3.jpg" alt="" /></a>
+												</div>
+											</div>
+											<div class="post-content">								
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+													</ul>
+												</div>
+												<h2 class="entry-title">
+													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+												</h2>
+											</div>
+										</div><!--/post--> 
+										<div class="post medium-post">
+											<div class="entry-header">
+												<div class="entry-thumbnail">
+													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/4.jpg" alt="" /></a>
+												</div>
+											</div>
+											<div class="post-content">								
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+													</ul>
+												</div>
+												<h2 class="entry-title">
+													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+												</h2>
+											</div>
+										</div><!--/post--> 
+										<div class="post medium-post">
+											<div class="entry-header">
+												<div class="entry-thumbnail">
+													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/5.jpg" alt="" /></a>
+												</div>
+											</div>
+											<div class="post-content">								
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+													</ul>
+												</div>
+												<h2 class="entry-title">
+													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+												</h2>
+											</div>
+										</div><!--/post--> 
+										<div class="post medium-post">
+											<div class="entry-header">
+												<div class="entry-thumbnail">
+													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/6.jpg" alt="" /></a>
+												</div>
+											</div>
+											<div class="post-content">								
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
+														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+													</ul>
+												</div>
+												<h2 class="entry-title">
+													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+												</h2>
+											</div>
+										</div><!--/post--> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!--/.section -->	
+
+				<!-- <div class="row">
+					<h1 class="section-title title" style="color: #E7BB51; font-weight: bold;">Comments</h1>
+					<div class="col-sm-12" style="background-color: white;">										
+						<div class="comments-wrapper">
+							
+							<ul class="media-list">
+								<li class="media">
+									<div class="media-left">
+										<a href="#"><img class="media-object" src="/assets/images/others/author.png" alt=""></a>
+									</div>
+									<div class="media-body">
+										<h2><a href="#">Axel Bouaziz</a></h2>
+										<h3 class="date"><a href="#">15 December 2016</a></h3>
+										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+										<a class="replay" href="#">Replay</a>
+									</div>
+								</li>
+								<li class="media">
+									<div class="media-left">
+										<a href="#"><img class="media-object" src="/assets/images/others/author.png" alt=""></a>
+									</div>
+									<div class="media-body">
+										<h2><a href="#">Axel Bouaziz</a></h2>
+										<h3 class="date"><a href="#">15 December 2016</a></h3>
+										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+										<a class="replay" href="#">Replay</a>
+									</div>
+								</li>
+
+								<li class="media">
+									<div class="media-left">
+										<a href="#"><img class="media-object" src="/assets/images/others/author1.png" alt=""></a>
+									</div>
+									<div class="media-body">
+										<h2><a href="#">Axel Bouaziz</a></h2>
+										<h3 class="date"><a href="#">15 December 2016</a></h3>
+										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+										<a class="replay" href="#">Replay</a>
+									</div>
+								</li>
+
+								<li class="media media-child">
+									<div class="media-left">
+										<a href="#"><img class="media-object" src="/assets/images/others/author3.png" alt=""></a>
+									</div>
+									<div class="media-body">
+										<h2><a href="#">Axel Bouaziz</a></h2>
+										<h3 class="date"><a href="#">15 December 2016</a></h3>
+										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
+										<a class="replay" href="#">Replay</a>
+									</div>
+								</li>
+							</ul>
+
+							<div class="comments-box">
+								<h1 class="section-title title">Leave a Comment</h1>
+								<form id="comment-form" name="comment-form" method="post">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Name</label>
+												<input type="text" name="name" class="form-control" required="required">
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Email</label>
+												<input type="email" name="email" class="form-control" required="required">
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label>Subject</label>
+												<input type="text" name="subject" class="form-control">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>Your Text</label>
+												<textarea name="comment" id="comment" required="required" class="form-control" rows="5"></textarea>
+											</div>
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary">Send </button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div><!--/.col-sm-9 -->	
+
+			<div class="col-sm-3">
+				<div id="sitebar">							
+					<div class="widget">
+						<h1 class="section-title title"><a href="listing.html" style="color: #E7BB51; font-weight: bold;">Most Popular</a></h1>
+						<ul class="post-list">
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/1.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">World</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">Patti Solis Doyle, who served as a senior adviser</a>
+										</h2>
+									</div>
+								</div><!--/post--> 
+							</li>
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/2.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">Business</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">The interview comes as the infidelity scandal and other </a>
+										</h2>
+									</div>
+								</div><!--/post-->
+							</li>
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/3.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">Sports</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">They have long conversations together. It's a very good</a>
+										</h2>
+									</div>
+								</div><!--/post-->
+							</li>
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/4.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">Technology</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">He just sort of puts his hands on her shoulders</a>
+										</h2>
+									</div>
+								</div><!--/post-->
+							</li>
+
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/6.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">Health</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">The winner of the caucuses is decided by state</a>
+										</h2>
+									</div>
+								</div><!--/post-->
+							</li>
+							<li>
+								<div class="post small-post">
+									<div class="entry-header">
+										<div class="entry-thumbnail">
+											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/7.jpg" alt="" /></a>
+										</div>
+									</div>
+									<div class="post-content">								
+										<div class="video-catagory"><a href="#">Lifestyle</a></div>
+										<h2 class="entry-title">
+											<a href="news-details.html">Rosa went with the man to another town in Mexico called Tenancingo, where he introduced</a>
+										</h2>
+									</div>
+								</div><!--/post-->
+							</li>
+						</ul>
+					</div><!--/#widget-->
+
+			<!-- 		<div class="widget">
+						<div class="add">
+							<a href="#"><img class="img-responsive" src="/assets/images/post/add/add6.jpg" alt="" /></a>
+						</div>
+					</div>
+					 -->
+				</div><!--/#sitebar-->
+			</div>
+		</div>				
+	</div><!--/.section-->
+</div><!--/.container-fluid-->

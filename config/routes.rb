@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get "/signin" => "signin#signin"
 
-  get "articles/:friendly_url/:id" => "articles#articles"
+  get "article/:friendly_url" => "articles#show"
 
   get "/temp" => "temp#temp"
 

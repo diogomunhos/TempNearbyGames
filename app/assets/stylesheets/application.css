@@ -212,11 +212,11 @@ code {
 
 @media (min-width: 992px) { 
 	body {
-		margin-bottom: 180spx;
+		margin-bottom: 180px;
 	}
 	
 	body > .container{
-		padding-bottom: 325px;
+		padding-bottom: 180px;
 	}
 
 	body > .container-fluid{
@@ -232,7 +232,7 @@ code {
 	}
 	
 	body > .container{
-		padding-bottom: 325px;
+		padding-bottom: 180px;
 	}
 
 	body > .container-fluid{
