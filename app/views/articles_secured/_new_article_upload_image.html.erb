@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <button class="btn btn-primary" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*">New Image</button>
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="article.files.length > 0">
+    <div class="col-lg-12">
+        <p class="bord-btm pad-ver text-main text-bold">Images selected</p>
+    </div>
+    <div class="col-lg-4" style="margin-bottom: 20px; border-bottom: solid; border-top: solid; border-right: solid; border-width: 1px; border-color: lightgray; height: 225px;" ng-repeat="f in article.files">
+
+        <div class="col-lg-4">
+            <div ngf-background="f.file" style="height: 200px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; margin-left: -6px;"></div>
+            <!-- <img ngf-thumbnail="file" /> -->
+        </div>
+        <div class="col-lg-7" >
+            <div class="form-control" style="border-bottom: solid; border-right: none; border-left: none; border-top: none;">
+                <label class="control-label" style="font-weight: bold; font-size: 90%;">File Name</label>
+                <p class="form-control-static text-muted">{{f.name}}</p>
+            </div>
+            <div class="form-control" style="border-bottom: solid; border-right: none; border-left: none; border-top: none;">
+                <label class="control-label" style="font-weight: bold; font-size: 90%;">Type</label>
+                <select class="form-control" data-style="btn-primary" ng-model="f.type" ng-disabled="f.id != ''">
+                    <option value="Header">Header</option>
+                    <option value="Thumb">Thumb</option>
+                    <option value="Body">Body</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-sm btn-danger" ng-click="deleteFile(f.position)" style="margin-top: 5px;">Delete</button>    
+            </div>
+            <div class="progress" ng-show="f.progress > 0" style="margin-top: 5px;">
+                <div style="width:{{f.progress}}%" class="progress-bar progress-bar-info" ng-bind="f.progress + '%'"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <!-- <table class="table table-condensed">
+                <thead>
+                    <th></th>
+                    <th>Image name</th>
+                    <th>Image Type</th>
+                    <th>Image Size</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="file in files">
+                        <td><a class="btn btn-danger" href="" >Remove</a></td>
+                        <td>
+                            <select class="form-control" data-style="btn-primary" ng-model="file.type">
+                                <option value="Header">Header</option>
+                                <option value="Body">Thumb</option>
+                                <option value="Body">Body</option>
+                            </select>
+                        </td>
+                        <td>{{file.size}}</td>
+                        <td>
+                            <div class="form-group">
+                                <div class="col-md-9">
+                                    <input type="file" name="" ng-model="file.content"/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div> --> 
+</div>

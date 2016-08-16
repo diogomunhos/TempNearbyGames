@@ -15,3 +15,17 @@
  */
 /* Sticky footer styles
 ----------------------------
+*/
+.error_form_message{
+	color: darkred;
+	margin-top: 10px;
+	font-size: 80%;
+}
+
+.error_input{
+	border-color: darkred!important;
+}
+
+.error_label{
+	color: darkred;
+}

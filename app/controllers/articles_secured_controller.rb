@@ -1,5 +1,6 @@
 class ArticlesSecuredController < ApplicationController
 	layout "admapplication"
+	
 	before_filter :authorize, :profile_authorize, :has_to_change_password
 	before_action :init_article_type, only: [:new, :create, :edit]
 	before_action only: [:my_articles, :all_articles, :count_articles, :count_search_articles, :search_all_articles] do 
@@ -8,10 +9,10 @@ class ArticlesSecuredController < ApplicationController
 	before_action only: :show do 
 		check_access("Article", "read_record")
 	end
-	before_action only: [:new, :create] do 
+	before_action only: [:new, :create, :upload_files_service, :create_article_service, :update_article_service] do 
 		check_access("Article", "create_record")
 	end
-	before_action only: [:edit, :update] do 
+	before_action only: [:edit, :update, :update_article_service] do 
 		check_access("Article", "edit_record")
 	end
 
@@ -30,6 +31,162 @@ class ArticlesSecuredController < ApplicationController
 
 	def my_articles
 		
+	end
+
+	def upload_files_service
+		request = params['file']
+		hashDocument = Hash.new
+		hashDocument[:file] = request['file']
+
+		document = Document.new(hashDocument)
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:documentId] = ""
+		hashResult[:errorMessage] = ""
+		if(document.save)
+			hashResult[:documentId] = document.id
+			article_document = ArticleDocument.create(article_id: request['articleId'], document_id: document.id, document_type: request['type'])			
+		else
+			hashResult[:isSuccessful] = false
+			if document.errors.full_messages.any?
+				document.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		end
+
+		@result.push(hashResult)
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+	def delete_file_service
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		if(!Document.destroy(params['id']))
+			hashResult[:isSuccessful] = false
+			if document.errors.full_messages.any?
+				document.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		end
+
+		@result.push(hashResult)
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+	def create_article_service
+		print "DEBUG #{params} - #{article_params_create_by_service}"
+		@article = Article.new(article_params_create_by_service)
+		@article.status = "Draft"
+		user = User.find(session[:user_id])
+		@article.created_by_id = user.id
+		username = user.name
+		if (user.last_name != nil)
+			username += " " + user.last_name
+		end
+		@article.created_by_name = username
+		@article.last_updated_by_name = username
+		@article.last_updated_by_id = user.id
+	
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		hashResult[:articleid] = ""
+		if !@article.save
+			hashResult[:isSuccessful] = false
+			if @article.errors.full_messages.any?
+				@article.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		else
+			hashResult[:articleid] = @article.id
+		end
+		@result.push(hashResult)
+
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+	def update_article_service
+		@article = Article.find(article_params_update_by_service[:id])
+		
+		user = User.find(session[:user_id])
+		username = user.name
+		if (user.last_name != nil)
+			username += " " + user.last_name
+		end
+		@article.update(last_updated_by_name: username, last_updated_by_id: user.id)
+
+		historic = Historic.new
+		historic.entity = "article"
+		changesString = "["
+		if @article.title != article_params_update_by_service[:title]
+			changesString += "{\"field\": \"Title\", \"before\": \"#{@article.title}\", \"after\": \"#{article_params['title']}\"}"
+		end
+		if @article.subtitle != article_params_update_by_service[:subtitle]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Subtitle\", \"before\": \"#{@article.subtitle}\", \"after\": \"#{article_params['subtitle']}\"}"
+		end
+		if @article.article_type != article_params_update_by_service[:article_type]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Type\", \"before\": \"#{@article.article_type}\", \"after\": \"#{article_params_update_by_service['article_type']}\"}"
+		end
+		if @article.friendly_url != article_params_update_by_service[:friendly_url]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Friendly URL\", \"before\": \"#{@article.friendly_url}\", \"after\": \"#{article_params_update_by_service['friendly_url']}\"}"
+		end
+		if @article.is_highlight != article_params_update_by_service[:is_highlight]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Is Highlighted\", \"before\": \"#{@article.is_highlight}\", \"after\": \"#{article_params_update_by_service['is_highlight']}\"}"
+		end
+		if @article.preview != article_params_update_by_service[:preview]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Preview\", \"before\": \"#{@article.preview}\", \"after\": \"#{article_params_update_by_service['preview']}\"}"
+		end
+		if @article.body != article_params_update_by_service[:body]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body}\", \"after\": \"#{article_params_update_by_service['body']}\"}"
+		end
+		if @article.tags != article_params_update_by_service[:tags]
+			changesString += if changesString != "[" then ", " else "" end
+			changesString += "{\"field\": \"Tags\", \"before\": \"#{@article.tags}\", \"after\": \"#{article_params_update_by_service['tags']}\"}"
+		end
+
+		changesString += "]"
+		historic.changed_fields = changesString
+		historic.user_id = session[:user_id]
+		historic.object_id = @article.id
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		if @article.update_attributes(article_params_update_by_service)
+			historic.save
+		else
+			hashResult[:isSuccessful] = false
+			if @article.errors.full_messages.any?
+				@article.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		end
+
+		@result.push(hashResult)
+
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
 	end
 
 	def approve
@@ -92,11 +249,13 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def update
+		print "DEBUG - #{headers}"
 		@article = Article.find(article_params[:id])
 		if params[:document] != nil
 			if document_params.has_key?(:file1)
 				document = ArticleDocument.where("article_id=? and document_type=?",@article.id, "header")
 				document.destroy(document[0].id) if document.length > 0
+				print "DEBUG #{document_params}"
 				@document1 = Document.new(document_params, "file1")
 				if @document1.save
 					ArticleDocument.create(article_id: @article.id, document_id: @document1.id, document_type: "header");
@@ -265,8 +424,18 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	private
+	def article_params_create_by_service
+		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags)
+	end
+
+	private
+	def article_params_update_by_service
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags)
+	end
+
+	private
 	def init_article_type
-		@article_type = ["Article"]
+		@article_type = ["News", "Review", "Upcoming game"]
 	end
 
 	

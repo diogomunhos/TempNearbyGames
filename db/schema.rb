@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803213942) do
+ActiveRecord::Schema.define(version: 20160815194848) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 20160803213942) do
     t.string   "created_by_name"
     t.string   "last_updated_by_name"
     t.string   "status"
+    t.string   "platform"
+    t.string   "review_note"
+    t.date     "release_date"
   end
 
   create_table "documents", force: :cascade do |t|

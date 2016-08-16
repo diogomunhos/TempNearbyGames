@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :articles, defaults: { format: 'json' }
   resources :documents
   resources :user_login_info_secured do 
     member do 
@@ -140,6 +141,13 @@ Rails.application.routes.draw do
 
   post '/private/articles/update-article' => "articles_secured#update"
 
+  post '/private/articles/create_article_service' => "articles_secured#create_article_service"
+
+  post '/private/articles/update_article_service' => "articles_secured#update_article_service"
+
+  post '/private/articles/upload_files_service' => "articles_secured#upload_files_service"
+
+  post '/private/articles/delete_file_service' => "articles_secured#delete_file_service"
   # Profiles
   post '/private/profiles/create-new-profile' => "profiles_secured#create"
 

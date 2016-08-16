@@ -2,6 +2,54 @@
 angular.module('admin-module.article-services', [])
 	.service('articleServices', function($q, $http) {
 
+        this.createArticle = function (request) {
+            var deferred = $q.defer();
+            $http({
+                method: 'POST',
+                url: '/private/articles/create_article_service.json',
+                data: {"article": request},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
+            }).then(function successCallback(response){ 
+                deferred.resolve(response);
+            }, function errorCallback(response){
+                deferred.reject(response);
+            });
+                   
+            return deferred.promise;
+        };
+
+        this.updateArticle = function (request) {
+            var deferred = $q.defer();
+            $http({
+                method: 'POST',
+                url: '/private/articles/update_article_service.json',
+                data: {"article": request},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
+            }).then(function successCallback(response){ 
+                deferred.resolve(response);
+            }, function errorCallback(response){
+                deferred.reject(response);
+            });
+                   
+            return deferred.promise;
+        };
+
+        this.deleteFile = function (request) {
+            var deferred = $q.defer();
+            $http({
+                method: 'POST',
+                url: '/private/articles/delete_file_service.json',
+                data: {"id": request},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
+            }).then(function successCallback(response){ 
+                deferred.resolve(response);
+            }, function errorCallback(response){
+                deferred.reject(response);
+            });
+                   
+            return deferred.promise;
+        };
+
         this.getArticles = function (numberPerPage, pageNumber) {
             var deferred = $q.defer();
             console.log('numberPerPage ' + numberPerPage);

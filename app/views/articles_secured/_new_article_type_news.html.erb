@@ -1,0 +1,59 @@
+
+<div class="form-group">
+    <div class="row">
+        <label class="col-lg-3 control-label" ng-class="{error_label: article.title.errorCode != ''}" for="article_title">Title:*</label>
+        <div class="col-lg-5">
+            <input type="text" required="" class="form-control error-input" ng-focus="focusField('title')" ng-class="{error_input: article.title.errorCode != ''}" name="article[title]" id="article_title" ng-model="article.title.value"/>
+        </div>    
+    </div>
+    <div class="row" ng-show="article.title.errorCode != ''">
+        <div class="col-lg-8 col-lg-offset-3">
+            <p class="error_form_message">{{getErrorByCode(article.title.errorCode, "title")}}</p>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <label class="col-lg-3 control-label" ng-class="{error_label: article.subtitle.errorCode != ''}" for="article_subtitle">Subtitle:*</label>
+        <div class="col-lg-5">
+            <input type="text" required="" class="form-control" name="article[subtitle]" ng-focus="focusField('subtitle')" ng-class="{error_input: article.subtitle.errorCode != ''}" id="article_subtitle" ng-model="article.subtitle.value">
+        </div>
+    </div>
+    <div class="row" ng-show="article.subtitle.errorCode != ''">
+        <div class="col-lg-8 col-lg-offset-3">
+            <p class="error_form_message">{{getErrorByCode(article.subtitle.errorCode, "subtitle")}}</p>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <label class="col-lg-3 control-label" ng-class="{error_label: article.friendly_url.errorCode != ''}" for="article_friendly_url">Friendly URL:*</label>
+        <div class="col-lg-3">
+            <input type="text" required="" class="form-control" ng-class="{error_input: article.friendly_url.errorCode != ''}" ng-focus="focusField('friendly_url')" name="article[friendly_url]" id="article_friendly_url" ng-model="article.friendly_url.value">
+        </div>
+        <label class="col-lg-1 control-label" for="article_is_highlight">Is Highlighted:</label>
+        <div class="checkbox col-lg-1">
+            <input id="article_is_highlight" type="checkbox" name="article[is_highlight]" ng-checked="article.is_highlighted">
+        </div>
+    </div>
+    <div class="row" ng-show="article.friendly_url.errorCode != ''">
+        <div class="col-lg-8 col-lg-offset-3">
+            <p class="error_form_message">{{getErrorByCode(article.friendly_url.errorCode, "friendly_url")}}</p>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <label class="col-lg-3 control-label" ng-class="{error_label: article.preview.errorCode != ''}" for="article_preview">Preview:*</label>
+        <div class="col-lg-5">
+            <input type="text" required="" class="form-control" name="article[preview]" ng-focus="focusField('preview')" ng-class="{error_input: article.preview.errorCode != ''}" id="article_preview" ng-model="article.preview.value">
+        </div>
+    </div>
+    <div class="row" ng-show="article.preview.errorCode != ''">
+        <div class="col-lg-8 col-lg-offset-3">
+            <p class="error_form_message">{{getErrorByCode(article.preview.errorCode, "preview")}}</p>
+        </div>
+    </div>
+</div>    
+
+

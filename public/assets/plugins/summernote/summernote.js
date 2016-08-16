@@ -1895,22 +1895,72 @@
     if (options.fade) {
       $node.addClass('fade');
     }
-    $node.html([
-      '<div class="modal-dialog">',
-      '  <div class="modal-content">',
-      (options.title ?
-      '    <div class="modal-header">' +
-      '      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-      '      <h4 class="modal-title">' + options.title + '</h4>' +
-      '    </div>' : ''
-      ),
-      '    <div class="modal-body">' + options.body + '</div>',
-      (options.footer ?
-      '    <div class="modal-footer">' + options.footer + '</div>' : ''
-      ),
-      '  </div>',
-      '</div>'
-    ].join(''));
+    if (options.title === "Insert Image"){
+      $node.html([
+        '<style type="text/css">'+
+        ' .selectItem{'+
+        ' background-color: rgba(0,0,0,0.65);'+
+        ' height: 100px;'+
+        '</style>'+
+        '<script type="text/javascript">'+
+        ' function selectImage(id){' +
+        '    $("#inside-"+id).addClass("selectItem");'+
+        ' }'+
+        '</script>'+
+        '<div class="modal-dialog">'+
+        '  <div class="modal-content">'+
+        '    <div class="modal-header">' +
+        '      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+        '      <h4 class="modal-title">Aquele abraço</h4>' +
+        '    </div>'+
+        '    <div class="modal-body" style="margin-bottom: 120px;">'+
+        '          <div style="height: 300px; overflow-y: scroll;">' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage(1);"><div id="inside-1"></div></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
+        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
+        '         </div>' +
+        '</div>'+
+        '    </div>'+
+        '    <div class="modal-footer" style="position: absolute; bottom: 0; width: 100%; height: 80px;"></div>'+
+        '  </div>'+
+        '</div>'
+      ].join(''));
+    }else{
+      $node.html([
+        '<div class="modal-dialog">',
+        '  <div class="modal-content">',
+        (options.title ?
+        '    <div class="modal-header">' +
+        '      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+        '      <h4 class="modal-title">' + options.title + '</h4>' +
+        '    </div>' : ''
+        ),
+        '    <div class="modal-body">' + options.body + '</div>',
+        (options.footer ?
+        '    <div class="modal-footer">' + options.footer + '</div>' : ''
+        ),
+        '  </div>',
+        '</div>'
+      ].join(''));  
+    }
+    
   });
 
   var popover = renderer.create([

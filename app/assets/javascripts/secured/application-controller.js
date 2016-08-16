@@ -72,7 +72,6 @@ angular.module('admin-module.application-controller', [])
   $scope.getPermissions = function(){
     if($scope.permissions === null){
       applicationServices.getPermissions().then(function (result) {
-        console.log('permissions: ' + JSON.stringify(result.data));
         $scope.permissions = result.data;
         $scope.setPermissions();
       });
@@ -81,7 +80,6 @@ angular.module('admin-module.application-controller', [])
 
 
   $scope.setPermissions = function(){
-    console.log('asda ' + $scope.permissions.length);
     for (var i = 0; i < $scope.permissions.length; i++){
       if($scope.permissions[i].object_name === "Article"){
         if($scope.permissions[i].read_all_record === true || $scope.permissions[i].create_record === true){
