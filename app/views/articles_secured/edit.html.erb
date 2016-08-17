@@ -1,160 +1,146 @@
-<div id="content-container">
+<div id="content-container" ng-controller="new-article-controller">
+
     <div id="page-title">
         <h1 class="page-header text-overflow">Edit Article</h1>
     </div>
 
-    <div id="page-content">
+    <div id="page-content" ng-cloak>
         <div class="form-group" id="messages">
             <%= raw flash_message %>
         </div>
+
         <div class="panel">
+        <input type="hidden" id="hidden_article_id" value="<%= @article.id %>"/>
+        <input type="hidden" id="hidden_article_title" value="<%= @article.title %>"/>
+        <input type="hidden" id="hidden_article_subtitle" value="<%= @article.subtitle %>"/>
+        <input type="hidden" id="hidden_article_preview" value="<%= @article.preview %>"/>
+        <input type="hidden" id="hidden_article_friendly_url" value="<%= @article.friendly_url %>"/>
+        <input type="hidden" id="hidden_article_is_highlighted" value="<%= @article.is_highlight %>"/>
+        <input type="hidden" id="hidden_article_body" value="<%= @article.body %>"/>
+        <input type="hidden" id="hidden_article_platforms" value="<%= @article.platform %>"/>
+        <input type="hidden" id="hidden_article_tags" value="<%= @article.tags %>"/>
+        <input type="hidden" id="hidden_article_files" value="<%= @files %>"/>
 
-        <%= form_for :document, :url => {:controller => 'articles_secured', :action => 'update'}, html: { class: "form-horizontal"} do |f| %>
-                <input type="hidden" value="<%= @article.id %>" name="article[id]" id="article_id">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <p class="bord-btm pad-ver text-main text-bold">Article information</p>
-            </div>
-            <!--Static-->
-            <div class="col-md-12">
-                <div class="form-group col-md-6">
-                    <label class="col-md-2 control-label" for="article_title">Title:*</label>
-                    <div class="col-md-10">
-                        <input type="text" required="" class="form-control" name="article[title]" id="article_title" value="<%= @article.title %>"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group col-md-6">
-                    <label class="col-md-2 control-label" for="article_subtitle">Subtitle:*</label>
-                    <div class="col-md-10">
-                        <input type="text" required="" class="form-control" name="article[subtitle]" id="article_subtitle" value="<%= @article.subtitle %>">
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="col-md-2 col-md-offset-6 control-label" for="article_is_highlight">Is Highlighted:</label>
-                    <div class="col-md-3">
-                        <div class="checkbox">
-                            <!-- Inline Checkboxes -->
-                            <input id="disabled-form-inline-checkbox" class="magic-checkbox" type="checkbox" name="article[is_highlight]" id="article_is_highlight" <% if @article.is_highlight %> checked="" <% end %> >
-                            <label for="disabled-form-inline-checkbox"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
+                <div id="demo-cls-wz">
+                    
+                    <!--Nav-->
+                    <ul class="wz-nav-off wz-icon-inline wz-classic" style="border-bottom: solid;">
+                        <li class="col-xs-3" ng-class="{'bg-mint': article.stage >= 1}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-pencil-ruler icon-lg"></i></span> Article Type
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': article.stage >= 2}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-newspaper-2 icon-lg"></i></span> Article Details
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': article.stage >= 3}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-file-pictures icon-lg"></i></span> Image Upload
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': article.stage >= 4}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-notepad-2 icon-lg"></i></span>Article Body
+                            </a>
+                        </li>
+                    </ul>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="article_type">Article type:</label>
-                        <div class="col-md-9">
-                            <select class="form-control" data-style="btn-primary" name="article[article_type]" id="article_type">
-                                <% if @article_type != nil %>
-                                    <% @article_type.each do |type| %>
-                                            <option <% if type === @article.article_type %> selected="" <% end %>><%= type %></option>
-                                    <% end %>
-                                <% end %>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                    <!--Form-->
+                    <form class="form-horizontal" style="margin-top: 20px;">
+                        <div class="panel-body">
+                            <div class="tab-content">
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="article_friendly_url">Friendly URL:*</label>
-                        <div class="col-md-9">
-                            <input type="text" required="" class="form-control" name="article[friendly_url]" id="article_friendly_url" value="<%= @article.friendly_url %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-1 control-label" for="article_preview">Preview:*</label>
-                    <div class="col-md-11">
-                        <input type="text" required="" class="form-control" name="article[preview]" id="article_preview" value="<%= @article.preview %>">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-1 control-label" for="article_body">Body:*</label>
-                    <div class="col-md-11">
-                        <textarea rows="15" required="" class="form-control" name="article[body]" id="article_body"><%= @article.body %></textarea>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <p class="bord-btm pad-ver text-main text-bold">Files</p>
-                </div>
-                <div class="col-md-12">
-                    <table class="table  table-condensed">
-                        <tbody>
-                            <tr>
-                                <td>Header</td>
-                                <td>1200x325</td>
-                                <td><% if @document1 != nil %> <%= @document1.file_name %> <% end %></td>
-                                <td>
+                                <!--First tab-->
+                                <div id="cls-tab1" class="tab-pane" ng-class="{active: article.stage == 1, in: article.stage == 1, fade: article.stage != 1}" ng-show="true">
                                     <div class="form-group">
-                                        <div class="col-md-9">
-                                            <%= f.file_field :file1 %>
+                                        <label class="col-lg-3 control-label">Type: </label>
+                                        <div class="col-lg-3">
+                                            <select class="form-control" data-style="btn-primary" name="article[article_type]" id="article_type" ng-model="article.type" ng-disabled="article.id != ''">
+                                                <% if @article_type != nil %>
+                                                    <% @article_type.each do |type| %>
+                                                            <option <% if type === @article.article_type %> selected="" <% end %>><%= type %></option>
+                                                    <% end %>
+                                                <% end %>
+                                            </select>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Thumb</td>
-                                <td>300x250</td>
-                                <td><% if @document2 != nil %> <%= @document2.file_name %> <% end %></td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="col-md-9">
-                                            <%= f.file_field :file2 %>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Article image</td>
-                                <td>800x600</td>
-                                <td><% if @document3 != nil %> <%= @document3.file_name %> <% end %></td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="col-md-9">
-                                            <%= f.file_field :file3 %>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-5 col-md-offset-1">
-                <div class="col-md-12">
-                    <p class="bord-btm pad-ver text-main text-bold">Tags</p>
-                </div>
+                                </div>
 
-                <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Add a tag" required="" value="<%= @article.tags %>" name="article[tags]" id="article_tags" data-role="tagsinput">
-                </div>
+                                <!--Second tab-->
+                                <div id="demo-cls-tab2" class="tab-pane" ng-class="{active: article.stage == 2, in: article.stage == 2, fade: article.stage != 2}">
+                                    <div id="news-details" ng-show="article.type === 'News'">
+                                        <%= render '/articles_secured/new_article_type_news' %>
+                                    </div>
+                                    <div id="all-details">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="article_tags">Tags:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Add a tag" name="article[tags]" ng-model="article.tags.value" id="article_tags" data-role="tagsinput">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="article.tags.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(article.tags.errorCode, "tags")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: article.platforms.errorCode != ''}">Platforms:* </label>
+                                                <div class="col-lg-3">
+                                                    <select class="form-control selectpicker" name="article[article_platforms]" ng-change="changePickListValue('platforms');" multiple id="article_platforms" ng-model="article.platforms.value">
+                                                        <option value="PC">PC</option>
+                                                        <option value="PS4">PS4</option>
+                                                        <option value="Xbox-one">Xbox-one</option>
+                                                        <option value="Wii-U">Wii U</option>
+                                                        <option value="PS3">PS3</option>
+                                                        <option value="Vita">Vita</option>
+                                                        <option value="3DS">3DS</option>
+                                                        <option value="Xbox-360">Xbox-360</option>
+                                                        <option value="Mobile">Mobile</option>
+                                                        <option value="Nintendo NX">Nintendo NX</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="article.platforms.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(article.platforms.errorCode, "platforms")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-            </div>
+                                    </div>
+                                </div>
+
+                                <!--Third tab-->
+                                <div id="demo-cls-tab3" class="tab-pane" ng-class="{active: article.stage == 3, in: article.stage == 3, fade: article.stage != 3}" >
+                                    <div class="form-group" ng-show="uploadErrorMessage != ''">
+                                        <p class="alert alert-danger">{{uploadErrorMessage}}</p>
+                                    </div>
+                                    <%= render '/articles_secured/new_article_upload_image' %>
+                                </div>
+
+                                <!--Fourth tab-->
+                                <div id="demo-cls-tab4" class="tab-pane mar-btm" ng-class="{active: article.stage == 4, in: article.stage == 4, fade: article.stage != 4}">
+                                    <%= render '/articles_secured/new_article_body' %>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Footer button-->
+                        <div class="panel-footer text-right">
+                            <div class="box-inline">
+                                <button type="button" class="previous btn btn-mint" ng-show="article.stage > 1" ng-disabled="isSubmitting" style="margin-right: 5px;"ng-click="previous();">Previous</button>
+                                <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="article.stage < 4" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
+                                <button type="button" class="finish btn btn-mint" ng-show="article.stage === 4" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
         </div>
-
-        <div class="panel-footer text-right">
-            <button type="submit" class="btn btn-success btn-bock">Save</button>
-        </div>
-              
-        <% end %>
     </div>
-
-</div>
-
 </div>

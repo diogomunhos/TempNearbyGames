@@ -11,8 +11,12 @@
     </div>
     <div class="col-lg-4" style="margin-bottom: 20px; border-bottom: solid; border-top: solid; border-right: solid; border-width: 1px; border-color: lightgray; height: 225px;" ng-repeat="f in article.files">
 
-        <div class="col-lg-4">
+        <div class="col-lg-4" ng-hide="f.id && isEdit">
             <div ngf-background="f.file" style="height: 200px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; margin-left: -6px;"></div>
+            <!-- <img ngf-thumbnail="file" /> -->
+        </div>
+        <div class="col-lg-4" ng-show="f.id && isEdit">
+            <div style="height: 200px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; margin-left: -6px; background-image: url('/images/show_image/{{f.id}}')"></div>
             <!-- <img ngf-thumbnail="file" /> -->
         </div>
         <div class="col-lg-7" >

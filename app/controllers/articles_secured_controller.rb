@@ -119,6 +119,7 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def update_article_service
+		print "DEBUG - #{article_params_update_by_service}"
 		@article = Article.find(article_params_update_by_service[:id])
 		
 		user = User.find(session[:user_id])
@@ -156,7 +157,7 @@ class ArticlesSecuredController < ApplicationController
 		end
 		if @article.body != article_params_update_by_service[:body]
 			changesString += if changesString != "[" then ", " else "" end
-			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body}\", \"after\": \"#{article_params_update_by_service['body'].gsub('"', '\"')}\"}"
+			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body.gsub('"', '\"')}\", \"after\": \"#{article_params_update_by_service['body'].gsub('"', '\"')}\"}"
 		end
 		if @article.tags != article_params_update_by_service[:tags]
 			changesString += if changesString != "[" then ", " else "" end
@@ -237,14 +238,18 @@ class ArticlesSecuredController < ApplicationController
 	def edit
 		article = Article.getArticleWithDocumentsById(params[:articleid])
 		@article = article[0]
+		fileString = "["
+		count = 0
 		article[0].article_documents.each do |doc|
-			if(doc.document_type === "header")
-				@document1 = doc.document	
-			elsif (doc.document_type === "thumb")
-				@document2 = doc.document	
-			else
-				@document3 = doc.document	
-			end
+			fileString += "{\"name\": \"#{doc.document.file_name}\", \"type\": \"#{doc.document_type}\", \"id\": \"#{doc.document_id}\", \"position\": \"#{count}\", \"progress\": 100}"  
+			count += 1
+			fileString = if count === article[0].article_documents.size() then fileString else fileString + "," end
+		end
+		fileString += "]"
+		if(article[0].article_documents.size() === 0)
+			@files = ""
+		else
+			@files = fileString
 		end
 	end
 
@@ -425,12 +430,12 @@ class ArticlesSecuredController < ApplicationController
 
 	private
 	def article_params_create_by_service
-		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platforms)
+		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platform)
 	end
 
 	private
 	def article_params_update_by_service
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platforms)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platform)
 	end
 
 	private

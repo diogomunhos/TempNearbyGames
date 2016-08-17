@@ -166,43 +166,56 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
 }])
 
 .controller('new-article-controller', ['articleServices', '$scope', '$timeout', 'Upload', '$q', '$interval', function(articleServices, $scope, $timeout, Upload, $q, $interval) {
-  
+  var plat = [];
+  if(document.getElementById('hidden_article_platforms') != null){
+    for(var i=0; i < document.getElementById('hidden_article_platforms').value.split(',').length; i++){
+      plat.push(document.getElementById('hidden_article_platforms').value.split(',')[i]);
+    }
+  }
+  var filesEdit = [];
+  if(document.getElementById('hidden_article_files') != null){
+    var filesJson = JSON.parse(document.getElementById('hidden_article_files').value);
+    for(var i=0; i < filesJson.length; i++){
+      filesEdit.push(filesJson[i]);
+    }
+  }
+  $scope.isEdit = (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null ) ? true : false;
   $scope.article = {
-    id: '',
+    id: (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null) ? document.getElementById('hidden_article_id').value : '',
     title: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_title') != "undefined" && document.getElementById('hidden_article_title') != null) ? document.getElementById('hidden_article_title').value : '',
       errorCode: ''
     },
     subtitle: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_subtitle') != "undefined" && document.getElementById('hidden_article_subtitle') != null) ? document.getElementById('hidden_article_subtitle').value : '',
       errorCode: ''
     },
     preview: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_preview') != "undefined" && document.getElementById('hidden_article_preview') != null) ? document.getElementById('hidden_article_preview').value : '',
       errorCode: ''
     },
     friendly_url: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_friendly_url') != "undefined" && document.getElementById('hidden_article_friendly_url') != null) ? document.getElementById('hidden_article_friendly_url').value : '',
       errorCode: ''
     },
-    is_highlighted: false,
+    is_highlighted: (typeof document.getElementById('hidden_article_is_highlighted') != "undefined" && document.getElementById('hidden_article_is_highlighted') != null) ? ((document.getElementById('hidden_article_is_highlighted').value == "true") ? true : false) : false,
     body: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_body') != "undefined" && document.getElementById('hidden_article_body') != null) ? document.getElementById('hidden_article_body').value : '',
       errorCode: ''
     },
     platforms: {
-      value: '',
+      value: plat,
       errorCode: ''
     },
     tags: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_tags') != "undefined" && document.getElementById('hidden_article_tags') != null) ? document.getElementById('hidden_article_tags').value : '',
       errorCode: ''
     },
-    files:[],
-    type: (typeof document.getElementById('article_type') != "undefined") ? document.getElementById('article_type').value : '',
-    stage: 1
+    files: filesEdit,
+    type: (typeof document.getElementById('article_type') != "undefined" && document.getElementById('article_type') != null) ? document.getElementById('article_type').value : '',
+    stage: (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null) ? 2 : 1
   }
-  
+
   $scope.filePosition = $scope.article.files.length;
   $scope.files = [];
   $scope.uploadErrorMessage = "";
@@ -396,6 +409,10 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
   }
 
   $scope.createArticleRequest = function(){
+    var platforms = '';
+    for(var i=0; i < $scope.article.platforms.value.length; i++){ 
+      platforms += (platforms === '') ? $scope.article.platforms.value[i] : ','+$scope.article.platforms.value[i];
+    }
     var request = {
         title: $scope.article.title.value,
         subtitle: $scope.article.subtitle.value,
@@ -404,7 +421,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
         tags: document.getElementById('article_tags').value,
-        platform: $scope.article.platforms.value
+        platform: platforms
     }
 
     return request;
@@ -412,6 +429,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
 
   $scope.updateArticle = function(){
     var request = $scope.updateArticleRequest();
+    console.log('request ' + JSON.stringify(request));
     var result = articleServices.updateArticle(request).then(function (result) {
         if(!result.data[0].isSuccessful){
           if(result.data[0].errorMessage === "Friendly url Friendly URL is already registered by another article, please choose another"){
@@ -426,6 +444,10 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
   }
 
   $scope.updateArticleRequest = function(){
+    var platforms = '';
+    for(var i=0; i < $scope.article.platforms.value.length; i++){ 
+      platforms += (platforms === '') ? $scope.article.platforms.value[i] : ','+$scope.article.platforms.value[i];
+    }
     var request = {
         id: $scope.article.id,
         title: $scope.article.title.value,
@@ -436,7 +458,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         is_highlight: $scope.article.is_highlighted,
         body: $scope.article.body.value,
         tags: document.getElementById('article_tags').value,
-        platform: $scope.article.platforms.value
+        platform: platforms
     }
 
     return request;
@@ -544,6 +566,15 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }else{
       $scope.article.files.splice(filePosition, 1);
     }
+  }
+
+  
+  if(typeof document.getElementById('hidden_article_body') != "undefined" && document.getElementById('hidden_article_body') != null){
+    console.log(document.getElementById('hidden_article_body').value);
+    var html = document.getElementById('hidden_article_body').value;
+    $("#summernote").summernote({height: 800});
+    $("#summernote").summernote("code", html);
+    $scope.createImageModalContent();
   }
 
 }]);
