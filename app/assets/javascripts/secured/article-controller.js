@@ -165,10 +165,10 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
 
 }])
 
-.controller('new-article-controller', ['articleServices', '$scope', '$timeout', 'Upload', function(articleServices, $scope, $timeout, Upload) {
+.controller('new-article-controller', ['articleServices', '$scope', '$timeout', 'Upload', '$q', '$interval', function(articleServices, $scope, $timeout, Upload, $q, $interval) {
   
   $scope.article = {
-    id: '72',
+    id: '',
     title: {
       value: '',
       errorCode: ''
@@ -200,7 +200,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     },
     files:[],
     type: (typeof document.getElementById('article_type') != "undefined") ? document.getElementById('article_type').value : '',
-    stage: 4
+    stage: 1
   }
   
   $scope.filePosition = $scope.article.files.length;
@@ -276,8 +276,6 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
             var response = $scope.validateUploadFiles();
             if(response === true){
               $scope.uploadFilesToServer();
-              $scope.isSubmitting = false;  
-              $scope.article.stage++;
             }else{
               $scope.isSubmitting = false; 
             }
@@ -285,6 +283,24 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         default:  
     }
   }
+
+  $scope.createImageModalContent = function(){
+    $("#modal-container-images").empty();
+    var html = "";
+    angular.forEach($scope.article.files, function(f){
+      console.log('ID ' + f.id);
+      console.log('TYPE ' + f.type);
+      if(f.id != '' && f.type === "Body"){
+        html+= '<div class="col-lg-4" style="margin-bottom: 20px;">';
+        html+= '<div style="background-image: url(\'/images/show_image/'+f.id+'\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage('+f.id+');"><div id="inside-'+f.id+'"></div></div>';
+        html+= '</div>';
+      }
+    })
+    console.log(html);
+    $("#modal-container-images").append(html);
+      
+  }
+    
 
   $scope.validateUploadFiles = function(){
     var valid = true;
@@ -324,8 +340,11 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
   }
 
   $scope.uploadFilesToServer = function(){
+    var finishCount = 0;
+    var sendCount = 0;
     angular.forEach($scope.article.files, function(f){
       if(f.id === ''){
+        sendCount++;
         f.upload = Upload.upload({
             url: '/private/articles/upload_files_service.json',
             data: {file: f},
@@ -334,20 +353,29 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
           });
           f.progress = 10;
           f.upload.then(function (response) {
-            $timeout(function (){
               f.progress = 100;
               f.id = response.data[0].documentId;
-            });
-
+              finishCount++;
+              if(sendCount === finishCount){
+                $scope.createImageModalContent();
+                $scope.isSubmitting = false;  
+                $scope.article.stage++;
+              }
           }, function (response){
             if (response.status > 0){
               $scope.errorMsg = response.status + ': ' + response.data;
             }
+            finishCount++;
           }, function(evt){
             f.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));        
         });
       }
     });
+
+    if(sendCount === 0){
+      $scope.isSubmitting = false;  
+      $scope.article.stage++;
+    }
   }
 
   $scope.createArticle = function(){
@@ -406,6 +434,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         friendly_url: $scope.article.friendly_url.value,
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
+        body: $scope.article.body.value,
         tags: document.getElementById('article_tags').value,
         platform: $scope.article.platforms.value
     }
@@ -464,6 +493,15 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
   $scope.finish = function(){
     var textareaValue = $('#summernote').summernote('code');
     console.log(textareaValue);
+    if(textareaValue === ""){
+      $scope.article.body.errorCode = '1';
+    }else{
+      $scope.article.body.value = textareaValue;
+      var result = $scope.updateArticle();
+      if(result){
+        window.location.href = "/private/articles/show/"+$scope.article.id;
+      }
+    }
   }
 
   $scope.changePickListValue = function(field){

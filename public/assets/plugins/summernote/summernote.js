@@ -1903,42 +1903,20 @@
         ' height: 100px;'+
         '</style>'+
         '<script type="text/javascript">'+
-        ' function selectImage(id){' +
-        '    $("#inside-"+id).addClass("selectItem");'+
-        ' }'+
         '</script>'+
         '<div class="modal-dialog">'+
         '  <div class="modal-content">'+
         '    <div class="modal-header">' +
         '      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-        '      <h4 class="modal-title">Aquele abraço</h4>' +
+        '      <h4 class="modal-title">Select image</h4>' +
         '    </div>'+
         '    <div class="modal-body" style="margin-bottom: 120px;">'+
-        '          <div style="height: 300px; overflow-y: scroll;">' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage(1);"><div id="inside-1"></div></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '         <div class="col-lg-4" style="margin-bottom: 20px;">' +
-        '           <div style="background-image: url(\'/images/show_image/160\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;"></div>' +
-        '         </div>' +
-        '</div>'+
+        '          <div id="modal-container-images" style="height: 360px; overflow-y: scroll;">' +
+        '          </div>'+
         '    </div>'+
-        '    <div class="modal-footer" style="position: absolute; bottom: 0; width: 100%; height: 80px;"></div>'+
+        '    <div class="modal-footer" style="position: absolute; bottom: 0; width: 100%; height: 80px;">'+
+        '       <button type="button" class="btn btn-primary" onclick="insertHTML();" data-dismiss="modal">Ok</button>'+
+        '    </div>'+
         '  </div>'+
         '</div>'
       ].join(''));

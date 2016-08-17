@@ -24,7 +24,7 @@
 									<div class="post">
 										<div class="entry-header">
 											<% a.article_documents.each do |image| %>
-												<% if image.document_type === "thumb" %>
+												<% if image.document_type === "Thumb" %>
 													<div class="entry-thumbnail">
 														<a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" /></a>
 													</div>

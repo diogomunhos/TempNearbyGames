@@ -156,7 +156,7 @@ class ArticlesSecuredController < ApplicationController
 		end
 		if @article.body != article_params_update_by_service[:body]
 			changesString += if changesString != "[" then ", " else "" end
-			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body}\", \"after\": \"#{article_params_update_by_service['body']}\"}"
+			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body}\", \"after\": \"#{article_params_update_by_service['body'].gsub('"', '\"')}\"}"
 		end
 		if @article.tags != article_params_update_by_service[:tags]
 			changesString += if changesString != "[" then ", " else "" end
@@ -425,12 +425,12 @@ class ArticlesSecuredController < ApplicationController
 
 	private
 	def article_params_create_by_service
-		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags)
+		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platforms)
 	end
 
 	private
 	def article_params_update_by_service
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platforms)
 	end
 
 	private
