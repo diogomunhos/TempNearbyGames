@@ -423,6 +423,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         tags: document.getElementById('article_tags').value,
         platform: platforms
     }
+    console.log(request);
 
     return request;
   }
@@ -460,7 +461,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         tags: document.getElementById('article_tags').value,
         platform: platforms
     }
-
+    console.log(request);
     return request;
   }
 

@@ -13,16 +13,16 @@
                         <a class="btn btn-primary" href="/private/articles/edit/<%= @article.id %>">Edit</a>
                     <% end %>
                     <% if @showSendApproval %>
-                        <a class="btn btn-warning">Send to Approval</a>
+                        <a class="btn btn-warning" href="/private/articles/send_to_approval/<%= @article.id %>">Send to Approval</a>
                     <% end %>
                     <% if @showReject %>
-                        <a class="btn btn-danger">Reject</a>
+                        <a class="btn btn-danger" href="/private/articles/reject/<%= @article.id %>">Reject</a>
                     <% end %>
                     <% if @showApprove %>
-                        <a class="btn btn-info">Approve</a>
+                        <a class="btn btn-info" href="/private/articles/approve/<%= @article.id %>">Approve</a>
                     <% end %>
                     <% if @showPublish %>
-                        <a class="btn btn-success">Publish</a>
+                        <a class="btn btn-success" href="/private/articles/publish/<%= @article.id %>">Publish</a>
                     <% end %>
                     <% if @showSchedule %>
                         <a class="btn btn-success">Schedule</a>

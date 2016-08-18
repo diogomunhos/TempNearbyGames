@@ -33,7 +33,7 @@
         </div>
         <label class="col-lg-1 control-label" for="article_is_highlight">Is Highlighted:</label>
         <div class="checkbox col-lg-1">
-            <input id="article_is_highlight" type="checkbox" name="article[is_highlight]" ng-checked="article.is_highlighted">
+            <input id="article_is_highlight" type="checkbox" name="article[is_highlight]" ng-checked="article.is_highlighted" ng-model="article.is_highlighted">
         </div>
     </div>
     <div class="row" ng-show="article.friendly_url.errorCode != ''">

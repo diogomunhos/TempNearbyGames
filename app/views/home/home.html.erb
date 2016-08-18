@@ -2,10 +2,8 @@
 <%= render '/home/slider' %>
 
 
-<div style="background-color: #F8C175; margin-bottom: 20px; margin-top: -30px;">
-	<div class="container-fluid">
-		<%= render '/home/publishTop' %>
-	</div>	
+<div style="background-color: #F8C175; height: 20px; margin-bottom: 20px; margin-top: -30px;">
+	
 
 </div>
 
@@ -14,37 +12,61 @@
 	<div class="container-fluid">
 		<div class="section">
 			<div class="row">
-				<div class="col-sm-6 col-sm-offset-2">
+				<div class="col-lg-6 col-lg-offset-2 col-md-8">
 					<div id="site-content" class="site-content">
-						<h2 class="section-title" style="color: #E7BB51; font-weight: bold;">LATEST NEWS</h2>
+						<h2 class="section-title" style="color: #E7BB51; font-weight: bold;">ÚLTIMAS NOTÍCIAS</h2>
 						<div class="middle-content">
 							<div class="section health-section">
 								<div class="health-feature">
 									<% @articles.each do |a| %>
-									<div class="post">
-										<div class="entry-header">
-											<% a.article_documents.each do |image| %>
-												<% if image.document_type === "Thumb" %>
-													<div class="entry-thumbnail">
-														<a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" /></a>
-													</div>
+										<div class="post">
+											<a href="/<%= a.article_type %>/<%= a.friendly_url %>" >
+											<div class="col-lg-4 col-md-5 col-sm-5 hidden-xs" style="max-width: 100%; float: left;">
+												<% a.article_documents.each do |image| %>
+													<% if image.document_type === "Thumb" %>
+														<div class="entry-thumbnail">
+															<div style="height: 200px; width: 100%; background-image: url('/images/show_image/<%= image.document.id %>')"></div>
+														</div>
+													<% end %>
 												<% end %>
-											<% end %>
-										</div>
-										<div class="post-content">								
-											<h2 class="entry-title">
-												<a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>" style="font-weight: bold;"><%= a.title %></a>
-											</h2>
-											<p class="visible-lg visible-md text-muted"><%= a.preview %></p>
-											<div class="entry-meta visible-lg visible-md">
-												<ul class="list-inline">
-													<li class="publish-date"><a href="/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><i class="fa fa-clock-o"></i> <%= a.created_at %></a></li>
-													<!-- <li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
-													<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>372</a></li> -->
-												</ul>
 											</div>
-										</div>
-									</div><!--/post-->
+											<div class="col-xs-12 visible-xs" style="max-width: 100%; float: left;">
+												<% a.article_documents.each do |image| %>
+													<% if image.document_type === "Thumb" %>
+														<div class="entry-thumbnail">
+															<div style="height: 200px; width: 100%; background-image: url('/images/show_image/<%= image.document.id %>')"></div>
+														</div>
+													<% end %>
+												<% end %>
+											</div>
+											<div class="col-lg-8 col-md-7 col-sm-7 col-xs-7 hidden-xs">
+												<h2 class="entry-title" style="font-size: 20px; font-weight: bold; color: black;">
+													<%= a.title %>
+												</h2>
+												<p class="text-muted" style="font-size: 14px;"><%= a.preview %></p>
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><i class="fa fa-clock-o"></i> <%= a.created_at %></li>
+														<!-- <li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>372</a></li> -->
+													</ul>
+												</div>
+											</div>
+											<div class="col-xs-12 visible-xs">
+												<h2 class="entry-title" style="font-size: 16px; font-weight: bold; color: black;">
+													<%= a.title %>
+												</h2>
+												<p class="text-muted" style="font-size: 14px;"><%= a.preview %></p>
+												<div class="entry-meta">
+													<ul class="list-inline">
+														<li class="publish-date"><i class="fa fa-clock-o"></i> <%= a.created_at %></li>
+														<!-- <li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
+														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>372</a></li> -->
+													</ul>
+												</div>
+											</div>
+											</a>
+										</div><!--/post-->
 									<% end %>
 								</div>
 							</div><!--/.health-section -->
@@ -56,152 +78,147 @@
 						</div><!--/.middle-content-->
 					</div><!--/#site-content-->
 				</div>
-				<div class="col-sm-3">
+				<div class="col-lg-3 col-md-4">
 						<div id="sitebar">							
-							<div class="widget">
-								<div class="add">
-									<a href="#"><img class="img-responsive" src="/assets/images/post/add/add5.jpg" alt="" /></a>
-								</div>
-							</div>
 							<!--/#widget-->
 							<div class="widget">
-								<h2 class="section-title" style="color: #E7BB51; font-weight: bold;">TOP UPCOMING GAMES</h2>
+								<h2 class="section-title" style="color: #E7BB51; font-weight: bold;">JOGOS MAIS ESPERADOS</h2>
 								<ul class="comment-list">
 									<li style="border:none;">
 										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">1. Final Fantasy XV</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/Json-friday-13th.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">2. Friday the 13th: The Game</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/3058956-battlefield1_reveal_03.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">3. Battlefield 1</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/Resident-evil-7.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">4. Resident Evil 7:biohazard</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/deus-ex.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">5. Deus Ex: Mankind Divided</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/3068143-civilizationvi_screenshot_announce1.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">6. Sid Meier's Civilization VI</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/mass-effect.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">7. Mass Effect: Andromeda</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/2425926-2026827-672376_20130205_001.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">8. Cyberpunk 2077</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/zelda.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">9. The Legend of Zelda: Breath of the Wild</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
 										</div><!--/post-->
 									</li>
 									<li style="border:none;">
-										<div class="post small-post" style="background-image: url('/assets/images/fnal-fantasy-xv.jpg'); background-size: cover;">
+										<div class="post small-post" style="background-image: url('/assets/images/static/2886014-for_honor_screen_harrowgate_samuraisattackwarden_e3_150615_4pmpst_1434397100.jpg'); background-size: cover;">
 											<div class="post-content" style="background-color: rgba(0,0,0,0.65);">
 												<h1 class="entry-title">
-													<a href="news-details.html" style="font-weight: bold; color: white; font-size: 20px;">1. Final Fantasy XV</a>
+													<a href="news-details.html" style="color: white; font-size: 16px;">10. For Honor</a>
 												</h2>	
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><p style="color: #E7BB51;">Sep 30, 2017 </p></li>
+														<li class="publish-date"><p style="color: #E7BB51;"></p></li>
 													</ul>
 												</div>
 											</div>
@@ -209,12 +226,6 @@
 									</li>
 								</ul>
 							</div><!-- widget -->
-							
-							<div class="widget">
-								<div class="add">
-									<a href="#"><img class="img-responsive" src="/assets/images/post/add/add5.jpg" alt="" /></a>
-								</div>
-							</div>
 							
 						</div><!--/#sitebar-->
 					</div>
@@ -226,9 +237,8 @@
 			<div class="container-fluid">
 				<ul class="list-inline social-icons text-center">
 					<li><a href="https://www.facebook.com/Wahiga.Official/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
-					<li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-					<li><a href="#"><i class="fa fa-google-plus"></i>Google Plus</a></li>
-					<li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+					<li><a href="https://twitter.com/wahiga_official" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
+					<!-- <li><a href="#"><i class="fa fa-google-plus"></i>Google Plus</a></li> -->
 					<li><a href="https://www.youtube.com/channel/UCsm4Ik888MakSXbc6t8XBnA" target="_blank"><i class="fa fa-youtube"></i>Youtube</a></li>
 				</ul>
 			</div>

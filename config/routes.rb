@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get "/article/:friendly_url" => "articles#show"
 
+  get "/News/:friendly_url" => "articles#show"
+
   get "/temp" => "temp#temp"
 
   get "/signup" => "signup#signup"
@@ -106,7 +108,11 @@ Rails.application.routes.draw do
 
   get '/private/articles/approve/:articleid' => "articles_secured#approve"
 
-  get '/private/articles/publish/:articleid' => "articles_secured#publish"
+  get '/private/articles/reject/:articleid' => "articles_secured#reject"
+
+  get '/private/articles/publish/:articleid' => "articles_secured#publish" 
+
+  get '/private/articles/send_to_approval/:articleid' => "articles_secured#send_to_approval"
 
   #Users
 

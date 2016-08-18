@@ -12,11 +12,11 @@ class ArticlesSecuredController < ApplicationController
 	before_action only: [:new, :create, :upload_files_service, :create_article_service, :update_article_service] do 
 		check_access("Article", "create_record")
 	end
-	before_action only: [:edit, :update, :update_article_service] do 
+	before_action only: [:edit, :update, :update_article_service, :send_to_approval] do 
 		check_access("Article", "edit_record")
 	end
 
-	before_action only: [:approve] do 
+	before_action only: [:approve, :reject] do 
 		check_access("Article", "approve_record")
 	end
 
@@ -155,10 +155,10 @@ class ArticlesSecuredController < ApplicationController
 			changesString += if changesString != "[" then ", " else "" end
 			changesString += "{\"field\": \"Preview\", \"before\": \"#{@article.preview}\", \"after\": \"#{article_params_update_by_service['preview']}\"}"
 		end
-		if @article.body != article_params_update_by_service[:body]
-			changesString += if changesString != "[" then ", " else "" end
-			changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body.gsub('"', '\"')}\", \"after\": \"#{article_params_update_by_service['body'].gsub('"', '\"')}\"}"
-		end
+		# if @article.body != article_params_update_by_service[:body]
+		# 	changesString += if changesString != "[" then ", " else "" end
+		# 	changesString += "{\"field\": \"Body\", \"before\": \"#{@article.body.gsub('"', '\"') unless @article.body.nil?}\", \"after\": \"#{article_params_update_by_service['body'].gsub('"', '\"')}\"}"
+		# end
 		if @article.tags != article_params_update_by_service[:tags]
 			changesString += if changesString != "[" then ", " else "" end
 			changesString += "{\"field\": \"Tags\", \"before\": \"#{@article.tags}\", \"after\": \"#{article_params_update_by_service['tags']}\"}"
@@ -190,9 +190,23 @@ class ArticlesSecuredController < ApplicationController
 		end
 	end
 
+	def send_to_approval
+		article = Article.find(params[:articleid])
+		article.status = "Waiting for approval"
+		article.save
+		redirect_to "/private/articles/show/#{article.id}"
+	end
+
 	def approve
 		article = Article.find(params[:articleid])
 		article.status = "Approved"
+		article.save
+		redirect_to "/private/articles/show/#{article.id}"
+	end
+
+	def reject
+		article = Article.find(params[:articleid])
+		article.status = "Rejected"
 		article.save
 		redirect_to "/private/articles/show/#{article.id}"
 	end
@@ -352,15 +366,17 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def show
+		user = User.find(session[:user_id])
+		profile = Profile.find(user.profile_id)
 		article = Article.where(id: params[:articleid]).includes(:documents)
 		@article = if article.any? then article[0] else Article.new end	
 		@tags = if @article.tags != "" && @article.tags != nil then @article.tags.split(',') else Array.new end
-		@showEdit = if (@article.status === "Draft" || @article.status === "Reject") && !check_access_helper("Article", "edit_record").nil? then true else false end
-		@showDelete = if (@article.status === "Draft" || @article.status === "Reject") && !check_access_helper("Article", "delete_record").nil? then true else false end
-		@showSendApproval = if @article.status === "Draft" then true else false end
+		@showEdit = if (@article.status === "Draft" || @article.status === "Rejected") && !check_access_helper("Article", "edit_record").nil? then true else false end
+		@showDelete = if (@article.status === "Draft" || @article.status === "Rejected") && !check_access_helper("Article", "delete_record").nil? then true else false end
+		@showSendApproval = if (@article.status === "Draft" || @article.status === "Rejected") then true else false end
 		@showReject = if @article.status === "Waiting for approval" && !check_access_helper("Article", "approve_record").nil? then true else false end
 		@showApprove = if @article.status === "Waiting for approval" && !check_access_helper("Article", "approve_record").nil? then true else false end
-		@showPublish = if @article.status === "Approved" && !check_access_to_publish("Administrator").nil? then true else false end
+		@showPublish = if @article.status === "Approved" && profile.name === "Administrator" then true else false end
 		# @showSchedule = if @article.status === "Approved" then true else false end
 		@showSchedule = false
 		historic = Historic.where("entity=? AND object_id=?", "article", @article.id)
@@ -440,7 +456,7 @@ class ArticlesSecuredController < ApplicationController
 
 	private
 	def init_article_type
-		@article_type = ["News", "Review", "Upcoming game"]
+		@article_type = ["News"]
 	end
 
 	

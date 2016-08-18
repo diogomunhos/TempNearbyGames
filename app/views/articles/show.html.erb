@@ -1,9 +1,6 @@
 <title><%= @article.title %> - Wahiga</title>
 
-<div style="background-color: #F8C175; margin-bottom: -20px; margin-top: -19px;">
-	<div class="container-fluid">
-		<%= render '/home/publishTop' %>
-	</div>	
+<div style="height: 20px; background-color: #F8C175; margin-bottom: -20px; margin-top: -19px;">
 
 </div>
 <div id="newsdetails" class="container">			
@@ -44,16 +41,16 @@
 													<span>Tags:</span>
 													<ul class="list-inline">
 														<% @article.tags.split(',').each do |tag| %>
-														<li><a href="#"><%= tag %></a> </li>
+														<li><a><%= tag %></a> </li>
 														<% end %>
 													</ul>
 												</div>
 
 												<ul class="list-inline share-link">
-													<li><a href="#"><img src="/assets/images/others/social1.png" alt="" /></a></li>
+													<!-- <li><a href="#"><img src="/assets/images/others/social1.png" alt="" /></a></li>
 													<li><a href="#"><img src="/assets/images/others/social2.png" alt="" /></a></li>
 													<li><a href="#"><img src="/assets/images/others/social3.png" alt="" /></a></li>
-													<li><a href="#"><img src="/assets/images/others/social4.png" alt="" /></a></li>
+													<li><a href="#"><img src="/assets/images/others/social4.png" alt="" /></a></li> -->
 												</ul>
 											</div>
 										</div>
@@ -65,107 +62,40 @@
 				</div><!--/#site-content-->
 
 				<div class="section related-news-section">
-					<h1 class="section-title" style="color: #E7BB51; font-weight: bold;">Related News</h1>
+					<h1 class="section-title" style="color: #E7BB51; font-weight: bold;">OUTRAS NOTÍCIAS</h1>
 					<div class="row">
 						<div class="col-sm-12" style="background-color: #FDD7B0;">
 							<div class="left-content">
 								<div class="related-news">
 									<div id="related-news-carousel">
+										<% @randomArticles.each do |ra| %>
 										<div class="post medium-post">
+											<a href="/<%= ra.article_type %>/<%= ra.friendly_url %>">
 											<div class="entry-header">
 												<div class="entry-thumbnail">
-													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/1.jpg" alt="" /></a>
+													<% ra.article_documents.each do |image| %>
+														<% if image.document_type === "Header" %>
+															<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
+														<% end %>
+													<% end %>
 												</div>
 											</div>
 											<div class="post-content">								
 												<div class="entry-meta">
 													<ul class="list-inline">
-														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
-														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
+														<!-- <li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(ra.created_at, Time.now) %> </a></li> -->
+														<% unless ra.views.nil? %>
+															<li class="views"><a href="#"><i class="fa fa-eye"></i><%= ra.views unless ra.views.nil? %></a></li>
+														<% end %>
 													</ul>
 												</div>
 												<h2 class="entry-title">
-													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
+													<%= truncate(ra.title, length: 50, separator: ' ') %>
 												</h2>
 											</div>
+											</a>
 										</div><!--/post--> 
-										<div class="post medium-post">
-											<div class="entry-header">
-												<div class="entry-thumbnail">
-													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/3.jpg" alt="" /></a>
-												</div>
-											</div>
-											<div class="post-content">								
-												<div class="entry-meta">
-													<ul class="list-inline">
-														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
-														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
-													</ul>
-												</div>
-												<h2 class="entry-title">
-													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
-												</h2>
-											</div>
-										</div><!--/post--> 
-										<div class="post medium-post">
-											<div class="entry-header">
-												<div class="entry-thumbnail">
-													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/4.jpg" alt="" /></a>
-												</div>
-											</div>
-											<div class="post-content">								
-												<div class="entry-meta">
-													<ul class="list-inline">
-														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
-														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
-													</ul>
-												</div>
-												<h2 class="entry-title">
-													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
-												</h2>
-											</div>
-										</div><!--/post--> 
-										<div class="post medium-post">
-											<div class="entry-header">
-												<div class="entry-thumbnail">
-													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/5.jpg" alt="" /></a>
-												</div>
-											</div>
-											<div class="post-content">								
-												<div class="entry-meta">
-													<ul class="list-inline">
-														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
-														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
-													</ul>
-												</div>
-												<h2 class="entry-title">
-													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
-												</h2>
-											</div>
-										</div><!--/post--> 
-										<div class="post medium-post">
-											<div class="entry-header">
-												<div class="entry-thumbnail">
-													<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/6.jpg" alt="" /></a>
-												</div>
-											</div>
-											<div class="post-content">								
-												<div class="entry-meta">
-													<ul class="list-inline">
-														<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-														<li class="views"><a href="#"><i class="fa fa-eye"></i>15k</a></li>
-														<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>278</a></li>
-													</ul>
-												</div>
-												<h2 class="entry-title">
-													<a href="news-details.html">Our closest relatives aren't fans of daylight saving time</a>
-												</h2>
-											</div>
-										</div><!--/post--> 
+										<% end %>
 									</div>
 								</div>
 							</div>
@@ -269,99 +199,30 @@
 			<div class="col-sm-3">
 				<div id="sitebar">							
 					<div class="widget">
-						<h1 class="section-title title"><a href="listing.html" style="color: #E7BB51; font-weight: bold;">Most Popular</a></h1>
+						<h1 class="section-title title"><a href="listing.html" style="color: #E7BB51; font-weight: bold;">Populares</a></h1>
 						<ul class="post-list">
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/1.jpg" alt="" /></a>
+							<% @popular.each do |p| %>
+								<li>
+									<div class="post small-post">
+										<a href="/<%= p.article_type %>/<%= p.friendly_url %>">
+										<div class="entry-header">
+											<div class="entry-thumbnail">
+											<% p.article_documents.each do |image| %>
+												<% if image.document_type === "Thumb" %>
+													<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
+												<% end %>
+											<% end %>
+											</div>
 										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">World</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">Patti Solis Doyle, who served as a senior adviser</a>
-										</h2>
-									</div>
-								</div><!--/post--> 
-							</li>
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/2.jpg" alt="" /></a>
+										<div class="post-content">								
+											<h2 class="entry-title">
+												<%= truncate(p.title, length: 50, separator: ' ') %>
+											</h2>
 										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">Business</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">The interview comes as the infidelity scandal and other </a>
-										</h2>
-									</div>
-								</div><!--/post-->
-							</li>
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/3.jpg" alt="" /></a>
-										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">Sports</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">They have long conversations together. It's a very good</a>
-										</h2>
-									</div>
-								</div><!--/post-->
-							</li>
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/4.jpg" alt="" /></a>
-										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">Technology</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">He just sort of puts his hands on her shoulders</a>
-										</h2>
-									</div>
-								</div><!--/post-->
-							</li>
-
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/6.jpg" alt="" /></a>
-										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">Health</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">The winner of the caucuses is decided by state</a>
-										</h2>
-									</div>
-								</div><!--/post-->
-							</li>
-							<li>
-								<div class="post small-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="news-details.html"><img class="img-responsive" src="/assets/images/post/rising/7.jpg" alt="" /></a>
-										</div>
-									</div>
-									<div class="post-content">								
-										<div class="video-catagory"><a href="#">Lifestyle</a></div>
-										<h2 class="entry-title">
-											<a href="news-details.html">Rosa went with the man to another town in Mexico called Tenancingo, where he introduced</a>
-										</h2>
-									</div>
-								</div><!--/post-->
-							</li>
+									</div><!--/post--> 
+								</li>
+							<% end %>
+							
 						</ul>
 					</div><!--/#widget-->
 

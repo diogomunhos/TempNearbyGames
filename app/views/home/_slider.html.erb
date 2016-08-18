@@ -1,8 +1,8 @@
 <div class="section" id="main-slider" style="margin-top: -20px;">
   <% @slider.each do |s| %>
     <% s.article_documents.each do |image| %>
-      <% if image.document_type === "header" %>
-        <a href="/<%= s.article_type.downcase %>/<%= s.friendly_url %>">
+      <% if image.document_type === "Header" %>
+        <a href="/<%= s.article_type %>/<%= s.friendly_url %>">
         <div class="post feature-post" style="background-image:url(/images/show_image/<%= image.document.id %>); background-size:cover;">
           <div class="post-content">
             <!-- <div class="catagory"><a href="#">World</a></div> -->
