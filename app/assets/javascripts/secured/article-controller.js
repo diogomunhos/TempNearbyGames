@@ -173,7 +173,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }
   }
   var filesEdit = [];
-  if(document.getElementById('hidden_article_files') != null){
+  if(document.getElementById('hidden_article_files') != null && document.getElementById('hidden_article_files').value != ""){
     var filesJson = JSON.parse(document.getElementById('hidden_article_files').value);
     for(var i=0; i < filesJson.length; i++){
       filesEdit.push(filesJson[i]);
@@ -320,6 +320,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     var headerCount = 0;
     var thumbCount = 0;
     var bodyCount = 0;
+    var sliderCount = 0;
     angular.forEach($scope.article.files, function(f){
       if(f.type === "Header"){
         headerCount++;
@@ -330,6 +331,9 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       if(f.type === "Body"){
         bodyCount++;
       }
+      if(f.type === "Slider"){
+        sliderCount++;
+      }
     });
 
     if(headerCount > 1){
@@ -337,6 +341,12 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       valid = false;
     }else if(headerCount === 0){
       $scope.uploadErrorMessage = 'You must upload at least one image with "Header" type';
+      valid = false;
+    }if(sliderCount > 1){
+      $scope.uploadErrorMessage = 'You must upload only one image with "Slider" type';
+      valid = false;
+    }else if(sliderCount === 0){
+      $scope.uploadErrorMessage = 'You must upload at least one image with "Slider" type';
       valid = false;
     }else if(thumbCount > 1){
       $scope.uploadErrorMessage = 'You must upload only one image with "Thumb" type';
@@ -541,7 +551,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
 
   $scope.uploadFiles = function(files, errFiles){
     angular.forEach(files, function(filaUploaded){
-      $scope.article.files.push({id: '', name: filaUploaded.name, articleId: $scope.article.id, type: 'Header', file: filaUploaded, position: $scope.filePosition, progress: 0});
+      $scope.article.files.push({id: '', name: filaUploaded.name, articleId: $scope.article.id, type: 'Body', file: filaUploaded, position: $scope.filePosition, progress: 0});
       $scope.filePosition++;
     })
 

@@ -80,5 +80,9 @@ function insertHTML(){
 	}
 	console.log(html);
 	$("#summernote").summernote("code", html);
+	for(var i=0; i < selectedImages.length; i++){
+		$("#inside-"+selectedImages[i].id).removeClass("selectItem");
+	}
+	selectedImages = [];
 }
 
