@@ -71,10 +71,10 @@
 										<% @randomArticles.each do |ra| %>
 										<div class="post medium-post">
 											<a href="/<%= ra.article_type %>/<%= ra.friendly_url %>">
-											<div class="entry-header" style="min-height: 170px;">
+											<div class="entry-header" style="min-height: 170px; max-height: 200px;">
 												<div class="entry-thumbnail">
 													<% ra.article_documents.each do |image| %>
-														<% if image.document_type === "Header" %>
+														<% if image.document_type === "Thumb" %>
 															<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
 														<% end %>
 													<% end %>
