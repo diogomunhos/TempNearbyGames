@@ -381,19 +381,19 @@ class ArticlesSecuredController < ApplicationController
 		@showSchedule = false
 		historic = Historic.where("entity=? AND object_id=?", "article", @article.id)
 		@historic = Array.new
-		historic.each do |h|
-			user = User.find(h.user_id)
-			change_array = JSON.parse(h.changed_fields)
-			change_array.each do |c|
-				historic_hash = Hash.new
-				historic_hash[:field] = c['field']
-				historic_hash[:before] = c['before']
-				historic_hash[:after] = c['after']
-				historic_hash[:updated_date] = h.created_at
-				historic_hash[:username] = user.name
-				@historic.push(historic_hash)
-			end
-		end
+		# historic.each do |h|
+		# 	user = User.find(h.user_id)
+		# 	change_array = JSON.parse(h.changed_fields)
+		# 	change_array.each do |c|
+		# 		historic_hash = Hash.new
+		# 		historic_hash[:field] = c['field']
+		# 		historic_hash[:before] = c['before']
+		# 		historic_hash[:after] = c['after']
+		# 		historic_hash[:updated_date] = h.created_at
+		# 		historic_hash[:username] = user.name
+		# 		@historic.push(historic_hash)
+		# 	end
+		# end
 	end
 
 	def create
