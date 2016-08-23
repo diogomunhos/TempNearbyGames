@@ -6,6 +6,9 @@ class ProfilesSecuredController < ApplicationController
 		user = User.find(session[:user_id])
 		@profileName = Profile.find(user.profile_id).name
 		@userPreferences = UserPreference.find_by_user_id(session[:user_id])
+		if @userPreferences.nil?
+			@userPreferences = UserPreference.create(user_id: session[:user_id])
+		end	
 	end
 
 	def my_profile_edit
