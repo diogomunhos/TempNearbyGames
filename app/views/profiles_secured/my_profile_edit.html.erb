@@ -1,0 +1,124 @@
+<div id="content-container" ng-controller="edit-my-profile-controller">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <div class="text-center">
+            <a class="btn btn-danger" href="/private/profiles/my-profile">Cancel</a>
+            <a class="btn btn-success" href="" ng-click="saveProfile()">Save</a>
+        </div>
+    </div>
+
+    <div id="page-content">
+
+        <div class="panel">
+            <div class="panel-body">
+                
+                <div class="row">
+                    <p class="bord-btm pad-ver text-main text-bold text-left">Change profile image:</p>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <div class="col-md-1">
+                            <img alt="Profile Picture" ng-show="profile.file === null" class="img-md img-circle mar-btm" src="<%= @profile_image_url %>"/>
+                            <img alt="Profile Picture" ng-hide="profile.file === null" class="img-md img-circle mar-btm" ngf-thumbnail="profile.file"/>
+                        </div>
+                        <div class="col-md-5">
+                            <button class="btn btn-primary" style="margin-top: 15px; margin-left: 10px;" ngf-select="uploadFiles($files, $invalidFiles)" accept="image/*">Select Image</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="bord-btm pad-ver text-main text-bold text-left">About me:</p>
+                </div>
+                <div class="row" ng-show="profile.first_name.errorCode != ''">
+                    <div class="col-md-6">
+                        <div class="col-md-5 col-md-offset-3">
+                            <p style="margin-left: 10px;" class="error_form_message text-left">{{getErrorByCode(profile.first_name.errorCode, "first_name")}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold text-right" ng-class="{error_input: profile.first_name.errorCode != ''}" >First name:</label>
+                        <div class="col-md-5">
+                            <input type="text" ng-class="{error_input: profile.first_name.errorCode != ''}" class="form-control" id="profile[first_name]" ng-model="profile.first_name.value" ng-focus="focusField('first_name')" value="<%= @user.name %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="profile.last_name.errorCode != ''">
+                    <div class="col-md-6">
+                        <div class="col-md-5 col-md-offset-3">
+                            <p style="margin-left: 10px;" class="error_form_message text-left">{{getErrorByCode(profile.last_name.errorCode, "last_name")}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold  text-right" ng-class="{error_input: profile.last_name.errorCode != ''}"  >Last name:</label>
+                        <div class="col-md-5">
+                            <input type="text" ng-class="{error_input: profile.last_name.errorCode != ''}"  class="form-control" id="profile[last_name]" ng-model="profile.last_name.value" ng-focus="focusField('last_name')" value="<%= @user.last_name %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="profile.nickname.errorCode != ''">
+                    <div class="col-md-6">
+                        <div class="col-md-5 col-md-offset-3">
+                            <p style="margin-left: 10px;" class="error_form_message text-left">{{getErrorByCode(profile.nickname.errorCode, "nickname")}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold  text-right" ng-class="{error_input: profile.nickname.errorCode != ''}" >Nickname:</label>
+                        <div class="col-md-5">
+                            <input type="text" ng-class="{error_input: profile.nickname.errorCode != ''}"  class="form-control" id="profile[nickname]" ng-model="profile.nickname.value" ng-focus="focusField('nickname')" value="<%= @user.nickname %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold  text-right" ng-bind="profile.about.value.length + ' of 110'"></label>
+                        <div class="col-md-8">
+                            <textarea rows="3" class="form-control" id="profile[about]" placeholder="About me..." ng-model="profile.about.value"><%= @userPreference.about %></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="bord-btm pad-ver text-main text-bold text-left">Social</p>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold text-right">facebook.com/</label>
+                        <div class="col-md-5">
+                            <input type="text" required="" class="form-control" id="profile[facebook]" ng-model="profile.facebook.value" value="<%= @userPreference.facebook %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold  text-right">twitter.com/</label>
+                        <div class="col-md-5">
+                            <input type="text" required="" class="form-control" id="profile[twitter]" ng-model="profile.twitter.value" value="<%= @userPreference.twitter %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label text-bold  text-right">instagram.com/</label>
+                        <div class="col-md-5">
+                            <input type="text" required="" class="form-control" id="profile[instagram]"  ng-model="profile.instagram.value" value="<%= @userPreference.instagram %>" />
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+</div>

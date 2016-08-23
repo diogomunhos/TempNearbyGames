@@ -3,6 +3,87 @@ class ProfilesSecuredController < ApplicationController
 	before_filter :authorize, :profile_authorize, :has_to_change_password
 	
 	def my_profile
+		user = User.find(session[:user_id])
+		@profileName = Profile.find(user.profile_id).name
+		@userPreferences = UserPreference.find_by_user_id(session[:user_id])
+	end
+
+	def my_profile_edit
+		@user = User.find(session[:user_id])
+		@userPreference = UserPreference.find_by_user_id(session[:user_id])
+	end
+
+	def upload_profile_image_service
+		request = params['file']
+		hashDocument = Hash.new
+		hashDocument[:file] = request
+		print "DEBUG #{hashDocument['file']}"
+		document = Document.new(hashDocument)
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		if(document.save)
+			userDocuments = UserDocument.where("user_id = ?", session[:user_id])
+			unless userDocuments.nil?
+				userDocuments.each do |u|
+					Document.destroy(u.document_id)
+				end
+			end
+
+			UserDocument.create(user_id: session[:user_id], document_id: document.id, document_type: "profile_image")			
+		else
+			hashResult[:isSuccessful] = false
+			if document.errors.full_messages.any?
+				document.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		end
+
+		@result.push(hashResult)
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+	def save_service
+		user = User.find(session[:user_id])
+		user.name = my_profile_save_params['first_name']
+		user.last_name = my_profile_save_params['last_name']
+		user.nickname = my_profile_save_params['nickname']
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		if(!user.save)
+			hashResult[:isSuccessful] = false
+			if user.errors.full_messages.any?
+				user.errors.full_messages.each do |error|
+					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+				end
+			end
+		else
+			userPreference = UserPreference.find_by_user_id(session[:user_id])
+			userPreference.facebook = my_profile_save_params['facebook']
+			userPreference.twitter = my_profile_save_params['twitter']
+			userPreference.instagram = my_profile_save_params['instagram']
+			userPreference.about = my_profile_save_params['about']
+			if(!userPreference.save)
+				hashResult[:isSuccessful] = false
+				if userPreference.errors.full_messages.any?
+					userPreference.errors.full_messages.each do |error|
+						hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
+					end
+				end
+			end
+		end
+
+		@result.push(hashResult)
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+		
 
 	end
 
@@ -147,6 +228,11 @@ class ProfilesSecuredController < ApplicationController
 	private
 	def profile_params
 		params.require(:profile).permit(:name, :active)
+	end
+
+	private
+	def my_profile_save_params
+		params.require(:profile).permit(:first_name, :last_name, :nickname, :about, :facebook, :twitter, :instagram)
 	end
 
 end

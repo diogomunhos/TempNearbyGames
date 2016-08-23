@@ -12,18 +12,13 @@ class ApplicationController < ActionController::Base
       if(@currentUser.documents.length > 0)
         @currentUser.user_documents.each do |doc|
           if(doc.document_type === "profile_image")
-            @profile_image_url = "/images/show_image/#{@currentUser[0].documents[0].id}"
+            @profile_image_url = "/images/show_image/#{doc.document_id}"
             break
           end
         end
          return @currentUser
-      else
-        social = session[:social]
-        if(social != nil)
-          @profile_image_url = social['image_url']
-        end
-        return @currentUser
       end
+      return @currentUser
     else
       return @currentUser
 

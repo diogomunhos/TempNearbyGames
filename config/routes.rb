@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   #PROFILES
   get '/private/profiles/my-profile' => "profiles_secured#my_profile"
 
+  get '/private/profiles/my-profile/edit' => "profiles_secured#my_profile_edit"
+
   get '/private/profiles/new' => "profiles_secured#new"
 
   get '/private/profiles/show/:profileid' => "profiles_secured#show"
@@ -157,6 +159,9 @@ Rails.application.routes.draw do
   # Profiles
   post '/private/profiles/create-new-profile' => "profiles_secured#create"
 
+  post '/private/profiles/my-profile/save' => "profiles_secured#save_service"
+
+  post '/private/profiles/my-profile/upload_profile_image_service' => "profiles_secured#upload_profile_image_service"
   #Objects
 
   post '/private/profiles/objects/update-object' => "object_permissions_secured#update"
