@@ -339,10 +339,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     if(headerCount > 1){
       $scope.uploadErrorMessage = 'You must upload only one image with "Header" type';
       valid = false;
-    }else if(headerCount === 0){
-      $scope.uploadErrorMessage = 'You must upload at least one image with "Header" type';
-      valid = false;
-    }if(sliderCount > 1){
+    }else if(sliderCount > 1){
       $scope.uploadErrorMessage = 'You must upload only one image with "Slider" type';
       valid = false;
     }else if(sliderCount === 0){

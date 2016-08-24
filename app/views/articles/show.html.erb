@@ -24,15 +24,15 @@
 							<div class="left-content">
 								<div class="details-news">											
 									<div class="post">
-										<div class="entry-header">
-											<div class="entry-thumbnail">
-												<% @article.article_documents.each do |image| %>
-													<% if image.document_type === "Header" %>
+										<% @article.article_documents.each do |image| %>
+											<% if image.document_type === "Header" %>
+												<div class="entry-header">
+													<div class="entry-thumbnail">
 														<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
-													<% end %>
-												<% end %>
-											</div>
-										</div>
+													</div>
+												</div>
+											<% end %>
+										<% end %>
 										<div class="post-content">								
 											<!-- <div class="entry-meta">
 												<ul class="list-inline">
