@@ -12,6 +12,9 @@ class ProfilesSecuredController < ApplicationController
 	end
 
 	def user_profile
+		if session[:user_id] === params[:userid]
+			redirect_to "/private/profiles/my-profile"
+		end
 		@user = User.find(params[:userid])
 		@profileName = Profile.find(@user.profile_id).name
 		@userPreferences = UserPreference.find_by_user_id(params[:userid])
