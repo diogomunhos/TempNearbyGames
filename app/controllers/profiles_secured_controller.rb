@@ -11,6 +11,25 @@ class ProfilesSecuredController < ApplicationController
 		end	
 	end
 
+	def user_profile
+		@user = User.find(params[:userid])
+		@profileName = Profile.find(@user.profile_id).name
+		@userPreferences = UserPreference.find_by_user_id(params[:userid])
+		if @userPreferences.nil?
+			@userPreferences = UserPreference.create(user_id: params[:userid])
+		end
+		@user_profile_image_url = "/assets/images/wahiga/logo-default-profile.jpg"
+	    if(@user.documents.length > 0)
+	        @user.user_documents.each do |doc|
+		        if(doc.document_type === "profile_image")
+		            @user_profile_image_url = "/images/show_image/#{doc.document_id}"
+		            break
+		        end
+	        end
+	    end
+		
+	end
+
 	def my_profile_edit
 		@user = User.find(session[:user_id])
 		@userPreference = UserPreference.find_by_user_id(session[:user_id])

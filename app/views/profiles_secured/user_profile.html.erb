@@ -1,0 +1,34 @@
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        
+    </div>
+
+    <div id="page-content">
+
+        <div class="panel">
+            <div class="panel-body text-center">
+                <img alt="Profile Picture" class="img-md img-circle mar-btm" src="<%= @user_profile_image_url %>">
+                <p class="text-lg text-semibold mar-no text-main"><%= @user.name %> <%= @user.last_name %></p>
+                <p class="text-muted"><%= @profileName %></p>
+                <p class="text-sm"><label class="text-muted">About:</Label> <%= @userPreferences.about %></p>
+                <div class="btn-group btn-group-justified pad-top">
+                    <a href="http://www.facebook.com/<%= @userPreferences.facebook %>" target="_blank" class="btn btn-icon bord-no demo-psi-facebook icon-lg"></a>
+                    <a href="http://www.twitter.com/<%= @userPreferences.twitter %>" target="_blank" class="btn btn-icon bord-no demo-psi-twitter icon-lg"></a>
+                    <a href="http://www.instagram.com/<%= @userPreferences.instagram %>" target="_blank" class="btn btn-icon bord-no demo-psi-instagram icon-lg"></a>
+                </div>
+                <ul class="list-unstyled text-center bord-top pad-top mar-no row">  
+                </ul>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+</div>

@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   #PROFILES
   get '/private/profiles/my-profile' => "profiles_secured#my_profile"
 
+  get '/private/profiles/user-profile/:userid' => "profiles_secured#user_profile"
+
   get '/private/profiles/my-profile/edit' => "profiles_secured#my_profile_edit"
 
   get '/private/profiles/new' => "profiles_secured#new"
