@@ -7,6 +7,7 @@ class AdvertisingController < ApplicationController
 		
 	end
 
+
 	def show
 		redirect_to "/temp"
 	end
