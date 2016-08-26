@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 		if @advertising2 === nil
 			@advertising2 = Advertising.getDefaultAdvertising
 		end
+		@populares = Article.get10MostPopularArticles(nil)
 	end
 
 	def default

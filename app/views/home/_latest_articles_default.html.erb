@@ -1,0 +1,42 @@
+<h2><span>Ultimas noticías</span></h2>
+<div class="content-padding">
+	<% @articles.each do |a| %>
+	<div class="article-promo">
+		<div class="article-photo">
+			<span class="article-image-out">
+				<!-- <span class="image-comments"><span>21</span></span> -->
+				<span class="article-image">
+					<span class="nth1 strike-tooltip" title="Read Article">
+						<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><i class="fa fa-eye"></i></a>
+					</span>
+					<span class="nth2 strike-tooltip" title="Save to read later">
+						<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><i class="fa fa-plus"></i></a>
+					</span>
+					<% a.article_documents.each do |image| %>
+						<% if image.document_type === "Thumb" %>
+							<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>" alt="" title="" /></a>
+						<% end %>
+					<% end %>
+				</span>
+			</span>
+		</div>
+		
+		<div class="article-content">
+			<h3><a href="/<%= a.article_type %>/<%= a.friendly_url %>"><%= truncate(a.title, length: 75) %></a></h3>
+			<div class="article-icons">
+				<a href="user-single.html" class="user-tooltip"><i class="fa fa-fire"></i>Autor</a>
+				<a href="#"><i class="fa fa-calendar"></i><%= a.created_at %></a>
+			</div>
+			<p><%= truncate(a.preview, length: 120) %></p>
+			<a href="post.html" class="defbutton"><i class="fa fa-reply"></i>Leia completa</a>
+		</div>
+	</div>
+	
+	<div class="clear-float do-the-split"></div>
+	<% end %>
+	
+	<div>
+		<a href="blogs.html" class="defbutton"><i class="fa fa-book"></i>Veja outras noticías</a>
+	</div>
+	
+</div>
