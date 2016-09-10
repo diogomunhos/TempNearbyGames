@@ -10,18 +10,18 @@
 						<!-- <span class="image-comments"><span>21</span></span> -->
 						<span class="article-image">
 							<span class="nth1 strike-tooltip" title="Read Article">
-								<a href="article-single.html"><i class="fa fa-eye"></i></a>
+								<a href="/<%= s.article_type %>/<%= s.friendly_url %>"><i class="fa fa-eye"></i></a>
 							</span>
 							<span class="nth2 strike-tooltip" title="Save to read later">
 								<a href="#"><i class="fa fa-plus"></i></a>
 							</span>
-							<a href="article-single.html"><img src="/images/show_image/<%= image.document.id %>" alt="" title="" /></a>
+							<a href="/<%= s.article_type %>/<%= s.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>" alt="" title="" /></a>
 						</span>
 					</span>
-					<h3><a href="article-single.html"><%= truncate(s.title, length: 70) %></a></h3>
+					<h3><a href="/<%= s.article_type %>/<%= s.friendly_url %>"><%= truncate(s.title, length: 70) %></a></h3>
 					<p><%= truncate(s.preview, length: 77) %></p>
 					<div>
-						<a href="post.html" class="defbutton"><i class="fa fa-reply"></i>Veja completo</a>
+						<a href="/<%= s.article_type %>/<%= s.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Veja completo</a>
 					</div>
 
 					<!-- END .item -->

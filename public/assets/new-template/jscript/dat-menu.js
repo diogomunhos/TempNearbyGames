@@ -5,7 +5,7 @@ var _datMenuAnim = (typeof _datMenuAnim === "undefined") ? 400 :_datMenuAnim;			
 var _datMenuEffect = (typeof _datMenuEffect === "undefined") ? "effect-1" :_datMenuEffect;	// Animation effect [effect-1, effect-2, effect-3] (defaut = "effect-1")
 var _datMenuSublist = (typeof _datMenuSublist === "undefined") ? true :_datMenuSublist;			// Submenu dropdown animation (defaut = true)
 var _datMenuHeader = (typeof _datMenuHeader === "undefined") ? true :_datMenuHeader;			// If fixed header is showing (defaut = true)
-var _datMenuHeaderTitle = (typeof _datMenuHeaderTitle === "undefined") ? '<a href="#"><img src="images/logo.png" style="background-color: #0589cd;" alt="" /></a>' :_datMenuHeaderTitle;		// Header Title
+var _datMenuHeaderTitle = (typeof _datMenuHeaderTitle === "undefined") ? '<a href="#"><img src="/assets/new-template/images/logo.png" style="background-color: #0589cd;" alt="" /></a>' :_datMenuHeaderTitle;		// Header Title
 var _datMenuSearch = (typeof _datMenuSearch === "undefined") ? true :_datMenuSearch;			// If search is showing in header (defaut = true)
 
 var _datMenuCustomS = (typeof _datMenuCustomS === "undefined") ? "fa-search" :_datMenuCustomS;			// Search icon in header (defaut = fa-search)
