@@ -1,0 +1,27 @@
+<!-- BEGIN .panel -->
+<div class="panel">
+	<h2>Noticías populares</h2>
+	<div class="top-right"><a href="#">Veja mais</a></div>
+	<div class="panel-content">
+		
+		<div class="d-articles">
+			<% @popular.each do |a| %>
+			<div class="item">
+				<div class="item-header">
+					<% a.article_documents.each do |image| %>
+						<% if image.document_type === "Thumb" %>
+							<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>" alt="" /></a>
+						<% end %>
+					<% end %>
+				</div>
+				<div class="item-content">
+					<h4><a href="/<%= a.article_type %>/<%= a.friendly_url %>"><%= truncate(a.title, length: 25) %></a></h4>
+					<p><%= truncate(a.preview, length: 40) %></p>
+				</div>
+			</div>
+			<% end %>
+		</div>
+		
+	</div>
+	<!-- END .panel -->
+</div>
