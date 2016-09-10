@@ -36,43 +36,19 @@ function selectImage(id){
 
 function insertHTML(){
 	var html = $("#summernote").summernote("code");
-	var carouselHtml = '<div class="col-lg-12" style="margin-bottom: 20px;">';
-	carouselHtml += '<div class="col-lg-8 col-lg-offset-2">';
-	carouselHtml +=   '<div id="carousel-show" class="carousel slide" data-ride="carousel">';
+	var carouselHtml = '';
 	if(selectedImages.length > 1){
-		// carouselHtml +=     '<ol class="carousel-indicators">';
-		// for(var i=0; i < selectedImages.length; i++){
-		// 	carouselHtml +=   '<li data-target="#carousel-show" data-slide-to="'+i+'" class="active"></li>';
-		// }
-		// carouselHtml +=   '</ol>';
-		carouselHtml += '<div class="carousel-inner" role="listbox">';
+		carouselHtml += '<p> </p>';
 		for(var i=0; i < selectedImages.length; i++){
-			carouselHtml += (i === 0) ? '<div class="item active">' : '<div class="item">';
-			carouselHtml += '<a href="/images/show_image/'+selectedImages[i].id+'" target="blank_"><img src="/images/show_image/'+selectedImages[i].id+'"></a>';
-			carouselHtml += '</div>';
+			carouselHtml += '<a href="/images/show_image/'+selectedImages[i].id+'"><img src="/images/show_image/'+selectedImages[i].id+'" alt="" title="" /></a>'
+			carouselHtml += '<p> </p>'
 		}
-		carouselHtml += '</div>';
-		carouselHtml += '<a class="left carousel-control" href="#carousel-show" role="button" data-slide="prev">';
-		carouselHtml +=   '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>';
-		carouselHtml +=   '<span class="sr-only">Previous</span>';
-		carouselHtml += '</a>';
-		carouselHtml += '<a class="right carousel-control" href="#carousel-show" role="button" data-slide="next">';
-		carouselHtml += '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>';
-		carouselHtml += '<span class="sr-only">Next</span>';
-		carouselHtml += '</a>';
-		carouselHtml += '</div>';
-		carouselHtml += '</div>';
-		carouselHtml += '</div>';
-		carouselHtml += '<p>Continue here...</p>';
 	}
-	var imageHtml = '<div class="col-lg-12" style="margin-bottom: 20px;">';
+	var imageHtml = '<p> </p>';
 	if(selectedImages.length === 1){
-		imageHtml += '<div class="col-lg-8 col-lg-offset-2">';
-		imageHtml += '<a href="/images/show_image/'+selectedImages[0].id+'" target="blank_"><img src="/images/show_image/'+selectedImages[0].id+'" ></a>';
-		imageHtml += '</div>';
+		imageHtml += '<a href="/images/show_image/'+selectedImages[0].id+'"><img src="/images/show_image/'+selectedImages[0].id+'" alt="" title="" /></a>'
+		imageHtml += '<p> </p>'
 	}
-	imageHtml += '</div>';
-	imageHtml += '<p>Continue here...</p>';
 	if(selectedImages.length > 1){
 		html += carouselHtml;
 	}else if(selectedImages.length === 1){
