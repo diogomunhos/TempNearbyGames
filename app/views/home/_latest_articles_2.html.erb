@@ -3,7 +3,7 @@
 	<div class="grid-articles">
 		<% @slider.each do |s| %>
 		    <% s.article_documents.each do |image| %>
-		      <% if image.document_type === "Slider" %>
+		      <% if image.document_type === "Thumb" %>
 		        <div class="item">
 					
 					<span class="article-image-out">
@@ -17,7 +17,6 @@
 					<div>
 						<a href="/<%= s.article_type %>/<%= s.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Veja completo</a>
 					</div>
-
 					<!-- END .item -->
 				</div>
 		      <% end %>
