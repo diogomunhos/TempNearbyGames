@@ -39,7 +39,43 @@ class ArticlesController < ApplicationController
 			end
 			@author[:total_of_articles] = Article.where("created_by_id = ?", @article.created_by_id).count
 			@randomArticles = Article.get3RandomArticlesFromAuthor(@article.id, @article.created_by_id)
+			imageUrl = ""
+			@article.article_documents.each do |image|
+				if image.document_type === "Header"
+					imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}"
+					break
+				end
+			end
+			if imageUrl === ""
+				@article.article_documents.each do |image|
+					if image.document_type === "Body"
+						imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}"
+						break
+					end
+				end
+			end
 
+			set_meta_tags title: "#{@article.title}",
+					site: 'Wahiga',
+					description: "#{@article.preview}",
+					reverse: true,
+					keywords: "#{@article.tags}",
+					image_src: "#{imageUrl}",
+					application_name: "Wahiga",
+					author: "#{@author['full_name']}"
+			set_meta_tags og: {
+			  title:    "#{@article.title}",
+			  type:     'website',
+			  description: "#{@article.preview}",
+			  url:      "https://www.wahiga.com/News/#{@article.friendly_url}",
+			  image:    "#{imageUrl}",
+			  site_name: "Wahiga"
+			}
+			set_meta_tags twitter: {
+			  card: "summary",
+			  site: "@wahiga_official",
+			  creator: "@wahiga_official"
+			}
 		end
 	end
 

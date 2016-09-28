@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper, :check_has_to_change_password
+  helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper, :check_has_to_change_password, :create_meta_tags_helper
 
 
   def current_user
@@ -123,6 +123,11 @@ class ApplicationController < ActionController::Base
     else
       return nil
     end
+  end
+
+  def create_meta_tags_helper(title, siteTitle)
+    @metaTitle = title
+    @metaSiteTitle = siteTitle
   end
 
   def check_user_access_read_all
