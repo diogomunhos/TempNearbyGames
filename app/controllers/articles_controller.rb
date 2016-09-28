@@ -97,7 +97,24 @@ class ArticlesController < ApplicationController
 				redirect_to "/404"
 			end
 		end
-
+		set_meta_tags title: "#{@platform}",
+					site: 'Wahiga',
+					description: "Todos os artigos referente a plataforma #{@platform}",
+					reverse: true,
+					keywords: "#{@platform}",
+					application_name: "Wahiga",
+			set_meta_tags og: {
+			  title:    "#{@platform}",
+			  type:     'website',
+			  description: "Todos os artigos referente a plataforma #{@platform}",
+			  url:      "https://www.wahiga.com/platform/@platform",
+			  site_name: "Wahiga"
+			}
+			set_meta_tags twitter: {
+			  card: "summary",
+			  site: "@wahiga_official",
+			  creator: "@wahiga_official"
+			}
 		@articles = Article.getArticleByPlatform(@platform)
 	end
 
