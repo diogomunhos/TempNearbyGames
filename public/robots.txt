@@ -1,5 +1,65 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-agent: *
-# Disallow: /
+# robots.txt for https://www.wahiga.com/
+
+User-Agent: Googlebot
+Disallow: /private/*
+
+User-Agent: Googlebot-Mobile
+Disallow: /private/*
+
+User-Agent: Mediapartners-Google
+Disallow: /private/*
+
+User-agent: bingbot
+Disallow: /private/*
+Crawl-delay: 1
+
+User-agent: msnbot
+Disallow: /private/*
+Crawl-delay: 1
+
+User-agent: Facebot
+Disallow: /private/*
+
+User-agent: Twitterbot
+Disallow: /private/*
+
+User-agent: baiduspider
+Disallow: /private/*
+
+User-agent: ia_archiver
+Disallow: /private/*
+
+User-agent: Slurp
+Disallow: /private/*
+Crawl-delay: 2
+
+User-agent: FeedBurner
+Disallow: /private/*
+Crawl-delay: 2
+
+# Blekko
+User-Agent: ScoutJet
+Disallow: /private/*
+Crawl-delay: 2
+
+User-Agent: Yandex
+Disallow: /private/*
+
+User-agent: DuckDuckBot
+Disallow: /private/*
+
+# CommonCrawl
+User-agent: ccbot
+Disallow: /private/*
+
+User-agent: proximic
+Disallow: /private/*
+
+User-agent: AppleNewsBot
+Disallow: /private/*
+
+User-agent: Swiftbot
+Disallow: /private/*
+
+User-Agent: *
+Disallow: /
