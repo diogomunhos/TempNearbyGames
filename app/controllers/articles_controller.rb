@@ -61,8 +61,7 @@ class ArticlesController < ApplicationController
 					reverse: true,
 					keywords: "#{@article.tags}",
 					image_src: "#{imageUrl}",
-					application_name: "Wahiga",
-					author: "#{@author['full_name']}"
+					application_name: "Wahiga"
 			set_meta_tags og: {
 			  title:    "#{@article.title}",
 			  type:     'website',
@@ -75,6 +74,15 @@ class ArticlesController < ApplicationController
 			  card: "summary",
 			  site: "@wahiga_official",
 			  creator: "@wahiga_official"
+			}
+			set_meta_tags article: {
+				published_time: "#{@article.created_at}",
+				publisher: "http://www.facebook.com/Wahiga_Official",
+				section: "#{@article.title}",
+				tag: "#{@article.tags}",
+			}
+			set_meta_tags fb:{
+				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
 		end
 	end
