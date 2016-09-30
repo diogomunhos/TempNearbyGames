@@ -7,7 +7,7 @@
 				<% a.article_documents.each do |ad| %>
 					<% if ad.document_type === "thumb" %>
 						<div style="width: 100%; position: relative;">
-							<img src="/images/show_image/<%= ad.document.id %>" class="img-thumbnail" style="border: none;"/>
+							<img src="/images/show_image/<%= ad.document.id %>/<%= image.document.file_name %>" class="img-thumbnail" style="border: none;"/>
 						</div>
 					<% end %>
 				<% end %>

@@ -4,7 +4,7 @@
 		<div class="box">
 			<% h.article_documents.each do |ad| %>
 				<% if ad.document_type === "thumb" %>
-					<img src="/images/show_image/<%= ad.document.id %>" class="img-thumbnail"/>
+					<img src="/images/show_image/<%= ad.document.id %>/<%= ad.document.file_name %>" class="img-thumbnail"/>
 				<% end %>
 			<% end %>
 			<div class="box-h4">

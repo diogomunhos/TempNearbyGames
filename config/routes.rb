@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get '/images/show_image/:id' => "home#show_image"
 
+  get '/images/show_image/:id/:image_name' => "home#show_image"
+
   match "/404" => "errors#error404", via: [:get, :post, :patch, :delete]
 
   get "/signin" => "signin#signin"

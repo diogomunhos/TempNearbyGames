@@ -33,7 +33,7 @@
 						<div class="article-main-photo">
 							<% @article.article_documents.each do |image| %>
 							<% if image.document_type === "Header" %>
-							<img src="/images/show_image/<%= image.document.id %>" alt="" title="" />
+							<img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" />
 							<% end %>
 							<% end %>	
 						</div>

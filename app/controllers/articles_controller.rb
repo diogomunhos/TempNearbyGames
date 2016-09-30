@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 		    if(user.documents.length > 0)
 		        user.user_documents.each do |doc|
 			        if(doc.document_type === "profile_image")
-			            @author[:profile_image_url] = "/images/show_image/#{doc.document_id}"
+			            @author[:profile_image_url] = "/images/show_image/#{doc.document_id}/#{doc.document.file_name}"
 			            break
 			        end
 		        end
@@ -42,14 +42,14 @@ class ArticlesController < ApplicationController
 			imageUrl = ""
 			@article.article_documents.each do |image|
 				if image.document_type === "Header"
-					imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}"
+					imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}/#{image.document.file_name}"
 					break
 				end
 			end
 			if imageUrl === ""
 				@article.article_documents.each do |image|
 					if image.document_type === "Body"
-						imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}"
+						imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}/#{image.document.file_name}"
 						break
 					end
 				end
@@ -68,7 +68,8 @@ class ArticlesController < ApplicationController
 			  description: "#{@article.preview}",
 			  url:      "https://www.wahiga.com/News/#{@article.friendly_url}",
 			  image:    "#{imageUrl}",
-			  site_name: "Wahiga"
+			  site_name: "Wahiga",
+			  locale: 'pt_BR'
 			}
 			set_meta_tags twitter: {
 			  card: "summary",
@@ -76,7 +77,7 @@ class ArticlesController < ApplicationController
 			  creator: "@wahiga_official"
 			}
 			set_meta_tags article: {
-				published_time: "#{@article.created_at}",
+				published_time: @article.created_at,
 				publisher: "http://www.facebook.com/Wahiga_Official",
 				section: "#{@article.title}",
 				tag: "#{@article.tags}",

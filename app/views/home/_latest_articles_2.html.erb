@@ -9,7 +9,7 @@
 					<span class="article-image-out">
 						<!-- <span class="image-comments"><span>21</span></span> -->
 						<span class="article-image">
-							<a href="/<%= s.article_type %>/<%= s.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>" alt="" title="" /></a>
+							<a href="/<%= s.article_type %>/<%= s.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
 						</span>
 					</span>
 					<h3><a href="/<%= s.article_type %>/<%= s.friendly_url %>"><%= truncate(s.title, length: 70) %></a></h3>

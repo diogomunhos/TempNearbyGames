@@ -38,7 +38,7 @@
 									<span class="article-image">
 										<% a.article_documents.each do |image| %>
 											<% if image.document_type === "Thumb" %>
-												<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>" alt="" title="" /></a>
+												<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
 											<% end %>
 										<% end %>
 									</span>
