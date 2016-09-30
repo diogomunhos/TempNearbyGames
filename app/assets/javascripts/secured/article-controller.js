@@ -1,7 +1,98 @@
 'use strict';
 
 angular.module('admin-module.article-controller', ['ngFileUpload'])
+.controller('article-detail-controller', ['articleServices', '$scope', '$timeout', '$window', function(articleServices, $scope, $timeout, $window) {
+    
+    $scope.showFacebookPostButton = false;
+    $scope.showLoginFacebook = false;
+    $scope.pageAccessToken = '';
+    $scope.permissions = [];
 
+    $scope.getFacebookLoginStatus = function(){
+      FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+          $scope.getFacebookPermissions();
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          //var uid = response.authResponse.userID;
+          //var accessToken = response.authResponse.accessToken;
+        } else if (response.status === 'not_authorized') {
+          console.log('not_authorized');
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+        } else {
+          console.log('not logged');
+          // the user isn't logged in to Facebook.
+        }
+       });
+    }
+
+    $scope.facebookLogin = function(){
+      FB.login(function(response){
+        if(response.authResponse){
+          $scope.showLoginFacebook = false;
+          $scope.showFacebookPostButton = true;
+        }
+      }, {scope: ['publish_pages', 'manage_pages']});
+    }
+
+    $scope.getFacebookPermissions = function(){
+      articleServices.getFacebookPermissions().then(function (result) {
+        $scope.permissions = result.data;
+        if(!$scope.checkPagePermission()){
+          $scope.showLoginFacebook = true;
+          $scope.showFacebookPostButton = false;
+        }else{
+          $scope.showLoginFacebook = false;
+          $scope.showFacebookPostButton = true;
+        }
+        $timeout(function() {
+          console.log($scope.showFacebookPostButton);
+          console.log($scope.permissions);
+        }, 10);
+      });
+    }
+
+    $scope.checkPagePermission = function(){
+      var response = {
+        publish: false,
+        manage: false
+      };
+      for(var i=0; i < $scope.permissions.length; i++){
+        if($scope.permissions[i].permission === 'publish_pages'){
+          if($scope.permissions[i].status === 'granted'){
+            response.publish = true;
+          }
+        }else if($scope.permissions[i].permission === 'manage_pages'){
+          if($scope.permissions[i].status === 'granted'){
+            response.manage = true;
+          }
+        }
+      }
+
+      if(response.publish && response.manage){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    $window.fbAsyncInit = function() {
+      FB.init({ 
+        appId: '1735599803381451', //facebook appId
+        status: true, 
+        cookie: true, 
+        xfbml: true,
+        version: 'v2.4'
+      });
+
+      $scope.getFacebookLoginStatus();
+    }
+
+}])
 .controller('all-articles-controller', ['articleServices', '$scope', '$timeout', function(articleServices, $scope, $timeout) {
 
   $scope.articles = {};

@@ -19,6 +19,7 @@
 #   # Pathname, which represents the path to your project. Providing this option
 #   # helps us to filter out repetitive data from backtrace frames and link to
 #   # GitHub files from our dashboard.
+  
 #   # https://github.com/airbrake/airbrake-ruby#root_directory
 #   c.root_directory = Rails.root
 

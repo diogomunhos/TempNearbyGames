@@ -113,4 +113,16 @@ angular.module('admin-module.article-services', [])
                    
             return deferred.promise;
         };
+
+        this.getFacebookPermissions = function(){
+            var deferred = $q.defer();
+            FB.api('/me/permissions', 'GET',
+            {},
+              function(response) {
+                deferred.resolve(response);
+              }
+            );
+
+            return deferred.promise;   
+        }
     })
