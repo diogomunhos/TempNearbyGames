@@ -7,6 +7,8 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     $scope.showLoginFacebook = false;
     $scope.pageAccessToken = '';
     $scope.permissions = [];
+    $scope.errorFacebookMessage = '';
+    $scope.wahigaFacebookPageId = '168321086918235';
 
     $scope.getFacebookLoginStatus = function(){
       FB.getLoginStatus(function(response) {
@@ -21,23 +23,40 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
           //var accessToken = response.authResponse.accessToken;
         } else if (response.status === 'not_authorized') {
           console.log('not_authorized');
+          $scope.showLoginFacebook = true;
+          $timeout(function() {
+          }, 10);
           // the user is logged in to Facebook, 
           // but has not authenticated your app
         } else {
           console.log('not logged');
+          $scope.showLoginFacebook = true;
+          $timeout(function() {
+          }, 10);
           // the user isn't logged in to Facebook.
         }
        });
     }
 
     $scope.facebookLogin = function(){
+      $scope.errorFacebookMessage = '';
       FB.login(function(response){
         if(response.authResponse){
+          console.log('teste');
           $scope.showLoginFacebook = false;
           $scope.showFacebookPostButton = true;
+          $timeout(function() {
+          }, 10);
         }
       }, {scope: ['publish_pages', 'manage_pages']});
     }
+
+    $scope.facebookLogout = function(){
+      FB.logout(function(response) {
+        console.log('logout');
+      });  
+    }
+    
 
     $scope.getFacebookPermissions = function(){
       articleServices.getFacebookPermissions().then(function (result) {
@@ -46,13 +65,29 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
           $scope.showLoginFacebook = true;
           $scope.showFacebookPostButton = false;
         }else{
-          $scope.showLoginFacebook = false;
-          $scope.showFacebookPostButton = true;
+          $scope.checkWahigaPageAccess();
         }
         $timeout(function() {
           console.log($scope.showFacebookPostButton);
           console.log($scope.permissions);
         }, 10);
+      });
+    }
+
+    $scope.checkWahigaPageAccess = function(){
+      var valid = false;
+      articleServices.getFacebookAccounts().then(function (result){
+        for(var i=0; i < result.data.length; i++){
+          if(result.data[i].id === $scope.wahigaFacebookPageId){
+            valid = true;
+          }
+        }
+        if(!valid){
+          $scope.errorFacebookMessage = 'This account have no access to facebook page Wahiga';
+        }else{
+          $scope.showLoginFacebook = false;
+          $scope.showFacebookPostButton = true;
+        }
       });
     }
 

@@ -125,4 +125,16 @@ angular.module('admin-module.article-services', [])
 
             return deferred.promise;   
         }
+
+        this.getFacebookAccounts = function(){
+            var deferred = $q.defer();
+            FB.api('/me/accounts', 'GET',
+            {},
+              function(response) {
+                deferred.resolve(response);
+              }
+            );
+
+            return deferred.promise;   
+        }
     })

@@ -7,6 +7,9 @@
     </div>
 
     <div id="page-content">
+            <div class="form-group" id="messages" ng-show="errorFacebookMessage != ''">
+                
+            </div>
             <div class="panel">
                 <div class="panel-footer text-center">
                     <% if @showEdit %>
@@ -30,8 +33,9 @@
                     <% if @showDelete %>
                         <a class="btn btn-danger" href="/private/articles/destroy/<%= @article.id %>">Delete</a>
                     <% end %>
-                    <!-- <a class="btn btn-success" href="" ng-show="showFacebookPostButton" ng-click="getFacebookLoginStatus()">Publish on Facebook</a>
-                    <a class="btn btn-success" href="" ng-show="showLoginFacebook" ng-click="facebookLogin()">Login Facebook</a> -->
+                     <a class="btn btn-success" href="" ng-show="showFacebookPostButton" ng-click="getFacebookLoginStatus()">Publish on Facebook</a>
+                    <a class="btn btn-success" href="" ng-show="showLoginFacebook" ng-click="facebookLogin()">Login Facebook</a>
+                    <a class="btn btn-success" href="" ng-show="showFacebookPostButton" ng-click="facebookLogout()"> Facebook logout</a>
                 </div>
                 <form class="panel-body form-horizontal">
                     <div class="col-md-12">
