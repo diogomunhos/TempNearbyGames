@@ -9,33 +9,49 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     $scope.permissions = [];
     $scope.errorFacebookMessage = '';
     $scope.wahigaFacebookPageId = '168321086918235';
-
+    $scope.article = {
+      id: ((typeof document.getElementById("article_id") != "undefined") ? document.getElementById("article_id").value : ""),
+      status: ((typeof document.getElementById("article_status") != "undefined") ? document.getElementById("article_status").value : ""),
+      preview: ((typeof document.getElementById("article_preview_hidden") != "undefined") ? document.getElementById("article_preview_hidden").value : ""),
+      facebook_picture: ((typeof document.getElementById("article_facebook_picture") != "undefined") ? document.getElementById("article_facebook_picture").value : ""),
+      facebook_title: ((typeof document.getElementById("article_title_hidden") != "undefined") ? document.getElementById("article_title_hidden").value : ""),
+      facebook_message: ((typeof document.getElementById("article_subtitle_hidden") != "undefined") ? document.getElementById("article_subtitle_hidden").value : ""),
+      friendly_url: ((typeof document.getElementById("article_friendly_url_hidden") != "undefined") ? document.getElementById("article_friendly_url_hidden").value : ""),
+      facebook_post_id: ((typeof document.getElementById("article_facebook_post_id") != "undefined") ? document.getElementById("article_facebook_post_id").value : "")
+    }
+    //TODO Include Loading on facebook callout 
     $scope.getFacebookLoginStatus = function(){
-      FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-          $scope.getFacebookPermissions();
-          // the user is logged in and has authenticated your
-          // app, and response.authResponse supplies
-          // the user's ID, a valid access token, a signed
-          // request, and the time the access token 
-          // and signed request each expire
-          //var uid = response.authResponse.userID;
-          //var accessToken = response.authResponse.accessToken;
-        } else if (response.status === 'not_authorized') {
-          console.log('not_authorized');
-          $scope.showLoginFacebook = true;
-          $timeout(function() {
-          }, 10);
-          // the user is logged in to Facebook, 
-          // but has not authenticated your app
-        } else {
-          console.log('not logged');
-          $scope.showLoginFacebook = true;
-          $timeout(function() {
-          }, 10);
-          // the user isn't logged in to Facebook.
-        }
-       });
+      if($scope.article.facebook_post_id != ''){
+        $scope.showLoginFacebook = false;
+        $scope.showFacebookPostButton = false;
+      }else{
+
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            $scope.getFacebookPermissions();
+            // the user is logged in and has authenticated your
+            // app, and response.authResponse supplies
+            // the user's ID, a valid access token, a signed
+            // request, and the time the access token 
+            // and signed request each expire
+            //var uid = response.authResponse.userID;
+            $scope.pageAccessToken = response.authResponse.accessToken;
+          } else if (response.status === 'not_authorized') {
+            console.log('not_authorized');
+            $scope.showLoginFacebook = true;
+            $timeout(function() {
+            }, 10);
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+          } else {
+            console.log('not logged');
+            $scope.showLoginFacebook = true;
+            $timeout(function() {
+            }, 10);
+            // the user isn't logged in to Facebook.
+          }
+         });
+      }
     }
 
     $scope.facebookLogin = function(){
@@ -85,8 +101,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         if(!valid){
           $scope.errorFacebookMessage = 'This account have no access to facebook page Wahiga';
         }else{
-          $scope.showLoginFacebook = false;
-          $scope.showFacebookPostButton = true;
+          $scope.getPageAccessToken();
         }
       });
     }
@@ -113,6 +128,45 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       }else{
         return false;
       }
+    }
+
+    $scope.postOnFacebook = function(){
+      var request = $scope.createFacebookPostRequest();
+      articleServices.postOnFacebook(request).then(function (result){
+        if(result.id != ''){
+          var requestPost = {
+            id: $scope.article.id,
+            post_id: result.id
+          }
+          articleServices.updateArticlePostId(requestPost).then(function (result2){
+            console.log(result2);
+            //TODO Implement Disable method on page_id
+          });
+        }
+      });
+    }
+
+    $scope.getPageAccessToken = function(){
+      articleServices.getPageAccessToken($scope.wahigaFacebookPageId).then(function (response){
+          if(response.access_token != ''){
+            $scope.pageAccessToken = response.access_token;
+            $scope.showLoginFacebook = false;
+            $scope.showFacebookPostButton = true;  
+          }
+      }); 
+
+    }
+
+    $scope.createFacebookPostRequest = function(){
+      var request = {};
+      request.access_token = $scope.pageAccessToken;
+      request.message = $scope.article.facebook_message;
+      request.link = "https://www.wahiga.com/News/"+$scope.article.friendly_url;
+      request.name = $scope.article.facebook_title;
+      request.picture = "https://www.wahiga.com/"+$scope.article.facebook_picture;
+      request.pageId = $scope.wahigaFacebookPageId;
+      request.description = $scope.article.preview;
+      return request;
     }
 
     $window.fbAsyncInit = function() {

@@ -8,7 +8,9 @@ class Document < ActiveRecord::Base
 		file = params.delete(:file)
 		super
 		if file
-			self.file_name = sanitize_filename(file.original_filename)
+			filename  = file.original_filename
+			filename = filename.gsub(" ", "_")
+			self.file_name = sanitize_filename(filename)
 			self.content_type = file.content_type
 			self.file_contents = file.read
 		end

@@ -160,6 +160,8 @@ Rails.application.routes.draw do
   post '/private/articles/upload_files_service' => "articles_secured#upload_files_service"
 
   post '/private/articles/delete_file_service' => "articles_secured#delete_file_service"
+
+  post '/private/articles/update_article_facebook_post_id' => "update_article_facebook_post_id_service"
   # Profiles
   post '/private/profiles/create-new-profile' => "profiles_secured#create"
 

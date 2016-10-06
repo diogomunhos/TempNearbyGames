@@ -82,6 +82,22 @@ class ArticlesSecuredController < ApplicationController
 		end
 	end
 
+	def update_article_facebook_post_id_service
+		@result = Array.new
+		hashResult = Hash.new
+		hashResult[:isSuccessful] = true
+		hashResult[:errorMessage] = ""
+		article = Article.find(params["id"])
+		article.update("facebook_post_id", params["post_id"])
+
+		@result.push(hashResult)
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+
+
 	def create_article_service
 		print "DEBUG #{params} - #{article_params_create_by_service}"
 		@article = Article.new(article_params_create_by_service)
@@ -369,6 +385,21 @@ class ArticlesSecuredController < ApplicationController
 		user = User.find(session[:user_id])
 		profile = Profile.find(user.profile_id)
 		article = Article.where(id: params[:articleid]).includes(:documents)
+		@imageUrl = ""
+		article[0].article_documents.each do |image|
+			if image.document_type === "Header"
+				@imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
+				break
+			end
+		end
+		if @imageUrl === ""
+			article.article_documents.each do |image|
+				if image.document_type === "Body"
+					imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
+					break
+				end
+			end
+		end
 		@article = if article.any? then article[0] else Article.new end	
 		@tags = if @article.tags != "" && @article.tags != nil then @article.tags.split(',') else Array.new end
 		@showEdit = if (@article.status === "Draft" || @article.status === "Rejected") && !check_access_helper("Article", "edit_record").nil? then true else false end

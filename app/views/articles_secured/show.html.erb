@@ -7,6 +7,14 @@
     </div>
 
     <div id="page-content">
+            <input type="hidden" id="article_id" value="<%= @article.id %>"/>
+            <input type="hidden" id="article_status" value="<%= @article.status %>"/>
+            <input type="hidden" id="article_title_hidden" value="<%= @article.title %>"/>
+            <input type="hidden" id="article_facebook_post_id" value="<%= @article.facebook_post_id %>"/>
+            <input type="hidden" id="article_preview_hidden" value="<%= @article.preview %>"/>
+            <input type="hidden" id="article_friendly_url_hidden" value="<%= @article.friendly_url %>"/>
+            <input type="hidden" id="article_subtitle_hidden" value="<%= @article.subtitle %>"/>
+            <input type="hidden" id="article_facebook_picture" value="<%= @imageUrl %>"/>
             <div class="form-group" id="messages" ng-show="errorFacebookMessage != ''">
                 
             </div>
@@ -33,9 +41,8 @@
                     <% if @showDelete %>
                         <a class="btn btn-danger" href="/private/articles/destroy/<%= @article.id %>">Delete</a>
                     <% end %>
-                     <a class="btn btn-success" href="" ng-show="showFacebookPostButton" ng-click="getFacebookLoginStatus()">Publish on Facebook</a>
+                     <a class="btn btn-success" href="" ng-disabled="!showFacebookPostButton" ng-hide="showLoginFacebook" ng-click="postOnFacebook()">Publish on Facebook</a>
                     <a class="btn btn-success" href="" ng-show="showLoginFacebook" ng-click="facebookLogin()">Login Facebook</a>
-                    <a class="btn btn-success" href="" ng-show="showFacebookPostButton" ng-click="facebookLogout()"> Facebook logout</a>
                 </div>
                 <form class="panel-body form-horizontal">
                     <div class="col-md-12">
@@ -52,7 +59,7 @@
                         <div class="form-group col-md-4">
                             <label class="col-md-3 control-label text-bold">Subtitle:</label>
                             <div class="col-md-9">
-                                <p class="form-control-static"><%= @article.subtitle %></p>
+                                <p class="form-control-static" id="article_subtitle"><%= @article.subtitle %></p>
                             </div>
                         </div>
 
@@ -73,7 +80,7 @@
                         <div class="form-group col-md-4">
                             <label class="col-md-3 control-label text-bold">Friendly URL:</label>
                             <div class="col-md-9">
-                                <p class="form-control-static"><%= @article.friendly_url %></p>
+                                <p class="form-control-static" id="article_friendly_url"><%= @article.friendly_url %></p>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
@@ -87,7 +94,7 @@
                         <div class="form-group col-md-4">
                             <label class="col-md-3 control-label text-bold">Preview:</label>
                             <div class="col-md-9">
-                                <p class="form-control-static"><%= @article.preview %></p>
+                                <p class="form-control-static" id="article_preview"><%= @article.preview %></p>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
