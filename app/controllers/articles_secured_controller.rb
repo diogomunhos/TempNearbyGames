@@ -386,17 +386,19 @@ class ArticlesSecuredController < ApplicationController
 		profile = Profile.find(user.profile_id)
 		article = Article.where(id: params[:articleid]).includes(:documents)
 		@imageUrl = ""
-		article[0].article_documents.each do |image|
-			if image.document_type === "Header"
-				@imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
-				break
-			end
-		end
-		if @imageUrl === ""
-			article.article_documents.each do |image|
-				if image.document_type === "Body"
-					imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
+		if article[0].article_documents != nil 
+			article[0].article_documents.each do |image|
+				if image.document_type === "Header"
+					@imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
 					break
+				end
+			end
+			if @imageUrl === ""
+				article.article_documents.each do |image|
+					if image.document_type === "Body"
+						imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
+						break
+					end
 				end
 			end
 		end
