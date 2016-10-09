@@ -12,7 +12,7 @@ class ArticlesSecuredController < ApplicationController
 	before_action only: [:new, :create, :upload_files_service, :create_article_service, :update_article_service] do 
 		check_access("Article", "create_record")
 	end
-	before_action only: [:edit, :update, :update_article_service, :send_to_approval, :update_article_facebook_post_id_service] do 
+	before_action only: [:edit, :update, :update_article_service, :send_to_approval] do 
 		check_access("Article", "edit_record")
 	end
 
