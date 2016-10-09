@@ -170,6 +170,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }
 
     $window.fbAsyncInit = function() {
+      console.log('teste');
       FB.init({ 
         appId: '1735599803381451', //facebook appId
         status: true, 
