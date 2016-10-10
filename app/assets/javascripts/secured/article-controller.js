@@ -132,24 +132,30 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }
 
     $scope.postOnFacebook = function(){
-      var request = $scope.createFacebookPostRequest();
-      articleServices.postOnFacebook(request).then(function (result){
-        console.log("result facebook post");
-        console.log(result);
-        var requestPost = {
-          id: "",
-          post_id: ""
-        }
-        if(result.id != ''){
-          requestPost.id = $scope.article.id;
-          requestPost.post_id = result.id;
-          console.log(requestPost);
-          articleServices.updateArticlePostId(requestPost).then(function (result2){
-            console.log(result2);
-            //TODO Implement Disable method on page_id
-          });
-        }
-      });
+      //TODO implement Disabled button and show Loading to better UX
+      if($scope.showFacebookPostButton){
+        $scope.showFacebookPostButton = false;
+        var request = $scope.createFacebookPostRequest();
+        articleServices.postOnFacebook(request).then(function (result){
+          console.log("result facebook post");
+          console.log(result);
+          var requestPost = {
+            id: "",
+            post_id: ""
+          }
+          if(result.id != ''){
+            requestPost.id = $scope.article.id;
+            requestPost.post_id = result.id;
+            console.log(requestPost);
+            articleServices.updateArticlePostId(requestPost).then(function (result2){
+              console.log(result2);
+              showFacebookPostButton
+              //TODO Implement message to UX
+            });
+          }
+        });  
+      }
+      
     }
 
     $scope.getPageAccessToken = function(){
