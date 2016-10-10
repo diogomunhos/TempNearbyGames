@@ -1,0 +1,105 @@
+<!-- <body class="has-top-menu"> -->
+<!-- BEGIN #slider-imgs -->
+<div id="slider-imgs">
+	<div class="featured-img-box">
+		<div id="featured-img-1" class="featured-img"></div>
+	</div>
+	<!-- END #slider-imgs -->
+</div>
+
+<!-- BEGIN #top-layer -->
+<div id="top-layer">
+	<div id="header-top">
+		<%= render '/home/wrapper_top' %>
+	</div>
+	<section id="content">
+		<%= render '/home/header' %>
+		<div id="main-box">
+
+			<div id="main"><!-- Right Bar -->
+				<div class="content-padding">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Cabeçalho Responsivo -->
+					<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="8764496876"
+					data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+				<div class="content-padding">
+					<h2><span>Latest Articles</span></h2>
+					<% @articles.each do |a| %>
+						<div class="article-promo">
+							<div class="article-photo">
+								<span class="article-image-out">
+									<span class="article-image">
+										<% a.article_documents.each do |image| %>
+											<% if image.document_type === "Thumb" %>
+												<a href="/<%= a.article_type %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
+											<% end %>
+										<% end %>
+									</span>
+								</span>
+							</div>
+							<div class="article-content">
+								<h3><a href="/<%= a.article_type %>/<%= a.friendly_url %>"><%= truncate(a.title, length: 75) %></a></h3>
+								<div class="article-icons">
+									<!-- <a href="user-single.html" class="user-tooltip"><i class="fa fa-fire"></i>datcouch</a>
+									<a href="#"><i class="fa fa-calendar"></i>September 11, 2015</a> -->
+								</div>
+								<p><%= truncate(a.preview, length: 120) %></p></p>
+								<a href="/<%= a.article_type %>/<%= a.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Leia completa</a>
+							</div>
+						</div>
+						<div class="clear-float do-the-split"></div>
+					<% end %>
+				</div>
+
+				<div class="content-padding">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Meio pagina Responsivo -->
+					<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="2221448875"
+					data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>		
+							
+			</div>
+
+			<!-- BEGIN #sidebar -->
+			<aside id="sidebar">
+				<%= render 'home/popular_articles' %>
+
+				<%= render 'home/we_are_social' %>
+
+				<%= render 'home/top_games_incoming' %>
+				<div class="panel">
+					<div class="panel-content">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- article show -->
+						<ins class="adsbygoogle"
+						style="display:block"
+						data-ad-client="ca-pub-8655806429950106"
+						data-ad-slot="7227058073"
+						data-ad-format="auto"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+				</div>
+				<!-- END #sidebar -->
+			</aside>
+
+			<div class="clear-float"></div>
+
+		</div>
+	</section>
+</div>
+
