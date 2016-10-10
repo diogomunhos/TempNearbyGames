@@ -174,8 +174,7 @@ angular.module('admin-module.article-services', [])
             $http({
                 method: 'POST',
                 url: '/private/articles/update_article_facebook_post_id_service.json',
-                data: {"id": request.id,
-                       "post_id": request.post_id},
+                data: {"request": request},
                 headers: {'Content-Type': 'application/json', 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
             }).then(function successCallback(response){ 
                 deferred.resolve(response);

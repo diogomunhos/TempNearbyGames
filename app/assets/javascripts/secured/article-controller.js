@@ -5,6 +5,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     
     $scope.showFacebookPostButton = false;
     $scope.showLoginFacebook = false;
+    $scope.statusArticleOk = false;
     $scope.pageAccessToken = '';
     $scope.permissions = [];
     $scope.errorFacebookMessage = '';
@@ -133,11 +134,16 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     $scope.postOnFacebook = function(){
       var request = $scope.createFacebookPostRequest();
       articleServices.postOnFacebook(request).then(function (result){
+        console.log("result facebook post");
+        console.log(result);
+        var requestPost = {
+          id: "",
+          post_id: ""
+        }
         if(result.id != ''){
-          var requestPost = {
-            id: $scope.article.id,
-            post_id: result.id
-          }
+          requestPost.id = $scope.article.id;
+          requestPost.post_id = result.id;
+          console.log(requestPost);
           articleServices.updateArticlePostId(requestPost).then(function (result2){
             console.log(result2);
             //TODO Implement Disable method on page_id
@@ -170,6 +176,9 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }
 
     $window.fbAsyncInit = function() {
+      if($scope.article.status === 'Published'){
+        $scope.statusArticleOk = true;
+      }
       console.log('teste');
       FB.init({ 
         appId: '1735599803381451', //facebook appId

@@ -28,7 +28,6 @@ class ArticlesSecuredController < ApplicationController
 		check_access_to_publish("Administrator")
 	end
 
-
 	def my_articles
 		
 	end
@@ -87,8 +86,9 @@ class ArticlesSecuredController < ApplicationController
 		hashResult = Hash.new
 		hashResult[:isSuccessful] = true
 		hashResult[:errorMessage] = ""
-		article = Article.find(params["id"])
-		article.update("facebook_post_id", params["post_id"])
+		request = params["request"]
+		article = Article.find(request["id"])
+		article.update(facebook_post_id: request["post_id"])
 
 		@result.push(hashResult)
 		respond_to do |format|
