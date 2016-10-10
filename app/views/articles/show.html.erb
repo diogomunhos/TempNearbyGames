@@ -64,10 +64,10 @@
 								</a>
 								<div class="side">
 									<div class="about-head">
-										<a href="user-single.html" class="comment-user"><b></b></a>
+										<a href="" class="comment-user"><b></b></a>
 									</div>
 									<i><%= @author[:full_name] %></i>
-									<a href="blog.html"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
+								<a href="/all-articles/<%= @author[:full_name].gsub(' ', '_') %>/<%= @author[:id] %>"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
 								</div>
 								<div class="clear-float">
 									<p><%= truncate(@author[:about], length: 110) %></p>

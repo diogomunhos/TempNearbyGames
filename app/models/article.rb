@@ -16,4 +16,5 @@ class Article < ActiveRecord::Base
 	scope :get3RandomArticles, -> (id = nil) {where.not(id: id).where(status: "Published").order("RANDOM()").limit(3).includes(:documents)}
 	scope :get3RandomArticlesFromAuthor, -> (id = nil, author_id = nil) {where.not(id: id).where(status: "Published", created_by_id: author_id).order("RANDOM()").limit(3).includes(:documents)}
 	scope :getArticleByPlatform, -> (platform = nil) {where("platform LIKE ? ", "%#{platform}%").where(status: "Published").limit(50).order("created_at DESC").includes(:documents)}
+	scope :getArticlesByAuthor, -> (author = nil) {where("created_by_id = ? ", author).where(status: "Published").limit(50).order("created_at DESC").includes(:documents)}
 end

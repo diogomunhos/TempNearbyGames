@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 			@author = Hash.new
 			authorProfile = UserPreference.find_by_user_id(@article.created_by_id)
 			user = User.find(@article.created_by_id)
+			@author[:id] = user.id
 			@author[:full_name] = user.name
 			@author[:full_name] += " " + user.last_name unless user.last_name.nil?
 			@author[:profile_image_url] = "/assets/images/wahiga/logo-default-profile.jpg"
@@ -37,7 +38,7 @@ class ArticlesController < ApplicationController
 		    	@author[:instagram] = authorProfile.instagram;
 		    	@author[:about] = authorProfile.about;
 			end
-			@author[:total_of_articles] = Article.where("created_by_id = ?", @article.created_by_id).count
+			@author[:total_of_articles] = Article.where("created_by_id = ? AND status = ?", @article.created_by_id, "Published").count
 			@randomArticles = Article.get3RandomArticlesFromAuthor(@article.id, @article.created_by_id)
 			imageUrl = ""
 			@article.article_documents.each do |image|
@@ -86,6 +87,41 @@ class ArticlesController < ApplicationController
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
 		end
+	end
+
+	def all_articles
+		@popular = Article.get10MostPopularArticles(nil)
+		title = "Todos os artigos"
+		if params["author_id"] != nil
+			@articles = Article.getArticlesByAuthor(params["author_id"])
+			title = "Todos os artigos | " + params["author_name"].gsub('_', ' ')
+		else
+			@articles = Article.where("status = ? ", "Published").order("created_at DESC")
+		end
+
+		set_meta_tags title: title,
+				site: 'Wahiga',
+				reverse: true,
+				application_name: "Wahiga"
+		set_meta_tags og: {
+		  title:    title,
+		  type:     'website',
+		  site_name: "Wahiga",
+		  locale: 'pt_BR'
+		}
+		set_meta_tags twitter: {
+		  card: "summary",
+		  site: "@wahiga_official",
+		  creator: "@wahiga_official"
+		}
+		set_meta_tags article: {
+			publisher: "http://www.facebook.com/Wahiga_Official",
+			section: title,
+		}
+		set_meta_tags fb:{
+			profile_id: "http://www.facebook.com/Wahiga_Official"
+		}
+
 	end
 
 	def platform
