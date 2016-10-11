@@ -27,7 +27,7 @@ class ProfilesSecuredController < ApplicationController
 		        if(doc.document_type === "profile_image")
 		            @user_profile_image_url = "/images/show_image/#{doc.document_id}"
 		            break
-		        end
+		        end 
 	        end
 	    end
 		

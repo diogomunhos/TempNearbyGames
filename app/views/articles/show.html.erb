@@ -1,296 +1,151 @@
 <title><%= @article.title %> - Wahiga</title>
 
-<div class="container-fluid" style="background-color: #F8C175; margin-bottom: 20px; margin-top: -20px; padding-bottom: 0px;">
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<div class="col-lg-6 col-lg-offset-3">
-		<!-- Cabeçalho Responsivo -->
-		<ins class="adsbygoogle"
-		     style="display:block"
-		     data-ad-client="ca-pub-8655806429950106"
-		     data-ad-slot="8764496876"
-		     data-ad-format="auto"></ins>
-		 </div>    
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
+<div id="slider-imgs">
+	<div class="featured-img-box">
+		<div id="featured-img-1" class="featured-img"></div>
+	</div>
+	<!-- END #slider-imgs -->
 </div>
-<div id="newsdetails" class="container" style="padding-bottom: 0px;">			
-	<div class="section">
-		<div class="row">
-			<div class="col-sm-9">
-				<div id="site-content" class="site-content">
-					<div class="row">
-						<div class="col-sm-12" style="background-color: #FDD7B0;">
-							<div class="left-content">
-								<div class="details-news">											
-									<div class="post">
-										<% @article.article_documents.each do |image| %>
-											<% if image.document_type === "Header" %>
-												<div class="entry-header">
-													<div class="entry-thumbnail">
-														<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
-													</div>
-												</div>
-											<% end %>
-										<% end %>
-										<div class="post-content">								
-											<!-- <div class="entry-meta">
-												<ul class="list-inline">
-													<li class="posted-by"><i class="fa fa-user"></i> <a href="#">Adams Kev</a></li>
-													<li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> Nov 15, 2016 </a></li>
-													<li class="views"><a href="#"><i class="fa fa-eye"></i>21k</a></li>
-													<li class="loves"><a href="#"><i class="fa fa-heart-o"></i>231</a></li>
-													<li class="comments"><i class="fa fa-comment-o"></i><a href="#">172</a></li>
-												</ul>
-											</div> -->
-											<h2 class="entry-title">
-												<%= @article.title %>
-											</h2>
-											<div class="entry-content">
-												<%= raw @article.body %>
-												<div class="news-tags">
-													<span>Tags:</span>
-													<ul class="list-inline">
-														<% @article.tags.split(',').each do |tag| %>
-														<li><a><%= tag %></a> </li>
-														<% end %>
-													</ul>
-												</div>
 
-												<ul class="list-inline share-link">
-													<!-- <li><a href="#"><img src="/assets/images/others/social1.png" alt="" /></a></li>
-													<li><a href="#"><img src="/assets/images/others/social2.png" alt="" /></a></li>
-													<li><a href="#"><img src="/assets/images/others/social3.png" alt="" /></a></li>
-													<li><a href="#"><img src="/assets/images/others/social4.png" alt="" /></a></li> -->
-												</ul>
-											</div>
-										</div>
-									</div><!--/post--> 
-								</div><!--/.section-->
-							</div><!--/.left-content-->
+<!-- BEGIN #top-layer -->
+<div id="top-layer">
+	<div id="header-top">
+		<%= render '/home/wrapper_top' %>
+	</div>
+	<section id="content">
+		<%= render '/home/header' %>
+		<div id="main-box">
+			<div id="main"><!-- Right Bar -->
+				<div class="content-padding">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Cabeçalho Responsivo -->
+					<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="8764496876"
+					data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+				<h2><span><%= @article.title %> </span></h2>
+				<div class="content-padding">
+					<div class="article-full">
+
+						<div class="article-main-photo">
+							<% @article.article_documents.each do |image| %>
+							<% if image.document_type === "Header" %>
+							<img src="/images/show_image/<%= image.document.id %>" alt="" title="" />
+							<% end %>
+							<% end %>	
+						</div>
+						<div class="article-icons">
+							<!-- <a href="" class=""><i class="fa fa-fire"></i>Autor</a>
+							<a href=""><i class="fa fa-calendar"></i><%= @article.created_at %></a> -->
+							<!-- <a href="#" class="show-likes"><i class="fa fa-heart"></i>20 likes</a> -->
+						</div>
+						
+						<div class="clear-float do-the-split"></div>
+
+						<div class="article-content">
+							<%= raw @article.body %>
 						</div>
 					</div>
-				</div><!--/#site-content-->
-				<div class="col-sm-12 visible-xs visible-sm">
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- article show -->
-						<ins class="adsbygoogle"
-						     style="display:block"
-						     data-ad-client="ca-pub-8655806429950106"
-						     data-ad-slot="7227058073"
-						     data-ad-format="auto"></ins>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-				</div>
-				<div class="section related-news-section">
-					<h1 class="section-title" style="color: #E7BB51; font-weight: bold;">OUTRAS NOTÍCIAS</h1>
-					<div class="row">
-						<div class="col-sm-12" style="background-color: #FDD7B0;">
-							<div class="left-content">
-								<div class="related-news">
-									<div id="related-news-carousel">
-										<% @randomArticles.each do |ra| %>
-										<div class="post medium-post">
-											<a href="/<%= ra.article_type %>/<%= ra.friendly_url %>">
-											<div class="entry-header" style="min-height: 170px; max-height: 200px;">
-												<div class="entry-thumbnail">
-													<% ra.article_documents.each do |image| %>
-														<% if image.document_type === "Thumb" %>
-															<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
-														<% end %>
-													<% end %>
-												</div>
-											</div> 
-											<div class="post-content">								
-												<div class="entry-meta">
-													<ul class="list-inline">
-														<!-- <li class="publish-date"><a href="#"><i class="fa fa-clock-o"></i> <%= distance_of_time_in_words(ra.created_at, Time.now) %> </a></li> -->
-														<% unless ra.views.nil? %>
-															<li class="views"><a href="#"><i class="fa fa-eye"></i><%= ra.views unless ra.views.nil? %></a></li>
-														<% end %>
-													</ul>
-												</div>
-												<h2 class="entry-title">
-													<%= truncate(ra.title, length: 50, separator: ' ') %>
-												</h2>
-											</div>
-											</a>
-										</div><!--/post--> 
-										<% end %>
+					
+					<!-- <div class="clear-float do-the-split"></div> -->
+					
+					<!-- BEGIN .article-footer -->
+					<div class="article-footer">
+						<div class="about-author">
+							
+							<h2><span>Sobre o autor</span></h2>
+
+							<div class="inner">
+								<a href="user-single.html" class="avatar avatar-large">
+									<img src="<%= @author[:profile_image_url] %>" alt="" style="width: 90px; height: 90px;" class="author-image setborder" />
+								</a>
+								<div class="side">
+									<div class="about-head">
+										<a href="user-single.html" class="comment-user"><b></b></a>
 									</div>
+									<i><%= @author[:full_name] %></i>
+									<a href="blog.html"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
+								</div>
+								<div class="clear-float">
+									<p><%= truncate(@author[:about], length: 110) %></p>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div><!--/.section -->	
 
-				<!-- <div class="row">
-					<h1 class="section-title title" style="color: #E7BB51; font-weight: bold;">Comments</h1>
-					<div class="col-sm-12" style="background-color: white;">										
-						<div class="comments-wrapper">
+						</div>
+
+						<div class="similar-posts">
 							
-							<ul class="media-list">
-								<li class="media">
-									<div class="media-left">
-										<a href="#"><img class="media-object" src="/assets/images/others/author.png" alt=""></a>
-									</div>
-									<div class="media-body">
-										<h2><a href="#">Axel Bouaziz</a></h2>
-										<h3 class="date"><a href="#">15 December 2016</a></h3>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-										<a class="replay" href="#">Replay</a>
-									</div>
-								</li>
-								<li class="media">
-									<div class="media-left">
-										<a href="#"><img class="media-object" src="/assets/images/others/author.png" alt=""></a>
-									</div>
-									<div class="media-body">
-										<h2><a href="#">Axel Bouaziz</a></h2>
-										<h3 class="date"><a href="#">15 December 2016</a></h3>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-										<a class="replay" href="#">Replay</a>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="media-left">
-										<a href="#"><img class="media-object" src="/assets/images/others/author1.png" alt=""></a>
-									</div>
-									<div class="media-body">
-										<h2><a href="#">Axel Bouaziz</a></h2>
-										<h3 class="date"><a href="#">15 December 2016</a></h3>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-										<a class="replay" href="#">Replay</a>
-									</div>
-								</li>
-
-								<li class="media media-child">
-									<div class="media-left">
-										<a href="#"><img class="media-object" src="/assets/images/others/author3.png" alt=""></a>
-									</div>
-									<div class="media-body">
-										<h2><a href="#">Axel Bouaziz</a></h2>
-										<h3 class="date"><a href="#">15 December 2016</a></h3>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
-										<a class="replay" href="#">Replay</a>
-									</div>
-								</li>
-							</ul>
-
-							<div class="comments-box">
-								<h1 class="section-title title">Leave a Comment</h1>
-								<form id="comment-form" name="comment-form" method="post">
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="form-group">
-												<label>Name</label>
-												<input type="text" name="name" class="form-control" required="required">
-											</div>
-										</div>
-										<div class="col-sm-4">
-											<div class="form-group">
-												<label>Email</label>
-												<input type="email" name="email" class="form-control" required="required">
-											</div>
-										</div>
-										<div class="col-sm-4">
-											<div class="form-group">
-												<label>Subject</label>
-												<input type="text" name="subject" class="form-control">
-											</div>
-										</div>
-										<div class="col-sm-12">
-											<div class="form-group">
-												<label>Your Text</label>
-												<textarea name="comment" id="comment" required="required" class="form-control" rows="5"></textarea>
-											</div>
-											<div class="text-center">
-												<button type="submit" class="btn btn-primary">Send </button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			</div><!--/.col-sm-9 -->	
-
-			<div class="col-sm-3">
-				<div id="sitebar">							
-					<div class="widget">
-						<h1 class="section-title title"><a href="listing.html" style="color: #E7BB51; font-weight: bold;">Populares</a></h1>
-						<ul class="post-list">
-							<% @popular.each do |p| %>
-								<li>
-									<div class="post small-post">
-										<a href="/<%= p.article_type %>/<%= p.friendly_url %>">
-										<div class="entry-header">
-											<div class="entry-thumbnail">
-											<% p.article_documents.each do |image| %>
-												<% if image.document_type === "Thumb" %>
-													<img class="img-responsive" src="/images/show_image/<%= image.document.id %>" alt="" />
-												<% end %>
+							<h2><span>Outras notícias</span></h2>
+							
+							<div class="home-article right">
+								<ul>
+									<% @randomArticles.each do |articles| %>
+									<li>
+										<a href="/<%= articles.article_type %>/<%= articles.friendly_url %>">
+											<% articles.article_documents.each do |image| %>
+											<% if image.document_type === "Thumb" %>
+											<img src="/images/show_image/<%= image.document.id %>" alt="" title="" />
 											<% end %>
-											</div>
-										</div>
-										<div class="post-content">								
-											<h2 class="entry-title">
-												<%= truncate(p.title, length: 50, separator: ' ') %>
-											</h2>
-										</div>
-									</div><!--/post--> 
-								</li>
-							<% end %>
-							
-						</ul>
-					</div><!--/#widget-->
+											<% end %>
+											<strong><%= truncate(articles.title, length: 33) %></strong>
+											<span class="a-txt"><%= truncate(articles.preview, length: 33) %></span>
+										</a>
+									</li>
+									<% end %>
+								</ul>
+								
+							</div>
 
-			<!-- 		<div class="widget">
-						<div class="add">
-							<a href="#"><img class="img-responsive" src="/assets/images/post/add/add6.jpg" alt="" /></a>
 						</div>
+						<!-- END .article-footer -->
 					</div>
-					 -->
-				</div><!--/#sitebar-->
-				<div class="col-lg-12 visible-lg visible-md">
+
+					<!-- END .content-padding -->
+				</div>
+				<div class="content-padding">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Lateral Direita Home -->
+					<!-- Footer artigos -->
 					<ins class="adsbygoogle"
-					     style="display:inline-block;width:300px;height:600px;margin-left: -15px;"
-					     data-ad-client="ca-pub-8655806429950106"
-					     data-ad-slot="6428309273"></ins>
+					style="display:block"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="9337429679"
+					data-ad-format="auto"></ins>
 					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
+						(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
 				</div>
 			</div>
-		</div>				
-	</div><!--/.section-->
-</div><!--/.container-fluid-->
-<div class="container-fluid" style="background-color: #5C5C5F; margin-bottom: 0px; margin-top: -20px; padding-bottom: 0px;">
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<div class="col-lg-6 col-lg-offset-2">	
-			<!-- Footer reponsivo -->
-			<ins class="adsbygoogle"
-			     style="display:block"
-			     data-ad-client="ca-pub-8655806429950106"
-			     data-ad-slot="5252627279"
-			     data-ad-format="auto"></ins>
-		 </div>    
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-</div>
-<div class="footer-top" style="background-color: #F8C175; border:none; margin-bottom: -10px;">
-	<div class="container-fluid">
-		<ul class="list-inline social-icons text-center">
-			<li><a href="https://www.facebook.com/Wahiga.Official/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
-			<li><a href="https://twitter.com/wahiga_official" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
-			<!-- <li><a href="#"><i class="fa fa-google-plus"></i>Google Plus</a></li> -->
-			<li><a href="https://www.youtube.com/channel/UCsm4Ik888MakSXbc6t8XBnA" target="_blank"><i class="fa fa-youtube"></i>Youtube</a></li>
-		</ul>
-	</div>
+
+			<!-- BEGIN #sidebar -->
+			<aside id="sidebar">
+				<%= render 'home/popular_articles' %>
+
+				<%= render 'home/we_are_social' %>
+
+				<div class="panel">
+					<div class="panel-content">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- article show -->
+						<ins class="adsbygoogle"
+						style="display:block"
+						data-ad-client="ca-pub-8655806429950106"
+						data-ad-slot="7227058073"
+						data-ad-format="auto"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+				</div>
+				<!-- END #sidebar -->
+			</aside>
+
+			<div class="clear-float"></div>
+
+		</div>
+	</section>
 </div>
