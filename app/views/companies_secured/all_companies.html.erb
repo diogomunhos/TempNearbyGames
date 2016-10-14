@@ -1,0 +1,87 @@
+<div id="content-container" ng-controller="all-companies-controller as controller">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">All Companies</h1>
+        <ol class="breadcrumb">
+            <li><a href="/private/index">Home</a></li>
+            <li class="active" >Companies</li>
+        </ol>
+    </div>
+    
+    <div id="page-content">
+        <div class="panel">
+            
+            <div class="panel-body" ng-cloak>
+                <div class="pad-btm form-inline">
+                     <div class="row">
+                        <div class="col-sm-6 table-toolbar-left">
+                            <a id="demo-btn-addrow" href="/private/companies/new" class="btn btn-default"><i class="demo-pli-add"></i> Create new company</a>
+                        </div>
+                        <div class="col-sm-6 table-toolbar-right">
+                            <!-- <div class="form-group">
+                                <a href="" ng-click="clearSearch()" ng-show="isSearch">Clear search</a>
+                                <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off" ng-model="searchValue" ng-focus="focusToPage()" ng-blur="goToSearch()" ng-keypress="keyPress($event)">
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-default" ng-disabled="blockSearch" ng-click="clickGoToSearch()"><i class="fa fa-search"></i></button>
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false">
+                                        {{fieldToSearchScreen}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                                       <li ng-repeat="field in fieldsToSeach">
+                                           <a href="" ng-click="setFieldToSearch(field)">{{field}}</a>
+                                       </li> 
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Registred date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="company in companies">
+                                <td>
+                                    <a class="btn-link" href="/private/companies/{{company.id}}/show">
+                                        {{company.name}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <i class="demo-pli-clock">
+                                        {{company.created_at | date:'MM-dd-yyyy HH:mm:ss'}}
+                                    </i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pager" ng-show="showPagination">
+                    <li ng-class=" blockPrevious ? 'disabled' : '' "><a href="" ng-click="prevPage(actualPage)" style="width: 99px;"><i class="demo-psi-arrow-left"></i> Previous</a></li>
+                    <li>
+                        <input type="text" style="width: 50px; text-align: center;" ng-model="actualPage" ng-blur="goToPage(actualPage)" ng-keypress="keyPress($event)" ng-focus="focusToPage()"/>
+                        <label class="form-control-static"> of {{totalOfPages}} pages</label>
+                    </li>
+                    <li ng-class=" blockNext ? 'disabled' : ''" ><a href="" ng-click="nextPage(actualPage)" style="width: 99px;">Next <i class="demo-psi-arrow-right"></i></a></li>
+                </ul>
+            </div>
+
+            <!--===================================================-->
+            <!--End Data Table-->
+
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+</div>

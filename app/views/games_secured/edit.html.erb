@@ -1,0 +1,301 @@
+<div id="content-container" ng-controller="new-game-controller">
+
+    <div id="page-title">
+        <h1 class="page-header text-overflow">Edit Game</h1>
+    </div>
+
+    <div id="page-content" ng-cloak>
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+
+        <div class="panel">
+            <input type="hidden" id="hidden_game_id" value="<%= @game.id %>"/>
+            <input type="hidden" id="hidden_game_name" value="<%= @game.name %>"/>
+            <input type="hidden" id="hidden_game_release_date" value="<%= @game.release_date %>"/>
+            <input type="hidden" id="hidden_game_platform" value="<%= @game.platform %>"/>
+            <input type="hidden" id="hidden_game_wahiga_rating" value="<%= @game.wahiga_rating %>"/>
+            <input type="hidden" id="hidden_game_user_rating" value="<%= @game.user_rating %>"/>
+            <input type="hidden" id="hidden_game_description" value="<%= @game.description %>"/>
+            <input type="hidden" id="hidden_game_genre" value="<%= @game.genre %>"/>
+            <input type="hidden" id="hidden_game_companies" value="<%= @gameCompanies %>"/>
+            <input type="hidden" id="hidden_companies" value="<%= @companies %>"/>
+            <input type="hidden" id="hidden_game_file" value="<%= @companies %>"/>
+
+                <div id="demo-cls-wz">
+                    
+                    <!--Nav-->
+                    <ul class="wz-nav-off wz-icon-inline wz-classic" style="border-bottom: solid;">
+                        <li class="col-xs-3" ng-class="{'bg-mint': game.stage >= 1}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-pencil-ruler icon-lg"></i></span> Game Details
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': game.stage >= 2}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-file-pictures icon-lg"></i></span> Game Image
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': game.stage >= 3}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-newspaper-2 icon-lg"></i></span> Game Companies
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!--Form-->
+                    <form class="form-horizontal" style="margin-top: 20px;">
+                        <div class="panel-body">
+                            <div class="tab-content">
+
+                                <!--First tab-->
+                                <div id="demo-cls-tab2" class="tab-pane" ng-class="{active: game.stage == 1, in: game.stage == 1, fade: game.stage != 1}">
+                                    <div id="all-details">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_name">Name:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Name" name="game[name]" ng-model="game.name.value" id="game_name">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.name.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.name.errorCode, "name")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_release_date">Release date:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Release date" name="game[release_date]" ng-model="game.release_date.value" id="game_release_date">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.release_date.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.release_date.errorCode, "release_date")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>         
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: game.platform.errorCode != ''}">Platforms:* </label>
+                                                <div class="col-lg-3">
+                                                    <select class="form-control selectpicker" name="game[game_platform]" ng-change="changePickListValue('platform');" multiple id="game_platform" ng-model="game.platform.value">
+                                                        <option value="PC">PC</option>
+                                                        <option value="PS4">PS4</option>
+                                                        <option value="Xbox-one">Xbox-one</option>
+                                                        <option value="Wii-U">Wii U</option>
+                                                        <option value="PS3">PS3</option>
+                                                        <option value="Vita">Vita</option>
+                                                        <option value="3DS">3DS</option>
+                                                        <option value="Xbox-360">Xbox-360</option>
+                                                        <option value="Mobile">Mobile</option>
+                                                        <option value="Nintendo NX">Nintendo NX</option>
+                                                        <option value="Movie">Movie</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.platform.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.platform.errorCode, "platform")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>                                
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_wahiga_rating">Wahiga rating:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Wahiga rating" name="game[wahiga_rating]" ng-model="game.wahiga_rating.value" id="game_wahiga_rating">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.wahiga_rating.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.wahiga_rating.errorCode, "wahiga_rating")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_user_rating">User rating:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="User rating" name="game[user_rating]" ng-model="game.user_rating.value" id="game_user_rating">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.user_rating.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.user_rating.errorCode, "user_rating")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_description">Description:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Description" name="game[description]" ng-model="game.description.value" id="game_description"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.description.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.description.errorCode, "description")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: game.genre.errorCode != ''}">Genres:* </label>
+                                                <div class="col-lg-3">
+                                                    <select class="form-control selectpicker" name="game[genre]" ng-change="changePickListValue('genre');" multiple id="game_genre" ng-model="game.genre.value">
+                                                        <option value="2d">2D</option>
+                                                        <option value="3d">3D</option>
+                                                        <option value="4x">4X</option>
+                                                        <option value="action">Action</option>
+                                                        <option value="adventure">Adventure</option>
+                                                        <option value="arcade">Arcade</option>
+                                                        <option value="baseball">Baseball</option>
+                                                        <option value="basketball">Basketball</option>
+                                                        <option value="beat-em-up">Beat-'Em-Up</option>
+                                                        <option value="billiards">Billiards</option>
+                                                        <option value="bowling">Bowling</option>
+                                                        <option value="boxing">Boxing</option>
+                                                        <option value="card-game">Card Game</option>
+                                                        <option value="compilation">Compilation</option>
+                                                        <option value="cricket">Cricket</option>
+                                                        <option value="defense">Defense</option>
+                                                        <option value="driving-racing">Driving/Racing</option>
+                                                        <option value="edutainment">Edutainment</option>
+                                                        <option value="fighting">Fighting</option>
+                                                        <option value="first-person">First-Person</option>
+                                                        <option value="fitness">Fitness</option>
+                                                        <option value="fixed-screen">Fixed-Screen</option>
+                                                        <option value="flight">Flight</option>
+                                                        <option value="football">Football (American)</option>
+                                                        <option value="free-to-play">Free-to-Play</option>
+                                                        <option value="gambling">Gambling</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="hidden-object">Hidden Object</option>
+                                                        <option value="hockey">Hockey</option>
+                                                        <option value="hunting-fishing">Hunting/Fishing</option>
+                                                        <option value="light-gun">Light-Gun</option>
+                                                        <option value="management">Management</option>
+                                                        <option value="matching-stacking">Matching/Stacking</option>
+                                                        <option value="miscellaneous">Miscellaneous</option>
+                                                        <option value="mmo">MMO</option>
+                                                        <option value="moba">MOBA</option>
+                                                        <option value="music-rhythm">Music/Rhythm</option>
+                                                        <option value="on-rails">On-Rails</option>
+                                                        <option value="open-world">Open-World</option>
+                                                        <option value="party-minigame">Party/Minigame</option>
+                                                        <option value="pinball">Pinball</option>
+                                                        <option value="platformer">Platformer</option>
+                                                        <option value="puzzle">Puzzle</option>
+                                                        <option value="real-time">Real-Time</option>
+                                                        <option value="roguelike">Roguelike</option>
+                                                        <option value="role-playing">Role-Playing</option>
+                                                        <option value="Scrolling">Scrolling</option>
+                                                        <option value="shoot-em-up">Shoot-'Em-Up</option>
+                                                        <option value="shooter">Shooter</option>
+                                                        <option value="simulation">Simulation</option>
+                                                        <option value="skateboarding-skating">Skateboarding/Skating</option>
+                                                        <option value="snowboarding-skiing">Snowboarding/Skiing</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="sports">Sports</option>
+                                                        <option value="strategy">Strategy</option>
+                                                        <option value="survival">Survival</option>
+                                                        <option value="tactical">Tactical</option>
+                                                        <option value="team-based">Team-Based</option>
+                                                        <option value="tennis">Tennis</option>
+                                                        <option value="text-based">Text-Based</option>
+                                                        <option value="third-person">Third-Person</option>
+                                                        <option value="track-field">Track &amp; Field</option>
+                                                        <option value="trivia-board-game">Trivia/Board Game</option>
+                                                        <option value="turn-based">Turn-Based</option>
+                                                        <option value="vehicular-combat">Vehicular Combat</option>
+                                                        <option value="wakeboarding-surfing">Wakeboarding/Surfing</option>
+                                                        <option value="wrestling">Wrestling</option>
+                                                        <option value="vr">VR</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="game.genre.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(game.genre.errorCode, "genre")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Second tab-->
+                                <div id="demo-cls-tab3" class="tab-pane" ng-class="{active: game.stage == 2, in: game.stage == 2, fade: game.stage != 2}" >
+                                    <%= render '/games_secured/new_game_upload_image' %>
+                                </div>
+
+                                <!--Third tab-->
+                                <div id="demo-cls-tab4" class="tab-pane mar-btm" ng-class="{active: game.stage == 3, in: game.stage == 3, fade: game.stage != 3}">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div >
+                                                <button class="btn btn-primary" ng-click="newGameCompany()">New Company</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="gameCompanies.length > 0">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Type</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="gc in gameCompanies">
+                                                            <td>
+                                                                <select class="form-control" ng-model="gc.company_id"
+                                                                ng-options="company.id as company.name for company in companies"
+                                                                >
+                                                                    <option
+                                                                            value="company.id">
+                                                                      {{company.name}}
+                                                                    </option>
+                                                                </select>   
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" ng-model="gc.company_type">
+                                                                    <option value="Developer">Developer</option>
+                                                                    <option value="Publisher">Publisher</option>
+                                                                </select>
+                                                            </td>
+                                                            <td><button type="button" class="btn btn-sm btn-danger" ng-click="destroyGameCompany($index)">Remove</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Footer button-->
+                        <div class="panel-footer text-right">
+                            <div class="box-inline">
+                                <button type="button" class="previous btn btn-mint" ng-show="game.stage > 1" ng-disabled="isSubmitting" style="margin-right: 5px;"ng-click="previous();">Previous</button>
+                                <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="game.stage < 3" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
+                                <button type="button" class="finish btn btn-mint" ng-show="game.stage === 3" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>

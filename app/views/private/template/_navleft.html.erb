@@ -101,6 +101,41 @@
 								<li ng-class=" (activeLinkSecond === 'new-article') ? 'active-link' : '' "><a href="/private/articles/new" ng-show="articles.showNew">New Article</a></li>
 							</ul>
 						</li>
+
+						<!--Menu list item-->
+						<li ng-class=" (activeLinkFirst === 'company') ? 'active-link' : '' ">
+							<a href="#" ng-show="companies.showCompanies">
+								<i class="fa fa-industry"></i>
+								<span class="menu-title">
+									<strong>Companies</strong>
+								</span>
+								<i class="arrow"></i>
+							</a>
+
+							<!--Submenu-->
+							<ul class="collapse">
+								<li ng-class=" (activeLinkSecond === 'all-company') ? 'active-link' : '' "><a href="/private/companies" ng-show="companies.showAll">All Companies</a></li>
+								<li ng-class=" (activeLinkSecond === 'new-company') ? 'active-link' : '' "><a href="/private/companies/new" ng-show="companies.showNew">New Company</a></li>
+							</ul>
+						</li>
+
+						<!--Menu list item-->
+						<li ng-class=" (activeLinkFirst === 'game') ? 'active-link' : '' ">
+							<a href="#" ng-show="games.showGames">
+								<i class="fa fa-gamepad"></i>
+								<span class="menu-title">
+									<strong>Games</strong>
+								</span>
+								<i class="arrow"></i>
+							</a>
+
+							<!--Submenu-->
+							<ul class="collapse">
+								<li ng-class=" (activeLinkSecond === 'all-game') ? 'active-link' : '' "><a href="/private/games" ng-show="games.showAll">All Games</a></li>
+								<li ng-class=" (activeLinkSecond === 'new-game') ? 'active-link' : '' "><a href="/private/games/new" ng-show="games.showNew">New Game</a></li>
+							</ul>
+						</li>
+
 						<li ng-show="management.showManagement" ng-class=" (activeLinkFirst === 'management') ? 'active-link' : '' ">
 							<a href="#">
 								<i class="demo-psi-gear-2"></i>

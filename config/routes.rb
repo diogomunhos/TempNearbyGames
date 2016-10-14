@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :companies, defaults: { format: 'json' }
+  resources :games, defaults: { format: 'json' }
+  resources :game_companies
   resources :articles, defaults: { format: 'json' }
   resources :documents
   resources :user_login_info_secured do 
@@ -41,6 +44,8 @@ Rails.application.routes.draw do
 
   get "/platform/:platform" => "articles#platform"
 
+  get "/game/:name" => "games#show"
+
 
   #temp
 
@@ -69,6 +74,9 @@ Rails.application.routes.draw do
   get '/private/index/get-permissions' => "private#get_permissions_service"
   
   #PROFILES
+
+  get '/private/profiles/refresh_profiles' => "profiles_secured#refresh_profiles"
+
   get '/private/profiles/my-profile' => "profiles_secured#my_profile"
 
   get '/private/profiles/user-profile/:userid' => "profiles_secured#user_profile"
@@ -186,6 +194,63 @@ Rails.application.routes.draw do
   #User Invitation
 
   post '/private/update-password' => "user_invitations_secured#update"
+
+  #Companies
+ 
+  get '/private/companies' => "companies_secured#all_companies"
+ 
+  get '/private/companies/:companyid/show' => "companies_secured#show"
+ 
+ get '/private/companies/:companyid/edit' => "companies_secured#edit"
+ 
+   get '/private/companies/new' => "companies_secured#new"
+ 
+   get '/private/companies/all-companies/:numberPerPage/:pageNumber' => "companies_secured#all_companies_service"
+ 
+   get '/private/companies/all-companies/count' => "companies_secured#count_all_companies_service"
+ 
+   post '/private/companies/update' => "companies_secured#update"
+ 
+   post '/private/companies/create-new-company' => "companies_secured#create"
+ 
+   get '/private/companies/destroy/:companyid' => "companies_secured#destroy"
+ 
+ 
+   #Games
+ 
+   get '/private/games/new' => "games_secured#new"
+ 
+   get '/private/games' => "games_secured#my_games"
+ 
+   get '/private/games/all-games/:numberPerPage/:pageNumber' => "games_secured#all_games"
+ 
+   get '/private/games/all-games/count' => "games_secured#count_games"
+ 
+   get '/private/games/all-games/count/:fieldToSearch/:searchValue' => "games_secured#count_search_games"
+ 
+   get '/private/games/all-games/search/:fieldToSearch/:searchValue/:numberPerPage/:pageNumber' => "games_secured#search_all_games"
+ 
+   get '/private/games/show/:gameid' => "games_secured#show"
+ 
+   get '/private/games/edit/:gameid' => "games_secured#edit"
+ 
+   get '/private/games/destroy/:gameid' => "games_secured#destroy"
+ 
+   #POST
+   #Games
+   post '/private/games/create-new-games' => "games_secured#create"
+ 
+   post '/private/games/update-game' => "games_secured#update"
+ 
+   post '/private/games/create_game_service' => "games_secured#create_game_service"
+ 
+   post '/private/games/update_game_service' => "games_secured#update_game_service"
+ 
+   post '/private/games/create_game_companies_service' => "games_secured#create_game_companies_service"
+ 
+   post '/private/games/destroy_game_company_service' => "games_secured#destroy_game_company_service"
+ 
+   post '/private/games/upload_game_image_service' => "games_secured#upload_game_image_service"
 
 
 

@@ -33,6 +33,56 @@ class ProfilesSecuredController < ApplicationController
 		
 	end
 
+	def refresh_profiles
+		profiles = Profile.all
+		objects = Array.new {Hash.new}
+		profiles.each do |profile|
+			system_objects.each do |ob|
+				hasObject = false
+				profile.object_permissions.each do |objProfile|  
+					if ob === objProfile.object_name 
+						hasObject = true
+						break
+					end
+				end
+				if !hasObject
+					object = Hash.new
+					object[:object_name] = ob
+					object[:read_record] = false
+					object[:delete_record] = false
+					object[:create_record] = false
+					object[:edit_record] = false
+					object[:read_all_record] = false
+					object[:approve_record] = false
+					object[:profile_id] = profile.id
+					object[:last_updated_by] = session[:user_id]
+					objects.push(object)
+				end
+			end
+		end
+		
+		if objects.size > 0
+			permissions = ObjectPermission.create(objects)
+
+			fields = Array.new {Hash.new}
+			permissions.each do |p|
+				system_fields(p.object_name).each do |sf|
+					field = Hash.new
+					field[:field_name] = sf
+					field[:read_record] = false
+					field[:edit_record] = false
+					field[:object_permission_id] = p.id
+					fields.push(field)
+				end
+			end
+
+			FieldPermission.create(fields)
+		end
+
+		redirect_to "/private/index"
+		
+	end
+
 	def my_profile_edit
 		@user = User.find(session[:user_id])
 		@userPreference = UserPreference.find_by_user_id(session[:user_id])

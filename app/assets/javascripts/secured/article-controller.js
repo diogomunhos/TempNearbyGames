@@ -149,7 +149,6 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
             console.log(requestPost);
             articleServices.updateArticlePostId(requestPost).then(function (result2){
               console.log(result2);
-              showFacebookPostButton
               //TODO Implement message to UX
             });
           }

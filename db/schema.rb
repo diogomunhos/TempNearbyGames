@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004193959) do
+ActiveRecord::Schema.define(version: 20161011000826) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 20161004193959) do
     t.string   "facebook_post_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string   "file_name"
     t.string   "content_type"
@@ -75,6 +81,27 @@ ActiveRecord::Schema.define(version: 20161004193959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "last_updated_by"
+  end
+
+  create_table "game_companies", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "company_id"
+    t.string   "company_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string   "name"
+    t.date     "release_date"
+    t.string   "platform"
+    t.integer  "wahiga_rating"
+    t.integer  "user_rating"
+    t.string   "description"
+    t.string   "genre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "document_id"
   end
 
   create_table "historics", force: :cascade do |t|

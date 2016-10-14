@@ -1,0 +1,37 @@
+<div id="content-container">
+
+    <div id="page-title">
+        <h1 class="page-header text-overflow">New Company</h1>
+    </div>
+
+    <div id="page-content">
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+        <div class="panel">
+
+        <%= form_for :company, :url => {:controller => 'companies_secured', :action => 'create'}, html: { class: "form-horizontal"} do |f| %>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <p class="bord-btm pad-ver text-main text-bold">Company information</p>
+            </div>
+            <!--Static-->
+            <div class="col-md-12">
+                <div class="form-group col-md-3">
+                    <label class="col-md-4 control-label" for="company_name">Name:*</label>
+                    <div class="col-md-8">
+                        <input type="text" required="" class="form-control" name="company[name]" id="company_name" value="<%= @company.name %>"/>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+        <div class="panel-footer text-right">
+            <button type="submit" class="btn btn-success btn-bock">Save</button>
+        </div>
+               
+        <% end %>
+    </div>
+</div>
+
+</div>
