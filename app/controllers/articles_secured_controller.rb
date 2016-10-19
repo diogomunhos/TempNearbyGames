@@ -111,6 +111,9 @@ class ArticlesSecuredController < ApplicationController
 		@article.created_by_name = username
 		@article.last_updated_by_name = username
 		@article.last_updated_by_id = user.id
+		if @article.friendly_url != ""
+			@article.friendly_url = @article.friendly_url.gsub("_", "-")
+		end
 	
 		@result = Array.new
 		hashResult = Hash.new
@@ -137,7 +140,9 @@ class ArticlesSecuredController < ApplicationController
 	def update_article_service
 		print "DEBUG - #{article_params_update_by_service}"
 		@article = Article.find(article_params_update_by_service[:id])
-		
+		if @article.friendly_url != ""
+			@article.friendly_url = @article.friendly_url.gsub("_", "-")
+		end
 		user = User.find(session[:user_id])
 		username = user.name
 		if (user.last_name != nil)

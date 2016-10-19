@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   root "home#home"
 
+  get "sitemap.xml" => "home#sitemap", format: :xml, as: :sitemap
+  
+  get "robots.txt" => "home#robots", format: :text, as: :robots
+
   get "/home" => "home#default"
 
   get '/images/show_image/:id' => "home#show_image"

@@ -9,7 +9,8 @@ class Document < ActiveRecord::Base
 		super
 		if file
 			filename  = file.original_filename
-			filename = filename.gsub(" ", "_")
+			filename = filename.gsub(" ", "-")
+			filename = filename.gsub("_", "-")
 			self.file_name = sanitize_filename(filename)
 			self.content_type = file.content_type
 			self.file_contents = file.read
