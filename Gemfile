@@ -41,7 +41,7 @@ gem 'airbrake', '~> 5.4'
 
 gem 'meta-tags'
 
-gem "dynamic_sitemaps"
+gem "sitemap_generator"
 
 gem "fog-aws"
 

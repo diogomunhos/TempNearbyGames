@@ -18,9 +18,7 @@ Rails.application.routes.draw do
 
   root "home#home"
 
-  get "sitemap.xml" => "home#sitemap", format: :xml, as: :sitemap
-  
-  get "robots.txt" => "home#robots", format: :text, as: :robots
+  get '/sitemap.xml', to: redirect("https://s3-us-west-2.amazonaws.com/wahiga/sitemaps/sitemap.xml.gz", status: 301)
 
   get "/home" => "home#default"
 
