@@ -23,6 +23,9 @@ SitemapGenerator::Sitemap.create do
   articles.each do |a|
     add "News/#{a.friendly_url}", lastmod: a.updated_at, changefreq: "daily", priority: 1.0
   end 
+  Document.all.each do |doc|
+    add "images/show_image/#{doc.id}/#{doc.file_name}", last_mod: doc.updated_at, change_freq: "daily", priority: 1.0
+  end 
   # here is where you add all the pages you'd like to sitemap
   # add posts_path, priority: 1, changefreq:'always'
   # Post.findeach do |post|
