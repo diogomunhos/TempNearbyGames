@@ -63,3 +63,5 @@ Disallow: /private/*
 
 User-Agent: *
 Disallow: /
+
+SITEMAP: https://wahiga.s3-sa-east-1.amazonaws.com/sitemaps/sitemap.xml.gz
