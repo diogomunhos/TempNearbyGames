@@ -46,13 +46,13 @@ class HomeController < ApplicationController
 	end
 
 	def sitemap
-	    path = Rails.root.join("public", "sitemaps", "sitemap.xml")
-	    print "DEBUG #{path}"
-	    if File.exists?(path)
-	      render xml: open(path).read
-	    else
-	      render text: "Sitemap not found.", status: :not_found
-	    end
+	    # path = Rails.root.join("public", "sitemaps", "sitemap.xml")
+	    # print "DEBUG #{path}"
+	    # if File.exists?(path)
+	    #   render xml: open(path).read
+	    # else
+	    #   render text: "Sitemap not found.", status: :not_found
+	    # end
 	end
 
 	def robots
