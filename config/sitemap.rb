@@ -9,7 +9,7 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new(
 
 
 
-SitemapGenerator::Sitemap.sitemaps_host = "https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['S3_BUCKET']}/"
+SitemapGenerator::Sitemap.sitemaps_host = "https://wahiga.s3-sa-east-1.amazonaws.com/"
 
 
 
