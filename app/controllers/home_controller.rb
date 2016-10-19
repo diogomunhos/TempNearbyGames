@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 	end
 
 	def sitemap
-	    path = Rails.root.join("public", "sitemaps", "sitemap.xml")
+	    path = Rails.root.join("tmp","public", "sitemaps", "sitemap.xml")
 	    print "DEBUG #{path}"
 	    if File.exists?(path)
 	      render xml: open(path).read
