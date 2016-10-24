@@ -34,6 +34,10 @@ class HomeController < ApplicationController
 		  site: "@wahiga_official",
 		  creator: "@wahiga_official"
 		}
+		set_meta_tags alternate: {
+			"pt-br" => "https://www.wahiga.com",
+			"pt-pt" => "https://www.wahiga.com"
+		}
 	end
 
 	def default

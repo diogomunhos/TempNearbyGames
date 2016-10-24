@@ -86,6 +86,10 @@ class ArticlesController < ApplicationController
 			set_meta_tags fb:{
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
+			set_meta_tags alternate: {
+				"pt-br" => "https://www.wahiga.com/News/#{@article.friendly_url}",
+				"pt-pt" => "https://www.wahiga.com/News/#{@article.friendly_url}"
+			}
 		end
 	end
 
