@@ -102,6 +102,7 @@ class ArticlesSecuredController < ApplicationController
 		print "DEBUG #{params} - #{article_params_create_by_service}"
 		@article = Article.new(article_params_create_by_service)
 		@article.status = "Draft"
+		@article.friendly_url = @article.friendly_url.gsub("_", "-")
 		user = User.find(session[:user_id])
 		@article.created_by_id = user.id
 		username = user.name
@@ -140,15 +141,13 @@ class ArticlesSecuredController < ApplicationController
 	def update_article_service
 		print "DEBUG - #{article_params_update_by_service}"
 		@article = Article.find(article_params_update_by_service[:id])
-		if @article.friendly_url != ""
-			@article.friendly_url = @article.friendly_url.gsub("_", "-")
-		end
+		friendlyurl = @article.friendly_url.gsub("_", "-")
 		user = User.find(session[:user_id])
 		username = user.name
 		if (user.last_name != nil)
 			username += " " + user.last_name
 		end
-		@article.update(last_updated_by_name: username, last_updated_by_id: user.id)
+		@article.update(last_updated_by_name: username, last_updated_by_id: user.id, friendly_url: friendlyurl)
 
 		historic = Historic.new
 		historic.entity = "article"
