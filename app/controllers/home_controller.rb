@@ -13,7 +13,7 @@ class HomeController < ApplicationController
 		end
 		@popular = Article.get10MostPopularArticles(nil)
 
-		set_meta_tags title: "Walkthrough, Hints, News & Reviews for Gamers",
+		set_meta_tags title: "Notícias, Dicas, Novidades Para Jogadores",
 					site: 'Wahiga',
 					description: "Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.",
 					reverse: true,
@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 					application_name: "Wahiga",
 					author: "Wahiga"
 		set_meta_tags og: {
-		  title:    'Walkthrough, Hints, News & Reviews for Gamers',
+		  title:    'Notícias, Dicas, Novidades Para Jogadores',
 		  type:     'website',
 		  description: 'Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.',
 		  url:      'https://www.wahiga.com',
