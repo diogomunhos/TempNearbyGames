@@ -390,7 +390,7 @@ class ArticlesSecuredController < ApplicationController
 		profile = Profile.find(user.profile_id)
 		article = Article.where(id: params[:articleid]).includes(:documents)
 		@imageUrl = ""
-		if ArticleDocument.find_by_article_id(params[:articleid]).size() > 0
+		if ArticleDocument.find_by_article_id(params[:articleid]).count > 0
 			article[0].article_documents.each do |image|
 				if image.document_type === "Header"
 					@imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
