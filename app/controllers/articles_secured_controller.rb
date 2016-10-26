@@ -400,7 +400,7 @@ class ArticlesSecuredController < ApplicationController
 				end
 			end
 			if @imageUrl === ""
-				article.article_documents.each do |image|
+				article[0].article_documents.each do |image|
 					if image.document_type === "Body"
 						imageUrl = "images/show_image/#{image.document.id}/#{image.document.file_name}"
 						break
