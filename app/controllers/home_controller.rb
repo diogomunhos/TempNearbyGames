@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
 	def home
 		@slider = Article.getLast4ArticlesSlider		
-		@articles = Article.getLast10Articles(@slider)
+		@articles = Article.getLast5Articles(@slider)
 		@advertising1 = Advertising.getDefaultAdvertising;
 		if @advertising1 === nil
 			@advertising1 = Advertising.getDefaultAdvertising

@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
 							 :format => { without: /\s/, :message => "Friendly URL dont permit white spaces" }
 
 	scope :getLast10Articles, -> (slider = nil) { where.not(id: slider).where(status: "Published").order('created_at desc').limit(10).includes(:documents) }	
+	scope :getLast5Articles, -> (slider = nil) { where.not(id: slider).where(status: "Published").order('created_at desc').limit(5).includes(:documents) }	
 	scope :getLast4ArticlesSlider, -> { where(is_highlight: true).where(status: "Published").order('created_at desc').limit(4).includes(:documents) }
 	scope :getArticleWithDocumentsById, -> (article_id = nil) { where(id: article_id).limit(1).includes(:documents) }
 	scope :getArticlePaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order('updated_at DESC') }
