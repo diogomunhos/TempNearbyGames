@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   get '/sitemap.xml', to: redirect("https://wahiga.s3-sa-east-1.amazonaws.com/sitemaps/sitemap.xml.gz", status: 301)
 
-  get "/home" => "home#default"
+  get '/Sitemap.xml', to: redirect("https://wahiga.s3-sa-east-1.amazonaws.com/sitemaps/sitemap.xml.gz", status: 301)
+
+  get "/home" => "home#default", :status => 301
+
+  get "/Robots.txt", to: redirect("https://www.wahiga.com/robots.txt", status: 301)
 
   get '/images/show_image/:id' => "home#show_image"
 
