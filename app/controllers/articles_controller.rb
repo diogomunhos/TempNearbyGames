@@ -87,8 +87,7 @@ class ArticlesController < ApplicationController
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
 			set_meta_tags alternate: {
-				"pt-br" => "https://www.wahiga.com/News/#{@article.friendly_url}",
-				"pt-pt" => "https://www.wahiga.com/News/#{@article.friendly_url}"
+				"pt-br" => "https://www.wahiga.com/News/#{@article.friendly_url}"
 			}
 		end
 	end
@@ -96,9 +95,11 @@ class ArticlesController < ApplicationController
 	def all_articles
 		@popular = Article.get10MostPopularArticles(nil)
 		title = "Todos os artigos"
+		alternate = "https://www.wahiga.com/all-articles"
 		if params["author_id"] != nil
 			@articles = Article.getArticlesByAuthor(params["author_id"])
 			title = "Todos os artigos | " + params["author_name"].gsub('_', ' ')
+			alternate = "https://www.wahiga.com/all-articles/#{params['author_name']}/#{params['author_id']}"
 		else
 			@articles = Article.where("status = ? ", "Published").order("created_at DESC")
 		end
@@ -106,12 +107,14 @@ class ArticlesController < ApplicationController
 		set_meta_tags title: title,
 				site: 'Wahiga',
 				reverse: true,
-				application_name: "Wahiga"
+				application_name: "Wahiga",
+				description: "#{title}"
 		set_meta_tags og: {
 		  title:    title,
 		  type:     'website',
 		  site_name: "Wahiga",
-		  locale: 'pt_BR'
+		  locale: 'pt_BR',
+		  description: "#{title}"
 		}
 		set_meta_tags twitter: {
 		  card: "summary",
@@ -124,6 +127,9 @@ class ArticlesController < ApplicationController
 		}
 		set_meta_tags fb:{
 			profile_id: "http://www.facebook.com/Wahiga_Official"
+		}
+		set_meta_tags alternate: {
+			"pt-br" => "#{alternate}"
 		}
 
 	end
@@ -163,6 +169,9 @@ class ArticlesController < ApplicationController
 		  card: "summary",
 		  site: "@wahiga_official",
 		  creator: "@wahiga_official"
+		}
+		set_meta_tags alternate: {
+			"pt-br" => "https://www.wahiga.com/platform/#{@platform}"
 		}
 		@articles = Article.getArticleByPlatform(@platform)
 	end

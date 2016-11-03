@@ -112,9 +112,6 @@ class ArticlesSecuredController < ApplicationController
 		@article.created_by_name = username
 		@article.last_updated_by_name = username
 		@article.last_updated_by_id = user.id
-		if @article.friendly_url != ""
-			@article.friendly_url = @article.friendly_url.gsub("_", "-")
-		end
 	
 		@result = Array.new
 		hashResult = Hash.new
