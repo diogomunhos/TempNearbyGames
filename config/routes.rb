@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  constraints(:host => /wahiga.com/) do
-    root :to => redirect("https://www.wahiga.com")
-    match '/*path', :to => redirect {|params| "http://www.wahiga.com/#{params[:path]}"}
-  end
   resources :companies, defaults: { format: 'json' }
   resources :games, defaults: { format: 'json' }
   resources :game_companies
