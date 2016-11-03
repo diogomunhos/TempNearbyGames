@@ -3,7 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper, :check_has_to_change_password, :create_meta_tags_helper
+  before_filter :add_www_subdomain
 
+  private
+  def add_www_subdomain
+    unless /^www/.match(request.host)
+      redirect_to("#{request.protocol}x.com#{request.request_uri}", :status => 301)
+    end
+  end
 
   def current_user
     @currentUser ||= User.find(session[:user_id]) if session[:user_id]
