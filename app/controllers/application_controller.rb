@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
   def add_www_subdomain
     unless /^www/.match(request.host)
-      redirect_to("#{request.original_url}", :status => 301)
+      redirect_to("https://www.wahiga.com#{request.original_fullpath}", :status => 301)
     end
   end
 
