@@ -380,6 +380,7 @@ class ArticlesSecuredController < ApplicationController
 
 	def new
 		@article = Article.new 
+		@games = Game.all.order("name")
 	end
 
 	def show

@@ -1,0 +1,36 @@
+<div class="modal fade" id="select-game-modal" role="dialog" tabindex="-1" aria-labelledby="select-game-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Choose a game</h4>
+            </div>
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @games.each do |g| %>
+                            <tr>
+                                <td><a class="btn-link" href="" ng-click="selectGame('<%= g.id %>', '<%= g.name %>', '<%= g.platform %>')" data-dismiss="modal"><%= g.name %></a></td>
+                            </tr>
+                        <% end %>    
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>

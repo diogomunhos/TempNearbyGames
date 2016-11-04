@@ -402,6 +402,12 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       value: plat,
       errorCode: ''
     },
+    game: {
+      id: (typeof document.getElementById('hidden_article_game_id') != "undefined" && document.getElementById('hidden_article_game_id') != null) ? document.getElementById('hidden_article_game_id').value : '',
+      name: (typeof document.getElementById('hidden_article_game_name') != "undefined" && document.getElementById('hidden_article_game_name') != null) ? document.getElementById('hidden_article_game_name').value : '',
+      errorCode: ''
+    },
+    is_movie: (typeof document.getElementById('hidden_article_game_id') != "undefined" && document.getElementById('hidden_article_game_id') != null) ? false : true,
     tags: {
       value: (typeof document.getElementById('hidden_article_tags') != "undefined" && document.getElementById('hidden_article_tags') != null) ? document.getElementById('hidden_article_tags').value : '',
       errorCode: ''
@@ -437,6 +443,45 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
             break;
         default:   
     }
+  }
+
+  $scope.onChangeTitle = function(title){
+    title = title.toLowerCase();
+    $scope.article.friendly_url.value = removerAcentos(title);
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(" ","-");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("_","-");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("$","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("&","");
+  }
+
+  String.prototype.replaceAll = function(de, para){
+    var str = this;
+    var pos = str.indexOf(de);
+    while (pos > -1){
+      str = str.replace(de, para);
+      pos = str.indexOf(de);
+    }
+    return (str);
+  }
+
+  function removerAcentos( newStringComAcento ) {
+    var string = newStringComAcento;
+    var mapaAcentosHex  = {
+      a : /[\xE0-\xE6]/g,
+      e : /[\xE8-\xEB]/g,
+      i : /[\xEC-\xEF]/g,
+      o : /[\xF2-\xF6]/g,
+      u : /[\xF9-\xFC]/g,
+      c : /\xE7/g,
+      n : /\xF1/g
+    };
+
+    for ( var letra in mapaAcentosHex ) {
+      var expressaoRegular = mapaAcentosHex[letra];
+      string = string.replace( expressaoRegular, letra );
+    }
+
+    return string;
   }
 
   $scope.getErrorByCode = function(code, field){
@@ -616,6 +661,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         friendly_url: $scope.article.friendly_url.value,
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
+        game_id: ($scope.article.is_movie === true) ? '' : $scope.article.game.id,
         tags: document.getElementById('article_tags').value,
         platform: platforms
     }
@@ -671,25 +717,24 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       $scope.article.subtitle.errorCode = '1';
       valid = false;
     }
-    if($scope.article.friendly_url.value === ""){
-      $scope.article.friendly_url.errorCode = '1';
-      valid = false;
-    }
     if($scope.article.preview.value === ""){
       $scope.article.preview.errorCode = '1';
       valid = false;
     }
-    if($scope.article.platforms.value === ""){
-      $scope.article.platforms.errorCode = '1';
-      valid = false;
+    if($scope.article.is_movie === true){
+      if($scope.article.platforms.value === ""){
+        $scope.article.platforms.errorCode = '1';
+        valid = false;
+      }  
+    }else{
+      if($scope.article.game.id === ""){
+        valid = false;
+      } 
     }
+    
     if(document.getElementById('article_tags').value === ""){
       $scope.article.tags.errorCode = '1';
       valid = false; 
-    }
-    if(!friendly_url_pattern.test($scope.article.friendly_url.value)){
-      $scope.article.friendly_url.errorCode = '2';
-      valid = false;
     }
     
 
@@ -763,6 +808,13 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     }else{
       $scope.article.files.splice(filePosition, 1);
     }
+  }
+
+  $scope.selectGame = function(id, name, platform){
+    console.log("ID: " + id + ' NAME: ' + name + ' PLATFORM: ' + platform); 
+    $scope.article.game.id = id;
+    $scope.article.game.name = name;
+    $scope.article.platforms.value = platform;
   }
 
   
