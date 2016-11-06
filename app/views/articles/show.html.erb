@@ -84,7 +84,7 @@
 								<ul>
 									<% @randomArticles.each do |articles| %>
 									<li>
-										<a href="<% if a.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
+										<a href="<% if articles.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
 											<% articles.article_documents.each do |image| %>
 											<% if image.document_type === "Thumb" %>
 											<img src="/images/show_image/<%= image.document.id %>" alt="" title="" />
