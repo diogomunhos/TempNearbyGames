@@ -21,7 +21,11 @@ articles = Article.where("status = ? AND article_type = ?", "Published", "News")
 
 SitemapGenerator::Sitemap.create do
   articles.each do |a|
-    add "News/#{a.friendly_url}", lastmod: a.updated_at, changefreq: "daily", priority: 1.0
+    final_url = "News/#{a.friendly_url}"
+    if a.game != nil
+      final_url = "#{a.game.friendly_url}/news/#{a.friendly_url}"
+    end
+    add final_url, lastmod: a.updated_at, changefreq: "daily", priority: 1.0
   end 
   Document.all.each do |doc|
     add "images/show_image/#{doc.id}/#{doc.file_name}", lastmod: doc.updated_at, changefreq: "daily", priority: 1.0
