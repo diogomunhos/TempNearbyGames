@@ -12,6 +12,7 @@
         <div class="panel">
             <input type="hidden" id="hidden_game_id" value="<%= @game.id %>"/>
             <input type="hidden" id="hidden_game_name" value="<%= @game.name %>"/>
+            <input type="hidden" id="hidden_game_url" value="<%= @game.friendly_url %>"/>
             <input type="hidden" id="hidden_game_release_date" value="<%= @game.release_date %>"/>
             <input type="hidden" id="hidden_game_platform" value="<%= @game.platform %>"/>
             <input type="hidden" id="hidden_game_wahiga_rating" value="<%= @game.wahiga_rating %>"/>
@@ -55,12 +56,20 @@
                                             <div class="row">
                                                 <label class="col-lg-3 control-label" for="game_name">Name:*</label>
                                                 <div class="col-lg-5">
-                                                    <input type="text" class="form-control" placeholder="Name" name="game[name]" ng-model="game.name.value" id="game_name">
+                                                    <input type="text" class="form-control" ng-change="onChangeName(game.name.value)" placeholder="Name" name="game[name]" ng-model="game.name.value" id="game_name">
                                                 </div>
                                             </div>
                                             <div class="row" ng-show="game.name.errorCode != ''">
                                                 <div class="col-lg-8 col-lg-offset-3">
                                                     <p class="error_form_message">{{getErrorByCode(game.name.errorCode, "name")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="game_game_url">Game URL:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" required="" class="form-control" ng-disabled="true" ng-class="{error_input: game.game_url.errorCode != ''}" name="game[game_url]" id="game_game_url" ng-model="game.game_url.value">
                                                 </div>
                                             </div>
                                         </div>

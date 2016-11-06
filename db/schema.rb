@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104173243) do
+ActiveRecord::Schema.define(version: 20161106135258) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20161104173243) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "document_id"
+    t.string   "friendly_url"
   end
 
   create_table "historics", force: :cascade do |t|

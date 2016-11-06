@@ -403,11 +403,11 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       errorCode: ''
     },
     game: {
-      id: (typeof document.getElementById('hidden_article_game_id') != "undefined" && document.getElementById('hidden_article_game_id') != null) ? document.getElementById('hidden_article_game_id').value : '',
-      name: (typeof document.getElementById('hidden_article_game_name') != "undefined" && document.getElementById('hidden_article_game_name') != null) ? document.getElementById('hidden_article_game_name').value : '',
+      id: (typeof document.getElementById('hidden_game_id') != "undefined" && document.getElementById('hidden_game_id') != null) ? document.getElementById('hidden_game_id').value : '',
+      name: (typeof document.getElementById('hidden_game_name') != "undefined" && document.getElementById('hidden_game_name') != null) ? document.getElementById('hidden_game_name').value : '',
       errorCode: ''
     },
-    is_movie: (typeof document.getElementById('hidden_article_game_id') != "undefined" && document.getElementById('hidden_article_game_id') != null) ? false : true,
+    is_movie: (typeof document.getElementById('hidden_game_id') != "undefined" && document.getElementById('hidden_game_id') != null) ? false : true,
     tags: {
       value: (typeof document.getElementById('hidden_article_tags') != "undefined" && document.getElementById('hidden_article_tags') != null) ? document.getElementById('hidden_article_tags').value : '',
       errorCode: ''
@@ -452,6 +452,10 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("_","-");
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("$","");
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("&","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(":","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(";","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(",","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(".","");
   }
 
   String.prototype.replaceAll = function(de, para){
@@ -699,6 +703,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         friendly_url: $scope.article.friendly_url.value,
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
+        game_id: ($scope.article.is_movie === true) ? '' : $scope.article.game.id,
         body: $scope.article.body.value,
         tags: document.getElementById('article_tags').value,
         platform: platforms

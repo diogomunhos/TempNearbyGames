@@ -27,83 +27,6 @@ class GamesSecuredController < ApplicationController
 		
 	end
 
-	/#
-	def upload_files_service
-		request = params['file']
-		hashDocument = Hash.new
-		hashDocument[:file] = request['file']
-
-		document = Document.new(hashDocument)
-		@result = Array.new
-		hashResult = Hash.new
-		hashResult[:isSuccessful] = true
-		hashResult[:documentId] = ""
-		hashResult[:errorMessage] = ""
-		if(document.save)
-			hashResult[:documentId] = document.id
-			article_document = ArticleDocument.create(article_id: request['articleId'], document_id: document.id, document_type: request['type'])			
-		else
-			hashResult[:isSuccessful] = false
-			if document.errors.full_messages.any?
-				document.errors.full_messages.each do |error|
-					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
-				end
-			end
-		end
-
-		@result.push(hashResult)
-		respond_to do |format|
-		    format.json { render json: @result }
-		end
-	end
-	
-
-	def delete_file_service
-		@result = Array.new
-		hashResult = Hash.new
-		hashResult[:isSuccessful] = true
-		hashResult[:errorMessage] = ""
-		if(!Document.destroy(params['id']))
-			hashResult[:isSuccessful] = false
-			if document.errors.full_messages.any?
-				document.errors.full_messages.each do |error|
-					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
-				end
-			end
-		end
-
-		@result.push(hashResult)
-		respond_to do |format|
-		    format.json { render json: @result }
-		end
-	end
-	#/
-
-	/#def create_company_service
-		@company = Company.new(company_params_create_by_service)
-	
-		@result = Array.new
-		hashResult = Hash.new
-		hashResult[:isSuccessful] = true
-		hashResult[:errorMessage] = ""
-		hashResult[:gameid] = ""
-		if !@game.save
-			hashResult[:isSuccessful] = false
-			if @game.errors.full_messages.any?
-				@game.errors.full_messages.each do |error|
-					hashResult[:errorMessage] = if hashResult[:errorMessage] != "" then hashResult[:errorMessage] + " - " + error else error end 
-				end
-			end
-		else
-			hashResult[:gameid] = @game.id
-		end
-		@result.push(hashResult)
-
-		respond_to do |format|
-		    format.json { render json: @result }
-		end
-	end#/
-
 	def create_game_companies_service
 		@gameCompaniesService = Game.new(game_companies_params)
 
@@ -453,17 +376,17 @@ class GamesSecuredController < ApplicationController
 
 	private
 	def game_params
-		params.require(:game).permit(:id, :name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre)
+		params.require(:game).permit(:id, :name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url)
 	end
 
 	private
 	def game_params_create_by_service
-		params.require(:game).permit(:name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre)
+		params.require(:game).permit(:name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url)
 	end
 
 	private
 	def game_params_update_by_service
-		params.require(:game).permit(:id, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre)
+		params.require(:game).permit(:id, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url)
 	end
 
 	private

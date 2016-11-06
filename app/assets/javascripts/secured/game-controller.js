@@ -195,6 +195,10 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
       value: (typeof document.getElementById('hidden_game_name') != "undefined" && document.getElementById('hidden_game_name') != null) ? document.getElementById('hidden_game_name').value : '',
       errorCode: ''
     },
+    game_url: {
+      value: (typeof document.getElementById('hidden_game_url') != "undefined" && document.getElementById('hidden_game_url') != null) ? document.getElementById('hidden_game_url').value : '',
+      errorCode: ''
+    },
     release_date: {
       value: (typeof document.getElementById('hidden_game_release_date') != "undefined" && document.getElementById('hidden_game_release_date') != null) ? document.getElementById('hidden_game_release_date').value : '',
       errorCode: ''
@@ -220,6 +224,49 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
       errorCode: ''
     },
     file: null
+  }
+
+  $scope.onChangeName = function(name){
+    name = name.toLowerCase();
+    $scope.game.game_url.value = removerAcentos(name);
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(" ","-");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("_","-");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("$","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("&","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(":","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(";","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(",","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(".","");
+  }
+
+  String.prototype.replaceAll = function(de, para){
+    var str = this;
+    var pos = str.indexOf(de);
+    while (pos > -1){
+      str = str.replace(de, para);
+      pos = str.indexOf(de);
+    }
+    return (str);
+  }
+
+  function removerAcentos( newStringComAcento ) {
+    var string = newStringComAcento;
+    var mapaAcentosHex  = {
+      a : /[\xE0-\xE6]/g,
+      e : /[\xE8-\xEB]/g,
+      i : /[\xEC-\xEF]/g,
+      o : /[\xF2-\xF6]/g,
+      u : /[\xF9-\xFC]/g,
+      c : /\xE7/g,
+      n : /\xF1/g
+    };
+
+    for ( var letra in mapaAcentosHex ) {
+      var expressaoRegular = mapaAcentosHex[letra];
+      string = string.replace( expressaoRegular, letra );
+    }
+
+    return string;
   }
 
   $scope.gameCompanies = [];
@@ -409,6 +456,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
         wahiga_rating: $scope.game.wahiga_rating.value,
         user_rating: $scope.game.user_rating.value,
         description: $scope.game.description.value,
+        friendly_url: $scope.game.game_url.value,
         genre: genres,
         platform: platforms
     }
@@ -446,6 +494,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
         release_date: $scope.game.release_date.value,
         wahiga_rating: $scope.game.wahiga_rating.value,
         user_rating: $scope.game.user_rating.value,
+        friendly_url: $scope.game.game_url.value,
         description: $scope.game.description.value,
         genre: genres,
         platform: platforms

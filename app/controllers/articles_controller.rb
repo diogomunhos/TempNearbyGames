@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
+
 		if @article === nil
 			redirect_to '/404'
 		else

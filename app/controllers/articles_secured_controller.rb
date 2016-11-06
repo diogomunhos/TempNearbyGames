@@ -138,13 +138,12 @@ class ArticlesSecuredController < ApplicationController
 	def update_article_service
 		print "DEBUG - #{article_params_update_by_service}"
 		@article = Article.find(article_params_update_by_service[:id])
-		friendlyurl = @article.friendly_url.gsub("_", "-")
 		user = User.find(session[:user_id])
 		username = user.name
 		if (user.last_name != nil)
 			username += " " + user.last_name
 		end
-		@article.update(last_updated_by_name: username, last_updated_by_id: user.id, friendly_url: friendlyurl)
+		@article.update(last_updated_by_name: username, last_updated_by_id: user.id)
 
 		historic = Historic.new
 		historic.entity = "article"
@@ -269,6 +268,7 @@ class ArticlesSecuredController < ApplicationController
 	def edit
 		article = Article.getArticleWithDocumentsById(params[:articleid])
 		@article = article[0]
+		@games = Game.all.order("name")
 		fileString = "["
 		count = 0
 		article[0].article_documents.each do |doc|
@@ -478,17 +478,17 @@ class ArticlesSecuredController < ApplicationController
 
 	private
 	def article_params
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :body, :tags)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :body, :tags, :game_id)
 	end
 
 	private
 	def article_params_create_by_service
-		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platform)
+		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platform, :game_id)
 	end
 
 	private
 	def article_params_update_by_service
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platform)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platform, :game_id)
 	end
 
 	private

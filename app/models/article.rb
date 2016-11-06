@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
 	has_many :article_documents, foreign_key: :article_id, dependent: :destroy
 	has_many :documents, through: :article_documents
+	belongs_to :game
 	#relation with user on created_by_id
 
 	validates :friendly_url, :uniqueness => {:case_sensitive => false, :message => "Friendly URL is already registered by another article, please choose another"},

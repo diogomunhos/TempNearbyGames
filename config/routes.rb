@@ -38,6 +38,10 @@ Rails.application.routes.draw do
 
   get "/News/:friendly_url" => "articles#show"
 
+  get "/news/:friendly_url" => "articles#show"
+
+  get "/:game_or_movie/news/:friendly_url" => "articles#show"
+
   get '/all-articles/:author_name/:author_id' => "articles#all_articles"
 
   get '/all-articles' => "articles#all_articles"
