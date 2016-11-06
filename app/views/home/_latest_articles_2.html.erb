@@ -12,10 +12,10 @@
 							<a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
 						</span>
 					</span>
-					<h3><a href="/<%= s.article_type %>/<%= s.friendly_url %>"><%= truncate(s.title, length: 70) %></a></h3>
+					<h3><a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>"><%= truncate(s.title, length: 70) %></a></h3>
 					<p><%= truncate(s.preview, length: 77) %></p>
 					<div>
-						<a href="/<%= s.article_type %>/<%= s.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Veja completo</a>
+						<a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Veja completo</a>
 					</div>
 					<!-- END .item -->
 				</div>
