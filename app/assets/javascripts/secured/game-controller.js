@@ -237,6 +237,12 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(";","");
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(",","");
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(".","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("'","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("´","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("`","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("*","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("(","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(")","");
   }
 
   String.prototype.replaceAll = function(de, para){
