@@ -21,7 +21,7 @@ articles = Article.where("status = ? AND article_type = ?", "Published", "News")
 
 SitemapGenerator::Sitemap.create do
   articles.each do |a|
-    final_url = "News/#{a.friendly_url}"
+    final_url = "news/#{a.friendly_url}"
     if a.game != nil
       final_url = "#{a.game.friendly_url}/news/#{a.friendly_url}"
     end
