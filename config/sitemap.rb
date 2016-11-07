@@ -25,10 +25,19 @@ SitemapGenerator::Sitemap.create do
     if a.game != nil
       final_url = "#{a.game.friendly_url}/news/#{a.friendly_url}"
     end
-    add final_url, lastmod: a.updated_at, changefreq: "daily", priority: 1.0
-  end 
-  Document.all.each do |doc|
-    add "images/show_image/#{doc.id}/#{doc.file_name}", lastmod: doc.updated_at, changefreq: "daily", priority: 1.0
+    images_array = Array.new
+    if a.article_documents != nil
+      a.article_documents.each do |doc|
+        imageHash = Hash.new
+        imageHash[:loc] = "https://www.wahiga.com/images/show_image/#{doc.id}/#{doc.file_name}"
+        imageHash[:title] = "Image"
+        images_array.push(imageHash)
+      end
+      add final_url, :images => images_array
+    else
+      add final_url
+    end
+    
   end 
   # here is where you add all the pages you'd like to sitemap
   # add posts_path, priority: 1, changefreq:'always'
