@@ -57,6 +57,10 @@ class ArticlesController < ApplicationController
 				end
 			end
 
+			finalUrl = "https://www.wahiga.com/news/#{@article.friendly_url}"
+			if @article.game != nil
+				finalUrl = "https://www.wahiga.com/#{@article.game.friendly_url}/news/#{@article.friendly_url}"
+			end
 			set_meta_tags title: "#{@article.title}",
 					site: 'Wahiga',
 					description: "#{@article.preview}",
@@ -68,7 +72,7 @@ class ArticlesController < ApplicationController
 			  title:    "#{@article.title}",
 			  type:     'website',
 			  description: "#{@article.preview}",
-			  url:      "https://www.wahiga.com/News/#{@article.friendly_url}",
+			  url:      "#{finalUrl}",
 			  image:    "#{imageUrl}",
 			  site_name: "Wahiga",
 			  locale: 'pt_BR'
@@ -88,7 +92,7 @@ class ArticlesController < ApplicationController
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
 			set_meta_tags alternate: {
-				"pt-br" => "https://www.wahiga.com/News/#{@article.friendly_url}"
+				"pt-br" => "#{finalUrl}"
 			}
 		end
 	end
