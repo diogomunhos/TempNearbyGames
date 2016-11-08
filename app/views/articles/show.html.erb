@@ -12,7 +12,25 @@
 	</div>
 	<section id="content">
 		<%= render '/home/header' %>
-		<div id="main-box">
+		<div id="main-box" itemscope itemtype="http://schema.org/Article">
+			<meta itemscope itemprop="mainEntityOfPage"  itemType="http://schema.org/WebPage" itemid="https://google.com/article"/>
+	  		<meta itemprop="inLanguage" content="pt-br"/>
+	  		<meta itemprop="datePublished" content="<%= @article.created_at %>"/>
+	  		<meta itemprop="dateModified" content="<%= @article.updated_at %>"/>
+	  		<div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+	    		<div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+	      			<meta itemprop="url" content="https://www.wahiga.com/assets/images/wahiga_logo_2.png"/>
+	      			<meta itemprop="width" content="182"/>
+	      			<meta itemprop="height" content="68"/>
+	    		</div>
+	    		<meta itemprop="name" content="Wahiga">
+	  		</div>
+	  		<% @article.article_documents.each do |image| %>
+			<% if image.document_type === "Header" %>
+				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
+			<% end %>
+			<% end %>
+	  		
 			<div id="main"><!-- Right Bar -->
 				<div class="content-padding">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -26,14 +44,14 @@
 						(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
 				</div>
-				<h1 style="padding: 0px 28px; margin-bottom: 20px;"><%= @article.title %></h1>
+				<h1  itemprop="headline" style="padding: 0px 28px; margin-bottom: 20px;"><%= @article.title %></h1>
 				<div class="content-padding">
 					<div class="article-full">
 
 						<div class="article-main-photo">
 							<% @article.article_documents.each do |image| %>
 							<% if image.document_type === "Header" %>
-							<img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" />
+							<img itemprop="image" src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" />
 							<% end %>
 							<% end %>	
 						</div>
@@ -54,7 +72,7 @@
 					
 					<!-- BEGIN .article-footer -->
 					<div class="article-footer">
-						<div class="about-author">
+						<div class="about-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
 							
 							<h2><span>Sobre o autor</span></h2>
 
@@ -66,11 +84,11 @@
 									<div class="about-head">
 										<a href="" class="comment-user"><b></b></a>
 									</div>
-									<i><%= @author[:full_name] %></i>
+									<i itemprop="name"><%= @author[:full_name] %></i>
 								<a href="/all-articles/<%= @author[:full_name].gsub(' ', '_') %>/<%= @author[:id] %>"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
 								</div>
 								<div class="clear-float">
-									<p><%= truncate(@author[:about], length: 110) %></p>
+									<p itemprop="description"><%= truncate(@author[:about], length: 110) %></p>
 								</div>
 							</div>
 
