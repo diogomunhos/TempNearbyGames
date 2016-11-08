@@ -11,11 +11,9 @@ Disallow: /private/*
 
 User-agent: bingbot
 Disallow: /private/*
-Crawl-delay: 1
 
 User-agent: msnbot
 Disallow: /private/*
-Crawl-delay: 1
 
 User-agent: Facebot
 Disallow: /private/*
@@ -31,16 +29,13 @@ Disallow: /private/*
 
 User-agent: Slurp
 Disallow: /private/*
-Crawl-delay: 2
 
 User-agent: FeedBurner
 Disallow: /private/*
-Crawl-delay: 2
 
 # Blekko
 User-Agent: ScoutJet
 Disallow: /private/*
-Crawl-delay: 2
 
 User-Agent: Yandex
 Disallow: /private/*
@@ -62,6 +57,6 @@ User-agent: Swiftbot
 Disallow: /private/*
 
 User-Agent: *
-Disallow: /
+Disallow: /private/*
 
 SITEMAP: https://wahiga.s3-sa-east-1.amazonaws.com/sitemaps/sitemap.xml.gz
