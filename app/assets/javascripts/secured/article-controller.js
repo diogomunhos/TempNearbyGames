@@ -553,9 +553,25 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     angular.forEach($scope.article.files, function(f){
       console.log('ID ' + f.id);
       console.log('TYPE ' + f.type);
+      console.log(f);
+      f.name = f.name.toLowerCase();
+      f.name = removerAcentos(f.name);
+      f.name = f.name.replaceAll(" ","-");
+      f.name = f.name.replaceAll("_","-");
+      f.name = f.name.replaceAll("$","");
+      f.name = f.name.replaceAll("&","");
+      f.name = f.name.replaceAll(":","");
+      f.name = f.name.replaceAll(";","");
+      f.name = f.name.replaceAll(",","");
+      f.name = f.name.replaceAll("'","");
+      f.name = f.name.replaceAll("´","");
+      f.name = f.name.replaceAll("`","");
+      f.name = f.name.replaceAll("*","");
+      f.name = f.name.replaceAll("(","");
+      f.name = f.name.replaceAll(")","");
       if(f.id != '' && f.type === "Body"){
         html+= '<div class="col-lg-4" style="margin-bottom: 20px;">';
-        html+= '<div style="background-image: url(\'/images/'+f.id+'\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage('+f.id+');"><div id="inside-'+f.id+'"></div></div>';
+        html+= '<div style="background-image: url(\'/images/'+f.id+'/'+f.name+'\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage('+f.id+',\''+f.name+'\');"><div id="inside-'+f.id+'"></div></div>';
         html+= '</div>';
       }
     })
