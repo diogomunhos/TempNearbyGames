@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get "/Robots.txt", to: redirect("https://www.wahiga.com/robots.txt", status: 301)
 
+  get '/images/:id' => "home#show_image"  
+
   get '/images/:id/:image_name' => "home#show_image"
 
   match "/404" => "errors#error404", via: [:get, :post, :patch, :delete]
