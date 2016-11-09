@@ -29,7 +29,11 @@ SitemapGenerator::Sitemap.create do
     if a.article_documents != nil
       a.article_documents.each do |doc|
         imageHash = Hash.new
-        imageHash[:loc] = "https://www.wahiga.com/images/#{doc.document.id}/#{doc.document.file_name}"
+        if doc.document.id < 1142 # posicao das imagens que estao sem nome do site
+          imageHash[:loc] = "https://www.wahiga.com/images/#{doc.document.id}"
+        else
+          imageHash[:loc] = "https://www.wahiga.com/images/#{doc.document.id}/#{doc.document.file_name}"
+        end
         imageHash[:title] = "Image"
         images_array.push(imageHash)
       end
