@@ -8,7 +8,7 @@
 				<span class="article-image">
 					<% a.article_documents.each do |image| %>
 						<% if image.document_type === "Thumb" %>
-							<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
+							<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img src="/images/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
 						<% end %>
 					<% end %>
 				</span>

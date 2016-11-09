@@ -27,7 +27,7 @@
 	  		</div>
 	  		<% @article.article_documents.each do |image| %>
 			<% if image.document_type === "Header" %>
-				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
+				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
 			<% end %>
 			<% end %>
 	  		
@@ -51,7 +51,7 @@
 						<div class="article-main-photo">
 							<% @article.article_documents.each do |image| %>
 							<% if image.document_type === "Header" %>
-							<img itemprop="image" src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" />
+							<img itemprop="image" src="/images/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" />
 							<% end %>
 							<% end %>	
 						</div>
@@ -105,7 +105,7 @@
 										<a href="<% if articles.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
 											<% articles.article_documents.each do |image| %>
 											<% if image.document_type === "Thumb" %>
-											<img src="/images/show_image/<%= image.document.id %>" alt="" title="" />
+											<img src="/images/<%= image.document.id %>" alt="" title="" />
 											<% end %>
 											<% end %>
 											<strong><%= truncate(articles.title, length: 33) %></strong>

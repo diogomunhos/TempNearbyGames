@@ -9,7 +9,7 @@
 					<span class="article-image-out">
 						<!-- <span class="image-comments"><span>21</span></span> -->
 						<span class="article-image">
-							<a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>"><img src="/images/show_image/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
+							<a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>"><img src="/images/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
 						</span>
 					</span>
 					<h3><a href="<% if s.game != nil %>/<%= s.game.friendly_url %><% end %>/<%= s.article_type.downcase %>/<%= s.friendly_url %>"><%= truncate(s.title, length: 70) %></a></h3>

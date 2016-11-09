@@ -198,7 +198,7 @@
                                 <tbody>
                                     <% @article.article_documents.each do |doc| %>
                                     <tr>
-                                        <td style="width: 110px;"><a href="/images/show_image/<%= doc.document_id %>" target="_blank" ><div style="background-image: url('/images/show_image/<%= doc.document_id %>'); width: 100px; height: 100px; background-size: cover;"> </div></a></td>
+                                        <td style="width: 110px;"><a href="/images/<%= doc.document_id %>" target="_blank" ><div style="background-image: url('/images/<%= doc.document_id %>'); width: 100px; height: 100px; background-size: cover;"> </div></a></td>
                                         <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document.file_name %></td>
                                         <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document_type %></td>
                                     </tr>

@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
 		    if(user.documents.length > 0)
 		        user.user_documents.each do |doc|
 			        if(doc.document_type === "profile_image")
-			            @author[:profile_image_url] = "/images/show_image/#{doc.document_id}/#{doc.document.file_name}"
+			            @author[:profile_image_url] = "/images/#{doc.document_id}/#{doc.document.file_name}"
 			            break
 			        end
 		        end
@@ -44,14 +44,14 @@ class ArticlesController < ApplicationController
 			imageUrl = ""
 			@article.article_documents.each do |image|
 				if image.document_type === "Header"
-					imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}/#{image.document.file_name}"
+					imageUrl = "https://www.wahiga.com/images/#{image.document.id}/#{image.document.file_name}"
 					break
 				end
 			end
 			if imageUrl === ""
 				@article.article_documents.each do |image|
 					if image.document_type === "Body"
-						imageUrl = "https://www.wahiga.com/images/show_image/#{image.document.id}/#{image.document.file_name}"
+						imageUrl = "https://www.wahiga.com/images/#{image.document.id}/#{image.document.file_name}"
 						break
 					end
 				end

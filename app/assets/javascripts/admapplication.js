@@ -40,13 +40,13 @@ function insertHTML(){
 	if(selectedImages.length > 1){
 		carouselHtml += '<p> </p>';
 		for(var i=0; i < selectedImages.length; i++){
-			carouselHtml += '<a href="/images/show_image/'+selectedImages[i].id+'"><img src="/images/show_image/'+selectedImages[i].id+'" alt="" title="" /></a>'
+			carouselHtml += '<a href="/images/'+selectedImages[i].id+'"><img src="/images/'+selectedImages[i].id+'" alt="" title="" /></a>'
 			carouselHtml += '<p> </p>'
 		}
 	}
 	var imageHtml = '<p> </p>';
 	if(selectedImages.length === 1){
-		imageHtml += '<a href="/images/show_image/'+selectedImages[0].id+'"><img src="/images/show_image/'+selectedImages[0].id+'" alt="" title="" /></a>'
+		imageHtml += '<a href="/images/'+selectedImages[0].id+'"><img src="/images/'+selectedImages[0].id+'" alt="" title="" /></a>'
 		imageHtml += '<p> </p>'
 	}
 	if(selectedImages.length > 1){

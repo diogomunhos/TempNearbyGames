@@ -555,7 +555,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       console.log('TYPE ' + f.type);
       if(f.id != '' && f.type === "Body"){
         html+= '<div class="col-lg-4" style="margin-bottom: 20px;">';
-        html+= '<div style="background-image: url(\'/images/show_image/'+f.id+'\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage('+f.id+');"><div id="inside-'+f.id+'"></div></div>';
+        html+= '<div style="background-image: url(\'/images/'+f.id+'\'); height: 100px; width: 100%; background-size: cover; background-repeat: no-repeat; background-position: center;" onclick="selectImage('+f.id+');"><div id="inside-'+f.id+'"></div></div>';
         html+= '</div>';
       }
     })

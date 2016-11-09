@@ -236,7 +236,7 @@ class GamesSecuredController < ApplicationController
 
 		@game_image_url = ""
 	    if(@game.document_id)
-			@game_image_url = "/images/show_image/#{@game.document_id}"
+			@game_image_url = "/images/#{@game.document_id}"
 	    end	
 
 		#game = Game.getGameWithCompaniesById(params[:gameid])
@@ -328,7 +328,7 @@ class GamesSecuredController < ApplicationController
 
 		@game_image_url = ""
 	    if(@game.document_id)
-			@game_image_url = "/images/show_image/#{@game.document_id}"
+			@game_image_url = "/images/#{@game.document_id}"
 	    end
 		
 		@showEdit = if !check_access_helper("Game", "edit_record").nil? then true else false end
