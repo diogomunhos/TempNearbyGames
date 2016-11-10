@@ -94,6 +94,7 @@ class ArticlesController < ApplicationController
 			set_meta_tags alternate: {
 				"pt-br" => "#{finalUrl}"
 			}
+			set_meta_tags canonical: "#{finalUrl}"
 		end
 	end
 
