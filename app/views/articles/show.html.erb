@@ -17,19 +17,6 @@
 	  		<meta itemprop="inLanguage" content="pt-br"/>
 	  		<meta itemprop="datePublished" content="<%= @article.created_at %>"/>
 	  		<meta itemprop="dateModified" content="<%= @article.updated_at %>"/>
-	  		<div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-	    		<div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-	      			<meta itemprop="url" content="https://www.wahiga.com/assets/images/wahiga_logo_2.png"/>
-	      			<meta itemprop="width" content="182"/>
-	      			<meta itemprop="height" content="68"/>
-	    		</div>
-	    		<meta itemprop="name" content="Wahiga">
-	  		</div>
-	  		<% @article.article_documents.each do |image| %>
-			<% if image.document_type === "Header" %>
-				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
-			<% end %>
-			<% end %>
 	  		
 			<div id="main"><!-- Right Bar -->
 				<div class="content-padding">
@@ -63,7 +50,7 @@
 						
 						<div class="clear-float do-the-split"></div>
 
-						<div class="article-content">
+						<div class="article-content" itemprop="articleBody">
 							<%= raw @article.body %>
 						</div>
 					</div>
