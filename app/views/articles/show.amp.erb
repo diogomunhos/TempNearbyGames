@@ -1,0 +1,187 @@
+<div id="top-layer">
+	<section id="content">
+		<div id="main-box" >
+			<div id="main"><!-- Right Bar -->
+				
+				<h1 style="padding: 0px 28px; margin-bottom: 20px;"><%= @article.title %></h1>
+				<div class="content-padding">
+					<div class="article-full">
+
+						<div class="article-main-photo">
+							<% @article.article_documents.each do |image| %>
+							<% if image.document_type === "Header" %>
+							<amp-img src="/images/<%= image.document.id %>/<%= image.document.file_name %>" layout="responsive" width="633" height="300" />
+							<% end %>
+							<% end %>	
+						</div>
+						<div class="article-icons">
+							
+						</div>
+						
+						<div class="clear-float do-the-split"></div>
+
+						<div class="article-content" itemprop="articleBody">
+						 	<%= sanitize @article.body.gsub("alt=\"\" title=\"\"", "width=\"633\" height=\"300\" layout=\"responsive\""), scrubber: AmpScrubber.new %>
+						</div>
+					</div>
+					
+					<!-- <div class="clear-float do-the-split"></div> -->
+					
+					<!-- BEGIN .article-footer -->
+					<div class="article-footer">
+						<div class="about-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+							
+							<h2><span>Sobre o autor</span></h2>
+
+							<div class="inner">
+								<a href="" class="avatar avatar-large">
+									<amp-img src="<%= @author[:profile_image_url] %>" alt="" style="width: 90px; height: 90px;" class="author-image setborder" />
+								</a>
+								<div class="side">
+									<div class="about-head">
+										<a href="" class="comment-user"><b></b></a>
+									</div>
+									<i itemprop="name"><%= @author[:full_name] %></i>
+								<a href="/all-articles/<%= @author[:full_name].gsub(' ', '_') %>/<%= @author[:id] %>"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
+								</div>
+								<div class="clear-float">
+									<p itemprop="description"><%= truncate(@author[:about], length: 110) %></p>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="similar-posts">
+							
+							<h2><span>Outras notícias</span></h2>
+							
+							<div class="home-article right">
+								<ul>
+									<% @randomArticles.each do |articles| %>
+									<li>
+										<a href="<% if articles.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
+											<% articles.article_documents.each do |image| %>
+											<% if image.document_type === "Thumb" %>
+											<amp-img src="/images/<%= image.document.id %>" alt="" title="" />
+											<% end %>
+											<% end %>
+											<strong><%= truncate(articles.title, length: 33) %></strong>
+											<span class="a-txt"><%= truncate(articles.preview, length: 33) %></span>
+										</a>
+									</li>
+									<% end %>
+								</ul>
+								
+							</div>
+
+						</div>
+						<!-- END .article-footer -->
+					</div>
+
+					<!-- END .content-padding -->
+				</div>
+			</div>
+
+
+			<div class="clear-float"></div>
+
+		</div>
+	</section>
+</div>
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"WebSite",
+    "url":"http://br.ign.com",
+    "name":"IGN Brasil",
+    "description":"IGN Brasil é o maior site de games para Xbox, PS3, PS4, PC, Wii U, Nintendo 3DS, PS Vita, iPhone e Android, com reviews, notícias, previews e vídeos.",
+    "potentialAction":{ "@type":"SearchAction", "target":"http://br.ign.com/se/?q={search_term_string}", "query-input":"required name=search_term_string"}
+}
+</script>
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"Organization",
+    "url":"http://br.ign.com",
+    "name":"IGN Brasil",
+    "sameAs":[ "https://plus.google.com/u/0/b/110151646323684516543/110151646323684516543/about?pageId=110151646323684516543", "http://www.facebook.com/ignbrasil"],
+    "logo":"http://br.ign.com/s/ign/ign_logo_micro.png"
+}
+</script>
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+          {
+              "@type":"ListItem",
+              "position":1,
+              "item":{
+                  "@type":"WebPage",
+                  "url":"https://www.wahiga.com/all-articles",
+                  "name":"Notícias"
+              }
+          }
+          
+          // ,{
+          //     "@type":"ListItem",
+          //     "position":2,
+          //     "item":{
+          //         "@type":"WebPage",
+          //         "url":"http://br.ign.com/overwatch",
+          //         "name":"Overwatch"
+          //     }
+          // }
+          
+      ]
+    }
+  </script>
+<script type="application/ld+json">
+      {
+          "@context":"http://schema.org",
+          "@type": "Article",
+          "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://google.com/article"
+           },
+          "headline":"<%= @article.title %>",
+        	<% @article.article_documents.each do |image| %>
+				<% if image.document_type === "Header" %>
+					"image": {
+		            "@type": "ImageObject",
+		            "url": "https://www.wahiga.com/images/<%= image.document.id %>/<%= image.document.file_name %>",
+		            "width": 700,
+		            "height": 300
+		           },		
+				<% end %>
+			<% end %>	
+          
+          
+          "description":"<%= @article.preview %>",
+          "datePublished": "<%= @article.created_at %>",
+          "dateModified": "<%= @article.updated_at %>",
+          "inLanguage": "pt-br",
+          <% if @article.game != nil %>
+          "about": {"description": "", "@type": "Thing", "name": "<%= @article.game.name %>"},
+          <% end %>
+          "author": {
+              "@type": "Person",
+              "name": "<%= @author[:full_name] %>"
+              
+              ,"description":"<%= @author[:about] %>",
+              "jobTitle": "Redator",
+              "image": "<%= @author[:profile_image_url] %>"
+              
+          },
+          "publisher": {
+              "@type":"Organization",
+              "name": "Wahiga",
+              "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.wahiga.com/assets/images/wahiga_logo_2.png",
+                  "width": 200,
+                  "height": 60
+              }
+          }
+      }
+</script>
