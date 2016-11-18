@@ -46,7 +46,7 @@ function insertHTML(){
 	}
 	var imageHtml = '<p> </p>';
 	if(selectedImages.length === 1){
-		imageHtml += '<img src="/images/'+selectedImages[0].id+'/'+selectedImages[i].file_name+'" alt="" title="" />';
+		imageHtml += '<img src="/images/'+selectedImages[0].id+'/'+selectedImages[0].file_name+'" alt="" title="" />';
 		imageHtml += '<p> </p>';
 	}
 	if(selectedImages.length > 1){
