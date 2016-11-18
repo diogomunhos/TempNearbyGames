@@ -19,7 +19,7 @@
                     <tbody>
                         <% @games.each do |g| %>
                             <tr>
-                                <td><a class="btn-link" href="" ng-click="selectGame('<%= g.id %>', '<%= g.name %>', '<%= g.platform %>')" data-dismiss="modal"><%= g.name %></a></td>
+                                <td><a class="btn-link" href="" ng-click="selectGame('<%= g.id %>', '<%= g.name.gsub("'", "") %>', '<%= g.platform %>')" data-dismiss="modal"><%= g.name %></a></td>
                             </tr>
                         <% end %>    
                     </tbody>
