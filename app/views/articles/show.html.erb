@@ -12,8 +12,8 @@
 	</div>
 	<section id="content">
 		<%= render '/home/header' %>
-		<div id="main-box" itemscope itemtype="http://schema.org/Article">
-			<meta itemscope itemprop="mainEntityOfPage"  itemType="http://schema.org/WebPage" itemid="https://google.com/article"/>
+		<div id="main-box" ><!-- itemscope itemtype="http://schema.org/Article" -->
+			<!-- <meta itemscope itemprop="mainEntityOfPage"  itemType="http://schema.org/WebPage" itemid="https://google.com/article"/>
 	  		<meta itemprop="inLanguage" content="pt-br"/>
 	  		<meta itemprop="datePublished" content="<%= @article.created_at %>"/>
 	  		<meta itemprop="dateModified" content="<%= @article.updated_at %>"/>
@@ -29,7 +29,7 @@
 			<% if image.document_type === "Header" %>
 				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
 			<% end %>
-			<% end %>
+			<% end %> -->
 	  		
 			<div id="main"><!-- Right Bar -->
 				<div class="content-padding">
@@ -256,8 +256,8 @@
               "logo": {
                   "@type": "ImageObject",
                   "url": "https://www.wahiga.com/assets/images/wahiga_logo_2.png",
-                  "width": 182,
-                  "height": 90
+                  "width": 200,
+                  "height": 100
               }
           }
       }
