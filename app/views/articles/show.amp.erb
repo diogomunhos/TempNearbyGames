@@ -1,8 +1,19 @@
 <div id="top-layer">
+	<div id="header-top">
+		<%= render '/home/wrapper_top_amp' %>
+	</div>
 	<section id="content">
+		<%= render '/home/header_amp' %>
 		<div id="main-box" >
 			<div id="main"><!-- Right Bar -->
-				
+				<amp-ad
+					layout="fixed-height"
+					height=100
+					type="adsense"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="1167809272">
+				</amp-ad>
+
 				<h1 style="padding: 0px 28px; margin-bottom: 20px;"><%= @article.title %></h1>
 				<div class="content-padding">
 					<div class="article-full">
@@ -25,6 +36,13 @@
 						</div>
 					</div>
 					
+					<amp-ad
+						layout="fixed-height"
+						height=200
+						type="adsense"
+						data-ad-client="ca-pub-8655806429950106"
+						data-ad-slot="5598008872">
+					</amp-ad>
 					<!-- <div class="clear-float do-the-split"></div> -->
 					
 					<!-- BEGIN .article-footer -->
@@ -62,7 +80,7 @@
 										<a href="<% if articles.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
 											<% articles.article_documents.each do |image| %>
 											<% if image.document_type === "Thumb" %>
-											<amp-img src="/images/<%= image.document.id %>" alt="" title="" />
+											<amp-img src="/images/<%= image.document.id %>" width="89" height="55" style="float: left;"></amp-img>
 											<% end %>
 											<% end %>
 											<strong><%= truncate(articles.title, length: 33) %></strong>
