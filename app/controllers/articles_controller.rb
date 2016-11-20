@@ -96,7 +96,7 @@ class ArticlesController < ApplicationController
 			}
 			set_meta_tags canonical: "#{finalUrl}"
 
-			set_meta_tags amphtml: "#{finalUrl}.amp"
+			@amplink = "<link rel\"amphtml\" href=\"#{finalUrl}.amp\">"
 		end
 	end
 
