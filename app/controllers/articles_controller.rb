@@ -95,6 +95,8 @@ class ArticlesController < ApplicationController
 				"pt-br" => "#{finalUrl}"
 			}
 			set_meta_tags canonical: "#{finalUrl}"
+
+			set_meta_tags amphtml: "#{finalUrl}.amp"
 		end
 	end
 
