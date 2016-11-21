@@ -94,9 +94,9 @@ class ArticlesController < ApplicationController
 			set_meta_tags alternate: {
 				"pt-br" => "#{finalUrl}"
 			}
-			set_meta_tags canonical: "#{finalUrl}"
 
 			@amplink = "<link rel=\"amphtml\" href=\"#{finalUrl}.amp\">"
+			@canonicallink = "<link rel=\"canonical\" href=\"#{finalUrl}\">"
 		end
 	end
 
