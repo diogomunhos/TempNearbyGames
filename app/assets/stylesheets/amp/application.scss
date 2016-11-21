@@ -888,6 +888,24 @@ span.article-image {
   }
 }
 
+
+.panel .top-right {
+  display: block;
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  font-size: 12px;
+}
+
+.other-info {
+  border-top: 1px dotted #ccc;
+  display: block;
+  margin-top: 15px;
+  padding-top: 10px;
+  text-align: right;
+  color: #7b7b7b;
+}
+
 body #main .article-full .article-content {
   p {
     font-size: 15px;
