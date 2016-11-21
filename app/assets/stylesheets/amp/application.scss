@@ -758,6 +758,59 @@ span.article-image {
   display: block;
 }
 
+
+.home-article.right {
+  width: 324px;
+  ul li {
+    display: block;
+    margin-bottom: 6px;
+    a {
+      display: block;
+      background: #eaeaea;
+      color: #454545;
+      -moz-transition: background 0.2s, color 0.2s;
+      -webkit-transition: background 0.2s, color 0.2s;
+      -o-transition: background 0.2s, color 0.2s;
+      height: 55px;
+      position: relative;
+      &:hover {
+        background-color: #256193;
+        color: #fff;
+      }
+      img {
+        display: block;
+        float: left;
+        width: 89px;
+        height: 55px;
+      }
+      strong {
+        display: block;
+        width: 215px;
+        float: left;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 10px;
+        padding-top: 7px;
+        padding-bottom: 0px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      span.a-txt {
+        display: block;
+        width: 215px;
+        float: left;
+        font-weight: normal;
+        font-size: 13px;
+        padding: 0px 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
 /*------------------------------------------------------------------
 [6. Sidebar styling]
 
