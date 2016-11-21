@@ -1078,6 +1078,9 @@ i.fa {
     height: 190px;
   }
   #header {
+    height: 190px;
+  }
+  #header-amp {
     height: 100px;
   }
   #main-box #main {
@@ -1581,7 +1584,7 @@ body {
   #slider div#slider-info {
     display: none;
   }
-  #header, #slider-imgs div.featured-img-box div.featured-img, #slider {
+  #header, #header-amp #slider-imgs div.featured-img-box div.featured-img, #slider {
     height: 250px;
   }
   .main-menu {
