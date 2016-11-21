@@ -14,7 +14,7 @@
 					data-ad-slot="1167809272">
 				</amp-ad>
 
-				<h1 style="padding: 0px 28px; margin-bottom: 20px;"><%= @article.title %></h1>
+				<h1 id="titleh1"><%= @article.title %></h1>
 				<div class="content-padding">
 					<div class="article-full">
 
@@ -77,7 +77,7 @@
 										<a href="<% if articles.game != nil %>/<%= articles.game.friendly_url %><% end %>/<%= articles.article_type.downcase %>/<%= articles.friendly_url %>">
 											<% articles.article_documents.each do |image| %>
 											<% if image.document_type === "Thumb" %>
-											<amp-img src="/images/<%= image.document.id %>" width="89" height="55" style="float: left;"></amp-img>
+											<amp-img src="/images/<%= image.document.id %>" id="relatednews" width="89" height="55"></amp-img>
 											<% end %>
 											<% end %>
 											<strong><%= truncate(articles.title, length: 33) %></strong>
