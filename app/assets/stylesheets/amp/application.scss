@@ -524,49 +524,6 @@ a {
   }
 }
 
-.header-breadcrumbs {
-  color: #fff;
-  top: 132px;
-  position: absolute;
-  width: 100%;
-  padding: 0 30px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
-  a {
-    color: #fff;
-    &:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-  }
-  ul {
-    display: block;
-    padding: 6px 0px;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    li {
-      display: inline-block;
-      position: relative;
-      padding-right: 18px;
-      margin-right: 8px;
-      &:after {
-        display: block;
-        position: absolute;
-        content: '\f105';
-        font-family: "FontAwesome";
-        right: 0px;
-        top: 0px;
-        line-height: 19px;
-        opacity: 0.5;
-      }
-      &:last-child:after {
-        display: none;
-      }
-    }
-  }
-}
 
 .main-menu {
   .header-logo {
@@ -579,17 +536,6 @@ a {
     width: 100%;
   }
 }
-
-
-/*------------------------------------------------------------------
-[3. Content styling]
-
-+ #main-box
-  + #main
-    + h2
-    + .content-padding
-
--------------------------------------------------------------------*/
 
 .padding-box {
   padding: 18px;
@@ -655,25 +601,6 @@ div.content-padding {
   background: #256193;
   overflow: hidden;
   position: relative;
-}
-
-.article-image-out {
-  display: block;
-  background: #256193;
-  position: relative;
-  span.image-comments {
-    position: absolute;
-    display: block;
-    right: 20px;
-    z-index: 8;
-    padding-bottom: 5px;
-    background: url(/assets/images/comment-arrow.png) no-repeat 7px bottom;
-    opacity: 1;
-    top: -7px;
-    -moz-transition: opacity 0.2s, top 0.2s;
-    -webkit-transition: opacity 0.2s, top 0.2s;
-    -o-transition: opacity 0.2s, top 0.2s;
-  }
 }
 
 .photo-block .article-image-out span.image-comments, a.article-image-out span.image-comments {
@@ -831,89 +758,6 @@ span.article-image {
   display: block;
 }
 
-.grid-articles {
-  display: block;
-  &:after {
-    display: block;
-    content: '';
-    clear: both;
-  }
-  .item {
-    display: block;
-    float: left;
-    width: 48%;
-    margin-left: 4%;
-    &:nth-child(2n+1) {
-      margin-left: 0px;
-      clear: both;
-    }
-    &:nth-child(n+3) {
-      margin-top: 15px;
-    }
-  }
-}
-
-.home-article.left {
-  width: 300px;
-}
-
-.right {
-  float: right;
-  display: block;
-}
-
-.home-article.right {
-  width: 324px;
-  ul li {
-    display: block;
-    margin-bottom: 6px;
-    a {
-      display: block;
-      background: #eaeaea;
-      color: #454545;
-      -moz-transition: background 0.2s, color 0.2s;
-      -webkit-transition: background 0.2s, color 0.2s;
-      -o-transition: background 0.2s, color 0.2s;
-      height: 55px;
-      position: relative;
-      &:hover {
-        background-color: #256193;
-        color: #fff;
-      }
-      img {
-        display: block;
-        float: left;
-        width: 89px;
-        height: 55px;
-      }
-      strong {
-        display: block;
-        width: 215px;
-        float: left;
-        font-weight: bold;
-        font-size: 15px;
-        padding: 10px;
-        padding-top: 7px;
-        padding-bottom: 0px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-      span.a-txt {
-        display: block;
-        width: 215px;
-        float: left;
-        font-weight: normal;
-        font-size: 13px;
-        padding: 0px 10px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-    }
-  }
-}
-
 /*------------------------------------------------------------------
 [6. Sidebar styling]
 
@@ -932,27 +776,6 @@ span.article-image {
   }
   &.sidebar-left #sidebar {
     box-shadow: inset -1px 0 0 0 #D0D0D0;
-  }
-}
-
-#sidebar .panel {
-  display: block;
-  border-top: 5px solid #256193;
-  position: relative;
-  > h2 {
-    display: block;
-    padding: 10px 10px;
-    font-size: 17px;
-    margin-bottom: 0px;
-  }
-  .panel-content {
-    display: block;
-    background: url(/assets/images/sidebar-title.png) no-repeat center top;
-    padding: 14px 10px 20px 10px;
-    &.no-padding {
-      padding: 0px;
-      padding-top: 1px;
-    }
   }
 }
 
@@ -1063,24 +886,6 @@ span.article-image {
       }
     }
   }
-}
-
-
-.panel .top-right {
-  display: block;
-  position: absolute;
-  top: 13px;
-  right: 10px;
-  font-size: 12px;
-}
-
-.other-info {
-  border-top: 1px dotted #ccc;
-  display: block;
-  margin-top: 15px;
-  padding-top: 10px;
-  text-align: right;
-  color: #7b7b7b;
 }
 
 body #main .article-full .article-content {
