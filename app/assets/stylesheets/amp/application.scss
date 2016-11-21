@@ -759,6 +759,7 @@ span.article-image {
 }
 
 
+
 .home-article.right {
   width: 324px;
   ul li {
@@ -829,27 +830,6 @@ span.article-image {
   }
   &.sidebar-left #sidebar {
     box-shadow: inset -1px 0 0 0 #D0D0D0;
-  }
-}
-
-#sidebar .panel {
-  display: block;
-  border-top: 5px solid #256193;
-  position: relative;
-  > h2 {
-    display: block;
-    padding: 10px 10px;
-    font-size: 17px;
-    margin-bottom: 0px;
-  }
-  .panel-content {
-    display: block;
-    background: url(/assets/images/sidebar-title.png) no-repeat center top;
-    padding: 14px 10px 20px 10px;
-    &.no-padding {
-      padding: 0px;
-      padding-top: 1px;
-    }
   }
 }
 
@@ -960,24 +940,6 @@ span.article-image {
       }
     }
   }
-}
-
-
-.panel .top-right {
-  display: block;
-  position: absolute;
-  top: 13px;
-  right: 10px;
-  font-size: 12px;
-}
-
-.other-info {
-  border-top: 1px dotted #ccc;
-  display: block;
-  margin-top: 15px;
-  padding-top: 10px;
-  text-align: right;
-  color: #7b7b7b;
 }
 
 body #main .article-full .article-content {
