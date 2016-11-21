@@ -15,7 +15,7 @@ a.featured-select, #slider-info .padding-box ul li:before, .home-article.right u
 
 /* line 13, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .header-amp {
-  height: 100px;
+  height: 100px !important;
 }
 
 /* line 17, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -81,9 +81,9 @@ body {
 
 /* line 67, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 i.fa {
-  line-height: inherit;
+  line-height: inherit !important;
   font-size: inherit;
-  vertical-align: baseline;
+  vertical-align: baseline !important;
 }
 
 /* line 73, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -118,7 +118,7 @@ img {
 
 /* line 98, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 p {
-  line-height: 150%;
+  line-height: 150% !important;
 }
 
 /* line 102, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -413,15 +413,15 @@ a:focus {
 }
 /* line 356, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 #header-top ul > li:last-child > a {
-  border-right: 0px;
+  border-right: 0px !important;
 }
 /* line 357, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 #header-top ul > li:last-child > a:hover {
-  border-right: 0px;
+  border-right: 0px !important;
 }
 /* line 363, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 #header-top ul > li:first-child > a {
-  border-left: 0px;
+  border-left: 0px !important;
 }
 /* line 366, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 #header-top ul > li > a {
@@ -788,7 +788,7 @@ span.article-image span .fa, span.article-image span img {
 span.article-image span .fa {
   width: 20px;
   height: 20px;
-  line-height: 20px;
+  line-height: 20px !important;
   font-size: 15px;
   display: block;
   color: #256193;
@@ -932,7 +932,7 @@ span.article-image > a > img, span.article-image > img {
 /* line 844, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .article-full .article-icons {
   border-bottom: 0px;
-  margin-bottom: -20px;
+  margin-bottom: -20px !important;
 }
 
 /* line 849, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -950,7 +950,7 @@ span.article-image > a > img, span.article-image > img {
   display: inline-block;
   padding-top: 2px;
   padding-right: 10px;
-  line-height: inherit;
+  line-height: inherit !important;
 }
 /* line 863, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .article-icons a:hover {
@@ -1075,7 +1075,7 @@ body #main .article-full .article-content {
 }
 /* line 963, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .article-full .article-icons a {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 /* line 965, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .article-full .article-icons a .fa {
@@ -1172,7 +1172,7 @@ body #main .article-full .article-content {
 
 /* line 1054, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 i.fa {
-  line-height: inherit;
+  line-height: inherit !important;
 }
 
 /* No Slider */
@@ -1203,7 +1203,7 @@ i.fa {
 }
 /* line 1080, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .no-slider #header {
-  height: 190px;
+  height: 100px;
 }
 /* line 1083, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
 .no-slider #main-box #main {
@@ -1594,7 +1594,7 @@ body::-webkit-scrollbar-corner {
 
   /* line 1399, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   .load-responsive {
-    display: none;
+    display: none !important;
   }
 
   /* line 1402, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -1632,7 +1632,7 @@ body::-webkit-scrollbar-corner {
 
   /* line 1427, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   a.featured-select span {
-    display: none;
+    display: none !important;
   }
 
   /* line 1430, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -1676,10 +1676,10 @@ body::-webkit-scrollbar-corner {
 @media only screen and (max-width: 750px) {
   /* line 1463, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   #main-box #sidebar, #main-box #main {
-    width: 100%;
+    width: 100% !important;
     float: none;
-    height: auto;
-    min-height: 0px;
+    height: auto !important;
+    min-height: 0px !important;
   }
 
   /* line 1471, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
@@ -1739,14 +1739,14 @@ body::-webkit-scrollbar-corner {
   }
   /* line 1510, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   .user-profile .profile-left-side .profile-user-name {
-    color: #232323;
+    color: #232323 !important;
     text-shadow: none;
     left: 35%;
     top: 20px;
   }
   /* line 1511, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   .user-profile .profile-left-side .profile-user-name a, .user-profile .profile-left-side .profile-user-name .sttaa {
-    color: #232323;
+    color: #232323 !important;
     text-shadow: none;
     left: 35%;
     top: 20px;
@@ -1832,8 +1832,8 @@ body::-webkit-scrollbar-corner {
   }
   /* line 1589, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   .main-menu a {
-    display: block;
-    float: none;
+    display: block !important;
+    float: none !important;
   }
   /* line 1593, /Users/diogomunhos/Documents/wahiga-master/TempNearbyGames/app/assets/stylesheets/amp/application.scss */
   .main-menu .datmenu-prompt {
@@ -4676,24 +4676,6 @@ body::-webkit-scrollbar-corner {
 
  */
 /* Sticky footer styles
--------------------------------------------------- */
-
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
-
-
- */
-/* Sticky footer styles
 ----------------------------
 */
 
@@ -4710,3 +4692,21 @@ body::-webkit-scrollbar-corner {
 .error_label{
 	color: darkred;
 }
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+/* Sticky footer styles
+-------------------------------------------------- */
+
