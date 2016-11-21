@@ -11,7 +11,7 @@ a.featured-select, #slider-info .padding-box ul li:before, .home-article.right u
 }
 
 .header-amp{
-  height: 100px !important;
+  height: 100px ;
 }
 
 #footerlogo{
@@ -65,9 +65,9 @@ body {
 }
 
 i.fa {
-  line-height: inherit !important;
+  line-height: inherit ;
   font-size: inherit;
-  vertical-align: baseline !important;
+  vertical-align: baseline ;
 }
 
 ::selection, ::-moz-selection {
@@ -96,7 +96,7 @@ img {
 }
 
 p {
-  line-height: 150% !important;
+  line-height: 150% ;
 }
 
 img.setborder {
@@ -355,13 +355,13 @@ a {
         box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.06), inset -1px 0 0 rgba(255, 255, 255, 0.06);
         > a {
           &:hover {
-            border-right: 0px !important;
+            border-right: 0px ;
           }
-          border-right: 0px !important;
+          border-right: 0px ;
         }
       }
       &:first-child > a {
-        border-left: 0px !important;
+        border-left: 0px ;
       }
       > a {
         display: block;
@@ -703,7 +703,7 @@ span.article-image {
     .fa {
       width: 20px;
       height: 20px;
-      line-height: 20px !important;
+      line-height: 20px ;
       font-size: 15px;
       display: block;
       color: #256193;
@@ -843,7 +843,7 @@ span.article-image {
 
 .article-full .article-icons {
   border-bottom: 0px;
-  margin-bottom: -20px !important;
+  margin-bottom: -20px ;
 }
 
 .article-icons a {
@@ -858,7 +858,7 @@ span.article-image {
     display: inline-block;
     padding-top: 2px;
     padding-right: 10px;
-    line-height: inherit !important;
+    line-height: inherit ;
   }
   &:hover {
     color: #256193;
@@ -961,7 +961,7 @@ body #main .article-full .article-content {
   margin-bottom: 5px;
   padding-top: 15px;
   a {
-    font-size: 14px !important;
+    font-size: 14px ;
     .fa {
       font-size: 12px;
     }
@@ -1052,7 +1052,7 @@ body #main .article-full .article-content {
 }
 
 i.fa {
-  line-height: inherit !important;
+  line-height: inherit ;
 }
 
 /* No Slider */
@@ -1397,7 +1397,7 @@ body {
     display: block;
   }
   .load-responsive {
-    display: none !important;
+    display: none ;
   }
   .photo-galleries > .item .item-header .photo-link .photo-link-top {
     i.fa {
@@ -1425,7 +1425,7 @@ body {
     -o-transition: none;
   }
   a.featured-select span {
-    display: none !important;
+    display: none ;
   }
   .photo-gallery-single .photo-single-thumbnails img {
     width: 82px;
@@ -1461,10 +1461,10 @@ body {
 @media only screen and (max-width: 750px) {
   #main-box {
     #sidebar, #main {
-      width: 100% !important;
+      width: 100% ;
       float: none;
-      height: auto !important;
-      min-height: 0px !important;
+      height: auto ;
+      min-height: 0px ;
     }
   }
   .footer {
@@ -1509,12 +1509,12 @@ body {
   .user-profile .profile-left-side {
     .profile-user-name {
       a, .sttaa {
-        color: #232323 !important;
+        color: #232323 ;
         text-shadow: none;
         left: 35%;
         top: 20px;
       }
-      color: #232323 !important;
+      color: #232323 ;
       text-shadow: none;
       left: 35%;
       top: 20px;
@@ -1587,8 +1587,8 @@ body {
   .main-menu {
     text-align: center;
     a {
-      display: block !important;
-      float: none !important;
+      display: block ;
+      float: none ;
     }
     .datmenu-prompt {
       background: rgba(0, 0, 0, 0.4);
