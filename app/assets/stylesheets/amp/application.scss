@@ -779,6 +779,27 @@ span.article-image {
   }
 }
 
+#sidebar .panel {
+  display: block;
+  border-top: 5px solid #256193;
+  position: relative;
+  > h2 {
+    display: block;
+    padding: 10px 10px;
+    font-size: 17px;
+    margin-bottom: 0px;
+  }
+  .panel-content {
+    display: block;
+    background: url(/assets/images/sidebar-title.png) no-repeat center top;
+    padding: 14px 10px 20px 10px;
+    &.no-padding {
+      padding: 0px;
+      padding-top: 1px;
+    }
+  }
+}
+
 .article-icons {
   display: block;
   padding: 0px 0px 15px 0px;
