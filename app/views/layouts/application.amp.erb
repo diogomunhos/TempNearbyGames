@@ -18,6 +18,30 @@
         enable_page_level_ads: true
       });
     </script>
+    <amp-analytics type="googleanalytics" id="analyticsbase">
+      <script type="application/json">
+      {
+        "vars": {
+          "account": "UA-82043353-1"
+        },
+        "triggers": {
+          "trackPageview": {
+            "on": "visible",
+            "request": "pageview"
+          },
+          "trackEvent": {
+            "selector": "#event-test",
+            "on": "click",
+            "request": "event",
+            "vars": {
+              "eventCategory": "ui-components",
+              "eventAction": "click"
+            }
+          }
+        }
+      }
+      </script>
+    </amp-analytics>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -36,6 +60,7 @@
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <script type='text/javascript' src='/assets/new-template/jscript/jquery-1.11.2.min.js'></script>
     <script type='text/javascript' src='/assets/new-template/jscript/modernizr.custom.50878.js'></script>
     <script type='text/javascript' src='/assets/new-template/jscript/iscroll.js'></script>
