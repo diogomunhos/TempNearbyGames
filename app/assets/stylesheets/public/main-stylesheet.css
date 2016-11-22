@@ -9,7 +9,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #333333;
-	background: #171717 url(../images/bg.jpg) repeat top center;
+	background: #171717 url(/assets/images/bg.jpg) repeat top center;
 }
 
 i.fa {
@@ -107,7 +107,7 @@ a:focus {
 
 .dat-menu-setup {
 	background-color: #665140;
-	background-image: url(../images/no-slider-bg.jpg);
+	background-image: url(/assets/images/no-slider-bg.jpg);
 }
 
 .home-article.right ul li a strong {
@@ -615,7 +615,7 @@ a.featured-select:hover img {
 
 #top-layer {
 	width: 100%;
-	background: url(../images/top-overlay.png) no-repeat top center;
+	background: url(/assets/images/top-overlay.png) no-repeat top center;
 	min-height: 468px;
 	z-index: 3;
 	position: relative;
@@ -1149,7 +1149,7 @@ a.featured-select:hover img {
 #main .forum-block > h2,
 #main > h2 {
 	padding: 0px 28px;
-	background: url(../images/content-title-bg.png) repeat-x left center;
+	background: url(/assets/images/content-title-bg.png) repeat-x left center;
 	margin-bottom: 20px;
 }
 
@@ -1196,7 +1196,7 @@ div.content-padding:after {
 	right:20px;
 	z-index:8;
 	padding-bottom:5px;
-	background:url(../images/comment-arrow.png) no-repeat 7px bottom;
+	background:url(/assets/images/comment-arrow.png) no-repeat 7px bottom;
 	opacity:1;
 	top:-7px;
 	-moz-transition: opacity 0.2s, top 0.2s;
@@ -1223,7 +1223,7 @@ a.article-image-out span.image-comments {
 }
 
 .article-image-out span.image-comments.inactive  {
-	background:url(../images/comment-arrow-inactive.png) no-repeat 7px bottom;
+	background:url(/assets/images/comment-arrow-inactive.png) no-repeat 7px bottom;
 }
 
 .article-image-out span.image-comments.inactive span {
@@ -1483,7 +1483,7 @@ span.article-image:hover > img {
 	right: 20px;
 	z-index: 8;
 	padding-bottom: 5px;
-	background: url(../images/comment-arrow.png) no-repeat 7px bottom;
+	background: url(/assets/images/comment-arrow.png) no-repeat 7px bottom;
 	opacity: 0;
 	top: 0px;
 	width: auto!important;
@@ -1506,7 +1506,7 @@ span.article-image:hover > img {
 }
 
 .home-article.right ul li a .image-comments.inactive {
-	background: url(../images/comment-arrow-inactive.png) no-repeat 7px bottom;
+	background: url(/assets/images/comment-arrow-inactive.png) no-repeat 7px bottom;
 }
 
 .home-article.right ul li a .image-comments.inactive span {
@@ -1627,7 +1627,7 @@ span.article-image:hover > img {
 	margin-left: 10px;
 	padding-left: 15px;
 	padding-bottom: 2px;
-	background: url(../images/icon-comments-destination.png) no-repeat center left;
+	background: url(/assets/images/icon-comments-destination.png) no-repeat center left;
 	color: #9a9a9a;
 	max-width: 350px;
 	/*overflow: hidden;*/
@@ -2142,7 +2142,7 @@ textarea {
 
 .panel-with-spaces {
 	display:block;
-	background:url(../images/sidebar-title.png) no-repeat center top;
+	background:url(/assets/images/sidebar-title.png) no-repeat center top;
 	padding:14px 10px 0px 10px;
 	margin-top: 14px;
 	margin-left: -10px;
@@ -2278,7 +2278,7 @@ textarea {
 	float: left;
 	margin: 0 2px 2px 0;
 	background-color: #256193;
-	background-image: url(../images/gallery-shine.png);
+	background-image: url(/assets/images/gallery-shine.png);
 	background-position: top center;
 	background-repeat: no-repeat;
 	color: #fff;
@@ -2427,7 +2427,7 @@ body .photo-galleries > .item .photos-related-games a {
 	width: 30px;
 	height: 30px;
 	padding: 20px;
-	background: url(../images/lightbox-close.png) center center no-repeat;
+	background: url(/assets/images/lightbox-close.png) center center no-repeat;
 	z-index: 10;
 }
 
@@ -2678,7 +2678,7 @@ body .photo-galleries > .item .photos-related-games a {
 
 #sidebar .panel .panel-content {
 	display: block;
-	background: url(../images/sidebar-title.png) no-repeat center top;
+	background: url(/assets/images/sidebar-title.png) no-repeat center top;
 	padding: 14px 10px 20px 10px;
 }
 
@@ -2696,7 +2696,7 @@ body .photo-galleries > .item .photos-related-games a {
 	font-weight: bold;
 	font-size: 13px;
 	padding-bottom: 5px;
-	background: url(../images/comment-arrow.png) no-repeat 7px bottom;
+	background: url(/assets/images/comment-arrow.png) no-repeat 7px bottom;
 }
 
 .sidebar-comments span {
@@ -2709,7 +2709,7 @@ body .photo-galleries > .item .photos-related-games a {
 }
 
 .sidebar-comments.inactive  {
-	background: url(../images/comment-arrow-inactive.png) no-repeat 7px bottom;
+	background: url(/assets/images/comment-arrow-inactive.png) no-repeat 7px bottom;
 }
 
 .sidebar-comments.inactive span {
@@ -3254,7 +3254,7 @@ body .photo-galleries > .item .photos-related-games a {
 	display: block;
 	width: 100%;
 	height: 4px;
-	background: url(../images/content-title-bg.png) repeat-x center center;
+	background: url(/assets/images/content-title-bg.png) repeat-x center center;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
@@ -3360,7 +3360,7 @@ body .photo-galleries > .item .photos-related-games a {
 
 
 .footer {
-	background: url(../images/header-top-bg.png);
+	background: url(/assets/images/header-top-bg.png);
 	color: #868686;
 	box-shadow: inset 1px 0px 0px rgba(255,255,255,0.1), inset -1px 0px 0px rgba(255,255,255,0.1);
 }
@@ -3431,7 +3431,7 @@ body .photo-galleries > .item .photos-related-games a {
 	right: 0px;
 	top: 25px;
 	bottom: 25px;
-	background: url(../images/footer-split.png) repeat-y;
+	background: url(/assets/images/footer-split.png) repeat-y;
 	opacity: 0.7;
 }
 
@@ -3464,7 +3464,7 @@ body .photo-galleries > .item .photos-related-games a {
 	z-index: 10;
 	width: 74px;
 	height: 74px;
-	background: url(../images/strike-vs.png) no-repeat center;
+	background: url(/assets/images/strike-vs.png) no-repeat center;
 	top: 50%;
 	left: 50%;
 	margin-left: -38px;
@@ -4304,7 +4304,7 @@ input.error-input {
 	z-index: -1;
 	width: 328px;
 	height: 180px;
-	background: url(../images/profile-card-bg.png) no-repeat center;
+	background: url(/assets/images/profile-card-bg.png) no-repeat center;
 	top: -25px;
 	left: 0px;
 }
@@ -4387,11 +4387,11 @@ input.error-input {
 }
 
 .profile-navi li.active a {
-	background: #f9f9f9 url(../images/icon-arrow-right.png) no-repeat right center;
+	background: #f9f9f9 url(/assets/images/icon-arrow-right.png) no-repeat right center;
 }
 
 .profile-navi li.active a:hover {
-	background: #f9f9f9 url(../images/icon-arrow-right.png) no-repeat right center;
+	background: #f9f9f9 url(/assets/images/icon-arrow-right.png) no-repeat right center;
 }
 
 .profile-navi li a:hover {
@@ -5073,7 +5073,7 @@ body #main .article-full .article-content {
 	display: block;
 	height: 22px;
 	width: 100%;
-	background: url(../images/split-icon-1.png) no-repeat center center;
+	background: url(/assets/images/split-icon-1.png) no-repeat center center;
 	margin-bottom: 15px;
 	position: relative;
 	margin-top: 15px;
@@ -5103,7 +5103,7 @@ body #main .article-full .article-content {
 
 blockquote {
 	display: block;
-	background: url(../images/quote-icon-1.png) no-repeat 0px 4px;
+	background: url(/assets/images/quote-icon-1.png) no-repeat 0px 4px;
 	margin-bottom: 17px;
 	min-height: 23px;
 	padding-left: 50px;
@@ -5170,7 +5170,7 @@ blockquote {
 
 .accordion .accordion-tab .accordion-block {
 	display: none;
-	background: url(../images/split-line-1.png) repeat-x 0px 0px;
+	background: url(/assets/images/split-line-1.png) repeat-x 0px 0px;
 	padding-top: 15px;
 }
 
@@ -7049,7 +7049,7 @@ a.button.big-size,
 	height: 16px;
 	text-indent: -100px;
 	color: transparent;
-	background-image: url(../images/modal-close.png);
+	background-image: url(/assets/images/modal-close.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	overflow: hidden;
@@ -7713,7 +7713,7 @@ a.button.big-size,
 
 .emoji {
 	display: inline-block;
-	background: url(../images/emoji.png) no-repeat 0px 0px;
+	background: url(/assets/images/emoji.png) no-repeat 0px 0px;
 	width: 16px;
 	height: 16px;
 }
@@ -8175,7 +8175,7 @@ i.fa {
 }
 
 .no-slider #slider-imgs .featured-img-box {
-	background: url(../images/no-slider-bg.jpg) no-repeat center;
+	background: url(/assets/images/no-slider-bg.jpg) no-repeat center;
 	box-shadow: inset 0px -260px 150px rgba(0,0,0,0.6);
 }
 
@@ -8342,7 +8342,7 @@ body::-webkit-scrollbar-corner {
 }
 
 #menu-bottom #menu {
-	background-image: url(../images/px.gif);
+	background-image: url(/assets/images/px.gif);
 	background-position: center 2000px;
 	background-repeat: no-repeat;
 }
@@ -8452,7 +8452,7 @@ body::-webkit-scrollbar-corner {
 	top: 0px;
 	width: 255px;
 	height: 82px;
-	background: url(../images/game-poster-shadow.png) no-repeat center;
+	background: url(/assets/images/game-poster-shadow.png) no-repeat center;
 	content: '';
 	z-index: 3;
 }
