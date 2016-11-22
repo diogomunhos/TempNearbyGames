@@ -2,39 +2,17 @@
 	<div class="featured-img-box">
 		<div id="featured-img-1" class="featured-img"></div>
 	</div>
-	<!-- END #slider-imgs -->
 </div>
-
-<!-- BEGIN #top-layer -->
 <div id="top-layer">
 	<div id="header-top">
 		<%= render '/home/wrapper_top' %>
 	</div>
 	<section id="content">
 		<%= render '/home/header' %>
-		<div id="main-box" ><!-- itemscope itemtype="http://schema.org/Article" -->
-			<!-- <meta itemscope itemprop="mainEntityOfPage"  itemType="http://schema.org/WebPage" itemid="https://google.com/article"/>
-	  		<meta itemprop="inLanguage" content="pt-br"/>
-	  		<meta itemprop="datePublished" content="<%= @article.created_at %>"/>
-	  		<meta itemprop="dateModified" content="<%= @article.updated_at %>"/>
-	  		<div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-	    		<div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-	      			<meta itemprop="url" content="https://www.wahiga.com/assets/images/wahiga_logo_2.png"/>
-	      			<meta itemprop="width" content="182"/>
-	      			<meta itemprop="height" content="68"/>
-	    		</div>
-	    		<meta itemprop="name" content="Wahiga">
-	  		</div>
-	  		<% @article.article_documents.each do |image| %>
-			<% if image.document_type === "Header" %>
-				<span itemprop="image" style="display: none" itemscope itemtype="http://schema.org/ImageObject"><meta itemprop="url" content="https://www.wahiga.com/images/<%= image.document.id %>/<%= image.document.file_name %>"><meta itemprop="width" content="None"><meta itemprop="height" content="None"></span>
-			<% end %>
-			<% end %> -->
-	  		
-			<div id="main"><!-- Right Bar -->
+		<div id="main-box" >
+			<div id="main">
 				<div class="content-padding">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Cabeçalho Responsivo -->
 					<ins class="adsbygoogle"
 					style="display:block"
 					data-ad-client="ca-pub-8655806429950106"
@@ -65,7 +43,6 @@
 					  		<% end %>
 					  <% end %>
 					<div class="article-full">
-
 						<div class="article-main-photo">
 							<% @article.article_documents.each do |image| %>
 							<% if image.document_type === "Header" %>
@@ -74,26 +51,16 @@
 							<% end %>	
 						</div>
 						<div class="article-icons">
-							<!-- <a href="" class=""><i class="fa fa-fire"></i>Autor</a>
-							<a href=""><i class="fa fa-calendar"></i><%= @article.created_at %></a> -->
-							<!-- <a href="#" class="show-likes"><i class="fa fa-heart"></i>20 likes</a> -->
 						</div>
-						
 						<div class="clear-float do-the-split"></div>
-
 						<div class="article-content" itemprop="articleBody">
 							<%= raw @article.body %>
 						</div>
 					</div>
-					
-					<!-- <div class="clear-float do-the-split"></div> -->
-					
-					<!-- BEGIN .article-footer -->
 					<div class="article-footer">
 						<div class="about-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-							
+							<meta itemprop="homeLocation" content="São Paulo"/>
 							<h2><span>Sobre o autor</span></h2>
-
 							<div class="inner">
 								<a href="" class="avatar avatar-large">
 									<img src="<%= @author[:profile_image_url] %>" alt="" style="width: 90px; height: 90px;" class="author-image setborder" />
@@ -109,13 +76,9 @@
 									<p itemprop="description"><%= truncate(@author[:about], length: 110) %></p>
 								</div>
 							</div>
-
 						</div>
-
 						<div class="similar-posts">
-							
 							<h2><span>Outras notícias</span></h2>
-							
 							<div class="home-article right">
 								<ul>
 									<% @randomArticles.each do |articles| %>
@@ -132,20 +95,13 @@
 									</li>
 									<% end %>
 								</ul>
-								
 							</div>
-
 						</div>
-						<!-- END .article-footer -->
 					</div>
-					
-
-					<!-- END .content-padding -->
 				</div>
 				</article>
 				<div class="content-padding">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Footer artigos -->
 					<ins class="adsbygoogle"
 					style="display:block"
 					data-ad-client="ca-pub-8655806429950106"
@@ -156,17 +112,12 @@
 					</script>
 				</div>
 			</div>
-
-			<!-- BEGIN #sidebar -->
 			<aside id="sidebar">
 				<%= render 'home/popular_articles' %>
-
 				<%= render 'home/we_are_social' %>
-
 				<div class="panel">
 					<div class="panel-content">
 						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- article show -->
 						<ins class="adsbygoogle"
 						style="display:block"
 						data-ad-client="ca-pub-8655806429950106"
@@ -177,11 +128,8 @@
 						</script>
 					</div>
 				</div>
-				<!-- END #sidebar -->
 			</aside>
-
 			<div class="clear-float"></div>
-
 		</div>
 	</section>
 </div>
@@ -249,9 +197,9 @@
           <% end %>
           "author": {
               "@type": "Person",
-              "name": "<%= @author[:full_name] %>"
-              
-              ,"description":"<%= @author[:about] %>",
+              "name": "<%= @author[:full_name] %>",
+              "homeLocation": "São Paulo",
+              "description":"<%= @author[:about] %>",
               "jobTitle": "Redator",
               "image": "<%= @author[:profile_image_url] %>"
               
