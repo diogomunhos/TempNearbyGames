@@ -1,1 +1,8 @@
-<div class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" style="position: relative; margin-bottom: 10px;"><!-- <div style="width: 100%; position: relative; margin-top: 10px;"><img src="https://s.dynad.net/stack/4BgnrAZSVmtsYZEoVHY3LVIHRm6n4DYLj_gEGn1ccdE.gif" style="width: 100%;"></div>--><% @advertising1.each do |a| %><%=raw a.html_body %> <% end %></div>
+<div class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" style="position: relative; margin-bottom: 10px;">
+	<!-- <div style="width: 100%; position: relative; margin-top: 10px;">
+		<img src="https://s.dynad.net/stack/4BgnrAZSVmtsYZEoVHY3LVIHRm6n4DYLj_gEGn1ccdE.gif" style="width: 100%;">
+	</div> -->
+	<% @advertising1.each do |a| %>
+		<%= raw a.html_body %> 
+	<% end %>
+</div>

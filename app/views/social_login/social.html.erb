@@ -1,1 +1,69 @@
-<div class="container" ng-controller="signup-controller as controller"> <div class="page-header"> <h1>Social login</h1> </div><div class="col-lg-5 col-md-5 col-sm-5"> <%=form_for :user, :url=>{:controller=> 'users', :action=> 'create'}, html:{class: "form-horizontal"}do %> <div class="form-group" id="messages"> <%=raw flash_message %> </div><div class="form-group"> <h3>Create new account</h3> </div><div class="form-group"> <label for="user_email">Email</label> <input type="email" class="form-control" placeholder="Email" required name="user[email]" id="user_email"/> </div><div class="form-group"> <label for="user_nickname">Nickname</label> <input type="text" class="form-control" placeholder="Nickname" value="<%=@user.nickname %>" required name="user[nickname]" id="user_nickname"/> </div><div class="form-group"> <label for="user_password">Password</label> <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="user_password"/> </div><div class="form-group"> <label for="user_password_confirmation">Confirm password</label> <input type="password" class="form-control" placeholder="Confirm password" required name="user[password_confirmation]" id="user_password_confirmation"/> </div><div class="form-group"> <div class="checkbox"> <label> <input type="checkbox" name="user_preference[terms_of_use]" required id="user_terms_of_use"> Accept terms of use </label> </div></div><div class="form-group"> <div class="checkbox"> <label> <input type="checkbox" name="user_preference[email_content]" id="user_email_content"> Accept Receive content in email </label> </div></div><div class="form-group"> <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button> </div><% end %> </div><div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-5"> <%=form_tag '/login-social' do %> <div class="form-group" id="messages"> <%=raw flash_message %> </div><div class="form-group"> <h3>Signin with an exist account</h3> </div><div class="form-group"> <label for="email">Email</label> <input type="email" class="form-control" placeholder="Email" required name="email" id="email"/> </div><div class="form-group"> <label for="password">Password</label> <input type="password" class="form-control" placeholder="Password" required name="password" id="password"/> </div><div class="form-group"> <button class="btn btn-lg btn-primary btn-block" type="submit">Signin</button> </div><% end %> </div></div>
+<div class="container" ng-controller="signup-controller as controller">
+  <div class="page-header">
+    <h1>Social login</h1>
+  </div>
+  <div class="col-lg-5 col-md-5 col-sm-5">
+    <%= form_for :user, :url => {:controller => 'users', :action => 'create'}, html: { class: "form-horizontal"} do %>
+    <div class="form-group" id="messages">
+      <%= raw flash_message %>
+    </div>
+    <div class="form-group">
+      <h3>Create new account</h3>
+    </div>
+    <div class="form-group">
+      <label for="user_email">Email</label>
+      <input type="email" class="form-control" placeholder="Email" required name="user[email]" id="user_email"/> 
+    </div>
+    <div class="form-group">
+      <label for="user_nickname">Nickname</label>
+      <input type="text" class="form-control" placeholder="Nickname" value="<%= @user.nickname %>" required name="user[nickname]" id="user_nickname"/> 
+    </div>
+    <div class="form-group">
+      <label for="user_password">Password</label>
+      <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="user_password"/>
+    </div>
+    <div class="form-group">
+      <label for="user_password_confirmation">Confirm password</label>
+      <input type="password" class="form-control" placeholder="Confirm password" required name="user[password_confirmation]" id="user_password_confirmation"/>
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="user_preference[terms_of_use]" required id="user_terms_of_use"> Accept terms of use
+        </label>
+      </div>  
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="user_preference[email_content]" id="user_email_content"> Accept Receive content in email
+        </label>
+      </div>  
+    </div>
+    <div class="form-group">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-5">
+  <%= form_tag '/login-social' do %>
+    <div class="form-group" id="messages">
+      <%= raw flash_message %>
+    </div>
+    <div class="form-group">
+      <h3>Signin with an exist account</h3>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" placeholder="Email" required name="email" id="email"/> 
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" placeholder="Password" required name="password" id="password"/>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Signin</button>
+    </div>
+    <% end %>
+  </div>
+</div>
