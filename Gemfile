@@ -58,5 +58,7 @@ group :production do
 	gem 'rails_12factor'
 
 	gem 'coffee-rails', '~> 4.1.0'
+
+  gem 'heroku-deflater'
 	
 end
