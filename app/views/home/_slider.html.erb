@@ -1,18 +1,1 @@
-<div class="section" id="main-slider" style="margin-top: -20px;">
-  <% @slider.each do |s| %>
-    <% s.article_documents.each do |image| %>
-      <% if image.document_type === "Slider" %>
-        <a href="/<%= s.article_type %>/<%= s.friendly_url %>">
-        <div class="post feature-post" style="background-image:url(/images/<%= image.document.id %>/<%= image.document.file_name %>); background-size:cover; background-position: center; background-repeat: no-repeat;">
-          <div class="post-content">
-            <!-- <div class="catagory"><a href="#">World</a></div> -->
-            <h2 class="entry-title">
-              <%= s.title %>
-            </h2>
-          </div>
-        </div>
-        </a>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
+<div class="section" id="main-slider" style="margin-top: -20px;"> <% @slider.each do |s| %> <% s.article_documents.each do |image| %> <% if image.document_type==="Slider" %> <a href="/<%=s.article_type %>/<%=s.friendly_url %>"> <div class="post feature-post" style="background-image:url(/images/<%=image.document.id %>/<%=image.document.file_name %>); background-size:cover; background-position: center; background-repeat: no-repeat;"> <div class="post-content"> <h2 class="entry-title"> <%=s.title %> </h2> </div></div></a> <% end %> <% end %> <% end %></div>
