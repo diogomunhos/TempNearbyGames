@@ -1,17 +1,17 @@
 class HomeController < ApplicationController
 
 	def home
-		@slider = Article.getLast4ArticlesSlider		
-		@articles = Article.getLast5Articles(@slider)
-		@advertising1 = Advertising.getDefaultAdvertising;
-		if @advertising1 === nil
-			@advertising1 = Advertising.getDefaultAdvertising
-		end
-		@advertising2 = Advertising.getAdvertisingByPosition(1);
-		if @advertising2 === nil
-			@advertising2 = Advertising.getDefaultAdvertising
-		end
-		@popular = Article.get10MostPopularArticles(nil)
+		@slider = Article.getLast4ArticlesSlider_cached		
+		@articles = Article.getLast5Articles_cached(@slider)
+		# @advertising1 = Advertising.getDefaultAdvertising;
+		# if @advertising1 === nil
+		# 	@advertising1 = Advertising.getDefaultAdvertising
+		# end
+		# @advertising2 = Advertising.getAdvertisingByPosition(1);
+		# if @advertising2 === nil
+		# 	@advertising2 = Advertising.getDefaultAdvertising
+		# end
+		@popular = Article.get10MostPopularArticles_cached(nil)
 
 		set_meta_tags title: "Notícias, Dicas, Novidades Para Jogadores",
 					site: 'Wahiga',

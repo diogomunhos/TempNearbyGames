@@ -42,4 +42,12 @@ class User < ActiveRecord::Base
       end
     end
 
+    def self.find_cached(id)
+	  Rails.cache.fetch("find_#{id}") { find(id) }
+	end
+
+	def self.find_by_email_cached(email)
+	  Rails.cache.fetch("find_by_email_#{email}") { find_by_email(email) }
+	end
+
 end

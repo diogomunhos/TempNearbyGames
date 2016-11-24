@@ -14,4 +14,7 @@ class SocialIdentity < ActiveRecord::Base
 		end
 	end
 
+	def self.updateUserId_cached(user_id, uid, provider, id)
+	  Rails.cache.fetch("updateUserId_#{user_id}_#{uid}_#{provider}_#{id}") { updateUserId(user_id, uid, provider, id) }
+	end
 end

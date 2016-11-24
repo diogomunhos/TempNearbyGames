@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		user = User.find_by_email(session_params[:email])
+		user = User.find_by_email_cached(session_params[:email])
 		
 	    if user && user.authenticate(session_params[:password])
 	    	print "DEBUG #{user.id}"
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create_session_social
-		user = User.find_by_email(session_params[:email])
+		user = User.find_by_email_cached(session_params[:email])
    		social = session[:social]
    		session[:user] = nil;
    		if social === nil
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 	    if user && user.authenticate(session_params[:password])
 	    	if user.email_confirmed
 				if(social['user_id'] === nil)
-					 SocialIdentity.updateUserId(user.id, social['uid'], social['provider'], social['id'])
+					 SocialIdentity.updateUserId_cached(user.id, social['uid'], social['provider'], social['id'])
 				end
 				session[:user_id] = user.id
 				redirect_to root_path

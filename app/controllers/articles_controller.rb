@@ -1,22 +1,23 @@
 class ArticlesController < ApplicationController	
 
 	def show
-		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
-
+		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
+		print "DEBUG #{Rails.cache}"
 		if @article === nil
 			redirect_to '/404'
 		else
-			@popular = Article.get10MostPopularArticles(@article.id)
+			@popular = Article.get10MostPopularArticles_cached(@article.id)
+			@stats = Rails.cache.stats.first.last
 			unless @article.views.nil?
 				views = @article.views + 1
 				@article.update(views: views)
 			else
 				@article.update(views: 1)
 			end
-			@advertising1 = Advertising.getDefaultAdvertising;
+			# @advertising1 = Advertising.getDefaultAdvertising;
 			@author = Hash.new
-			authorProfile = UserPreference.find_by_user_id(@article.created_by_id)
-			user = User.find(@article.created_by_id)
+			authorProfile = UserPreference.find_by_user_id_cached(@article.created_by_id)
+			user = User.find_cached(@article.created_by_id)
 			@author[:id] = user.id
 			@author[:full_name] = user.name
 			@author[:full_name] += " " + user.last_name unless user.last_name.nil?
@@ -101,15 +102,15 @@ class ArticlesController < ApplicationController
 	end
 
 	def all_articles
-		@popular = Article.get10MostPopularArticles(nil)
+		@popular = Article.get10MostPopularArticles_cached(nil)
 		title = "Todos os artigos"
 		alternate = "https://www.wahiga.com/all-articles"
 		if params["author_id"] != nil
-			@articles = Article.getArticlesByAuthor(params["author_id"])
+			@articles = Article.getArticlesByAuthor_cached(params["author_id"])
 			title = "Todos os artigos | " + params["author_name"].gsub('_', ' ')
 			alternate = "https://www.wahiga.com/all-articles/#{params['author_name']}/#{params['author_id']}"
 		else
-			@articles = Article.where("status = ? ", "Published").order("created_at DESC")
+			@articles = Article.getAllArticlesPublished_cached
 		end
 
 		set_meta_tags title: title,
@@ -143,9 +144,9 @@ class ArticlesController < ApplicationController
 	end
 
 	def platform
-		@advertising1 = Advertising.getDefaultAdvertising;
+		# @advertising1 = Advertising.getDefaultAdvertising;
 		@platform = params[:platform]
-		@popular = Article.get10MostPopularArticles(nil)
+		@popular = Article.get10MostPopularArticles_cached(nil)
 		platformsAvailable = ["PC", "PS4", "Xbox-one", "Wii-U", "PS3", "3DS", "Mobile", "Vita", "Xbox-360"]
 		unless params[:platform].nil?
 			ok = false 
@@ -181,7 +182,7 @@ class ArticlesController < ApplicationController
 		set_meta_tags alternate: {
 			"pt-br" => "https://www.wahiga.com/platform/#{@platform}"
 		}
-		@articles = Article.getArticleByPlatform(@platform)
+		@articles = Article.getArticleByPlatform_cached(@platform)
 	end
 
 end
