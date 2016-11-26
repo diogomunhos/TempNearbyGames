@@ -16,22 +16,22 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<%= display_meta_tags %>
 	<%= raw @amplink %>
-	<link media="none" onload="if(media!='all')media='screen'" rel="stylesheet" type="text/css" href="/assets/new-template/css/font-awesome.min.css" />
-	<link media="none" onload="if(media!='all')media='screen'" rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
-	<link rel="publisher" href="https://plus.google.com/b/102118188486502639269/?pageId=102118188486502639269">
-	<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+	<link async rel="stylesheet" type="text/css" href="/assets/new-template/css/font-awesome.min.css" media="screen" />
+	<link async rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald:300,400,700|Source+Sans+Pro:300,400,600,700&amp;subset=latin,latin-ext" />
+	<link async rel="publisher" href="https://plus.google.com/b/102118188486502639269/?pageId=102118188486502639269">
+	<link async rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
 	<script async type='text/javascript' src='/assets/new-template/jscript/jquery-1.11.2.min.js'></script>
 	<script async type='text/javascript' src='/assets/new-template/jscript/modernizr.custom.50878.js'></script>
 	<script async type='text/javascript' src='/assets/new-template/jscript/iscroll.js'></script>
 	<script async type='text/javascript'>
 		var strike_autostart = false;
 	</script>
-	<%= stylesheet_link_tag    'application', media: 'nome', :onload =>"if(media!='all')media='all'" %>
+	<%= stylesheet_link_tag    'application', media: 'nome', :async => true %>
 	<%= javascript_include_tag 'application', :async => true %>
 	<%= csrf_meta_tags %>
 
 </head>
-<style media="none" onload="if(media!='all')media='all'" >
+<style async>
 	/* Man content & sidebar top lne, default #256193 */
 	#sidebar .panel,
 	#main-box #main {
