@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController	
-	
+	self.page_cache_directory = -> { Rails.root.join("public", request.domain) }
+	caches_page :show, :all_articles, :platform
+
 	def show
 		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
 		print "DEBUG #{Rails.cache}"

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-
+	self.page_cache_directory = -> { Rails.root.join("public", request.domain) }
+	caches_page :home, :show_image
 	def home
 		@slider = Article.getLast4ArticlesSlider_cached		
 		@articles = Article.getLast5Articles_cached(@slider)
