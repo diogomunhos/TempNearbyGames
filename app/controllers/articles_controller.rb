@@ -4,11 +4,13 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
+		expires_in 3.minutes, :public => true
 		print "DEBUG #{Rails.cache}"
 		if @article === nil
 			redirect_to '/404'
 		else
 			@popular = Article.get10MostPopularArticles_cached(@article.id)
+			expires_in 3.minutes, :public => true
 			@stats = Rails.cache.stats.first.last
 			unless @article.views.nil?
 				views = @article.views + 1
@@ -19,7 +21,9 @@ class ArticlesController < ApplicationController
 			# @advertising1 = Advertising.getDefaultAdvertising;
 			@author = Hash.new
 			authorProfile = UserPreference.find_by_user_id_cached(@article.created_by_id)
+			expires_in 3.minutes, :public => true
 			user = User.find_cached(@article.created_by_id)
+			expires_in 3.minutes, :public => true
 			@author[:id] = user.id
 			@author[:full_name] = user.name
 			@author[:full_name] += " " + user.last_name unless user.last_name.nil?
@@ -43,7 +47,9 @@ class ArticlesController < ApplicationController
 		    	@author[:about] = authorProfile.about;
 			end
 			@author[:total_of_articles] = Article.where("created_by_id = ? AND status = ?", @article.created_by_id, "Published").count
+			expires_in 3.minutes, :public => true
 			@randomArticles = Article.get3RandomArticlesFromAuthor(@article.id, @article.created_by_id)
+			expires_in 3.minutes, :public => true
 			imageUrl = ""
 			@article.article_documents.each do |image|
 				if image.document_type === "Header"

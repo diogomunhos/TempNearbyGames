@@ -69,7 +69,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def self.getAllArticlesPublished_cached
-	  Rails.cache.fetch("getAllArticlesPublished") { getAllArticlesPublished }
+	  Rails.cache.fetch("getAllArticlesPublished") { print "DEBUG ENTROU", getAllArticlesPublished }
 	end
 
 
