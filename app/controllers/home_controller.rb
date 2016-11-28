@@ -47,6 +47,7 @@ class HomeController < ApplicationController
 
 	def show_image	
 		document = Document.find(params[:id])
+		expires_in 3.minutes, :public => true
 		 send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 	end
 
