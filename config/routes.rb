@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   root "home#home"
 
   get '/sitemap.xml', to: redirect("https://wahiga.s3-sa-east-1.amazonaws.com/sitemaps/sitemap.xml.gz", status: 301)
