@@ -18,7 +18,7 @@ class HomeController < ApplicationController
 					site: 'Wahiga',
 					description: "Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.",
 					reverse: true,
-					keywords: %w[Gamers Game Walkthrough Hints News Reviews Wahiga games],
+					keywords: %w[Gamers Game, games, noticias, novidades de games, Walkthrough Hints News Reviews Wahiga games],
 					image_src: "https://www.wahiga.com/assets/images/wahiga_logo_2.png",
 					application_name: "Wahiga",
 					author: "Wahiga"
@@ -47,7 +47,7 @@ class HomeController < ApplicationController
 
 	def show_image	
 		document = Document.find(params[:id])
-		expires_in 3.minutes, :public => true
+		expires_in 7.days, :public => true
 		 send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 	end
 
