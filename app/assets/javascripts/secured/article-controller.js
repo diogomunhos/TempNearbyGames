@@ -462,6 +462,8 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("*","");
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("(","");
     $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll(")","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("?","");
+    $scope.article.friendly_url.value = $scope.article.friendly_url.value.replaceAll("!","");
   }
 
   String.prototype.replaceAll = function(de, para){
