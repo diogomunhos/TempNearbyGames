@@ -16,7 +16,7 @@ class Article < ActiveRecord::Base
 	scope :getArticlePaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order("created_at DESC") }
 	scope :getAllArticlesSearchByField, -> (fieldToSearch = nil, searchValue = nil, numberPerPage = nil, offset_page = nil) { where("#{fieldToSearch} LIKE ? ", "%#{searchValue}%").offset(offset_page).limit(numberPerPage).order("updated_at DESC") }
 	scope :getAllArticlesSearchByFieldCount, -> (fieldToSearch = nil, searchValue = nil) { where("#{fieldToSearch} LIKE ? ", "%#{searchValue}%").count }
-	scope :get10MostPopularArticles, -> (id = nil) { where.not(id: id).where(status: "Published").limit(10).order("views DESC").includes(:documents)}
+	scope :get10MostPopularArticles, -> (id = nil) { where.not(id: id).where("status = ? AND created_at > ? ", "Published", 30.days.ago).limit(10).order("views DESC").includes(:documents)}
 	scope :get3RandomArticles, -> (id = nil) {where.not(id: id).where(status: "Published").order("RANDOM()").limit(3).includes(:documents)}
 	scope :get3RandomArticlesFromAuthor, -> (id = nil, author_id = nil) {where.not(id: id).where(status: "Published", created_by_id: author_id).order("RANDOM()").limit(3).includes(:documents)}
 	scope :getArticleByPlatform, -> (platform = nil) {where("platform LIKE ? ", "%#{platform}%").where(status: "Published").limit(50).order("created_at DESC").includes(:documents)}
