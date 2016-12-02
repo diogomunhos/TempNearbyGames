@@ -4,7 +4,7 @@
     <div class="row">
         <label class="col-lg-3 control-label" ng-class="{error_label: article.title.errorCode != ''}" for="article_title">Title:*</label>
         <div class="col-lg-5">
-            <input type="text" required="" class="form-control error-input" ng-focus="focusField('title')" ng-class="{error_input: article.title.errorCode != ''}" ng-change="onChangeTitle(article.title.value)" name="article[title]" id="article_title" ng-model="article.title.value"/>
+            <input type="text" required="" class="form-control" ng-focus="focusField('title')" ng-class="{error_input: article.title.errorCode != ''}" ng-change="onChangeTitle(article.title.value)" name="article[title]" id="article_title" ng-model="article.title.value"/>
         </div>    
     </div>
     <div class="row" ng-show="article.title.errorCode != ''">

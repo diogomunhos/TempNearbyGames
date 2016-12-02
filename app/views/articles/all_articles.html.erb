@@ -1,14 +1,9 @@
-<!-- <body class="has-top-menu"> -->
-<!-- BEGIN #slider-imgs -->
 <div id="slider-imgs">
 	<div class="featured-img-box">
 		<div id="featured-img-1" class="featured-img"></div>
 	</div>
-	<!-- END #slider-imgs -->
 </div>
-
-<!-- BEGIN #top-layer -->
-<div id="top-layer">
+<div id="top-layer" ng-controller="all-articles-controller">
 	<div id="header-top">
 		<%= render '/home/wrapper_top' %>
 	</div>
@@ -55,7 +50,17 @@
 							</div>
 						</div>
 						<div class="clear-float do-the-split"></div>
+
 					<% end %>
+					<div class="pagination">
+						<a href="#" class="page-num">1</a>
+						<span class="page-num current">2</span>
+						<a href="#" class="page-num">3</a>
+						<a href="#" class="page-num">4</a>
+						<a href="#" class="page-num">5</a>
+						<span class="page-num page-hidden">...</span>
+						<a href="#" class="page-num">74</a>
+					</div>
 				</div>
 
 				<div class="content-padding">

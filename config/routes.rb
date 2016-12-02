@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
   get '/all-articles' => "articles#all_articles"
 
+  get '/all-articles/get-articles-from-page/:numberPerPage/:pageNumber' => "articles#get_articles_service"
+
   get "/temp" => "temp#temp"
 
   get "/signup" => "signup#signup"

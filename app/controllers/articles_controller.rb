@@ -2,6 +2,15 @@ class ArticlesController < ApplicationController
 	self.page_cache_directory = -> { Rails.root.join("public", request.domain) }
 	caches_page :show, :all_articles, :platform
 
+	def get_articles_service
+		offset_page = (params[:numberPerPage].to_i * params[:pageNumber].to_i) - params[:numberPerPage].to_i 
+		@articles = Article.getArticlePublishedPaged_cached(params[:numberPerPage], offset_page)
+
+		respond_to do |format|
+		    format.json { render json: @articles }
+		end
+	end
+
 	def show
 		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
 		expires_in 3.minutes, :public => true
@@ -120,7 +129,7 @@ class ArticlesController < ApplicationController
 		else
 			@articles = Article.getAllArticlesPublished_cached
 		end
-
+		@articles = Article.all
 		set_meta_tags title: title,
 				site: 'Wahiga',
 				reverse: true,

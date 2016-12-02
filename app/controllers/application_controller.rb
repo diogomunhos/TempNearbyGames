@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user, :system_objects, :system_fields, :error_messages, :check_profile, :check_user_access_read_all_helper, :check_access_to_publish_helper, :check_has_to_change_password, :create_meta_tags_helper
-  before_filter :add_www_subdomain
+  # before_filter :add_www_subdomain
 
   private
   def add_www_subdomain
