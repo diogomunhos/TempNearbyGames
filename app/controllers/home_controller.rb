@@ -53,6 +53,9 @@ class HomeController < ApplicationController
 		document.file_contents = image_optim.optimize_image_data(document.file_contents)
 		expires_in 7.days, :public => true
 		 send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
+		# document = Document.find(params[:id])
+		# expires_in 7.days, :public => true
+		#  send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 	end
 
 end
