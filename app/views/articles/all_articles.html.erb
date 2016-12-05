@@ -12,7 +12,7 @@
 		<div id="main-box">
 
 			<div id="main"><!-- Right Bar -->
-				<div class="content-padding">
+				<div class="content-padding" style="min-height: 50px;">
 					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 					<!-- Cabeçalho Responsivo -->
 					<ins class="adsbygoogle"
@@ -68,7 +68,7 @@
 			</div>
 
 			<!-- BEGIN #sidebar -->
-			<aside id="sidebar">
+			<aside id="sidebar" ng-show="showSideBar">
 				<%= render 'home/popular_articles' %>
 
 				<%= render 'home/we_are_social' %>
