@@ -6,27 +6,27 @@ angular.module('public-module.article-controller', [])
 	$scope.totalOfRecords = 0;
 	$scope.totalOfPages = 0;
 	$scope.actualPage = 1;
+	$scope.articles = [];
+	$scope.loadingArticles = true;
 
 
 	$scope.getArticles = function(){
-
-	}
-
-	$scope.getTotalOfRecords = function(){
-
-	}
-
-	$scope.setTotalOfPages = function(){
-
+		articleServices.getArticles($scope.actualPage, 10).then(function (result) {
+			$scope.loadingArticles = false;
+	        for(var i=0; i < result.data.length; i++){
+	        	$scope.articles.push({id: result.data[i].id, title: result.data[i].title, preview: result.data[i].preview, url: result.data[i].url, image_url: result.data[i].image_url});
+	        }
+	    });
 	}
 
 	$scope.testScroll = function(){
-		console.log('call testScroll');
+		if(!$scope.loadingArticles){
+			$scope.loadginArticles = true;
+			$scope.actualPage++;
+			$scope.getArticles();
+		}
 	}
 
-	$scope.changePage = function(pageNumber){
-		$scope.actualPage = pageNumber;
-		$scope.getArticles();
-	}
+	$scope.getArticles();
 
 }]);

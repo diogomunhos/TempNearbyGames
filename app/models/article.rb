@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 	scope :getLast4ArticlesSlider, -> { where(is_highlight: true).where(status: "Published").order("created_at desc").limit(4).includes(:documents) }
 	scope :getArticleWithDocumentsById, -> (article_id = nil) { where(id: article_id).limit(1).includes(:documents) }
 	scope :getArticlePaged, -> (numberPerPage = nil, offset_page = nil) { where("status = ?", "Published").offset(offset_page).limit(numberPerPage).order("created_at DESC") }
-	scope :getArticlePublishedPaged, -> (numberPerPage = nil, offset_page = nil) { offset(offset_page).limit(numberPerPage).order("created_at DESC") }
+	scope :getArticlePublishedPaged, -> (numberPerPage = nil, offset_page = nil) { where("status = ? ", "Published").offset(offset_page).limit(numberPerPage).order("created_at DESC").includes(:documents) }
 	scope :getAllArticlesSearchByField, -> (fieldToSearch = nil, searchValue = nil, numberPerPage = nil, offset_page = nil) { where("#{fieldToSearch} LIKE ? ", "%#{searchValue}%").offset(offset_page).limit(numberPerPage).order("updated_at DESC") }
 	scope :getAllArticlesSearchByFieldCount, -> (fieldToSearch = nil, searchValue = nil) { where("#{fieldToSearch} LIKE ? ", "%#{searchValue}%").count }
 	scope :get10MostPopularArticles, -> (id = nil) { where.not(id: id).where("status = ? AND created_at > ? ", "Published", 30.days.ago).limit(10).order("views DESC").includes(:documents)}

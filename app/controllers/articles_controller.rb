@@ -4,10 +4,25 @@ class ArticlesController < ApplicationController
 
 	def get_articles_service
 		offset_page = (params[:numberPerPage].to_i * params[:pageNumber].to_i) - params[:numberPerPage].to_i 
-		@articles = Article.getArticlePublishedPaged_cached(params[:numberPerPage], offset_page)
+		@articles = Article.getArticlePublishedPaged(params[:numberPerPage], offset_page)
+
+		@result = Array.new
+		@articles.each do |a|
+			item = Hash.new
+			item[:title] = a.title
+			item[:preview] = a.preview
+			item[:url] = if a.game != nil then "/#{a.game.friendly_url}/#{a.article_type.downcase}/#{a.friendly_url}" else "/#{a.article_type.downcase}/#{a.friendly_url}" end
+			item[:image_url] = nil
+			a.article_documents.each do |image|
+				if image.document_type === "Thumb"
+					item[:image_url] = "/images/#{image.document.id}/#{image.document.file_name}"
+				end
+			end 
+			@result.push(item)
+		end
 
 		respond_to do |format|
-		    format.json { render json: @articles }
+		    format.json { render json: @result }
 		end
 	end
 

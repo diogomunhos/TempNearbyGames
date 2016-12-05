@@ -3,7 +3,7 @@
 		<div id="featured-img-1" class="featured-img"></div>
 	</div>
 </div>
-<div id="top-layer" ng-controller="all-articles-controller" scrolldown="testScroll();">
+<div id="top-layer" ng-controller="all-articles-controller" scrolldown="testScroll();" ng-cloak="true">
 	<div id="header-top">
 		<%= render '/home/wrapper_top' %>
 	</div>
@@ -25,42 +25,31 @@
 					</script>
 				</div>
 				<div class="content-padding">
-					<h2><span>Latest Articles</span></h2>
-					<% @articles.each do |a| %>
-						<div class="article-promo">
-							<div class="article-photo">
-								<span class="article-image-out">
-									<span class="article-image">
-										<% a.article_documents.each do |image| %>
-											<% if image.document_type === "Thumb" %>
-												<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img src="/images/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
-											<% end %>
-										<% end %>
+					<h2 style="margin-bottom: 20px;"><span>Latest Articles</span></h2>
+						<div ng-repeat="article in articles">
+							<div class="article-promo">
+								<div class="article-photo">
+									<span class="article-image-out">
+										<span class="article-image">
+											<a href="{{article.url}}"><img src="{{article.image_url}}" alt="" title="" /></a>
+										</span>
 									</span>
-								</span>
-							</div>
-							<div class="article-content">
-								<h3><a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><%= truncate(a.title, length: 75) %></a></h3>
-								<div class="article-icons">
-									<!-- <a href="user-single.html" class="user-tooltip"><i class="fa fa-fire"></i>datcouch</a>
-									<a href="#"><i class="fa fa-calendar"></i>September 11, 2015</a> -->
 								</div>
-								<p><%= truncate(a.preview, length: 120) %></p></p>
-								<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Leia completa</a>
+								<div class="article-content">
+									<h3><a href="{{article.url}}">{{article.title}}</a></h3>
+									<div class="article-icons">
+										<!-- <a href="user-single.html" class="user-tooltip"><i class="fa fa-fire"></i>datcouch</a>
+										<a href="#"><i class="fa fa-calendar"></i>September 11, 2015</a> -->
+									</div>
+									<p>{{article.preview}}</p></p>
+									<a href="{{article.url}}" class="defbutton"><i class="fa fa-reply"></i>Leia completa</a>
+								</div>
 							</div>
+							<div class="clear-float do-the-split"></div>
 						</div>
-						<div class="clear-float do-the-split"></div>
-
-					<% end %>
-					<div class="pagination">
-						<a href="#" class="page-num">1</a>
-						<span class="page-num current">2</span>
-						<a href="#" class="page-num">3</a>
-						<a href="#" class="page-num">4</a>
-						<a href="#" class="page-num">5</a>
-						<span class="page-num page-hidden">...</span>
-						<a href="#" class="page-num">74</a>
-					</div>
+						<div class="article-promo" ng-show="loadingArticles">
+							<a href=""><img style="height: 50px; margin-left: 45%;" src="/assets/images/loading_article_wahiga.gif"/></a>
+						</div>
 				</div>
 
 				<div class="content-padding">
