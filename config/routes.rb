@@ -55,6 +55,8 @@ Rails.application.routes.draw do
 
   get "/platform/:platform" => "articles#platform"
 
+  get "/:platform/get-articles-paged/:numberPerPage/:pageNumber" => "articles#get_platform_articles_service"
+
   get "/game/:name" => "games#show"
 
 

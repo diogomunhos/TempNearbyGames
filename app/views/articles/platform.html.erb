@@ -30,7 +30,9 @@
 					</script>
 				</div>
 				<div class="content-padding">
-					<h2><span>Últimas Notícias</span></h2>
+					<input type="hidden" id="platform" value="<%= @platform %>" />
+					<h1 style="margin-bottom: 20px;"><span>Últimas Notícias de <%= @platform %></span></h1>
+					<div class="clear-float do-the-split"></div>
 					<div ng-repeat="article in articles">
 							<div class="article-promo">
 								<div class="article-photo">

@@ -6,7 +6,7 @@ angular.module('public-module.platform-services', [])
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: "/all-articles/get-articles-from-platform/"+numberPerPage+"/"+pageNumber+"/"+platform+".json"
+                url: "/"+platform+"/get-articles-paged/"+numberPerPage+"/"+pageNumber+".json"
             }).then(function successCallback(response){ 
                 deferred.resolve(response);
             }, function errorCallback(response){

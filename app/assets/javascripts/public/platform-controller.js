@@ -8,10 +8,11 @@ angular.module('public-module.platform-controller', [])
 	$scope.actualPage = 1;
 	$scope.articles = [];
 	$scope.loadingArticles = true;
+	$scope.platform = ((document.getElementById("platform")  != null) ? document.getElementById("platform").value : "");
 
 
 	$scope.getArticles = function(){
-		articleServices.getArticles($scope.actualPage, 10, $scope.platform).then(function (result) {
+		platformServices.getArticles($scope.actualPage, 10, $scope.platform).then(function (result) {
 			$scope.loadingArticles = false;
 	        for(var i=0; i < result.data.length; i++){
 	        	$scope.articles.push({id: result.data[i].id, title: result.data[i].title, preview: result.data[i].preview, url: result.data[i].url, image_url: result.data[i].image_url});
