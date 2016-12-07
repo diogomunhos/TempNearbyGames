@@ -24,7 +24,7 @@ class ArticlesSecuredController < ApplicationController
 		check_access("Article", "delete_record")
 	end
 
-	before_action only: [:publish] do 
+	before_action only: [:publish, :update_image_performance] do 
 		check_access_to_publish("Administrator")
 	end
 
@@ -38,6 +38,11 @@ class ArticlesSecuredController < ApplicationController
 		hashDocument[:file] = request['file']
 
 		document = Document.new(hashDocument)
+		image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
+		documentfile = image_optim.optimize_image_data(document.file_contents)
+		if documentfile != nil
+			document.update(file_contents: documentfile)
+		end
 		@result = Array.new
 		hashResult = Hash.new
 		hashResult[:isSuccessful] = true
@@ -99,7 +104,6 @@ class ArticlesSecuredController < ApplicationController
 
 
 	def create_article_service
-		print "DEBUG #{params} - #{article_params_create_by_service}"
 		@article = Article.new(article_params_create_by_service)
 		@article.status = "Draft"
 		@article.friendly_url = @article.friendly_url.gsub("_", "-")
@@ -136,7 +140,6 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def update_article_service
-		print "DEBUG - #{article_params_update_by_service}"
 		@article = Article.find(article_params_update_by_service[:id])
 		user = User.find(session[:user_id])
 		username = user.name
@@ -285,13 +288,11 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def update
-		print "DEBUG - #{headers}"
 		@article = Article.find(article_params[:id])
 		if params[:document] != nil
 			if document_params.has_key?(:file1)
 				document = ArticleDocument.where("article_id=? and document_type=?",@article.id, "header")
 				document.destroy(document[0].id) if document.length > 0
-				print "DEBUG #{document_params}"
 				@document1 = Document.new(document_params, "file1")
 				if @document1.save
 					ArticleDocument.create(article_id: @article.id, document_id: @document1.id, document_type: "header");
@@ -465,6 +466,22 @@ class ArticlesSecuredController < ApplicationController
 				format.html { render :template => "/articles_secured/new" }
 			end 
 		end
+	end
+
+	def update_image_performance
+		documents = Document.all
+		documents.each do |doc|
+			if doc.file_contents != nil
+				image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
+				documentfile = image_optim.optimize_image_data(doc.file_contents)
+				if documentfile != nil
+					doc.update(file_contents: documentfile)
+				end
+			end 
+			
+		end
+
+		redirect_to "/private/index"
 	end
 
 	def destroy
