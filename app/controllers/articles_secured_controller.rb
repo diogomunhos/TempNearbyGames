@@ -469,7 +469,7 @@ class ArticlesSecuredController < ApplicationController
 	end
 
 	def update_image_performance
-		documents = Document.all
+		documents = Document.offset(params[:offset]).limit(params[:limit])
 		documents.each do |doc|
 			if doc.file_contents != nil
 				image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
