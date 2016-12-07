@@ -145,7 +145,7 @@ Rails.application.routes.draw do
 
   get '/private/articles/send_to_approval/:articleid' => "articles_secured#send_to_approval"
 
-  get '/private/articles/update_image_performance' => "articles_secured#update_image_performance"
+  get '/private/articles/update_image_performance/:offset/:limit' => "articles_secured#update_image_performance"
 
 
   #Users
