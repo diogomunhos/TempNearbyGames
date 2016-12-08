@@ -59,6 +59,8 @@ Rails.application.routes.draw do
 
   get "/game/:name" => "games#show"
 
+  get '/forgot-password' => "forgot_password#forgot_password"
+
 
   #temp
 
@@ -69,6 +71,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
 
   get '/logout' => 'sessions#destroy'
+
+  post '/login-service' => "sessions#create_service"
 
   match 'auth/:provider/callback', to: 'sessions#create_social', via: [:get, :post]
 

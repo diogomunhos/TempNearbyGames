@@ -1,4 +1,4 @@
-<title>Signup - Wahiga</title>
+<!-- <title>Signup - Wahiga</title>
 <div class="container">
   <div class="col-lg-9 col-lg-offset-2 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3" style="background-color: white; border-radius: 10px;">
     <div class="row">
@@ -178,4 +178,134 @@
     <% end %>
     </ul>
   <% end %>
-</div> -->
+</div> --> 
+
+<div id="slider-imgs">
+    <div class="featured-img-box">
+      <div id="featured-img-1" class="featured-img"></div>
+    </div>
+    <!-- END #slider-imgs -->
+  </div>
+
+    <!-- BEGIN #top-layer -->
+    <div id="top-layer">
+      <div id="header-top">
+        <%= render '/home/wrapper_top' %>
+      </div>
+      <section id="content">
+        <%= render '/home/header' %>
+        <div id="main-box" class="full-width">
+          
+          <div id="main">
+            <div class="signup-panel">
+
+              <div class="left">
+                <h2><span>Registre-se</span></h2>
+                <div class="content-padding">
+                  <p class="p-padding">Você pode usar sua rede social favorita para criar uma conta no wahiga clicando nos icones abaixo</p>
+
+                  <div class="login-passes">
+                    <a href="#" class="strike-tooltip" title="Use Facebook.com passport"><img src="/assets/images/social-icon-facebook.png" alt="" /></a>
+                    <a href="#" class="strike-tooltip" title="Use Twitter.com passport"><img src="/assets/images/social-icon-twitter.png" alt="" /></a>
+                    <a href="#" class="strike-tooltip" title="Use Google.com passport"><img src="/assets/images/social-icon-google.png" alt="" /></a>
+                  </div>
+
+                  <p class="p-padding">Ou preencha o formulário abaixo</p>
+
+                  <div class="the-form">
+                    <form action="" method="post">
+
+                      <p>
+                        <label for="signup_username">Username:<span class="required">*</span></label>
+                        <input type="text" name="signup_username" id="signup_username" value="" />
+                      </p>
+
+                      <p>
+                        <label for="signup_name">Name, Surname:<span class="required">*</span></label>
+                        <input type="text" name="signup_name" id="signup_name" value="" />
+                      </p>
+
+                      <p>
+                        <label for="signup_email">E-mail:<span class="required">*</span></label>
+                        <input class="error-input" type="text" name="signup_email" id="signup_email" value="" />
+                        <span class="error-msg">E-mail must be filled !</span>
+                      </p>
+
+                      <p>
+                        <label for="signup_password">Password:<span class="required">*</span></label>
+                        <input type="password" name="signup_password" id="signup_password" value="" />
+                      </p>
+
+                      <p>
+                        <label for="signup_password_r">password repeat:<span class="required">*</span></label>
+                        <input type="password" name="signup_password_r" id="signup_password_r" value="" />
+                      </p>
+
+                      <p class="form-footer">
+                        <input type="submit" name="signup_submit" id="signup_submit" value="Registre-se" />
+                      </p>
+
+                      <p>
+                        <span class="info-msg">Se você ja tem uma conta no Wahiga <a href="/signin">log in</a> !</span>
+                      </p>
+
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="right">
+                <h2><span>O que é Wahiga</span></h2>
+                <div class="content-padding">
+                  
+                  <div class="form-split-about">
+                    <p class="p-padding">Wahiga (Walkthout and Hints for Gamers) é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.</p>
+
+                    <!-- <ul>
+                      <li>
+                        <i class="fa fa-picture-o"></i>
+                        <b>Id ius facete urbanitas concludaturque mea</b>
+                        <p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
+                      </li>
+                      
+                      <li>
+                        <i class="fa fa-trophy"></i>
+                        <b>Id ius facete urbanitas concludaturque mea</b>
+                        <p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+                      </li>
+
+                      <li>
+                        <i class="fa fa-microphone"></i>
+                        <b>Id ius facete urbanitas concludaturque mea</b>
+                        <p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+                      </li>
+                      
+                      <li>
+                        <i class="fa fa-comments"></i>
+                        <b>Id ius facete urbanitas concludaturque mea</b>
+                        <p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
+                      </li>
+                    </ul> -->
+                    
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="clear-float"></div>
+            </div>
+            
+          </div>
+          
+          <div class="clear-float"></div>
+          
+        </div>
+      </div>
+    </div>
+      
+    <div class="clear-float"></div>
+  </section>
+</div>
+
+

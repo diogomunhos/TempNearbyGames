@@ -1,4 +1,4 @@
-<div class="container" ng-controller="signup-controller as controller">
+<!-- <div class="container" ng-controller="signup-controller as controller">
   <div class="page-header">
     <h1>Social login</h1>
   </div>
@@ -66,4 +66,114 @@
     </div>
     <% end %>
   </div>
+</div> -->
+<div id="slider-imgs">
+    <div class="featured-img-box">
+      <div id="featured-img-1" class="featured-img"></div>
+    </div>
+    <!-- END #slider-imgs -->
+  </div>
+
+    <!-- BEGIN #top-layer -->
+    <div id="top-layer">
+      <div id="header-top">
+        <%= render '/home/wrapper_top' %>
+      </div>
+      <section id="content">
+        <%= render '/home/header' %>
+        <div id="main-box" class="full-width">
+          
+          <div id="main" ng-controller="social-login-controller">
+          <div class="panel">
+            <div class="content-padding" style="margin-top: -30px;">
+              <p><span class="the-alert-msg"><i class="fa fa-warning"></i>Sua rede social ainda não esta conectada com nenhuma conta Wahiga, cria uma conta preenchendo os campos abaixo ou faça o login em uma conta wahiga existente</span></p>
+            </div>
+          </div>
+            <div class="signup-panel">
+
+              <div class="left">
+                <h2><span>Login</span></h2>
+                <div class="content-padding">
+                  
+                  <div class="form-split-about">
+                  
+                    <div class="the-form">
+                    <form>
+
+                      <p>
+                        <span class="the-error-msg" ng-show="showErrorMessage"><i class="fa fa-warning"></i>{{message}}</span>
+                      </p>
+
+                      <p>
+                        <label for="login_username">Email:</label>
+                        <input type="text" name="login_username" id="login_username" ng-model="socialSignin.email" />
+                      </p>
+
+                      <p>
+                        <label for="login_password">Senha:</label>
+                        <input type="password" name="login_password" id="login_password" ng-model="socialSignin.password" />
+                      </p>
+
+                      <p class="form-footer">
+                        <input type="submit" name="login_submit" id="login_submit" ng-disabled="loading" ng-click="tryLogin();" value="Log in" />
+                      </p>
+
+                    </form>
+                  </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="right">
+                <h2><span>Registre-se</span></h2>
+                <div class="content-padding">
+                  
+
+                  <div class="the-form">
+                    <form>
+                      <p>
+                        <label for="signup_username">Nickname:<span class="required">*</span></label>
+                        <input type="text" name="signup_username" id="signup_username" ng-model="socialSignup.nickname" />
+                      </p>
+
+                      <p>
+                        <label for="signup_email">E-mail:<span class="required">*</span></label>
+                        <input class="error-input" type="text" name="signup_email" id="signup_email" ng-model="socialSignup.email" />
+                        <span class="error-msg">E-mail must be filled !</span>
+                      </p>
+
+                      <p>
+                        <label for="signup_password">Senha:<span class="required">*</span></label>
+                        <input type="password" name="signup_password" id="signup_password" ng-model="socialSignup.password" />
+                      </p>
+
+                      <p>
+                        <label for="signup_password_r">Confirme sua senha:<span class="required">*</span></label>
+                        <input type="password" name="signup_password_r" id="signup_password_r" ng-model="socialSignup.passwordConfirmation" />
+                      </p>
+
+                      <p class="form-footer">
+                        <input type="submit" name="signup_submit" id="signup_submit" value="Registre-se" />
+                      </p>
+                    </form>
+                  </div>
+
+                </div>
+                </div>
+
+              <div class="clear-float"></div>
+            </div>
+            
+          </div>
+          
+          <div class="clear-float"></div>
+          
+        </div>
+      </div>
+    </div>
+      
+    <div class="clear-float"></div>
+  </section>
 </div>

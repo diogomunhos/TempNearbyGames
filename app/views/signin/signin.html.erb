@@ -1,4 +1,4 @@
-<title>Signin - Wahiga</title>
+<!-- <title>Signin - Wahiga</title>
 <div class="container">
 	<div class="col-lg-9 col-lg-offset-2 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3" style="background-color: white; border-radius: 10px;">
 		<div class="row">
@@ -47,4 +47,118 @@
 			</div>
 		</div>
 	</div>
+</div> -->
+	<div id="slider-imgs">
+		<div class="featured-img-box">
+			<div id="featured-img-1" class="featured-img"></div>
+		</div>
+		<!-- END #slider-imgs -->
+	</div>
+
+		<!-- BEGIN #top-layer -->
+		<div id="top-layer" ng-controller="signin-controller">
+			<div id="header-top">
+				<%= render '/home/wrapper_top' %>
+			</div>
+			<section id="content">
+				<%= render '/home/header' %>
+				<div id="main-box" class="full-width">
+					
+					<div id="main">
+						<div class="signup-panel">
+
+							<div class="left">
+								<h2><span>Sign in</span></h2>
+								<div class="content-padding">
+									<p class="p-padding">Você pode usar sua rede social favorita para logar em sua conta clicando nos icones abaixo</p>
+
+									<div class="login-passes">
+										<a href="/auth/facebook" class="strike-tooltip" title="Use sua conta do Facebook.com"><img src="/assets/images/social-icon-facebook.png" alt="" /></a>
+										<a href="/auth/twitter" class="strike-tooltip" title="Use sua conta do Twitter.com"><img src="/assets/images/social-icon-twitter.png" alt="" /></a>
+										<a href="auth/google_oauth2" class="strike-tooltip" title="Use Google.com passport"><img src="/assets/images/social-icon-google.png" alt="" /></a>
+									</div>
+
+									<div class="the-form" style="margin-top:40px;">
+										<form>
+
+											<p>
+												<span class="the-error-msg" ng-show="showErrorMessage"><i class="fa fa-warning"></i>{{message}}</span>
+											</p>
+
+											<p>
+												<label for="login_username">Email:</label>
+												<input type="text" name="login_username" id="login_username" ng-model="signin.email" />
+											</p>
+
+											<p>
+												<label for="login_password">Senha:</label>
+												<input type="password" name="login_password" id="login_password" ng-model="signin.password" />
+											</p>
+
+											<p class="form-footer">
+												<input type="submit" name="login_submit" id="login_submit" ng-disabled="loading" ng-click="tryLogin();" value="Log in" />
+											</p>
+
+											<p style="margin-top:40px;">
+												<span class="info-msg">Se você não tem uma conta, <a href="/signup">registre-se</a> !<br /><br />Se esqueceu sua senha <a href="/forgot-password">clique aqui</a></span>
+											</p>
+
+										</form>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="right">
+								<h2><span>O que é Wahiga</span></h2>
+								<div class="content-padding">
+									
+									<div class="form-split-about">
+										<p class="p-padding">Wahiga (Walkthout and Hints for Gamers) é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.</p>
+
+										<!-- <ul>
+											<li>
+												<i class="fa fa-picture-o"></i>
+												<b>Id ius facete urbanitas concludaturque mea</b>
+												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
+											</li>
+											
+											<li>
+												<i class="fa fa-trophy"></i>
+												<b>Id ius facete urbanitas concludaturque mea</b>
+												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+											</li>
+
+											<li>
+												<i class="fa fa-microphone"></i>
+												<b>Id ius facete urbanitas concludaturque mea</b>
+												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
+											</li>
+											
+											<li>
+												<i class="fa fa-comments"></i>
+												<b>Id ius facete urbanitas concludaturque mea</b>
+												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
+											</li>
+										</ul> -->
+										
+									</div>
+									
+								</div>
+							</div>
+
+							<div class="clear-float"></div>
+						</div>
+						
+					</div>
+					
+					<div class="clear-float"></div>
+					
+				</div>
+			</div>
+		</div>
+			
+		<div class="clear-float"></div>
+	</section>
 </div>
+

@@ -18,6 +18,23 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	def create_service
+		user = User.find_by_email_cached(session_params[:email])
+		
+		@result = Hash.new
+		
+	    if user && user.authenticate(session_params[:password])
+		    session[:user_id] = user.id
+		    @result[:login] = true
+		else
+		    @result[:login] = false
+		end
+
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
 	def create_session_social
 		user = User.find_by_email_cached(session_params[:email])
    		social = session[:social]
