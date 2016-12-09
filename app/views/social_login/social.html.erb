@@ -101,7 +101,7 @@
                     <form>
 
                       <p>
-                        <span class="the-error-msg" ng-show="showErrorMessage"><i class="fa fa-warning"></i>{{message}}</span>
+                        <span class="the-error-msg" ng-show="showLoginErrorMessage"><i class="fa fa-warning"></i>{{loginMessage}}</span>
                       </p>
 
                       <p>
@@ -115,7 +115,7 @@
                       </p>
 
                       <p class="form-footer">
-                        <input type="submit" name="login_submit" id="login_submit" ng-disabled="loading" ng-click="tryLogin();" value="Log in" />
+                        <input type="submit" name="login_submit" id="login_submit" ng-disabled="loginLoading" ng-click="tryLogin();" value="Log in" />
                       </p>
 
                     </form>
@@ -133,25 +133,33 @@
 
                   <div class="the-form">
                     <form>
+
+                      <p>
+                          <span class="the-error-msg" ng-show="showSignupErrorMessage"><i class="fa fa-warning"></i>{{signupMessage}}</span>
+                      </p>
+
                       <p>
                         <label for="signup_username">Nickname:<span class="required">*</span></label>
-                        <input type="text" name="signup_username" id="signup_username" ng-model="socialSignup.nickname" />
+                        <input type="text" ng-class="{'error-input': socialSignup.nickname.error == true}" name="signup_username" id="signup_username" ng-model="socialSignup.nickname.value" />
+                        <span class="error-msg" ng-show="socialSignup.nickname.error">{{socialSignup.nickname.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_email">E-mail:<span class="required">*</span></label>
-                        <input class="error-input" type="text" name="signup_email" id="signup_email" ng-model="socialSignup.email" />
-                        <span class="error-msg">E-mail must be filled !</span>
+                        <input ng-class="{'error-input': socialSignup.email.error == true}" type="text" name="signup_email" id="signup_email" ng-model="socialSignup.email.value" />
+                        <span class="error-msg" ng-show="socialSignup.email.error">{{socialSignup.email.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_password">Senha:<span class="required">*</span></label>
-                        <input type="password" name="signup_password" id="signup_password" ng-model="socialSignup.password" />
+                        <input type="password" ng-class="{'error-input': socialSignup.password.error == true}" name="signup_password" id="signup_password" ng-model="socialSignup.password.value" />
+                        <span class="error-msg" ng-show="socialSignup.password.error">{{socialSignup.password.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_password_r">Confirme sua senha:<span class="required">*</span></label>
-                        <input type="password" name="signup_password_r" id="signup_password_r" ng-model="socialSignup.passwordConfirmation" />
+                        <input type="password" ng-class="{'error-input': socialSignup.passwordConfirmation.error == true}" name="signup_password_r" id="signup_password_r" ng-model="socialSignup.passwordConfirmation.value" />
+                        <span class="error-msg" ng-show="socialSignup.passwordConfirmation.error">{{socialSignup.passwordConfirmation.errorMessage}}</span>
                       </p>
 
                       <p class="form-footer">

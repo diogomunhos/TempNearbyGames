@@ -6,7 +6,7 @@ angular.module('public-module.social-services', [])
         var deferred = $q.defer();
         $http({
             method: 'POST',
-            url: '/login-service.json',
+            url: '/login-social-service.json',
             data: {"email": request.email, "password": request.password},
             headers: {'Content-Type': 'application/json', 'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
         }).then(function successCallback(response){ 

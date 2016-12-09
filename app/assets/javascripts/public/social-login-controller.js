@@ -9,15 +9,26 @@ angular.module('public-module.social-login-controller', [])
 	}
 
 	$scope.socialSignup = {
-		nickname: '',
-		email: '',
-		password: '',
-		passwordConfirmation: ''
+		nickname: { value: '',
+					error: false,
+					errorMessage:''},
+		email: { 	value: '',
+					error: false,
+					errorMessage:''},
+		password: { value: '',
+					error: false,
+					errorMessage:''},
+		passwordConfirmation: { value: '',
+								error: false,
+								errorMessage:''}
 	}
 
 	$scope.showLoginErrorMessage = false;
 	$scope.loginMessage = "";
 	$scope.loginLoading = false;
+	$scope.showSignupErrorMessage = false;
+	$scope.signupMessage = "";
+	$scope.signupLoading = false;
 
 
 	$scope.login = function(){
@@ -27,7 +38,7 @@ angular.module('public-module.social-login-controller', [])
 				$window.location.href = '/';
 			}else{
 				$scope.showLoginErrorMessage = true;
-				$scope.loginMessage = "Email e/ou senha inválido(s)";
+				$scope.loginMessage = result.data.errorMessage;
 			}
 	    });
 	}

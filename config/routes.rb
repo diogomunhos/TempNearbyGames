@@ -66,6 +66,8 @@ Rails.application.routes.draw do
 
   post '/login-social' => 'sessions#create_session_social'
 
+  post '/login-social-service' => 'sessions#create_session_social_service'
+
   get '/login' => 'sessions#new'
 
   post '/login' => 'sessions#create'

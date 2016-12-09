@@ -60,6 +60,39 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	def create_session_social_service
+		user = User.find_by_email_cached(session_params[:email])
+   		social = session[:social]
+   		session[:user] = nil
+   		@result = Hash.new
+   		@result[:login] = true
+   		@result[:errorMessage] = ""
+   		print "DEBUG #{social}"
+   		if social === nil
+   			@result[:login] = false
+   			@result[:errorMessage] = "Não foi possivel identificar um login por rede social"
+   		end
+
+	    if user && user.authenticate(session_params[:password]) && @result["login"] === true
+	    	if user.email_confirmed
+				if(social['user_id'] === nil)
+					 SocialIdentity.updateUserId_cached(user.id, social['uid'], social['provider'], social['id'])
+				end
+				session[:user_id] = user.id
+			else
+				@result[:errorMessage] = "Sua conta ainda não foi verificada, por favor verifique a conta atravéz do email enviado" #TODO implement error messages
+				@result[:login] = false
+			end	
+		elsif @result["login"] === true
+			@result[:errorMessage] = "Email ou Senha incorreta"
+			@result[:login] = false
+		end
+
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
 	def create_social
 		social = SocialIdentity.find_for_oauth(env["omniauth.auth"])
 		if social.image_url != env["omniauth.auth"].info.image && env["omniauth.auth"].info.image != nil && env["omniauth.auth"].info.image != ""
