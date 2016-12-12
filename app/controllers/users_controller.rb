@@ -3,12 +3,17 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-	def create
+	
+
+	def create_user_service
+		print "DEBUG #{user_params}"
+		@result = Hash.new
+		@result[:signup] = true
+		@result[:errorMessage] = ""
 		@user = User.new(user_params)
 		social = nil
 		if session[:social] != nil
 			userTemp = session[:user]
-			print "USER #{userTemp['name']}"
 			@user.name = userTemp['name']
 			@user.last_name = userTemp['last_name']
 			social = session[:social]
@@ -25,8 +30,7 @@ class UsersController < ApplicationController
 		profile = Profile.find_by_name('Guest')
 		@user.profile_id = profile.id
 		if @user.save
-			UserPreference.create("user_id": @user.id, "email_content": user_preference_params[:email_content], "accepted_terms_date": Date.today)
-			print "SOCIAL #{social['uid']}" 
+			UserPreference.create(user_id: @user.id, email_content: false, accepted_terms_date: Date.today)
 			if social != nil
 				 SocialIdentity.where("uid=? AND provider=?", social['uid'], social['provider']).limit(1).update(social['id'], user_id: @user.id)
 			end
@@ -34,27 +38,22 @@ class UsersController < ApplicationController
 			if !@user.email_confirmed
 				UserMailer.registration_confirmation(@user).deliver
 			end
-
 			session[:user] = nil;
-
-			redirect_to root_path
-			# UserPreference.create("user_id": @user.id, "email_content": user_preference_params[:email_content], "accepted_terms_date": Date.today);
 		else
 			if @user.errors.full_messages.any?
-				@user.errors.full_messages.each do |error|
-					flash[:success] = if flash[:success] != nil then flash[:success] + "<br/>" + error else error end 
-				end
-				if @user.errors[:password_confirmation].length > 0
-					flash[:danger] = if flash[:danger] != nil then flash[:danger] + "<br/>" + "Passwords must match" else "Passwords must match" end
-				end
 				if @user.errors[:email].length > 0
-					flash[:danger] = if flash[:danger] != nil then flash[:danger] + "<br/>" + @user.errors[:email][0] else @user.errors[:email][0] end
+					@result[:signup] = false
+					@result[:errorMessage] = if @result[:errorMessage] != "" then @result[:errorMessage] + ", " + @user.errors[:email][0] else @user.errors[:email][0] end
 				end
 				if @user.errors[:nickname].length > 0
-					flash[:danger] = if flash[:danger] != nil then flash[:danger] + "<br/>" + @user.errors[:nickname][0] else @user.errors[:nickname][0] end
+					@result[:signup] = false
+					@result[:errorMessage] = if @result[:errorMessage] != "" then @result[:errorMessage] + ", " + @user.errors[:nickname][0] else @user.errors[:nickname][0] end
 				end
 			end	
-			redirect_to "/signup"
+		end
+
+		respond_to do |format|
+		    format.json { render json: @result }
 		end
 	end
 

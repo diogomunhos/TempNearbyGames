@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
   get "/signup" => "signup#signup"
 
+  post "/signup-service" => "users#create_user_service"
+
   get "/social-login/:provider" => "social_login#social"
 
   get "/platform/:platform" => "articles#platform"
