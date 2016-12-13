@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 	before_create :confirmation_token
 
 	validates :password, :confirmation => true
-	validates :nickname, :uniqueness => {:case_sensitive => false, :message => "Email já cadastrado"}, allow_blank: true
-	validates :email, :uniqueness => {:case_sensitive => false, :message => "Nickname já cadastrado"}
+	validates :nickname, :uniqueness => {:case_sensitive => false, :message => "Nickname já cadastrado"}, allow_blank: true
+	validates :email, :uniqueness => {:case_sensitive => false, :message => "Email já cadastrado"}
 
 	has_one :user_preference, foreign_key: :user_id, dependent: :destroy
 

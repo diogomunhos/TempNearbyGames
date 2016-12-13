@@ -22,12 +22,20 @@ class SessionsController < ApplicationController
 		user = User.find_by_email_cached(session_params[:email])
 		
 		@result = Hash.new
-		
+		@result[:errorMessage] = ""
+		@result[:showLink] = false
 	    if user && user.authenticate(session_params[:password])
-		    session[:user_id] = user.id
-		    @result[:login] = true
+	    	if user.email_confirmed
+	    		session[:user_id] = user.id
+		    	@result[:login] = true
+	    	else
+		    	@result[:login] = false
+		    	@result[:errorMessage] = "E-mail não confirmado, click no link para enviar o "
+		    	@result[:showLink] = true
+		    end
 		else
 		    @result[:login] = false
+		    @result[:errorMessage] = "Usuário ou Senha incorreto"
 		end
 
 		respond_to do |format|

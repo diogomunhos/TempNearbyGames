@@ -63,6 +63,10 @@ Rails.application.routes.draw do
 
   get '/forgot-password' => "forgot_password#forgot_password"
 
+  post '/send-confirmation-email.json' => "users#resend_confirmation_email"
+
+  get "/email-confirmed" => "users#email_confirmed"
+
 
   #temp
 

@@ -57,16 +57,29 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def resend_confirmation_email
+		@result = Hash.new
+		user = User.find_by_email(params[:email])
+		UserMailer.registration_confirmation(user).deliver_now
+		@result[:success] = true
+
+		respond_to do |format|
+		    format.json { render json: @result }
+		end
+	end
+
+	def email_confirmed
+	end
+
 	def confirm_email
 	    user = User.find_by_confirm_token(params[:id])
 	    if user
 	      user.email_activate
-	      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
-	      Please sign in to continue."
-	      redirect_to '/signup'
+	      flash[:success] = "Bem vindo ao Wahiga! Seu email foi confirmado, por favor faça o login para continuar."
+	      redirect_to '/email-confirmed'
 	    else
-	      flash[:danger] = "Sorry. User does not exist"
-	      redirect_to '/signup'
+	      flash[:error] = "Desculpe, este email de confirmação expirou ou já foi utilizado, por favor envie o email de confirmação novamente"
+	      redirect_to '/email-confirmed'
 	    end
 	end
 

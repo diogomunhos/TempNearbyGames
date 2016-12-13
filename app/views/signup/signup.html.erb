@@ -20,15 +20,15 @@
               <div class="left">
                 <h2><span>Registre-se</span></h2>
                 <div class="content-padding">
-                  <p class="p-padding">Você pode usar sua rede social favorita para criar uma conta no wahiga clicando nos icones abaixo</p>
+                  <p class="p-padding" ng-show="showForm">Você pode usar sua rede social favorita para criar uma conta no wahiga clicando nos icones abaixo</p>
 
-                  <div class="login-passes">
-                    <a href="#" class="strike-tooltip" title="Use Facebook.com passport"><img src="/assets/images/social-icon-facebook.png" alt="" /></a>
-                    <a href="#" class="strike-tooltip" title="Use Twitter.com passport"><img src="/assets/images/social-icon-twitter.png" alt="" /></a>
-                    <a href="#" class="strike-tooltip" title="Use Google.com passport"><img src="/assets/images/social-icon-google.png" alt="" /></a>
+                  <div class="login-passes" ng-show="showForm">
+                    <a href="/auth/facebook" class="strike-tooltip" title="Use sua conta do Facebook.com"><img src="/assets/images/social-icon-facebook.png" alt="" /></a>
+                    <a href="/auth/twitter" class="strike-tooltip" title="Use sua conta do Twitter.com"><img src="/assets/images/social-icon-twitter.png" alt="" /></a>
+                    <a href="auth/google_oauth2" class="strike-tooltip" title="Use Google.com passport"><img src="/assets/images/social-icon-google.png" alt="" /></a>
                   </div>
 
-                  <p class="p-padding">Ou preencha o formulário abaixo</p>
+                  <p class="p-padding" ng-show="showForm">Ou preencha o formulário abaixo</p>
 
                   <div class="the-form">
                     <p>
@@ -39,48 +39,51 @@
 
                       <p>
                         <label for="signup_username">Nome:<span class="required">*</span></label>
-                        <input type="text" ng-class="{'error-input': signup.name.error == true}" id="signup_name" ng-model="signup.name.value" />
+                        <input type="text" ng-disabled="loading" ng-class="{'error-input': signup.name.error == true}" id="signup_name" ng-model="signup.name.value" />
                         <span class="error-msg" ng-show="signup.name.error">{{signup.name.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_username">Sobrenome:<span class="required">*</span></label>
-                        <input type="text" ng-class="{'error-input': signup.lastName.error == true}" name="signup_username" id="signup_username" ng-model="signup.lastName.value" />
+                        <input type="text" ng-disabled="loading" ng-class="{'error-input': signup.lastName.error == true}" name="signup_username" id="signup_username" ng-model="signup.lastName.value" />
                         <span class="error-msg" ng-show="signup.lastName.error">{{signup.lastName.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_username">Data de nasc.:<span class="required">*</span></label>
-                        <input type="text" ng-class="{'error-input': signup.birthdate.error == true}" name="signup_username" id="signup_username" ng-model="signup.birthdate.value" />
+                        <input type="text" ng-disabled="loading" ng-class="{'error-input': signup.birthdate.error == true}" name="signup_username" id="signup_username" ng-model="signup.birthdate.value" />
                         <span class="error-msg" ng-show="signup.birthdate.error">{{signup.birthdate.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_username">Nickname:<span class="required">*</span></label>
-                        <input type="text" ng-class="{'error-input': signup.nickname.error == true}" name="signup_username" id="signup_username" ng-model="signup.nickname.value" />
+                        <input type="text" ng-disabled="loading" ng-class="{'error-input': signup.nickname.error == true}" name="signup_username" id="signup_username" ng-model="signup.nickname.value" />
                         <span class="error-msg" ng-show="signup.nickname.error">{{signup.nickname.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_email">E-mail:<span class="required">*</span></label>
-                        <input ng-class="{'error-input': signup.email.error == true}" type="text" name="signup_email" id="signup_email" ng-model="signup.email.value" />
+                        <input ng-disabled="loading" ng-class="{'error-input': signup.email.error == true}" type="text" name="signup_email" id="signup_email" ng-model="signup.email.value" />
                         <span class="error-msg" ng-show="signup.email.error">{{signup.email.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_password">Senha:<span class="required">*</span></label>
-                        <input type="password" ng-class="{'error-input': signup.password.error == true}" name="signup_password" id="signup_password" ng-model="signup.password.value" />
+                        <input ng-disabled="loading" type="password" ng-class="{'error-input': signup.password.error == true}" name="signup_password" id="signup_password" ng-model="signup.password.value" />
                         <span class="error-msg" ng-show="signup.password.error">{{signup.password.errorMessage}}</span>
                       </p>
 
                       <p>
                         <label for="signup_password_r">Confirme a senha:<span class="required">*</span></label>
-                        <input type="password" ng-class="{'error-input': signup.passwordConfirmation.error == true}" name="signup_password_r" id="signup_password_r" ng-model="signup.passwordConfirmation.value" />
+                        <input type="password" ng-disabled="loading" ng-class="{'error-input': signup.passwordConfirmation.error == true}" name="signup_password_r" id="signup_password_r" ng-model="signup.passwordConfirmation.value" />
                         <span class="error-msg" ng-show="signup.passwordConfirmation.error">{{signup.passwordConfirmation.errorMessage}}</span>
                       </p>
 
                       <p class="form-footer">
-                        <input type="button" ng-click="trySignup();" ng-disabled="loading" value="Registre-se" />
+                        <input type="button" ng-click="trySignup();" ng-hide="loading" value="Registre-se" />
+                        <div class="article-promo" ng-show="loading">
+                          <a href=""><img style="height: 60px; margin-left: 40%" src="/assets/images/loading_article_wahiga.gif"/></a>
+                        </div>
                       </p>
 
                       <p>

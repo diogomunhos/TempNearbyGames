@@ -1,61 +1,9 @@
-<!-- <title>Signin - Wahiga</title>
-<div class="container">
-	<div class="col-lg-9 col-lg-offset-2 col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3" style="background-color: white; border-radius: 10px;">
-		<div class="row">
-			<div class="col-lg-4 col-lg-offset-4" style="height: 100px; background-image: url('/assets/images/wahiga_logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat;">
-				
-			</div>
-		</div>
-		<div class="row" style="margin-top: 20px;">
-			<div class="col-lg-6">
-				<div class="form-group" style="margin-top: 20px;">
-					<p class="text-muted">You can use your favorite social network account to log in with one click.</p>
-				</div>
-				<div class="form-group" >
-					<a href="/auth/facebook" id="signin_facebook" class="btn btn-block btn-social btn-facebook">
-						<span class="fa fa-facebook"></span> Sign in with Facebook
-					</a>
-				</div>
-				<div class="form-group">
-					<a class="btn btn-block btn-social btn-twitter" href="/auth/twitter" id="signin_twitter">
-						<span class="fa fa-twitter"></span> Sign in with Twitter
-					</a>
-				</div>
-				<div class="form-group" style="margin-bottom: 52px;">
-					<a class="btn btn-block btn-social btn-google" href="auth/google_oauth2">
-						<span class="fa fa-google"></span> Sign in with Google
-					</a>
-				</div>
-			</div>
-			<div class="col-lg-5 col-lg-offset-1">
-				<div class="form-group" style="margin-top: 20px;">
-					<p class="text-muted">Use an existing account you have on Wahiga.</p>
-				</div>
-				<%= form_tag '/login' do %>	
-					<div class="form-group">
-						<label for="email_login">Email</label>
-						<input type="email" class="form-control" placeholder="Email" autofocus required name="email" id="email"/>	
-					</div>
-					<div class="form-group">
-						<label for="password-login">Password</label>
-						<input type="password" class="form-control" placeholder="Password" required name="password" id="password"/>
-					</div>
-					<div class="form-group">
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-					</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</div> -->
 	<div id="slider-imgs">
 		<div class="featured-img-box">
 			<div id="featured-img-1" class="featured-img"></div>
 		</div>
-		<!-- END #slider-imgs -->
 	</div>
 
-		<!-- BEGIN #top-layer -->
 		<div id="top-layer" ng-controller="signin-controller">
 			<div id="header-top">
 				<%= render '/home/wrapper_top' %>
@@ -82,7 +30,9 @@
 										<form>
 
 											<p>
-												<span class="the-error-msg" ng-show="showErrorMessage"><i class="fa fa-warning"></i>{{message}}</span>
+												<span class="the-error-msg" ng-show="showErrorMessage"><i class="fa fa-warning"></i>{{message}}<a href="" ng-show="showLink" ng-click="sendEmailConfirmationLink()">Email de Confirmação</a></span>
+
+												<span class="the-success-msg" ng-show="showConfirmationMessage"><i class="fa fa-warning"></i>{{confirmationMessage}}</span>
 											</p>
 
 											<p>
@@ -100,7 +50,7 @@
 											</p>
 
 											<p style="margin-top:40px;">
-												<span class="info-msg">Se você não tem uma conta, <a href="/signup">registre-se</a> !<br /><br />Se esqueceu sua senha <a href="/forgot-password">clique aqui</a></span>
+												<span class="info-msg">Se você não tem uma conta, <a href="/signup">registre-se</a> !<br /><!-- <br />Se esqueceu sua senha <a href="/forgot-password">clique aqui</a></span> -->
 											</p>
 
 										</form>
@@ -114,34 +64,7 @@
 								<div class="content-padding">
 									
 									<div class="form-split-about">
-										<p class="p-padding">Wahiga (Walkthout and Hints for Gamers) é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.</p>
-
-										<!-- <ul>
-											<li>
-												<i class="fa fa-picture-o"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
-											</li>
-											
-											<li>
-												<i class="fa fa-trophy"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-											</li>
-
-											<li>
-												<i class="fa fa-microphone"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua. Accumsan scripserit cu mel, ut dolorem adolescens per.</p>
-											</li>
-											
-											<li>
-												<i class="fa fa-comments"></i>
-												<b>Id ius facete urbanitas concludaturque mea</b>
-												<p class="p-padding">Ius modo interpretaris at, alia erat pri te. An euripidis assentior accommodare usu, ut eam fabellas facilisi perpetua.</p>
-											</li>
-										</ul> -->
-										
+										<p class="p-padding">Wahiga (Walkthout and Hints for Gamers) é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.</p>										
 									</div>
 									
 								</div>

@@ -51,6 +51,12 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
+		@user = User.find(session[:user_id]) if session[:user_id] != nil
+		if @user != nil
+			@showLogin = false
+		else
+			@showLogin = true			
+		end
 		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
 		expires_in 3.minutes, :public => true
 		print "DEBUG #{Rails.cache}"
@@ -158,6 +164,12 @@ class ArticlesController < ApplicationController
 	end
 
 	def all_articles
+		@user = User.find(session[:user_id]) if session[:user_id] != nil
+		if @user != nil
+			@showLogin = false
+		else
+			@showLogin = true			
+		end
 		@popular = Article.get10MostPopularArticles_cached(nil)
 		title = "Todos os artigos"
 		alternate = "https://www.wahiga.com/all-articles"
@@ -200,7 +212,12 @@ class ArticlesController < ApplicationController
 	end
 
 	def platform
-		# @advertising1 = Advertising.getDefaultAdvertising;
+		@user = User.find(session[:user_id]) if session[:user_id] != nil
+		if @user != nil
+			@showLogin = false
+		else
+			@showLogin = true			
+		end
 		@platform = params[:platform]
 		@popular = Article.get10MostPopularArticles_cached(nil)
 		platformsAvailable = ["PC", "PS4", "Xbox-one", "Wii-U", "PS3", "3DS", "Mobile", "Vita", "Xbox-360"]
