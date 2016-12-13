@@ -1,0 +1,42 @@
+	<div id="slider-imgs">
+		<div class="featured-img-box">
+			<div id="featured-img-1" class="featured-img"></div>
+		</div>
+		<!-- END #slider-imgs -->
+	</div>
+
+		<!-- BEGIN #top-layer -->
+		<div id="top-layer" ng-controller="signin-controller">
+			<div id="header-top">
+				<%= render '/home/wrapper_top' %>
+			</div>
+			<section id="content">
+				<%= render '/home/header' %>
+				<div id="main-box" class="full-width">
+					
+					<div id="main">
+						<div class="signup-panel">
+							<div class="left">
+				                <h2><span>Email de confirmação</span></h2>
+				                <div class="content-padding">
+								<div class="the-form">
+									<form>
+										<p>
+											<%= raw flash_message_home_page %>
+										</p>
+									</form>
+								</div>
+							</div>
+							<div class="clear-float"></div>
+						</div>
+					</div>
+					
+					<div class="clear-float"></div>
+					
+				</div>
+			</div>
+		</div>
+			
+		<div class="clear-float"></div>
+	</section>
+</div>
