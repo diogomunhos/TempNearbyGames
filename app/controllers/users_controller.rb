@@ -69,6 +69,12 @@ class UsersController < ApplicationController
 	end
 
 	def email_confirmed
+		@user = User.find(session[:user_id]) if session[:user_id] != nil
+		if @user != nil
+			@showLogin = false
+		else
+			@showLogin = true			
+		end
 	end
 
 	def confirm_email
