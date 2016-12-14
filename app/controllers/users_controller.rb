@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 			end
 
 			if !@user.email_confirmed
-				UserMailer.registration_confirmation(@user).deliver
+				UserMailer.registration_confirmation(@user).deliver_now
 			end
 			session[:user] = nil;
 		else
@@ -87,6 +87,38 @@ class UsersController < ApplicationController
 	      flash[:error] = "Desculpe, este email de confirmação expirou ou já foi utilizado, por favor envie o email de confirmação novamente"
 	      redirect_to '/email-confirmed'
 	    end
+	end
+
+	def profile
+		@user = User.find(session[:user_id]) if session[:user_id] != nil
+		@profile = Hash.new
+		@showEdit = false
+		if @user != nil
+			@showLogin = false
+		else
+			@showLogin = true
+			if @user.id === session[:user_id]
+				@showEdit = true
+			end
+		end
+		userProfile = User.find(params[:userid])
+		@profile[:fullname] = if userProfile.last_name != nil then userProfile.name + " " + userProfile.last_name else userProfile.name end
+		@profile[:showEdit] = @showEdit
+		@profile[:nickname] = userProfile.nickname
+		@profile[:birthdate] = userProfile.birthdate
+		@profile[:signupDate] = userProfile.created_at
+		@profile[:about] = ""
+		@profile[:socialMedia] = Array.new
+		socialIndenties = SocialIdentity.find_by_user_id(params[:userid])
+		if socialIndenties != nil
+			socialIndenties.each do |social|
+				socialhash = Hash.new
+				socialhash[:uid] = social.uid
+				socialhash[:provider] = social.provider
+				@profile[:socialMedia].push(socialhash)
+			end
+		end	
+
 	end
 
 	private 

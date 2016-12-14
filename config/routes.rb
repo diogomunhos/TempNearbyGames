@@ -67,6 +67,8 @@ Rails.application.routes.draw do
 
   get "/email-confirmed" => "users#email_confirmed"
 
+  get "/user/:userid/profile" => "users#profile"
+
 
   #temp
 

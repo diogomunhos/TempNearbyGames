@@ -1,0 +1,157 @@
+<div id="slider-imgs">
+	<div class="featured-img-box">
+		<div id="featured-img-1" class="featured-img"></div>
+	</div>
+</div>
+
+
+<div id="top-layer">
+	<div id="header-top">
+		<%= render '/home/wrapper_top' %>
+	</div>
+	<section id="content">
+		<%= render '/home/header' %>
+		<div id="main-box" class="full-width" style="margin-top: 30px;">
+			<div id="main">
+				<div class="user-profile">
+					<div class="profile-shadow"></div>
+						<div class="profile-left-side">
+							<div class="the-profile-top">
+								<div class="profile-user-name">
+									<h1><%= @profile[:fullname] %></h1>
+								</div>
+
+								<div class="avatar">
+									
+									<img src="/assets/images/wahiga-logo-profile.jpg" class="setborder" alt="" />
+								</div>
+								
+								<div>
+									<ul class="user-button-list">
+										
+									</ul>
+									<div class="user-panel-about">
+										<div>
+										<% if @profile[:about] != "" %>
+											<b><i class="fa fa-male"></i>Sobre</b>
+											<p><%= @profile[:about] %></p>
+										<% end %>	
+										</div>
+
+									</div>
+									<ul class="user-button-list">
+										<% if @profile[:showEdit] %><li><a href="" class="defbutton profile-button disabled"><i class="fa fa-wrench"></i>Editar o perfil</a></li> <% end %>
+									</ul>
+								</div>
+							</div>
+								
+							<div class="the-profile-navi">
+								
+							</div>
+						</div>
+						<div class="profile-right-side">
+
+							<div class="content-padding">
+								
+								<div>
+									<div style="width:350px;" class="left">
+										
+									</div>
+
+									<div style="width:300px;" class="right">
+										
+										
+									</div>
+
+									<div class="clear-float"></div>
+
+								</div>
+
+								<h2 ><span>Informações do perfil</span></h2>
+										
+								<ul class="profile-info">
+									<li>
+										<span class="first">Nome completo:</span>
+										<span class="last"><%= @profile[:fullname] %></span>
+									</li>
+									<li>
+										<span class="first">Apelido:</span>
+										<span class="last"><%= @profile[:nickname] %></span>
+									</li>
+									<li>
+										<span class="first">Data de nascimento:</span>
+										<span class="last"><% if @profile[:birthdate] != nil %><%= @profile[:birthdate].strftime("%d/%m/%Y") %> <% end %> </span>
+									</li>
+									<li>
+										<span class="first">Registrado:</span>
+										<span class="last"><%= @profile[:signupDate].strftime("%d/%m/%Y") %></span>
+									</li>
+								</ul>
+
+								<div class="clear-float"></div>
+
+								<h2><span>Redes sociais</span></h2>
+
+								<div class="forum-threads-head">
+									<strong class="thread-subject"><span></span></strong>
+									<strong class="thread-last"></strong>
+								</div>
+
+								<!-- BEGIN .forum-threads -->
+								<div class="forum-threads">
+									
+									<!-- BEGIN .thread-link -->
+									<div class="thread-link thread-unread thread-sticky">
+										<a href="forum-single.html">
+											<img src="/assets/images/facebook-image.jpg" style="height: 50px;" class="logo" alt="Wahiga" title="" />
+										</a>
+										
+										<div class="thread-replies">
+											<% if @profile[:showEdit] %> <a class="button" style="background-color: #B1221C;" href="">Desconectar</a> <% end %>
+										</div>
+									<!-- END .thread-link -->
+									</div>
+									<div class="thread-link thread-unread thread-sticky">
+										<a href="forum-single.html">
+											<img src="/assets/images/twitter-logo.png" style="height: 50px;" class="logo" alt="Wahiga" title="" />
+										</a>
+										
+										<div class="thread-replies">
+											<a class="button" style="background-color: #B1221C;" href="">Desconectar</a>
+										</div>
+									<!-- END .thread-link -->
+									</div>
+									<div class="thread-link thread-unread thread-sticky">
+										<a href="forum-single.html">
+											<img src="/assets/images/gloogle-plus.jpg" style="height: 50px;" class="logo" alt="Wahiga" title="" />
+										</a>
+										
+										<div class="thread-replies">
+											<a class="button" style="background-color: #B1221C;" href="">Desconectar</a>
+										</div>
+									<!-- END .thread-link -->
+									</div>
+
+								<!-- END .forum-threads -->
+								</div>
+									
+								
+							<!-- END .content-padding -->
+							</div>
+
+						<div class="clear-float"></div>
+
+						<!-- END .user-profile -->
+					</div>
+
+				</div>
+					
+				<div class="clear-float"></div>
+					
+			</div>
+		</div>
+	</div>
+			
+	<div class="clear-float"></div>
+</section>	
+		

@@ -128,7 +128,6 @@ class ArticlesController < ApplicationController
 					site: 'Wahiga',
 					description: "#{@article.preview}",
 					reverse: true,
-					keywords: "#{@article.tags}",
 					image_src: "#{imageUrl}",
 					application_name: "Wahiga"
 			set_meta_tags og: {
@@ -238,7 +237,6 @@ class ArticlesController < ApplicationController
 					site: 'Wahiga',
 					description: "Todos os artigos referente a plataforma #{@platform}",
 					reverse: true,
-					keywords: "#{@platform}",
 					application_name: "Wahiga"
 		set_meta_tags og: {
 		  title:    "#{@platform}",
