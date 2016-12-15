@@ -206,7 +206,8 @@ class ArticlesController < ApplicationController
 			profile_id: "http://www.facebook.com/Wahiga_Official"
 		}
 		set_meta_tags alternate: {
-			"pt-br" => "#{alternate}"
+			"pt-br" => "#{alternate}",
+			"pt" => "#{alternate}"
 		}
 
 	end
