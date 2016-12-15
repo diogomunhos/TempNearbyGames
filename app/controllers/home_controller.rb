@@ -33,7 +33,7 @@ class HomeController < ApplicationController
 		  creator: "@wahiga_official"
 		}
 		set_meta_tags alternate: {
-			"pt-br" => "https://www.wahiga.com/"
+			"pt" => "https://www.wahiga.com/"
 		}
 
 	end
