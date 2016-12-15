@@ -154,7 +154,6 @@ class ArticlesController < ApplicationController
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
 			set_meta_tags alternate: {
-				"pt-pt" => "#{finalUrl}",
 				"pt-br" => "#{finalUrl}"
 			}
 			set_meta_tags canonical: "#{finalUrl}"
@@ -206,8 +205,7 @@ class ArticlesController < ApplicationController
 			profile_id: "http://www.facebook.com/Wahiga_Official"
 		}
 		set_meta_tags alternate: {
-			"pt-br" => "#{alternate}",
-			"pt-pt" => "#{alternate}"
+			"pt-br" => "#{alternate}"
 		}
 
 	end
@@ -253,8 +251,7 @@ class ArticlesController < ApplicationController
 		  creator: "@wahiga_official"
 		}
 		set_meta_tags alternate: {
-			"pt-br" => "https://www.wahiga.com/platform/#{@platform}",
-			"pt-pt" => "https://www.wahiga.com/platform/#{@platform}"
+			"pt-br" => "https://www.wahiga.com/platform/#{@platform}"
 		}
 		@articles = Article.getArticleByPlatform_cached(@platform)
 	end
