@@ -153,9 +153,6 @@ class ArticlesController < ApplicationController
 			set_meta_tags fb:{
 				profile_id: "http://www.facebook.com/Wahiga_Official"
 			}
-			set_meta_tags alternate: {
-				"pt" => "#{finalUrl}"
-			}
 			set_meta_tags canonical: "#{finalUrl}"
 
 			@amplink = "<link rel=\"amphtml\" href=\"#{finalUrl}.amp\">"
@@ -204,9 +201,7 @@ class ArticlesController < ApplicationController
 		set_meta_tags fb:{
 			profile_id: "http://www.facebook.com/Wahiga_Official"
 		}
-		set_meta_tags alternate: {
-			"pt" => "#{alternate}"
-		}
+		set_meta_tags canonical: "#{alternate}"
 
 	end
 
@@ -250,9 +245,8 @@ class ArticlesController < ApplicationController
 		  site: "@wahiga_official",
 		  creator: "@wahiga_official"
 		}
-		set_meta_tags alternate: {
-			"pt" => "https://www.wahiga.com/platform/#{@platform}"
-		}
+		
+		
 		@articles = Article.getArticleByPlatform_cached(@platform)
 	end
 
