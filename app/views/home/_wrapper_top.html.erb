@@ -11,7 +11,7 @@
 		<% else %>
 			<li><a href=""><span>Olá <%= @user.name %> <% if @user.last_name != nil %> <%= @user.last_name %> <% end %><span></a>
 				<ul class="sub-menu">
-					<li><a href="">Perfil</a></li>
+					<li><a href="/user/<%= @user.id %>/profile">Perfil</a></li>
 					<li><a href="/logout">Logout</a></li>
 				</ul>
 			</li>

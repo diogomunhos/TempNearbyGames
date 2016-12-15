@@ -100,37 +100,30 @@
 								<!-- BEGIN .forum-threads -->
 								<div class="forum-threads">
 									
-									<!-- BEGIN .thread-link -->
-									<div class="thread-link thread-unread thread-sticky">
-										<a href="forum-single.html">
-											<img src="/assets/images/facebook-image.jpg" style="height: 50px;" class="logo" alt="Wahiga" title="" />
-										</a>
-										
-										<div class="thread-replies">
-											<% if @profile[:showEdit] %> <a class="button" style="background-color: #B1221C;" href="">Desconectar</a> <% end %>
+									<% @profile[:socialMedia].each do |social| %>
+										<!-- BEGIN .thread-link -->
+										<div class="thread-link thread-unread thread-sticky">
+											<% if social[:provider] === "facebook" %>
+												<a href="https://www.facebook.com/<%= social[:uid] %>">
+													<img src="/assets/images/facebook-image.jpg"/>
+												</a>	
+											<% end %>
+											<% if social[:provider] === "twitter" %>
+												<a href="https://www.twitter.com/<%= social[:uid] %>">
+													<img src="/assets/images/twitter-logo.png"/>
+												</a>
+											<% end %>
+											<% if social[:provider] === "googleplus" %>
+												<a href="https://www.googleplus.com/<%= social[:uid] %>">
+													<img src="/assets/images/google-plus.jpg"/>
+												</a>
+											<% end %>
+											<div class="thread-replies">
+												<% if @profile[:showEdit] %> <a class="button" style="background-color: #B1221C;" href="">Desconectar</a> <% end %>
+											</div>
+										<!-- END .thread-link -->
 										</div>
-									<!-- END .thread-link -->
-									</div>
-									<div class="thread-link thread-unread thread-sticky">
-										<a href="forum-single.html">
-											<img src="/assets/images/twitter-logo.png" style="height: 50px;" class="logo" alt="Wahiga" title="" />
-										</a>
-										
-										<div class="thread-replies">
-											<a class="button" style="background-color: #B1221C;" href="">Desconectar</a>
-										</div>
-									<!-- END .thread-link -->
-									</div>
-									<div class="thread-link thread-unread thread-sticky">
-										<a href="forum-single.html">
-											<img src="/assets/images/gloogle-plus.jpg" style="height: 50px;" class="logo" alt="Wahiga" title="" />
-										</a>
-										
-										<div class="thread-replies">
-											<a class="button" style="background-color: #B1221C;" href="">Desconectar</a>
-										</div>
-									<!-- END .thread-link -->
-									</div>
+									<% end %>
 
 								<!-- END .forum-threads -->
 								</div>

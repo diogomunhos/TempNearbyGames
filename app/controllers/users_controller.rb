@@ -109,7 +109,7 @@ class UsersController < ApplicationController
 		@profile[:signupDate] = userProfile.created_at
 		@profile[:about] = ""
 		@profile[:socialMedia] = Array.new
-		socialIndenties = SocialIdentity.find_by_user_id(params[:userid])
+		socialIndenties = SocialIdentity.where("user_id = ? ", params[:userid])
 		if socialIndenties != nil
 			socialIndenties.each do |social|
 				socialhash = Hash.new
