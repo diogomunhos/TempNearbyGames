@@ -34,7 +34,7 @@ class HomeController < ApplicationController
 		}
 		set_meta_tags alternate: {
 			"pt-br" => "https://www.wahiga.com/",
-			"pt" => "https://www.wahiga.com/"
+			"pt-pt" => "https://www.wahiga.com/"
 		}
 
 	end
