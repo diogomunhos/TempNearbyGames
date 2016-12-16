@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 		@tags.push("lançamentos para ps4")
 		# end tag creator
 
-		set_meta_tags title: "Notícias, Dicas, Novidades Para Jogadores",
+		set_meta_tags title: "Notícias, Dicas e Novidades de Games, Filmes e Seriados",
 					site: 'Wahiga',
 					description: "Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.",
 					reverse: true,
