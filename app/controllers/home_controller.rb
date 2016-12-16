@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 	caches_page :home, :show_image
 	def home
 		@slider = Article.getLast4ArticlesSlider_cached		
-		@articles = Article.getLast5Articles_cached(@slider)
+		@articles = Article.getLast10Articles_cached(@slider)
 		@popular = Article.get10MostPopularArticles(nil)
 		@user = User.find(session[:user_id]) if session[:user_id] != nil
 		if @user != nil
