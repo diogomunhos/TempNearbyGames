@@ -12,6 +12,44 @@ class HomeController < ApplicationController
 			@showLogin = true			
 		end
 
+		# creating tags
+		@tags = Array.new
+		if @slider != nil
+			@slider.each do |slider|
+				spliter = slider.tags.split(",") if slider.tags != nil
+				spliter.each do |sp|
+					@tags.push(sp)
+				end
+			end
+		end
+
+		if @articles != nil
+			@articles.each do |article|
+				spliter = article.tags.split(",") if article.tags != nil
+				spliter.each do |sp|
+					@tags.push(sp)
+				end
+			end
+		end
+
+		if @popular != nil
+			@popular.each do |pop|
+				spliter = pop.tags.split(",") if pop.tags != nil
+				spliter.each do |sp|
+					@tags.push(sp)
+				end
+			end
+		end
+
+		#create a new way to register default website tags
+		@tags.push("jogos games")
+		@tags.push("games online")
+		@tags.push("games jogos")
+		@tags.push("lançamentos para ps4")
+		@tags.push("jogos e games")
+
+		# end tag creator
+
 		set_meta_tags title: "Notícias, Dicas, Novidades Para Jogadores",
 					site: 'Wahiga',
 					description: "Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais.",
