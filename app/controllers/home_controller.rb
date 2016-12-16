@@ -44,7 +44,6 @@ class HomeController < ApplicationController
 		#create a new way to register default website tags
 		@tags.push("games online")
 		@tags.push("lançamentos para ps4")
-jogo games games jogos
 		# end tag creator
 
 		set_meta_tags title: "Notícias, Dicas, Novidades Para Jogadores",
