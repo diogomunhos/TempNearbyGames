@@ -81,7 +81,7 @@ class SessionsController < ApplicationController
    			@result[:errorMessage] = "Não foi possivel identificar um login por rede social"
    		end
 
-	    if user && user.authenticate(session_params[:password]) && @result["login"] === true
+	    if user && user.authenticate(session_params[:password]) && social != nil
 	    	print "DEBUG User: #{user}"
 	    	if user.email_confirmed
 	    		session[:user_id] = user.id
