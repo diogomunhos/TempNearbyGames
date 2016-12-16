@@ -84,7 +84,7 @@ class SessionsController < ApplicationController
 	    if user && user.authenticate(session_params[:password]) && @result["login"] === true
 	    	if user.email_confirmed
 				if(social['user_id'] === nil)
-					 SocialIdentity.updateUserId_cached(user.id, social['uid'], social['provider'], social['id'])
+					 SocialIdentity.updateUserId(user.id, social['uid'], social['provider'], social['id'])
 				end
 				session[:user_id] = user.id
 			else

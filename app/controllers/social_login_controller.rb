@@ -1,5 +1,6 @@
 class SocialLoginController < ApplicationController
 	def social
+		@showLogin = true
 		if params[:provider] === "twitter"
 			@user = User.new
 			@user.nickname = session[:user]['nickname']
