@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
 		if @article === nil
 			redirect_to '/404'
 		else
-			@popular = Article.get10MostPopularArticles_cached(@article.id)
+			@popular = Article.get10MostPopularArticles(@article.id)
 			expires_in 3.minutes, :public => true
 			@stats = Rails.cache.stats.first.last
 			unless @article.views.nil?
@@ -166,7 +166,7 @@ class ArticlesController < ApplicationController
 		else
 			@showLogin = true			
 		end
-		@popular = Article.get10MostPopularArticles_cached(nil)
+		@popular = Article.get10MostPopularArticles(nil)
 		title = "Todos os artigos"
 		alternate = "https://www.wahiga.com/all-articles"
 		if params["author_id"] != nil
@@ -213,7 +213,7 @@ class ArticlesController < ApplicationController
 			@showLogin = true			
 		end
 		@platform = params[:platform]
-		@popular = Article.get10MostPopularArticles_cached(nil)
+		@popular = Article.get10MostPopularArticles(nil)
 		platformsAvailable = ["PC", "PS4", "Xbox-one", "Wii-U", "PS3", "3DS", "Mobile", "Vita", "Xbox-360"]
 		unless params[:platform].nil?
 			ok = false 
