@@ -86,10 +86,7 @@ class SessionsController < ApplicationController
 	    	if user.email_confirmed
 	    		session[:user_id] = user.id
 				if(social['user_id'] === nil)
-					socialidenty = SocialIdentity.where("uid = ? AND provider = ?", social['uid'], social['provider']).limit(1)
-					print "DEBUG social #{socialidenty}"
-					socialidenty.update(user_id: user.id)
-					 # SocialIdentity.updateUserId(user.id, social['uid'], social['provider'], social['id'])
+					 SocialIdentity.updateUserId(user.id, social['uid'], social['provider'], social['id'])
 				end
 			else
 				@result[:errorMessage] = "Sua conta ainda não foi verificada, por favor verifique a conta atravéz do email enviado" #TODO implement error messages
