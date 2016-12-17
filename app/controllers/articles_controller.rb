@@ -61,13 +61,26 @@ class ArticlesController < ApplicationController
 		expires_in 3.minutes, :public => true
 		# creating tags
 		@tags = Array.new
-		spliter = @article.tags.split(",") if @article.tags != nil
-		spliter.each do |sp|
-			@tags.push(sp)
-		end
-		platforms = @article.platform.split(",") if @article.platform != nil
-		platforms.each do |sp|
-			@tags.push(sp)
+		if @article.tags != nil
+			if @article.tags.index(',') != nil
+				spliter = @article.tags.split(",")
+				spliter.each do |sp|
+					@tags.push(sp)
+				end
+			else
+				@tags.push(@article.tags)
+			end
+		end 
+		
+		if @article.platform != nil
+			if @article.platform.index(",") != nil		
+				platforms = @article.platform.split(",") if @article.platform != nil
+				platforms.each do |sp|
+					@tags.push(sp)
+				end
+			else
+				@tags.push(@article.platform)
+			end
 		end
 		# end tag creator
 		if @article === nil
