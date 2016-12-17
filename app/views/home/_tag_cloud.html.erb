@@ -3,9 +3,11 @@
 	<div class="panel-content">
 		
 		<div class="tagcloud">
+		<% if @tags != nil %>
 			<% @tags.each do |tag| %>
 				<a><%= tag %></a>	
 			<% end %>
+		<% end %>	
 		</div>
 		
 	</div>
