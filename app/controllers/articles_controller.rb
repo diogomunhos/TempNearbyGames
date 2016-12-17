@@ -59,7 +59,17 @@ class ArticlesController < ApplicationController
 		end
 		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
 		expires_in 3.minutes, :public => true
-		print "DEBUG #{Rails.cache}"
+		# creating tags
+		@tags = Array.new
+		spliter = @article.tags.split(",") if @article.tags != nil
+		spliter.each do |sp|
+			@tags.push(sp)
+		end
+		platforms = @article.platform.split(",") if @article.platform != nil
+		platforms.each do |sp|
+			@tags.push(sp)
+		end
+		# end tag creator
 		if @article === nil
 			redirect_to '/404'
 		else
