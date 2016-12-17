@@ -73,6 +73,7 @@ class ArticlesController < ApplicationController
 		end 
 		
 		if @article.platform != nil
+			print "DEBUG #{@article.platform}"
 			if @article.platform.index(",") != nil		
 				platforms = @article.platform.split(",") if @article.platform != nil
 				platforms.each do |sp|

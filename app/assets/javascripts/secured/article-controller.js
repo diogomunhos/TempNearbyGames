@@ -172,7 +172,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       var request = {};
       request.access_token = $scope.pageAccessToken;
       request.message = $scope.article.facebook_message;
-      request.link = "https://www.wahiga.com/News/"+$scope.article.friendly_url;
+      request.link = "https://www.wahiga.com/news/"+$scope.article.friendly_url;
       request.name = $scope.article.facebook_title;
       request.picture = "https://www.wahiga.com/"+$scope.article.facebook_picture;
       request.pageId = $scope.wahigaFacebookPageId;
@@ -363,9 +363,14 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
 .controller('new-article-controller', ['articleServices', '$scope', '$timeout', 'Upload', '$q', '$interval', function(articleServices, $scope, $timeout, Upload, $q, $interval) {
   var plat = [];
   if(document.getElementById('hidden_article_platforms') != null){
-    for(var i=0; i < document.getElementById('hidden_article_platforms').value.split(',').length; i++){
-      plat.push(document.getElementById('hidden_article_platforms').value.split(',')[i]);
+    if(document.getElementById('hidden_article_platforms').value.indexOf(",") > -1){
+      for(var i=0; i < document.getElementById('hidden_article_platforms').value.split(',').length; i++){
+        plat.push(document.getElementById('hidden_article_platforms').value.split(',')[i]);
+      }  
+    }else{
+      plat.push(document.getElementById('hidden_article_platforms').value);
     }
+    
   }
   var filesEdit = [];
   if(document.getElementById('hidden_article_files') != null && document.getElementById('hidden_article_files').value != ""){
@@ -843,7 +848,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     console.log("ID: " + id + ' NAME: ' + name + ' PLATFORM: ' + platform); 
     $scope.article.game.id = id;
     $scope.article.game.name = name;
-    $scope.article.platforms.value = platform;
+    $scope.article.platforms.value.push(platform);
   }
 
   
