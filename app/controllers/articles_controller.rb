@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
 		else
 			@showLogin = true			
 		end
-		@article = Article.find_by_friendly_url_and_status_cached(params[:friendly_url], "Published")
+		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
 		expires_in 3.minutes, :public => true
 		# creating tags
 		@tags = Array.new
@@ -65,7 +65,9 @@ class ArticlesController < ApplicationController
 			if @article.tags.index(',') != nil
 				spliter = @article.tags.split(",")
 				spliter.each do |sp|
-					@tags.push(sp)
+					if sp != ""
+						@tags.push(sp)
+					end
 				end
 			else
 				@tags.push(@article.tags)
@@ -77,7 +79,9 @@ class ArticlesController < ApplicationController
 			if @article.platform.index(",") != nil		
 				platforms = @article.platform.split(",") if @article.platform != nil
 				platforms.each do |sp|
-					@tags.push(sp)
+					if sp != ""
+						@tags.push(sp)
+					end
 				end
 			else
 				@tags.push(@article.platform)
