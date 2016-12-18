@@ -28,7 +28,9 @@ angular.module('public-module.social-login-controller', [])
 	$scope.loginLoading = false;
 	$scope.showSignupErrorMessage = false;
 	$scope.signupMessage = "";
-	$scope.signupLoading = false;
+	$scope.loading = false;
+	$scope.showSuccessMessage = false;
+	$scope.showForm = true;
 
 
 	$scope.login = function(){
@@ -65,7 +67,7 @@ angular.module('public-module.social-login-controller', [])
 	$scope.signupMethod = function(){
 		socialServices.signup($scope.socialSignup).then(function (result) {
 			console.log(result);
-			$scope.signupLoading = false;
+			$scope.loading = false;
 			if(!result.data.signup){
 				$scope.showSignupErrorMessage = true;
 				$scope.signupMessage = result.data.errorMessage;
@@ -77,7 +79,7 @@ angular.module('public-module.social-login-controller', [])
 	}
 
 	$scope.trySignup = function(){
-		$scope.signupLoading = true;
+		$scope.loading = true;
 		var valid = true;
 
 
@@ -136,6 +138,10 @@ angular.module('public-module.social-login-controller', [])
 			$scope.signupLoading = false;
 			$scope.socialSignup.email.error = true;
 			$scope.socialSignup.email.errorMessage = "Formato de email inválido";
+		}
+
+		if(!valid){
+			$scope.loading = false;
 		}
 	}
 
