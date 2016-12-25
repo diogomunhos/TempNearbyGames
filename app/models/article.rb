@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
 	has_many :article_documents, foreign_key: :article_id, dependent: :destroy
 	has_many :documents, through: :article_documents
+	has_many :comments, foreign_key: :article_id, dependent: :destroy
 	belongs_to :game
 	# after_save    :expire_contact_all_cache
 	# after_destroy :expire_contact_all_cache

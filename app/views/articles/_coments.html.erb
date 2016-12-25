@@ -1,0 +1,102 @@
+<h2><span>Comentários <!--Quantidade --> </span></h2>
+<div class="content-padding">
+	
+	<div class="comment-part">
+
+		<!-- BEGIN #comments -->
+		<ol id="comments">
+			<% if @article.comments.size > 0 %>
+				<% @article.comments.each do |com| %>
+					<% if com.comment_id == nil %>
+						<li>
+							<div class="comment-inner">
+								<div class="comment-avatar">
+									<img src="/assets/images/wahiga-logo-profile.jpg" alt="Foto de perfil Wahiga">
+								</div>
+								<div class="comment-content">
+									<div class="comment-header">
+										<h3>
+											<a href="/user/<%= com.user_id %>/profile">
+												<% if com.user.name != nil %> 
+													<%= com.user.name %> 
+												<% end %>
+												<% if com.user.last_name != nil %>
+													&nbsp;<%= com.user.last_name %>
+												<% end %>
+											</a>
+										</h3>
+									</div>
+									<p><%= com.comment %></p>
+									<span class="post-a"><i class="fa fa-calendar-o"></i><%= com.created_at.strftime("%d/%m/%Y") %></span>
+								</div>
+							</div>
+							<% if Comment.where("comment_id = ?", com.id).size > 0 %>
+								<ul>
+									<% Comment.where("comment_id = ?", com.id).each do |ans| %>
+										<li>
+											<div class="comment-inner">
+												<div class="comment-avatar">
+													<img src="/assets/images/wahiga-logo-profile.jpg" alt="Foto de perfil Wahiga">
+												</div>
+												<div class="comment-content">
+													<div class="comment-header">
+														<h3>
+															<a href="/user/<%= ans.user_id %>/profile">
+																<% if ans.user.name != nil %> 
+																	<%= ans.user.name %> 
+																<% end %>
+																<% if ans.user.last_name != nil %>
+																	&nbsp;<%= ans.user.last_name %>
+																<% end %>
+															</a>
+														</h3>
+													</div>
+													<p><%= ans.comment %></p>
+													<span class="post-a"><i class="fa fa-calendar-o"></i><%= ans.created_at.strftime("%d/%m/%Y") %></span>
+												</div>
+											</div>
+										</li>
+									<% end %>
+								</ul>
+							<% end %>
+						</li>
+					<% end %>	
+				<% end %>
+			<% else %>
+				<br/>
+				<span>Não há nenhum comentário para este artigo, seja o primeiro a comentar</span>
+				<br/>
+			<% end %>
+		</ol>
+		<div class="comments-pager"></div>
+		<div class="content-padding">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-8655806429950106"
+					data-ad-slot="8764496876"
+					data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+		<div class="comment-form">
+			<% if @showLogin == false %>
+				<div id="respond" class="comment-respond">
+					<%= form_tag({:action => "submit_comment"}, {:class => "comment-form"}) do %>
+						<input type="hidden" name="articleId" id="articleId" value="<%= @article.id %>"/>
+						<p class="form-comment">
+							<label for="comment">Comentário:<span class="required">*</span></label>
+							<textarea id="comment" name="comment" type="text" aria-required="true" placeholder="Escreve seu comentário aqui"></textarea>
+						</p>
+						<p class="form-submit">
+							<input name="Enviar" type="submit" id="submit" value="Enviar" class="button"/>
+						</p>
+					<% end %>
+				</div>
+			<% else %>
+				<h4>Faça o Login para comentar clicando <a href="/signin" style="text-decoration: underline;">AQUI</a> </h4>
+			<% end %> 
+		</div>
+	</div>
+</div>

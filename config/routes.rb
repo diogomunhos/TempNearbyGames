@@ -69,6 +69,8 @@ Rails.application.routes.draw do
 
   get "/user/:userid/profile" => "users#profile"
 
+  post "/submit-comment-to-article" => "articles#submit_comment"
+
 
   #temp
 

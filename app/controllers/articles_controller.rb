@@ -58,7 +58,6 @@ class ArticlesController < ApplicationController
 			@showLogin = true			
 		end
 		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
-		expires_in 3.minutes, :public => true
 		# creating tags
 		@tags = Array.new
 		if @article.tags != nil
@@ -231,6 +230,22 @@ class ArticlesController < ApplicationController
 		}
 		set_meta_tags canonical: "#{alternate}"
 
+	end
+
+	def submit_comment
+		print "DEBUG #{params['comment']}, #{params['articleId']}"
+		if params[:comment] != "" && params[:comment] != nil
+			Comment.create(article_id: params[:articleId], comment: params[:comment], user_id: session[:user_id])
+		end
+
+		article = Article.find(params[:articleId])
+		url = ""
+		if article.game != nil
+			url = "/#{article.game.friendly_url}/news/#{article.friendly_url}"
+		else
+			url = "/news/#{article.friendly_url}"
+		end
+		redirect_to url
 	end
 
 	def platform
