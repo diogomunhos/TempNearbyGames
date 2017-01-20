@@ -59,7 +59,11 @@ Rails.application.routes.draw do
 
   get "/:platform/get-articles-paged/:numberPerPage/:pageNumber" => "articles#get_platform_articles_service"
 
-  get "/game/:name" => "games#show"
+  get "/:game" => "games#show"
+
+  get "/:game/news" => "games#news"
+
+  get "/:game/images" => "games#images"
 
   get '/forgot-password' => "forgot_password#forgot_password"
 
