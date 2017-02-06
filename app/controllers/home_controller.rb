@@ -76,9 +76,14 @@ class HomeController < ApplicationController
 		redirect_to root_path
 	end
 
-	def show_image	
-		document = Document.find(params[:id])
-		expires_in 7.days, :public => true
+	def show_image
+		image_optim = ImageOptim.new(:pngout => false, :nice => 20)		
+  		document = Document.find(params[:id])
+  		expires_in 7.days, :public => true
+ 		imageOptimized = image_optim.optimize_image_data(document.file_contents)
+ 		if imageOptimized != "" and imageOptimized != nil
+ 			document.file_contents = imageOptimized
+ 		end
 		 send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 	end
 

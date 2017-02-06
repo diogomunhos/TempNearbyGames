@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
 
 	scope :getLast10Articles, -> (slider = nil) { where.not(id: slider).where(status: "Published").order("created_at desc").limit(10).includes(:documents) }	
 	scope :getLast5Articles, -> (slider = nil) { where.not(id: slider).where(status: "Published").order("created_at desc").limit(5).includes(:documents) }	
+	scope :getLast5ArticlesByGame, -> (game_id = nil) { where("status = ? AND game_id = ?", "Published", game_id).order("created_at desc").limit(5)}
 	scope :getLast4ArticlesSlider, -> { where(is_highlight: true).where(status: "Published").order("created_at desc").limit(4).includes(:documents) }
 	scope :getArticleWithDocumentsById, -> (article_id = nil) { where(id: article_id).limit(1).includes(:documents) }
 	scope :getArticlePaged, -> (numberPerPage = nil, offset_page = nil) { where("status = ?", "Published").offset(offset_page).limit(numberPerPage).order("created_at DESC") }
