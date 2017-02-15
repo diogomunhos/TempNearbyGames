@@ -26,6 +26,7 @@ class Article < ActiveRecord::Base
 	scope :getArticleByPlatformPaged, -> (platform = nil, numberPerPage = nil, offset_page = nil) {where("platform LIKE ? AND status = ? ", "%#{platform}%", "Published").offset(offset_page).limit(numberPerPage).order("created_at DESC").includes(:documents)}
 	scope :getArticlesByAuthor, -> (author = nil) {where("created_by_id = ? ", author).where(status: "Published").limit(10).order("created_at DESC").includes(:documents)}
 	scope :getAllArticlesPublished, -> {where("status = ?", "Published").limit(10).order("created_at DESC")}
+	scope :getArticlesPublishedByGame, -> (game_id = nil) {where("game_id = ? ", game_id).order("created_at DESC").includes(:documents)}
 
 
 	def expire_contact_all_cache

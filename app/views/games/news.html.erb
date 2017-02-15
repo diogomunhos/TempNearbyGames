@@ -20,33 +20,52 @@
 						<div class="game-info-buttons">
 							<a href="games-single-video-single.html" class="defbutton"><i class="fa fa-film"></i>Veja o trailer</a>
 						</div>
-						<div class="game-info-rating">
-							<h3>Wahiga Review</h3>
-							<hr />
-							<strong itemprop="rating">3</strong>
-							<div class="rating-stars">
-								<div class="rating-stars-inner" style="width: 60%;"></div>
+						<% if @game.wahiga_rating != nil %>
+							<div class="game-info-rating">
+								<h3>Wahiga Review</h3>
+								<hr />
+								<strong itemprop="rating"><%= @game.wahiga_rating %></strong>
+								<div class="rating-stars">
+									<div class="rating-stars-inner" style="width: <%= @game.wahiga_rating * 20 %>%;"></div>
+								</div>
 							</div>
-							<a href="post.html" class="defbutton"><i class="fa fa-file-text-o"></i>Leia nosso review</a>
-						</div>
+						<% end %>
 						<div class="game-info-buttons">
 						</div>
 						<div class="game-info-graph">
 							<div>
 								<span>Data de Lançamento</span>
-								<strong itemprop="datePublished" content="2013-03-05">5.March 2013</strong>
+								<% if @game.release_date != nil %>
+									<strong itemprop="datePublished" content="<%= @game.release_date.strftime("%d/%m/%Y") %>"><%= @game.release_date.strftime("%d/%m/%Y") %></strong>
+								<% end %>
 							</div>
 							<div>
 								<span>Desenvolvedor</span>
-								<strong>Crystal Dynamics</strong>
+								<strong>
+								<% @developers.each do |dev| %>
+										<%= dev.company.name.camelize %> <br/>
+									<% end %>	
+								</strong>
 							</div>
 							<div>
 								<span>Publicadora</span>
-								<strong>Square Enix Ltd</strong>
+								<strong>
+									<% @publishers.each do |pub| %>
+										<%= pub.company.name.camelize %> <br/>
+									<% end %>	
+								</strong>
 							</div>
 							<div>
 								<span>Gênero</span>
-								<strong itemprop="applicationCategory"><a href="games.html">Plataformas</a>, <a href="games.html">Ação/Aventura</a></strong>
+								<strong itemprop="applicationCategory"><% if @game.genre != nil %>
+																		<% if @game.genre.index(",") != nil %>
+																			<% @game.genre.split(",").each do |splited| %>
+																				<%= splited.camelize %><br/>
+																			<% end %> 
+																		<% else %>
+																			<%= @game.genre.camelize %>
+																		<% end %>
+																	<% end %></strong>
 							</div>
 							<meta itemprop="reviewer" content="Datcouch.com">
 						</div>
@@ -57,47 +76,44 @@
 					<!-- BEGIN .game-menu -->
 					<div class="game-menu" style="border-bottom: 5px solid #921913;">
 						<div class="game-overlay-info">
-							<h1 itemprop="itemreviewed">Tomb Raider <span>(2013)</span></h1>
+							<h1 itemprop="itemreviewed"><%= @game.name %><span></span></h1>
 						</div>
 						<ul>
-							<li><a href="games-single.html"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Informações</a></li>
+							<li><a href="/<%= @game.friendly_url %>"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Informações</a></li>
 							<li class="active" style="background-color: #921913;"><a href="games-single-news.html"><i class="fa fa-comments"></i>Notícias</a></li>
-							<li><a href="photo-gallery-single.html"><i class="fa fa-camera-retro"></i>Imagens</a></li>
 						</ul>
 					<!-- END .game-menu -->
 					</div>
 
-					<h2><span>Game news</span></h2>
+					<h2><span>Últimas notícias</span></h2>
 					<div class="content-padding">
-					
+						
+						<% @articles.each do |a| %> 
 						<div class="article-promo">
 							<div class="article-photo">
 								<span class="article-image-out">
-									<span class="image-comments"><span>21</span></span>
 									<span class="article-image">
-										<span class="nth1 strike-tooltip" title="Read Article">
-											<a href="post.html"><i class="fa fa-eye"></i></a>
-										</span>
-										<span class="nth2 strike-tooltip" title="Save to read later">
-											<a href="#"><i class="fa fa-plus"></i></a>
-										</span>
-										<a href="post.html"><img src="images/photos/image-25.jpg" alt="" title="" /></a>
+										<% a.article_documents.each do |image| %>
+											<% if image.document_type === "Thumb" %>
+												<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><img src="/images/<%= image.document.id %>/<%= image.document.file_name %>" alt="" title="" /></a>
+											<% end %>
+										<% end %>
 									</span>
 								</span>
 							</div>
 							
 							<div class="article-content">
-								<h3><a href="post.html">Perfecto vis, eum adipisci intel ne mea integre neglegentur no</a></h3>
+								<h3><a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>"><%= truncate(a.title, length: 75) %></a></h3>
 								<div class="article-icons">
-									<a href="user-single.html" class="user-tooltip"><i class="fa fa-fire"></i>datcouch</a>
-									<a href="#"><i class="fa fa-calendar"></i>September 11, 2015</a>
 								</div>
-								<p>Has no atqui dictas iuvaret, ex suavitate voluptatum incorrupte eos. Nullam luptatum nominati ius voluptatum ea, nam omnium percipit et luptatum nominati ius ea...</p>
-								<a href="post.html" class="defbutton"><i class="fa fa-reply"></i>Read full article</a>
+								<p><%= truncate(a.preview, length: 120) %></p>
+								<a href="<% if a.game != nil %>/<%= a.game.friendly_url %><% end %>/<%= a.article_type.downcase %>/<%= a.friendly_url %>" class="defbutton"><i class="fa fa-reply"></i>Leia completa</a>
 							</div>
 						</div>
 
 						<div class="clear-float do-the-split"></div>
+
+						<% end %>
 						
 					</div>
 
