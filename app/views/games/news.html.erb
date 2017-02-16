@@ -13,14 +13,14 @@
 		<%= render '/home/header' %>
 		<div id="main-box" class="full-width" style="margin-top: 100px;">
 					
-			<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
+			<div id="main">
 				<%= render '/games/game_info' %>
 				<div class="game-info-right">
 
 					<!-- BEGIN .game-menu -->
 					<div class="game-menu" style="border-bottom: 5px solid #921913;">
 						<div class="game-overlay-info">
-							<h1 itemprop="itemreviewed"><%= @game.name %><span></span></h1>
+							<h1><%= @game.name %><span></span></h1>
 						</div>
 						<ul>
 							<li><a href="/<%= @game.friendly_url %>"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Informações</a></li>

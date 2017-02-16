@@ -1,6 +1,6 @@
 <div class="game-info-left">
 	<% if @game.document_id != nil %>
-		<img itemprop="image" src="/images/<%= @gamePicture.id %>/<%= @gamePicture.file_name %>" class="game-poster" alt=""/>
+		<img src="/images/<%= @gamePicture.id %>/<%= @gamePicture.file_name %>" class="game-poster" alt=""/>
 	<% end %>
 	<div class="game-info-details">
 		<div class="game-info-buttons">
@@ -12,7 +12,7 @@
 			<div class="game-info-rating">
 				<h3>Wahiga Review</h3>
 				<hr />
-				<strong itemprop="rating"><%= @game.wahiga_rating %></strong>
+				<strong><%= @game.wahiga_rating %></strong>
 				<div class="rating-stars">
 					<div class="rating-stars-inner" style="width: <%= @game.wahiga_rating * 20 %>%;"></div>
 				</div>
@@ -24,7 +24,7 @@
 			<div>
 				<span>Data de Lançamento</span>
 				<% if @game.release_date != nil %>
-					<strong itemprop="datePublished" content="<%= @game.release_date.strftime("%d/%m/%Y") %>"><%= @game.release_date.strftime("%d/%m/%Y") %></strong>
+					<strong><%= @game.release_date.strftime("%d/%m/%Y") %></strong>
 				<% end %>
 			</div>
 			<div>
@@ -45,7 +45,7 @@
 			</div>
 			<div>
 				<span>Gênero</span>
-				<strong itemprop="applicationCategory"><% if @game.genre != nil %>
+				<strong><% if @game.genre != nil %>
 														<% if @game.genre.index(",") != nil %>
 															<% @game.genre.split(",").each do |splited| %>
 																<%= splited.camelize %><br/>
@@ -57,7 +57,7 @@
 			</div>
 			<div>
 				<span>Plataformas</span>
-				<strong itemprop="applicationCategory"><% if @game.platform != nil %>
+				<strong><% if @game.platform != nil %>
 														<% if @game.platform.index(",") != nil %>
 															<% @game.platform.split(",").each do |splited| %>
 																<%= splited.camelize %><br/>
@@ -67,7 +67,6 @@
 														<% end %>
 													<% end %></strong>
 			</div>
-			<meta itemprop="reviewer" content="wahiga.com">
 		</div>
 	</div>
 </div>
