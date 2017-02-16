@@ -14,41 +14,7 @@
 		<div id="main-box" class="full-width" style="margin-top: 100px;">
 					
 			<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
-				<div class="game-info-left">
-					<img itemprop="image" src="/assets/images/posters/2351232-tomb_raider.jpg" class="game-poster" alt="" />
-					<div class="game-info-details">
-						<div class="game-info-rating">
-							<h3>Wahiga Review</h3>
-							<hr />
-							<strong itemprop="rating">3</strong>
-							<div class="rating-stars">
-								<div class="rating-stars-inner" style="width: 60%;"></div>
-							</div>
-							<a href="post.html" class="defbutton"><i class="fa fa-file-text-o"></i>Leia nosso review</a>
-						</div>
-						<div class="game-info-buttons">
-						</div>
-						<div class="game-info-graph">
-							<div>
-								<span>Data de Lançamento</span>
-								<strong itemprop="datePublished" content="2013-03-05">5.March 2013</strong>
-							</div>
-							<div>
-								<span>Desenvolvedor</span>
-								<strong>Crystal Dynamics</strong>
-							</div>
-							<div>
-								<span>Publicadora</span>
-								<strong>Square Enix Ltd</strong>
-							</div>
-							<div>
-								<span>Gênero</span>
-								<strong itemprop="applicationCategory"><a href="games.html">Plataformas</a>, <a href="games.html">Ação/Aventura</a></strong>
-							</div>
-							<meta itemprop="reviewer" content="Datcouch.com">
-						</div>
-					</div>
-				</div>
+				<%= render '/games/game_info' %>
 				<div class="game-info-right">
 
 					<!-- BEGIN .game-menu -->
@@ -64,102 +30,8 @@
 					</div>
 					<h2><span>Sobre</span></h2>
 					<div class="content-padding">
-						<p>este game tests</p>
+						<p><%= @game.description %></p>
 					
-					</div>
-
-					<h2><span>Comentários</span></h2>
-					<!-- BEGIN .content-padding -->
-					<div class="content-padding">
-						
-						<div class="comment-part">
-
-							<!-- BEGIN #comments -->
-							<ol id="comments">
-								<li>
-									<div class="comment-inner">
-										<div class="comment-avatar">
-											<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
-										</div>
-										<div class="comment-content">
-											<div class="comment-header">
-												<h3><a href="#">DatCouch</a></h3>
-											</div>
-											<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-											<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-											<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
-										</div>
-									</div>
-									<ul>
-										<li>
-											<div class="comment-inner">
-												<div class="comment-avatar">
-													<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
-												</div>
-												<div class="comment-content">
-													<div class="comment-header">
-														<h3><a href="#">DatCouch</a></h3>
-													</div>
-													<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-													<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-													<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<div class="comment-inner">
-										<div class="comment-avatar">
-											<img src="http://1.gravatar.com/avatar/b1c65c520efb9520269584aae4323fae?s=73&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D73&amp;r=G" alt="DatCouch">
-										</div>
-										<div class="comment-content">
-											<div class="comment-header">
-												<h3><a href="#">DatCouch</a></h3>
-											</div>
-											<p>Lorem ipsum dolor sit amet, ea rebum aeterno qui, cum tale dicta nihil id. Ex eam simul altera. Te sea labores persequeris. An suscipit menandri vel, est error nullam dictas ne. Debet instructior ea pri, vis singulis antiopam consulatu ex.</p>
-											<a class="comment-reply-link post-a" href="#"><i class="fa fa-comment"></i><strong>Reply</strong></a>
-											<span class="post-a"><i class="fa fa-calendar-o"></i> May 2, 2014</span>
-										</div>
-									</div>
-								</li>
-							<!-- #comment-## -->
-							</ol>
-							<div class="comments-pager"></div>
-
-							<div class="comment-form">
-								<a href="#" name="respond"></a>
-								<div id="respond" class="comment-respond">
-									<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/integer-nam-varius/#respond" style="display:none;">Cancel reply</a></small></h3>
-									<form action="http://chronicles.datcouch.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
-										<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							
-										<p class="form-name">
-											<label for="author">Name:<span class="required">*</span></label>
-											<input id="author" name="author" type="text" value="" size="30" aria-required="true" placeholder="Name">
-										</p>
-
-										<p class="form-email">
-											<label for="email">Email:<span class="required">*</span></label>
-											<input id="email" name="email" type="text" value="" size="30" aria-required="true" placeholder="Email">
-										</p>
-
-										<p class="form-website">
-											<label for="website">Website:</label>
-											<input id="website" name="url" type="text" value="" size="30" aria-required="true" placeholder="Website">
-										</p>
-										<p class="form-comment">
-											<label for="comment">Comment:<span class="required">*</span></label>
-											<textarea id="comment" name="comment" type="text" aria-required="true" placeholder="Comment Text"></textarea>
-										</p>
-										<p class="form-submit">
-											<input name="submit" type="submit" id="submit" value="Post Comment" class="button">
-											<input type="hidden" name="comment_post_ID" value="324" id="comment_post_ID" class="button">
-											<input type="hidden" name="comment_parent" id="comment_parent" value="0" class="button">
-										</p>
-									</form>
-								</div><!-- #respond -->
-							</div>
-						</div>
 					</div>
 				</div>
 
@@ -170,3 +42,22 @@
 	</section>
 	</div>
 </div>
+
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"WebSite",
+    "url":"https://www.wahiga.com",
+    "name":"Wahiga",
+    "description":"Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais."
+}
+</script>
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"Organization",
+    "url":"https://www.wahiga.com",
+    "name":"Wahiga",
+    "sameAs":[ "https://plus.google.com/b/102118188486502639269/102118188486502639269", "http://www.facebook.com/Wahiga.Official/", "http://www.twitter.com/wahiga.official/", "https://www.youtube.com/channel/UCsm4Ik888MakSXbc6t8XBnA"],
+    "logo":"https://www.wahiga.com/assets/images/wahiga_logo_2.png"
+}

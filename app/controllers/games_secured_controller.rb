@@ -381,12 +381,12 @@ class GamesSecuredController < ApplicationController
 
 	private
 	def game_params_create_by_service
-		params.require(:game).permit(:name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url)
+		params.require(:game).permit(:name, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url, :trailer)
 	end
 
 	private
 	def game_params_update_by_service
-		params.require(:game).permit(:id, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url)
+		params.require(:game).permit(:id, :release_date, :platform, :wahiga_rating, :user_rating, :description, :genre, :friendly_url, :trailer)
 	end
 
 	private

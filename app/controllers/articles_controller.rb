@@ -160,7 +160,6 @@ class ArticlesController < ApplicationController
 			set_meta_tags og: {
 			  title:    "#{@article.title}",
 			  type:     'website',
-			  description: "#{@article.preview}",
 			  url:      "#{finalUrl}",
 			  image:    "#{imageUrl}",
 			  site_name: "Wahiga",

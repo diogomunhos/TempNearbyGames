@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225193829) do
+ActiveRecord::Schema.define(version: 20170216125631) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -105,14 +105,15 @@ ActiveRecord::Schema.define(version: 20161225193829) do
     t.string   "name"
     t.date     "release_date"
     t.string   "platform"
-    t.integer  "wahiga_rating"
-    t.integer  "user_rating"
+    t.decimal  "wahiga_rating"
+    t.decimal  "user_rating"
     t.string   "description"
     t.string   "genre"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "document_id"
     t.string   "friendly_url"
+    t.string   "trailer"
   end
 
   create_table "historics", force: :cascade do |t|

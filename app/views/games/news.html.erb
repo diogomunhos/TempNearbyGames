@@ -14,63 +14,7 @@
 		<div id="main-box" class="full-width" style="margin-top: 100px;">
 					
 			<div id="main" itemscope="" itemtype="http://data-vocabulary.org/Review">
-				<div class="game-info-left">
-					<img itemprop="image" src="/assets/images/posters/2351232-tomb_raider.jpg" class="game-poster" alt="" />
-					<div class="game-info-details">
-						<div class="game-info-buttons">
-							<a href="games-single-video-single.html" class="defbutton"><i class="fa fa-film"></i>Veja o trailer</a>
-						</div>
-						<% if @game.wahiga_rating != nil %>
-							<div class="game-info-rating">
-								<h3>Wahiga Review</h3>
-								<hr />
-								<strong itemprop="rating"><%= @game.wahiga_rating %></strong>
-								<div class="rating-stars">
-									<div class="rating-stars-inner" style="width: <%= @game.wahiga_rating * 20 %>%;"></div>
-								</div>
-							</div>
-						<% end %>
-						<div class="game-info-buttons">
-						</div>
-						<div class="game-info-graph">
-							<div>
-								<span>Data de Lançamento</span>
-								<% if @game.release_date != nil %>
-									<strong itemprop="datePublished" content="<%= @game.release_date.strftime("%d/%m/%Y") %>"><%= @game.release_date.strftime("%d/%m/%Y") %></strong>
-								<% end %>
-							</div>
-							<div>
-								<span>Desenvolvedor</span>
-								<strong>
-								<% @developers.each do |dev| %>
-										<%= dev.company.name.camelize %> <br/>
-									<% end %>	
-								</strong>
-							</div>
-							<div>
-								<span>Publicadora</span>
-								<strong>
-									<% @publishers.each do |pub| %>
-										<%= pub.company.name.camelize %> <br/>
-									<% end %>	
-								</strong>
-							</div>
-							<div>
-								<span>Gênero</span>
-								<strong itemprop="applicationCategory"><% if @game.genre != nil %>
-																		<% if @game.genre.index(",") != nil %>
-																			<% @game.genre.split(",").each do |splited| %>
-																				<%= splited.camelize %><br/>
-																			<% end %> 
-																		<% else %>
-																			<%= @game.genre.camelize %>
-																		<% end %>
-																	<% end %></strong>
-							</div>
-							<meta itemprop="reviewer" content="Datcouch.com">
-						</div>
-					</div>
-				</div>
+				<%= render '/games/game_info' %>
 				<div class="game-info-right">
 
 					<!-- BEGIN .game-menu -->
@@ -126,3 +70,22 @@
 	</section>
 	</div>
 </div>
+
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"WebSite",
+    "url":"https://www.wahiga.com",
+    "name":"Wahiga",
+    "description":"Wahiga é o seu portal de notícias para games, filmes, seriados e nerd cult. Fique antenado com as novidades para  PS4, Xbox One, PS3, Xbox 360, Wii U, PS Vita, Wii, PC. Dicas, Reviews, trailers, detonados, e muito mais."
+}
+</script>
+<script type='application/ld+json'>
+{
+    "@context":"http://schema.org",
+    "@type":"Organization",
+    "url":"https://www.wahiga.com",
+    "name":"Wahiga",
+    "sameAs":[ "https://plus.google.com/b/102118188486502639269/102118188486502639269", "http://www.facebook.com/Wahiga.Official/", "http://www.twitter.com/wahiga.official/", "https://www.youtube.com/channel/UCsm4Ik888MakSXbc6t8XBnA"],
+    "logo":"https://www.wahiga.com/assets/images/wahiga_logo_2.png"
+}

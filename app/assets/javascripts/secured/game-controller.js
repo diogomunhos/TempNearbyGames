@@ -223,6 +223,10 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
       value: gen,
       errorCode: ''
     },
+    trailer: {
+      value: (typeof document.getElementById('hidden_game_trailer') != "undefined" && document.getElementById('hidden_game_trailer') != null) ? document.getElementById('hidden_game_trailer').value : '',
+      errorCode: ''
+    },
     file: null
   }
 
@@ -245,6 +249,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll(")","");
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("?","");
     $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("!","");
+    $scope.game.game_url.value = $scope.game.game_url.value.replaceAll("/","");
   }
 
   String.prototype.replaceAll = function(de, para){
@@ -312,7 +317,10 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
             break;
         case 'genre':
             $scope.game.genre.errorCode = '';
-            break;    
+            break;
+        case 'trailer':
+            $scope.game.genre.errorCode = '';
+            break;        
         default:   
     }
   }
@@ -465,6 +473,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
         user_rating: $scope.game.user_rating.value,
         description: $scope.game.description.value,
         friendly_url: $scope.game.game_url.value,
+        trailer: $scope.game.trailer.value,
         genre: genres,
         platform: platforms
     }
@@ -504,6 +513,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
         user_rating: $scope.game.user_rating.value,
         friendly_url: $scope.game.game_url.value,
         description: $scope.game.description.value,
+        trailer: $scope.game.trailer.value,
         genre: genres,
         platform: platforms
     }
@@ -533,6 +543,7 @@ angular.module('admin-module.game-controller', ['ngFileUpload'])
       $scope.game.description.errorCode = '1';
       valid = false;
     }
+
     if($scope.game.genre.value === ""){
       $scope.game.genre.errorCode = '1';
       valid = false;
