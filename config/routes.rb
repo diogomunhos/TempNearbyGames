@@ -41,9 +41,9 @@ Rails.application.routes.draw do
 
   get "/:game_or_movie/news/:friendly_url" => "articles#show"
 
-  get '/all-articles/:author_name/:author_id' => "articles#all_articles"
+  get '/news/:author_name/:author_id' => "articles#all_articles"
 
-  get '/all-articles' => "articles#all_articles"
+  get '/news' => "articles#all_articles"
 
   get '/all-articles/get-articles-from-page/:numberPerPage/:pageNumber' => "articles#get_articles_service"
 

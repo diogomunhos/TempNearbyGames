@@ -75,7 +75,7 @@
 										<a href="" class="comment-user"><b></b></a>
 									</div>
 									<i itemprop="name"><%= @author[:full_name] %></i>
-								<a href="/all-articles/<%= @author[:full_name].gsub(' ', '_') %>/<%= @author[:id] %>"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
+								<a href="/news/<%= @author[:full_name].gsub(' ', '_') %>/<%= @author[:id] %>"><i class="fa fa-comment"></i><%= @author[:total_of_articles] %> Artigos</a>
 								</div>
 								<div class="clear-float">
 									<p itemprop="description"><%= truncate(@author[:about], length: 110) %></p>
@@ -170,7 +170,7 @@
               "position":1,
               "item":{
                   "@type":"WebPage",
-                  "url":"https://www.wahiga.com/all-articles",
+                  "url":"https://www.wahiga.com/news",
                   "name":"Notícias"
               }
           },
@@ -191,7 +191,7 @@
               "position":1,
               "item":{
                   "@type":"WebPage",
-                  "url":"https://www.wahiga.com/all-articles",
+                  "url":"https://www.wahiga.com/news",
                   "name":"Notícias"
               }
           }
