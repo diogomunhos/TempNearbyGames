@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   end
 
   def system_objects
-    return objects = ["Advertising", "Article", "Document", "ArticleDocument", "Profile", "User", "UserDocument", "UserPreference", "Company", "Game"]
+    return objects = ["Advertising", "Article", "Document", "ArticleDocument", "Profile", "User", "UserDocument", "UserPreference", "Company", "Game", "Cinema"]
   end
 
   def system_fields(object)
@@ -85,6 +85,8 @@ class ApplicationController < ActionController::Base
       return ["name", "created_at", "updated_at"]
     when "Game"
       return ["name", "release_date", "platform", "wahiga_rating", "user_rating", "description", "genre", "created_at", "updated_at", "document_id"]
+    when "Cinema"
+      return ["name", "release_date", "type", "wahiga_rating", "user_rating", "description", "genre", "document_id", "friendly_url", "trailer", "created_at", "updated_at"]
     else
       return []
     end

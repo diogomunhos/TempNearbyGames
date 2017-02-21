@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216125631) do
+ActiveRecord::Schema.define(version: 20170221192337) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -56,6 +56,29 @@ ActiveRecord::Schema.define(version: 20170216125631) do
     t.integer  "views"
     t.string   "facebook_post_id"
     t.integer  "game_id"
+  end
+
+  create_table "cinema_companies", force: :cascade do |t|
+    t.integer  "cinema_id"
+    t.integer  "company_id"
+    t.string   "company_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cinemas", force: :cascade do |t|
+    t.string   "name"
+    t.date     "release_date"
+    t.string   "type"
+    t.decimal  "wahiga_rating"
+    t.decimal  "user_rating"
+    t.string   "description"
+    t.string   "genre"
+    t.integer  "document_id"
+    t.string   "friendly_url"
+    t.string   "trailer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|

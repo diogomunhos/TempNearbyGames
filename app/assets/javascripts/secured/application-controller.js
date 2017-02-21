@@ -22,6 +22,12 @@ angular.module('admin-module.application-controller', [])
     showAll: false
   };
 
+  $scope.cinemas = {
+    showCinemas: false,
+    showNew: false,
+    showAll: false
+  };
+
   $scope.management = {
     showManagement: false,
     profile: {
@@ -67,6 +73,15 @@ angular.module('admin-module.application-controller', [])
       $scope.activeLinkThird = "";
       if(path.indexOf("/new") !== -1){
         $scope.activeLinkSecond = "new-game";
+      }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
+        $scope.activeLinkSecond = "";
+      }
+    }if(path.indexOf("/cinemas") !== -1){
+      $scope.activeLinkFirst = "cinema";
+      $scope.activeLinkSecond = "all-cinema";
+      $scope.activeLinkThird = "";
+      if(path.indexOf("/new") !== -1){
+        $scope.activeLinkSecond = "new-cinema";
       }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
         $scope.activeLinkSecond = "";
       }
@@ -128,6 +143,12 @@ angular.module('admin-module.application-controller', [])
           $scope.games.showGames = true;
           $scope.games.showAll = ($scope.permissions[i].read_all_record === true) ? true : false;
           $scope.games.showNew = ($scope.permissions[i].create_record === true) ? true : false;
+        }
+      }if($scope.permissions[i].object_name === "Cinema"){
+        if($scope.permissions[i].read_all_record === true || $scope.permissions[i].create_record === true){
+          $scope.cinemas.showCinemas = true;
+          $scope.cinemas.showAll = ($scope.permissions[i].read_all_record === true) ? true : false;
+          $scope.cinemas.showNew = ($scope.permissions[i].create_record === true) ? true : false;
         }
       }else if($scope.permissions[i].object_name === "User" ){
         if($scope.permissions[i].read_all_record === true || $scope.permissions[i].create_record === true){

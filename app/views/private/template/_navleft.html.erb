@@ -136,6 +136,22 @@
 							</ul>
 						</li>
 
+						<li ng-class=" (activeLinkFirst === 'cinema') ? 'active-link' : '' ">
+							<a href="#" ng-show="cinemas.showCinemas">
+								<i class="fa fa-gamepad"></i>
+								<span class="menu-title">
+									<strong>Cinemas</strong>
+								</span>
+								<i class="arrow"></i>
+							</a>
+
+							<!--Submenu-->
+							<ul class="collapse">
+								<li ng-class=" (activeLinkSecond === 'all-cinema') ? 'active-link' : '' "><a href="/private/cinemas" ng-show="cinemas.showAll">All Cinemas</a></li>
+								<li ng-class=" (activeLinkSecond === 'new-cinema') ? 'active-link' : '' "><a href="/private/cinemas/new" ng-show="cinemas.showNew">New Cinema</a></li>
+							</ul>
+						</li>
+
 						<li ng-show="management.showManagement" ng-class=" (activeLinkFirst === 'management') ? 'active-link' : '' ">
 							<a href="#">
 								<i class="demo-psi-gear-2"></i>
