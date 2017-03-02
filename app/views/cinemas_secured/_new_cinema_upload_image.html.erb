@@ -1,0 +1,13 @@
+<div class="row">
+    <p class="bord-btm pad-ver text-main text-bold text-left">Change cinema image:</p>
+
+    <div class="form-group col-md-6">
+        <div class="col-md-3">
+            <img ng-show="cinema.file === null" class="img-md mar-btm" src="<%= @cinema_image_url %>"/>
+            <img ng-hide="cinema.file === null" class="img-md mar-btm" ngf-thumbnail="cinema.file"/>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" style="margin-top: 15px; margin-left: 10px;" ngf-select="uploadFiles($files, $invalidFiles)" accept="image/*">Select Image</button>
+        </div>
+    </div>
+</div>

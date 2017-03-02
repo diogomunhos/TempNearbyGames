@@ -1,0 +1,145 @@
+<div id="content-container" ng-controller="new-cinema-controller">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow"><%= @cinema.name %></h1>
+    </div>
+
+    <div id="page-content">
+        <input type="hidden" id="hidden_cinema_companies" value="<%= @cinemaCompanies %>"/>
+        <input type="hidden" id="hidden_companies" value="<%= @companies %>"/>
+        <input type="hidden" id="hidden_cinema_file" value="<%= @companies %>"/>
+        
+            <div class="panel">
+                <div class="panel-footer text-center">
+                    <% if @showEdit %>
+                        <a class="btn btn-primary" href="/private/cinemas/edit/<%= @cinema.id %>">Edit</a>
+                    <% end %>
+                    <% if @showDelete %>
+                        <a class="btn btn-danger" href="/private/cinemas/destroy/<%= @cinema.id %>">Delete</a>
+                    <% end %>
+                </div>
+                <form class="panel-body form-horizontal">
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Cinema information</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Name:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.name %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Cinema URL:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.friendly_url %></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Release date:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.release_date %></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Platforms:</label>
+                            <div class="col-md-3">
+                                <p class="form-control-static"><%= @cinema.platform %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4" >
+                            <label class="col-md-3 control-label text-bold">Wahiga rating:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.wahiga_rating %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">User rating:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.user_rating %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Description:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.description %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Genre:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.genre %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Trailer URL:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.trailer %></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">System information</p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Created date:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.created_at %></p>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-3 control-label text-bold">Last updated date:</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static"><%= @cinema.updated_at %></p>
+                            </div>
+                        </div>
+                    </div>
+     
+                </form>
+                <div class="panel-footer text-center">
+                    <% if @showEdit %>
+                        <a class="btn btn-primary" href="/private/cinemas/edit/<%= @cinema.id %>">Edit</a>
+                    <% end %>
+                    <% if @showDelete %>
+                        <a class="btn btn-danger" href="/private/cinemas/destroy/<%= @cinema.id %>">Delete</a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Companies</p>
+                </div>
+                <table class="table table-striped">
+                    <tr ng-repeat="gc in cinemaCompanies">
+                        <td>
+                            <select class="form-control" ng-model="gc.company_id" ng-disabled="true"
+                                ng-options="company.id as company.name for company in companies"
+                                >
+                                    <option
+                                            value="company.id">
+                                      {{company.name}}
+                                    </option>
+                                </select>   
+                        </td>
+                        <td>
+                            {{gc.company_type}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</div>

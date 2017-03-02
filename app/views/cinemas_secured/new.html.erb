@@ -1,0 +1,234 @@
+<div id="content-container" ng-controller="new-cinema-controller">
+
+    <div id="page-title">
+        <h1 class="page-header text-overflow">New Cinema</h1>
+    </div>
+
+    <div id="page-content" ng-cloak>
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+
+        <div class="panel">
+            <input type="hidden" id="hidden_cinema_companies" value="<%= @cinemaCompanies %>"/>
+            <input type="hidden" id="hidden_companies" value="<%= @companies %>"/>
+            <input type="hidden" id="hidden_cinema_file" value="<%= @companies %>"/>
+
+                <div id="demo-cls-wz">
+                    
+                    <!--Nav-->
+                    <ul class="wz-nav-off wz-icon-inline wz-classic" style="border-bottom: solid;">
+                        <li class="col-xs-3" ng-class="{'bg-mint': cinema.stage >= 1}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-pencil-ruler icon-lg"></i></span> Cinema Details
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': cinema.stage >= 2}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-file-pictures icon-lg"></i></span> Cinema Image
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': cinema.stage >= 3}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-newspaper-2 icon-lg"></i></span> Cinema Companies
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!--Form-->
+                    <form class="form-horizontal" style="margin-top: 20px;">
+                        <div class="panel-body">
+                            <div class="tab-content">
+
+                                <!--First tab-->
+                                <div id="demo-cls-tab2" class="tab-pane" ng-class="{active: cinema.stage == 1, in: cinema.stage == 1, fade: cinema.stage != 1}">
+                                    <div id="all-details">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_name">Name:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" ng-change="onChangeName(cinema.name.value)" placeholder="Name" name="cinema[name]" ng-model="cinema.name.value" id="cinema_name">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.name.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.name.errorCode, "name")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_cinema_url">Cinema URL:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" required="" class="form-control" ng-disabled="true" ng-class="{error_input: cinema.cinema_url.errorCode != ''}" name="cinema[cinema_url]" id="cinema_cinema_url" ng-model="cinema.cinema_url.value">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_release_date">Release date:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Release date" name="cinema[release_date]" ng-model="cinema.release_date.value" id="cinema_release_date">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.release_date.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.release_date.errorCode, "release_date")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>         
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: cinema.platform.errorCode != ''}">Platforms:* </label>
+                                                <div class="col-lg-3">
+                                                    <select class="form-control selectpicker" name="cinema[cinema_platform]" ng-change="changePickListValue('platform');" multiple id="cinema_platform" ng-model="cinema.platform.value">
+                                                        <option value="PC">PC</option>
+                                                        <option value="PS4">PS4</option>
+                                                        <option value="Xbox-one">Xbox-one</option>
+                                                        <option value="Wii-U">Wii U</option>
+                                                        <option value="PS3">PS3</option>
+                                                        <option value="Vita">Vita</option>
+                                                        <option value="3DS">3DS</option>
+                                                        <option value="Xbox-360">Xbox-360</option>
+                                                        <option value="Mobile">Mobile</option>
+                                                        <option value="Nintendo NX">Nintendo NX</option>
+                                                        <option value="Movie">Movie</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.platform.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.platform.errorCode, "platform")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>                                
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_wahiga_rating">Wahiga rating:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Wahiga rating" name="cinema[wahiga_rating]" ng-model="cinema.wahiga_rating.value" id="cinema_wahiga_rating">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.wahiga_rating.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.wahiga_rating.errorCode, "wahiga_rating")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_user_rating">User rating:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="User rating" name="cinema[user_rating]" ng-model="cinema.user_rating.value" id="cinema_user_rating">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.user_rating.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.user_rating.errorCode, "user_rating")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" for="cinema_description">Description:</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" placeholder="Description" name="cinema[description]" ng-model="cinema.description.value" id="cinema_description"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.description.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.description.errorCode, "description")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: cinema.genre.errorCode != ''}">Genres:* </label>
+                                                <div class="col-lg-3">
+                                                    <select class="form-control selectpicker" name="cinema[genre]" ng-change="changePickListValue('genre');" multiple id="cinema_genre" ng-model="cinema.genre.value">
+                                                        <option value="2d">2D</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="cinema.genre.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.genre.errorCode, "genre")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Second tab-->
+                                <div id="demo-cls-tab3" class="tab-pane" ng-class="{active: cinema.stage == 2, in: cinema.stage == 2, fade: cinema.stage != 2}" >
+                                    <%= render '/cinemas_secured/new_cinema_upload_image' %>
+                                </div>
+
+                                <!--Third tab-->
+                                <div id="demo-cls-tab4" class="tab-pane mar-btm" ng-class="{active: cinema.stage == 3, in: cinema.stage == 3, fade: cinema.stage != 3}">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div >
+                                                <button class="btn btn-primary" ng-click="newCinemaCompany()">New Company</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="cinemaCompanies.length > 0">
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Type</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="gc in cinemaCompanies">
+                                                            <td>
+                                                                <select class="form-control" ng-model="gc.company_id"
+                                                                ng-options="company.id as company.name for company in companies"
+                                                                >
+                                                                    <option
+                                                                            value="company.id">
+                                                                      {{company.name}}
+                                                                    </option>
+                                                                </select>   
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" ng-model="gc.company_type">
+                                                                    <option value="Developer">Developer</option>
+                                                                    <option value="Publisher">Publisher</option>
+                                                                </select>
+                                                            </td>
+                                                            <td><button type="button" class="btn btn-sm btn-danger" ng-click="destroyCinemaCompany($index)">Remove</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Footer button-->
+                        <div class="panel-footer text-right">
+                            <div class="box-inline">
+                                <button type="button" class="previous btn btn-mint" ng-show="cinema.stage > 1" ng-disabled="isSubmitting" style="margin-right: 5px;"ng-click="previous();">Previous</button>
+                                <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="cinema.stage < 3" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
+                                <button type="button" class="finish btn btn-mint" ng-show="cinema.stage === 3" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>

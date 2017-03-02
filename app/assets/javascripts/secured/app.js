@@ -6,10 +6,12 @@ angular.module('admin-module', [
 	'admin-module.company-services',
 	'admin-module.game-services',
 	'admin-module.application-services',
+	'admin-module.cinema-services',
     'admin-module.article-controller',
     'admin-module.profile-controller',
     'admin-module.user-controller',
     'admin-module.company-controller',
     'admin-module.game-controller',
-    'admin-module.application-controller'
+    'admin-module.application-controller',
+    'admin-module.cinema-controller'
 ])

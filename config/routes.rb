@@ -288,6 +288,46 @@ Rails.application.routes.draw do
    post '/private/games/upload_game_image_service' => "games_secured#upload_game_image_service"
 
 
+  #Cinema
+ 
+   get '/private/cinemas/new' => "cinemas_secured#new"
+ 
+   get '/private/cinemas' => "cinemas_secured#my_cinemas"
+ 
+   get '/private/cinemas/all-cinemas/:numberPerPage/:pageNumber' => "cinemas_secured#all_cinemas"
+ 
+   get '/private/cinemas/all-cinemas/count' => "cinemas_secured#count_cinemas"
+ 
+   get '/private/cinemas/all-cinemas/count/:fieldToSearch/:searchValue' => "cinemas_secured#count_search_cinemas"
+ 
+   get '/private/cinemas/all-cinemas/search/:fieldToSearch/:searchValue/:numberPerPage/:pageNumber' => "cinemas_secured#search_all_cinemas"
+ 
+   get '/private/cinemas/show/:cinemaid' => "cinemas_secured#show"
+ 
+   get '/private/cinemas/edit/:cinemaid' => "cinemas_secured#edit"
+ 
+   get '/private/cinemas/destroy/:cinemaid' => "cinemas_secured#destroy"
+ 
+   #POST
+   #Cinema
+   post '/private/cinemas/create-new-cinema' => "cinemas_secured#create"
+ 
+   post '/private/cinemas/update-cinema' => "cinemas_secured#update"
+ 
+   post '/private/cinemas/create_cinema_service' => "cinemas_secured#create_cinema_service"
+ 
+   post '/private/cinemas/update_cinema_service' => "cinemas_secured#update_cinema_service"
+ 
+   post '/private/cinemas/create_cinema_companies_service' => "cinemas_secured#create_cinema_companies_service"
+ 
+   post '/private/cinemas/destroy_cinema_company_service' => "cinemas_secured#destroy_cinema_company_service"
+ 
+   post '/private/cinemas/upload_cinema_image_service' => "cinemas_secured#upload_cinema_image_service"
+
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
