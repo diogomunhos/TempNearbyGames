@@ -47,7 +47,7 @@
                             <tr>
                                 <th>Cinema</th>
                                 <th>Release date</th>
-                                <th>Platform</th>
+                                <th>Type</th>
                                 <th>Wahiga Rating</th>
                                 <th>User Rating</th>
                                 <th>Genre</th>
@@ -57,7 +57,7 @@
                                 <tr ng-repeat="cinema in cinemas">
                                     <td><a class="btn-link" href="/private/cinemas/show/{{cinema.id}}">{{cinema.name}}</a></td>
                                     <td><i class="demo-pli-clock"></i>{{cinema.release_date | date:'MM-dd-yyyy'}}</td>
-                                    <td>{{cinema.platform}}</td>
+                                    <td>{{cinema.type}}</td>
                                     <td>{{cinema.wahiga_rating}}</td>
                                     <td>{{cinema.user_rating}}</td>
                                     <td>{{cinema.genre}}</td>

@@ -14,7 +14,7 @@
             <input type="hidden" id="hidden_cinema_name" value="<%= @cinema.name %>"/>
             <input type="hidden" id="hidden_cinema_url" value="<%= @cinema.friendly_url %>"/>
             <input type="hidden" id="hidden_cinema_release_date" value="<%= @cinema.release_date %>"/>
-            <input type="hidden" id="hidden_cinema_platform" value="<%= @cinema.platform %>"/>
+            <input type="hidden" id="hidden_cinema_type" value="<%= @cinema.cinema_type %>"/>
             <input type="hidden" id="hidden_cinema_wahiga_rating" value="<%= @cinema.wahiga_rating %>"/>
             <input type="hidden" id="hidden_cinema_user_rating" value="<%= @cinema.user_rating %>"/>
             <input type="hidden" id="hidden_cinema_description" value="<%= @cinema.description %>"/>
@@ -91,26 +91,18 @@
 
                                         <div class="form-group">
                                             <div class="row">
-                                                <label class="col-lg-3 control-label" ng-class="{error_label: cinema.platform.errorCode != ''}">Platforms:* </label>
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: cinema.type.errorCode != ''}">Type:* </label>
                                                 <div class="col-lg-3">
-                                                    <select class="form-control selectpicker" name="cinema[cinema_platform]" ng-change="changePickListValue('platform');" multiple id="cinema_platform" ng-model="cinema.platform.value">
-                                                        <option value="PC">PC</option>
-                                                        <option value="PS4">PS4</option>
-                                                        <option value="Xbox-one">Xbox-one</option>
-                                                        <option value="Wii-U">Wii U</option>
-                                                        <option value="PS3">PS3</option>
-                                                        <option value="Vita">Vita</option>
-                                                        <option value="3DS">3DS</option>
-                                                        <option value="Xbox-360">Xbox-360</option>
-                                                        <option value="Mobile">Mobile</option>
-                                                        <option value="Nintendo NX">Nintendo NX</option>
+                                                    <select class="form-control selectpicker" name="cinema[cinema_platform]" id="cinema_type" ng-model="cinema.type.value">
                                                         <option value="Movie">Movie</option>
+                                                        <option value="Serie">Serie</option>
+                                                        <option value="TV Show">TV Show</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="row" ng-show="cinema.platform.errorCode != ''">
+                                            <div class="row" ng-show="cinema.type.errorCode != ''">
                                                 <div class="col-lg-8 col-lg-offset-3">
-                                                    <p class="error_form_message">{{getErrorByCode(cinema.platform.errorCode, "platform")}}</p>
+                                                    <p class="error_form_message">{{getErrorByCode(cinema.type.errorCode, "type")}}</p>
                                                 </div>
                                             </div>
                                         </div>                                

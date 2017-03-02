@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221192337) do
+ActiveRecord::Schema.define(version: 20170302201107) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170221192337) do
   create_table "cinemas", force: :cascade do |t|
     t.string   "name"
     t.date     "release_date"
-    t.string   "type"
+    t.string   "cinema_type"
     t.decimal  "wahiga_rating"
     t.decimal  "user_rating"
     t.string   "description"

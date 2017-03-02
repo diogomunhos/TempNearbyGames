@@ -17,7 +17,7 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
   $scope.showPagination = false;
   $scope.searchValue = "";
   $scope.fieldToSearch = "name";
-  $scope.fieldsToSeach = ["Name", "Platforms", "Wahiga Rating", "User Rating", "Genres"];
+  $scope.fieldsToSeach = ["Name", "Type", "Wahiga Rating", "User Rating", "Genres"];
   $scope.blockSearch = false;
   $scope.isSearch = false;
 
@@ -146,8 +146,8 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
     
     if(value === "Name"){
       $scope.fieldToSearch = "name";
-    }else if (value === "Platforms"){
-      $scope.fieldToSearch = "platform";
+    }else if (value === "Type"){
+      $scope.fieldToSearch = "type";
     }else if (value === "Wahiga Rating"){
       $scope.fieldToSearch = "wahiga_rating";
     }else if (value === "User Rating"){
@@ -167,13 +167,6 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
 }])
 
 .controller('new-cinema-controller', ['cinemaServices', '$scope', '$timeout', 'Upload', '$q', '$interval', function(cinemaServices, $scope, $timeout, Upload, $q, $interval) {
-  var plat = [];
-  if(document.getElementById('hidden_cinema_platform') != null){
-    for(var i=0; i < document.getElementById('hidden_cinema_platform').value.split(',').length; i++){
-      plat.push(document.getElementById('hidden_cinema_platform').value.split(',')[i]);
-    }
-  }
-
   var gen = [];
   if(document.getElementById('hidden_cinema_genre') != null){
     for(var i=0; i < document.getElementById('hidden_cinema_genre').value.split(',').length; i++){
@@ -196,8 +189,8 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
       value: (typeof document.getElementById('hidden_cinema_release_date') != "undefined" && document.getElementById('hidden_cinema_release_date') != null) ? document.getElementById('hidden_cinema_release_date').value : '',
       errorCode: ''
     },
-    platform: {
-      value: plat,
+    type: {
+      value: (typeof document.getElementById('hidden_cinema_type') != "undefined" && document.getElementById('hidden_cinema_type') != null) ? document.getElementById('hidden_cinema_type').value : '',
       errorCode: ''
     },
     wahiga_rating: {
@@ -296,8 +289,8 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
         case 'release_date':
             $scope.cinema.release_date.errorCode = '';
             break;
-        case 'platform':
-            $scope.cinema.platform.errorCode = '';
+        case 'type':
+            $scope.cinema.type.errorCode = '';
             break;
         case 'wahiga_rating':
             $scope.cinema.wahiga_rating.errorCode = '';
@@ -450,10 +443,6 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
   }
 
   $scope.createCinemaRequest = function(){
-    var platforms = '';
-    for(var i=0; i < $scope.cinema.platform.value.length; i++){ 
-      platforms += (platforms === '') ? $scope.cinema.platform.value[i] : ','+$scope.cinema.platform.value[i];
-    }
     var genres = '';
     for(var i=0; i < $scope.cinema.genre.value.length; i++){ 
       genres += (genres === '') ? $scope.cinema.genre.value[i] : ','+$scope.cinema.genre.value[i];
@@ -468,7 +457,7 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
         friendly_url: $scope.cinema.cinema_url.value,
         trailer: $scope.cinema.trailer.value,
         genre: genres,
-        platform: platforms
+        cinema_type: $scope.cinema.type.value
     }
     console.log(request);
 
@@ -489,10 +478,6 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
   }
 
   $scope.updateCinemaRequest = function(){
-    var platforms = '';
-    for(var i=0; i < $scope.cinema.platform.value.length; i++){ 
-      platforms += (platforms === '') ? $scope.cinema.platform.value[i] : ','+$scope.cinema.platform.value[i];
-    }
     var genres = '';
     for(var i=0; i < $scope.cinema.genre.value.length; i++){ 
       genres += (genres === '') ? $scope.cinema.genre.value[i] : ','+$scope.cinema.genre.value[i];
@@ -508,7 +493,7 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
         description: $scope.cinema.description.value,
         trailer: $scope.cinema.trailer.value,
         genre: genres,
-        platform: platforms
+        cinema_type: $scope.cinema.type.value
     }
     console.log(request);
     return request;
@@ -570,9 +555,6 @@ angular.module('admin-module.cinema-controller', ['ngFileUpload'])
 
   $scope.changePickListValue = function(field){
     switch(field) {
-        case 'platform':
-            $scope.cinema.platform.errorCode = '';
-            break;
         case 'genre':
             $scope.cinema.genre.errorCode = '';
             break;    
