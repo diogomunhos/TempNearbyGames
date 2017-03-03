@@ -59,20 +59,6 @@ class ArticlesController < ApplicationController
 		end
 		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
 		
-		if @article.platform != nil
-			print "DEBUG #{@article.platform}"
-			if @article.platform.index(",") != nil		
-				platforms = @article.platform.split(",") if @article.platform != nil
-				platforms.each do |sp|
-					if sp != ""
-						@tags.push(sp)
-					end
-				end
-			else
-				@tags.push(@article.platform)
-			end
-		end
-		# end tag creator
 		if @article === nil
 			redirect_to '/404'
 		else
