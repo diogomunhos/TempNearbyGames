@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   get '/news' => "articles#all_articles"
 
-  get '/all-articles', to: redirect("/news". status: 301)
+  get '/all-articles', to: redirect("/news", status: 301)
 
   get '/all-articles/get-articles-from-page/:numberPerPage/:pageNumber' => "articles#get_articles_service"
 
