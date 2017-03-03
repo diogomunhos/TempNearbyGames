@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
 		end
 		@article = Article.find_by_friendly_url_and_status(params[:friendly_url], "Published")
 		# creating tags
-		if @article === nil
+		if @article == nil
 			redirect_to '/404'
 		end
 		@tags = Array.new
