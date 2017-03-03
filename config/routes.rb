@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/images/:id/:image_name' => "home#show_image"
 
+  get '/images/show_image/:id', to: redirect("/images/:id", status: 301)
+
   match "/404" => "errors#error404", via: [:get, :post, :patch, :delete]
 
   get "/signin" => "signin#signin"
@@ -44,6 +46,8 @@ Rails.application.routes.draw do
   get '/news/:author_name/:author_id' => "articles#all_articles"
 
   get '/news' => "articles#all_articles"
+
+  get '/all-articles', to: redirect("/news". status: 301)
 
   get '/all-articles/get-articles-from-page/:numberPerPage/:pageNumber' => "articles#get_articles_service"
 

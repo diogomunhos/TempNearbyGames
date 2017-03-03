@@ -95,11 +95,11 @@ class UsersController < ApplicationController
 		@showEdit = false
 		if @user != nil
 			@showLogin = false
-		else
-			@showLogin = true
 			if @user.id === session[:user_id]
 				@showEdit = true
 			end
+		else
+			@showLogin = true
 		end
 		userProfile = User.find(params[:userid])
 		@profile[:fullname] = if userProfile.last_name != nil then userProfile.name + " " + userProfile.last_name else userProfile.name end
