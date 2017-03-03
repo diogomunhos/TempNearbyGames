@@ -79,10 +79,11 @@ class HomeController < ApplicationController
 	def show_image
 		if params[:id] == "show_image"
 			redirect_to "/404"
+		else
+	  		document = Document.find(params[:id])
+	 		expires_in 7.days, :public => true
+			send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 		end
-  		document = Document.find(params[:id])
- 		expires_in 7.days, :public => true
-		send_data document.file_contents, :type => document.content_type, :filename => document.file_name, :disposition => 'inline'
 	end
 
 end
