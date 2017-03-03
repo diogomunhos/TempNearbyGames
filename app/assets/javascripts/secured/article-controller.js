@@ -412,6 +412,11 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
       name: (typeof document.getElementById('hidden_game_name') != "undefined" && document.getElementById('hidden_game_name') != null) ? document.getElementById('hidden_game_name').value : '',
       errorCode: ''
     },
+    cinema: {
+      id: (typeof document.getElementById('hidden_cinema_id') != "undefined" && document.getElementById('hidden_cinema_id') != null) ? document.getElementById('hidden_cinema_id').value : '',
+      name: (typeof document.getElementById('hidden_cinema_name') != "undefined" && document.getElementById('hidden_cinema_name') != null) ? document.getElementById('hidden_cinema_name').value : '',
+      errorCode: ''
+    },
     is_movie: (typeof document.getElementById('hidden_game_id') != "undefined" && document.getElementById('hidden_game_id') != null) ? false : true,
     tags: {
       value: (typeof document.getElementById('hidden_article_tags') != "undefined" && document.getElementById('hidden_article_tags') != null) ? document.getElementById('hidden_article_tags').value : '',
@@ -695,6 +700,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
         game_id: ($scope.article.is_movie === true) ? '' : $scope.article.game.id,
+        cinema_id: ($scope.article.is_movie === false) ? '' : $scope.article.cinema.id,
         tags: document.getElementById('article_tags').value,
         platform: platforms
     }
@@ -733,6 +739,7 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
         article_type: $scope.article.type,
         is_highlight: $scope.article.is_highlighted,
         game_id: ($scope.article.is_movie === true) ? '' : $scope.article.game.id,
+        cinema_id: ($scope.article.is_movie === false) ? '' : $scope.article.cinema.id,
         body: $scope.article.body.value,
         tags: document.getElementById('article_tags').value,
         platform: platforms
@@ -758,6 +765,9 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
     if($scope.article.is_movie === true){
       if($scope.article.platforms.value === ""){
         $scope.article.platforms.errorCode = '1';
+        valid = false;
+      }
+      if($scope.article.cinema.id === ""){
         valid = false;
       }  
     }else{
@@ -845,10 +855,20 @@ angular.module('admin-module.article-controller', ['ngFileUpload'])
   }
 
   $scope.selectGame = function(id, name, platform){
-    console.log("ID: " + id + ' NAME: ' + name + ' PLATFORM: ' + platform); 
     $scope.article.game.id = id;
     $scope.article.game.name = name;
     $scope.article.platforms.value.push(platform);
+    $scope.article.cinema.id = '';
+    $scope.article.cinema.name = '';
+
+  }
+
+  $scope.selectCinema = function(id, name, cinema_type){
+    $scope.article.cinema.id = id;
+    $scope.article.cinema.name = name;
+    $scope.article.platforms.value.push(cinema_type);
+    $scope.article.game.id = '';
+    $scope.article.game.name = '';
   }
 
   

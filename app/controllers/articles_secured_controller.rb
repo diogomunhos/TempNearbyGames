@@ -382,6 +382,7 @@ class ArticlesSecuredController < ApplicationController
 	def new
 		@article = Article.new 
 		@games = Game.all.order("name")
+		@cinemas = Cinema.all.order("name")
 	end
 
 	def show
@@ -495,17 +496,17 @@ class ArticlesSecuredController < ApplicationController
 
 	private
 	def article_params
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :body, :tags, :game_id)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :body, :tags, :game_id, :cinema_id)
 	end
 
 	private
 	def article_params_create_by_service
-		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platform, :game_id)
+		params.require(:article).permit(:title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :platform, :game_id, :cinema_id)
 	end
 
 	private
 	def article_params_update_by_service
-		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platform, :game_id)
+		params.require(:article).permit(:id, :title, :subtitle, :article_type, :friendly_url, :is_highlight, :preview, :tags, :body, :platform, :game_id, :cinema_id)
 	end
 
 	private
