@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302201107) do
+ActiveRecord::Schema.define(version: 20170304223606) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -179,6 +179,20 @@ ActiveRecord::Schema.define(version: 20170302201107) do
     t.integer  "last_updated_by"
   end
 
+  create_table "social_articles", force: :cascade do |t|
+    t.datetime "published_time"
+    t.integer  "social_media_id"
+    t.string   "published_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "article_id"
+    t.integer  "document_id"
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "post_title"
+  end
+
   create_table "social_identities", force: :cascade do |t|
     t.string   "uid"
     t.string   "provider"
@@ -186,6 +200,12 @@ ActiveRecord::Schema.define(version: 20170302201107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"
+  end
+
+  create_table "social_medias", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: :cascade do |t|

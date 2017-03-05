@@ -152,6 +152,22 @@
 							</ul>
 						</li>
 
+						<li ng-class=" (activeLinkFirst === 'social-media') ? 'active-link' : '' ">
+							<a href="#" ng-show="socialMedias.showSocialMedia">
+								<i class="fa fa-snapchat-ghost"></i>
+								<span class="menu-title">
+									<strong>Social Medias</strong>
+								</span>
+								<i class="arrow"></i>
+							</a>
+
+							<!--Submenu-->
+							<ul class="collapse">
+								<li ng-class=" (activeLinkSecond === 'all-social-media') ? 'active-link' : '' "><a href="/private/social-medias" ng-show="socialMedias.showAll">All Social Medias</a></li>
+								<li ng-class=" (activeLinkSecond === 'new-social-media') ? 'active-link' : '' "><a href="/private/social-medias/new" ng-show="socialMedias.showNew">New Social Media</a></li>
+							</ul>
+						</li>
+
 						<li ng-show="management.showManagement" ng-class=" (activeLinkFirst === 'management') ? 'active-link' : '' ">
 							<a href="#">
 								<i class="demo-psi-gear-2"></i>

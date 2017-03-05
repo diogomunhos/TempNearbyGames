@@ -1,0 +1,109 @@
+<div id="content-container" ng-controller="new-social-article-controller">
+
+    <div id="page-title">
+        <h1 class="page-header text-overflow">New Social Article</h1>
+    </div>
+    <input type="hidden" id="hidden_article_id" value="<%= @articleId %>"/>
+    <div id="page-content" ng-cloak>
+
+        <div class="panel">
+
+                <div id="demo-cls-wz">
+                    
+                    <!--Nav-->
+                    <ul class="wz-nav-off wz-icon-inline wz-classic" style="border-bottom: solid;">
+                        <li class="col-xs-3" ng-class="{'bg-mint': socialArticle.stage >= 1}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-pencil-ruler icon-lg"></i></span> Social Media
+                            </a>
+                        </li>
+                        <li class="col-xs-3" ng-class="{'bg-mint': socialArticle.stage >= 2}">
+                            <a href="">
+                                <span class="icon-wrap icon-wrap-xs"><i class="pli-newspaper-2 icon-lg"></i></span> Post Details
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!--Form-->
+                    <form class="form-horizontal" style="margin-top: 20px;">
+                        <div class="panel-body">
+                            <div class="tab-content">
+
+                                <!--First tab-->
+                                <div id="cls-tab1" class="tab-pane" ng-class="{active: socialArticle.stage == 1, in: socialArticle.stage == 1, fade: socialArticle.stage != 1}" ng-show="true">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Social Media: </label>
+                                        <div class="col-lg-3">
+                                            <select class="form-control" data-style="btn-primary" name="social_article[social_media]" id="social_article_media" ng-model="socialArticle.socialMediaJson" ng-change="serializeJson();">
+                                                <% if @socialMedias != nil %>
+                                                    <% @socialMedias.each do |media| %>
+                                                            <option value='{"id": <%= media.id %>, "name": "<%= media.name %>"}'><%= media.name %></option>
+                                                    <% end %>
+                                                <% end %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Second tab-->
+                                <div id="demo-cls-tab2" class="tab-pane" ng-class="{active: socialArticle.stage == 2, in: socialArticle.stage == 2, fade: socialArticle.stage != 2}">
+                                    <div id="post-details">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: socialArticle.postTitle.errorCode != ''}" for="article_title">Post Title:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" required="" class="form-control" ng-focus="focusField('post-title')" ng-class="{error_input: socialArticle.postTitle.errorCode != ''}" ng-change="onChangeTitle(socialArticle.postTitle.value)" name="article[title]" id="article_title" ng-model="socialArticle.postTitle.value"/>
+                                                </div>    
+                                            </div>
+                                            <div class="row" ng-show="socialArticle.postTitle.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(socialArticle.title.errorCode, "post-title")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: socialArticle.title.errorCode != ''}" for="article_title">Article Title:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" required="" class="form-control" ng-focus="focusField('title')" ng-class="{error_input: socialArticle.title.errorCode != ''}" ng-change="onChangeTitle(socialArticle.title.value)" name="article[title]" id="article_title" ng-model="socialArticle.title.value"/>
+                                                </div>    
+                                            </div>
+                                            <div class="row" ng-show="socialArticle.title.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(socialArticle.title.errorCode, "title")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: socialArticle.subtitle.errorCode != ''}" for="article_subtitle">Article Subtitle:*</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" required="" class="form-control" name="socialArticle[subtitle]" ng-focus="focusField('subtitle')" ng-class="{error_input: socialArticle.subtitle.errorCode != ''}" id="article_subtitle" ng-model="socialArticle.subtitle.value">
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-show="socialArticle.subtitle.errorCode != ''">
+                                                <div class="col-lg-8 col-lg-offset-3">
+                                                    <p class="error_form_message">{{getErrorByCode(socialArticle.subtitle.errorCode, "subtitle")}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Footer button-->
+                        <div class="panel-footer text-right">
+                            <div class="box-inline">
+                                <button type="button" class="previous btn btn-mint" ng-show="socialArticle.stage > 1" ng-disabled="isSubmitting" style="margin-right: 5px;"ng-click="previous();">Previous</button>
+                                <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="socialArticle.stage < 2" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
+                                <button type="button" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === true)" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="facebookLogin()"><i class="ion-load-a" ng-show=""></i><span ng-hide="isSubmitting">Sign in</span></button>
+                                <button type="button" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === false)" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>

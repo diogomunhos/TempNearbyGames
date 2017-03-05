@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :companies, defaults: { format: 'json' }
+  resources :social_medias, defaults: { format: 'json' }
   resources :games, defaults: { format: 'json' }
   resources :game_companies
   resources :articles, defaults: { format: 'json' }
@@ -238,19 +239,46 @@ Rails.application.routes.draw do
  
   get '/private/companies/:companyid/show' => "companies_secured#show"
  
- get '/private/companies/:companyid/edit' => "companies_secured#edit"
+  get '/private/companies/:companyid/edit' => "companies_secured#edit"
  
-   get '/private/companies/new' => "companies_secured#new"
+  get '/private/companies/new' => "companies_secured#new"
  
-   get '/private/companies/all-companies/:numberPerPage/:pageNumber' => "companies_secured#all_companies_service"
+  get '/private/companies/all-companies/:numberPerPage/:pageNumber' => "companies_secured#all_companies_service"
  
-   get '/private/companies/all-companies/count' => "companies_secured#count_all_companies_service"
+  get '/private/companies/all-companies/count' => "companies_secured#count_all_companies_service"
  
-   post '/private/companies/update' => "companies_secured#update"
+  post '/private/companies/update' => "companies_secured#update"
  
-   post '/private/companies/create-new-company' => "companies_secured#create"
+  post '/private/companies/create-new-company' => "companies_secured#create"
  
-   get '/private/companies/destroy/:companyid' => "companies_secured#destroy"
+  get '/private/companies/destroy/:companyid' => "companies_secured#destroy"
+
+  # Social Article
+
+  get '/private/social-articles/:articleId/new' => "social_articles_secured#new"
+
+  post '/private/social-articles/create_social_article_service' => "social_articles_secured#create_social_article_service"
+
+
+   #Social Media
+ 
+  get '/private/social-medias' => "social_medias_secured#all_social_medias"
+ 
+  get '/private/social-medias/:socialMediaid/show' => "social_medias_secured#show"
+ 
+  get '/private/social-medias/:socialMediaid/edit' => "social_medias_secured#edit"
+ 
+  get '/private/social-medias/new' => "social_medias_secured#new"
+ 
+  get '/private/social-medias/all-social-medias/:numberPerPage/:pageNumber' => "social_medias_secured#all_social_medias_service"
+ 
+  get '/private/social-medias/all-social-medias/count' => "social_medias_secured#count_all_social_medias_service"
+ 
+  post '/private/social-medias/update' => "social_medias_secured#update"
+ 
+  post '/private/social-medias/create-new-social-media' => "social_medias_secured#create"
+ 
+  get '/private/social-medias/destroy/:socialMediaid' => "social_medias_secured#destroy"
  
  
    #Games

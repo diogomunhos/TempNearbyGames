@@ -28,6 +28,12 @@ angular.module('admin-module.application-controller', [])
     showAll: false
   };
 
+  $scope.socialMedias = {
+    showSocialMedia: false,
+    showNew: false,
+    showAll: false
+  };
+
   $scope.management = {
     showManagement: false,
     profile: {
@@ -82,6 +88,15 @@ angular.module('admin-module.application-controller', [])
       $scope.activeLinkThird = "";
       if(path.indexOf("/new") !== -1){
         $scope.activeLinkSecond = "new-cinema";
+      }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
+        $scope.activeLinkSecond = "";
+      }
+    }if(path.indexOf("/social-medias") !== -1){
+      $scope.activeLinkFirst = "social-media";
+      $scope.activeLinkSecond = "all-social-media";
+      $scope.activeLinkThird = "";
+      if(path.indexOf("/new") !== -1){
+        $scope.activeLinkSecond = "new-social-media";
       }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
         $scope.activeLinkSecond = "";
       }
@@ -149,6 +164,12 @@ angular.module('admin-module.application-controller', [])
           $scope.cinemas.showCinemas = true;
           $scope.cinemas.showAll = ($scope.permissions[i].read_all_record === true) ? true : false;
           $scope.cinemas.showNew = ($scope.permissions[i].create_record === true) ? true : false;
+        }
+      }if($scope.permissions[i].object_name === "SocialMedia"){
+        if($scope.permissions[i].read_all_record === true || $scope.permissions[i].create_record === true){
+          $scope.socialMedias.showSocialMedia = true;
+          $scope.socialMedias.showAll = ($scope.permissions[i].read_all_record === true) ? true : false;
+          $scope.socialMedias.showNew = ($scope.permissions[i].create_record === true) ? true : false;
         }
       }else if($scope.permissions[i].object_name === "User" ){
         if($scope.permissions[i].read_all_record === true || $scope.permissions[i].create_record === true){

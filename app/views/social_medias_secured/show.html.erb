@@ -1,0 +1,77 @@
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow"><%= @socialMedia.name %></h1>
+    </div>
+
+    <div id="page-content">
+        <div class="form-group" id="messages">
+            <%= raw flash_message %>
+        </div>
+        <div class="panel">
+            <div class="panel-footer text-center">
+                <a class="btn btn-primary" href="/private/social-medias/<%= @socialMedia.id %>/edit">Edit</a>
+                <% if @showDelete %>
+                    <a class="btn btn-danger" href="/private/social-medias/destroy/<%= @socialMedia.id %>">Delete</a>
+                <% end %>
+            </div>
+            <form class="panel-body form-horizontal">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Social media information</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Name:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @socialMedia.name %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">System information</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Created date:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @socialMedia.created_at %></p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="col-md-3 control-label text-bold">Last updated date:</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static"><%= @socialMedia.updated_at %></p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        
+                    </div>
+                </div> 
+            </form>
+            <div class="panel-footer text-center">
+                <a class="btn btn-primary" href="/private/social-medias/<%= @socialMedia.id %>/edit">Edit</a>
+                <% if @showDelete %>
+                    <a class="btn btn-danger" href="/private/social-medias/destroy/<%= @socialMedia.id %>">Delete</a>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- <div class="panel">
+            <div class="panel-footer text-center">
+
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <p class="bord-btm pad-ver text-main text-bold">Object Permissions</p>
+                </div>
+                <div class="col-md-12">
+                    
+            </div>
+            <div class="panel-footer text-center">
+
+            </div>
+        </div> -->
+    </div>
+</div>
