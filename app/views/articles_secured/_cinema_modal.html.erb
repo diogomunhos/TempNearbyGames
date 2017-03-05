@@ -1,0 +1,36 @@
+<div class="modal fade" id="select-cinema-modal" role="dialog" tabindex="-1" aria-labelledby="select-cinema-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Choose a cinema</h4>
+            </div>
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cinema</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @cinemas.each do |c| %>
+                            <tr>
+                                <td><a class="btn-link" href="" ng-click="selectCinema('<%= c.id %>', '<%= c.name.gsub("'", "") %>', '<%= c.cinema_type %>')" data-dismiss="modal"><%= c.name %></a></td>
+                            </tr>
+                        <% end %>    
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>

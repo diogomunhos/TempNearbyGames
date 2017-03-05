@@ -1,5 +1,6 @@
 
 <%= render "articles_secured/game_modal" %>
+<%= render "articles_secured/cinema_modal" %>
 <div class="form-group">
     <div class="row">
         <label class="col-lg-3 control-label" ng-class="{error_label: article.title.errorCode != ''}" for="article_title">Title:*</label>
@@ -62,6 +63,15 @@
             <input type="text" class="form-control" id="article_game" ng-disabled="true" name="article[game]" ng-model="article.game.name" />
         </div>
         <a href="" class="col-lg-1 btn btn-default" data-target="#select-game-modal" data-toggle="modal"><i class="fa fa-search"></i></a>
+   </div>
+</div>
+<div class="form-group" ng-show="article.is_movie">
+    <div class="row">
+        <label class="col-lg-3 control-label">Cinema:</label>
+        <div class="col-lg-5">
+            <input type="text" class="form-control" id="article_cinema" ng-disabled="true" name="article[cinema]" ng-model="article.cinema.name" />
+        </div>
+        <a href="" class="col-lg-1 btn btn-default" data-target="#select-cinema-modal" data-toggle="modal"><i class="fa fa-search"></i></a>
    </div>
 </div>
 <div class="form-group">

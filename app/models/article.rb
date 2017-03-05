@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
 	has_many :social_articles, foreign_key: :article_id, dependent: :destroy
 	has_many :comments, foreign_key: :article_id, dependent: :destroy
 	belongs_to :game
+	belongs_to :cinema
 	# after_save    :expire_contact_all_cache
 	# after_destroy :expire_contact_all_cache
 	#relation with user on created_by_id
