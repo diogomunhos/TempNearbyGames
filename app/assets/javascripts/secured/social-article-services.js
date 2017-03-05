@@ -18,6 +18,14 @@ angular.module('admin-module.social-article-services', [])
             return deferred.promise;
         };
 
+        this.getFacebookLoginStatus = function(request){
+            var deferred = $q.defer();
+            FB.getLoginStatus(function(response) {
+                deferred.resolve(response);
+            })     
+            return deferred.promise;
+        }
+
 
         this.getFacebookPermissions = function(){
             var deferred = $q.defer();

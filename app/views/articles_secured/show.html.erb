@@ -1,4 +1,4 @@
-<div id="content-container" ng-controller="article-detail-controller">
+<div id="content-container">
 
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -6,18 +6,7 @@
         <h1 class="page-header text-overflow"><%= @article.title %></h1>
     </div>
 
-    <div id="page-content" ng-cloak>
-            <input type="hidden" id="article_id" value="<%= @article.id %>"/>
-            <input type="hidden" id="article_status" value="<%= @article.status %>"/>
-            <input type="hidden" id="article_title_hidden" value="<%= @article.title %>"/>
-            <input type="hidden" id="article_facebook_post_id" value="<%= @article.facebook_post_id %>"/>
-            <input type="hidden" id="article_preview_hidden" value="<%= @article.preview %>"/>
-            <input type="hidden" id="article_friendly_url_hidden" value="<%= @article.friendly_url %>"/>
-            <input type="hidden" id="article_subtitle_hidden" value="<%= @article.subtitle %>"/>
-            <input type="hidden" id="article_facebook_picture" value="<%= @imageUrl %>"/>
-            <div class="form-group" id="messages" ng-show="errorFacebookMessage != ''">
-                
-            </div>
+    <div id="page-content">
             <div class="panel">
                 <div class="panel-footer text-center">
                     <% if @showEdit %>
@@ -41,8 +30,9 @@
                     <% if @showDelete %>
                         <a class="btn btn-danger" href="/private/articles/destroy/<%= @article.id %>">Delete</a>
                     <% end %>
-                     <a class="btn btn-success" href="" ng-disabled="!showFacebookPostButton" ng-hide="showLoginFacebook || (!statusArticleOk) || <%= @showPublish %>" ng-click="postOnFacebook()">Publish on Facebook</a>
-                    <a class="btn btn-success" href="" ng-show="showLoginFacebook && statusArticleOk" ng-click="facebookLogin()">Login Facebook</a>
+                    <% if @article.status == "Published" %>
+                        <a class="btn btn-success" href="/private/social-articles/<%= @article.id %>/new">Post on social media</a>
+                    <% end %>
                 </div>
                 <form class="panel-body form-horizontal">
                     <div class="col-md-12">
@@ -201,6 +191,49 @@
                                         <td style="width: 110px;"><a href="/images/<%= doc.document_id %>" target="_blank" ><div style="background-image: url('/images/<%= doc.document_id %>'); width: 100px; height: 100px; background-size: cover;"> </div></a></td>
                                         <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document.file_name %></td>
                                         <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= doc.document_type %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                
+
+                <div class="panel-footer text-center">
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-footer text-center">
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <p class="bord-btm pad-ver text-main text-bold">Social Media Posted</p>
+                    </div>
+                    <div class="col-md-9">
+                        <% if @article.social_articles.any? %>
+                         <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th></th>
+                                    <th>Post Title</th>
+                                    <th>Article Title</th>  
+                                    <th>Article Subtitle</th>
+                                    <th>Social Media</th> 
+                                    <th>Published Time</th>
+                                </thead>
+                                <tbody>
+                                    <% @article.social_articles.each do |sa| %>
+                                    <tr>
+                                        <td style="width: 110px;"><a href="/images/<%= sa.document_id %>" target="_blank" ><div style="background-image: url('/images/<%= sa.document_id %>'); width: 100px; height: 100px; background-size: cover;"> </div></a></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= sa.post_title %></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= sa.title %></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= sa.subtitle %></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= sa.social_media.name %></td>
+                                        <td style="text-align: left; vertical-align: middle; line-height: 100%; "><%= sa.published_time.strftime("%d/%m/%Y - %H:%M:%S") %></td>
                                     </tr>
                                     <% end %>
                                 </tbody>

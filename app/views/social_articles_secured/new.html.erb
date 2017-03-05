@@ -1,11 +1,24 @@
-<div id="content-container" ng-controller="new-social-article-controller">
+<div id="content-container" ng-controller="new-social-article-controller" ng-cloak>
 
     <div id="page-title">
         <h1 class="page-header text-overflow">New Social Article</h1>
     </div>
-    <input type="hidden" id="hidden_article_id" value="<%= @articleId %>"/>
+    <input type="hidden" id="hidden_article_id" value="<%= @article.id %>"/>
+    <input type="hidden" id="hidden_article_post_title" value="<%= @article.subtitle %>"/>
+    <input type="hidden" id="hidden_article_title" value="<%= @article.title %>"/>
+    <input type="hidden" id="hidden_article_subtitle" value="<%= @article.preview %>"/>
+    <input type="hidden" id="hidden_article_friendly_url" value="<%= @articleurl %>"/>
+    <input type="hidden" id="hidden_article_document_url" value="<%= @documenturl %>"/>
+    <% if @socialMedias.size() > 0 %>
+        <input type="hidden" id="hidden_social_medias_id" value="<%= @socialMedias %>"/>
+    <% end %>
     <div id="page-content" ng-cloak>
-
+        <div class="form-group" id="messages" ng-show="socialArticle.errorMessage != '' || socialArticle.submittingMessage != '' || socialArticle.noSocialMediaAvailableMessage != ''">
+            <span class="the-error-msg" ng-show="socialArticle.errorMessage != ''"><i class="fa fa-warning"></i>{{socialArticle.errorMessage}}</span>
+            <span class="the-success-msg" ng-show="socialArticle.submittingMessage != ''"><i class="fa fa-warning"></i>{{socialArticle.submittingMessage}}</span>
+            <span class="the-error-msg alert-info" style="width: 100%;"ng-show="socialArticle.noSocialMediaAvailableMessage != ''"><i class="fa fa-warning"></i>{{socialArticle.noSocialMediaAvailableMessage}}</span>
+            
+        </div>
         <div class="panel">
 
                 <div id="demo-cls-wz">
@@ -57,7 +70,7 @@
                                             </div>
                                             <div class="row" ng-show="socialArticle.postTitle.errorCode != ''">
                                                 <div class="col-lg-8 col-lg-offset-3">
-                                                    <p class="error_form_message">{{getErrorByCode(socialArticle.title.errorCode, "post-title")}}</p>
+                                                    <p class="error_form_message">{{getErrorByCode(socialArticle.postTitle.errorCode, "post-title")}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +89,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
-                                                <label class="col-lg-3 control-label" ng-class="{error_label: socialArticle.subtitle.errorCode != ''}" for="article_subtitle">Article Subtitle:*</label>
+                                                <label class="col-lg-3 control-label" ng-class="{error_label: socialArticle.subtitle.errorCode != ''}" for="article_subtitle">Article Subtitle:</label>
                                                 <div class="col-lg-5">
                                                     <input type="text" required="" class="form-control" name="socialArticle[subtitle]" ng-focus="focusField('subtitle')" ng-class="{error_input: socialArticle.subtitle.errorCode != ''}" id="article_subtitle" ng-model="socialArticle.subtitle.value">
                                                 </div>
@@ -99,7 +112,7 @@
                                 <button type="button" class="previous btn btn-mint" ng-show="socialArticle.stage > 1" ng-disabled="isSubmitting" style="margin-right: 5px;"ng-click="previous();">Previous</button>
                                 <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="socialArticle.stage < 2" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
                                 <button type="button" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === true)" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="facebookLogin()"><i class="ion-load-a" ng-show=""></i><span ng-hide="isSubmitting">Sign in</span></button>
-                                <button type="button" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === false)" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
+                                <button type="button" ng-disabled="isSubmitting" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === false)" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
                             </div>
                         </div>
                     </form>

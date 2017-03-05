@@ -1,25 +1,24 @@
 'use strict';
 
 angular.module('admin-module.social-article-controller', ['ngFileUpload'])
-.controller('new-social-article-controller', ['socialArticleServices', '$scope', '$timeout', 'Upload', '$q', '$interval', function(socialArticleServices, $scope, $timeout, Upload, $q, $interval) {
+.controller('new-social-article-controller', ['socialArticleServices', '$scope', '$timeout', 'Upload', '$q', '$window',  function(socialArticleServices, $scope, $timeout, Upload, $q, $window) {
   
   $scope.socialArticle = {
     postTitle: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_post_title') != "undefined" && document.getElementById('hidden_article_post_title') != null) ? document.getElementById('hidden_article_post_title').value : '',
       errorCode: ''
     },
     title: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_title') != "undefined" && document.getElementById('hidden_article_title') != null) ? document.getElementById('hidden_article_title').value : '',
       errorCode: ''
     },
     subtitle: {
-      value: '',
+      value: (typeof document.getElementById('hidden_article_subtitle') != "undefined" && document.getElementById('hidden_article_subtitle') != null) ? document.getElementById('hidden_article_subtitle').value : '',
       errorCode: ''
     },
-    articleId: {
-      value: (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null) ? document.getElementById('hidden_article_id').value : '',
-      errorCode: ''
-    },
+    friendlyUrl: (typeof document.getElementById('hidden_article_friendly_url') != "undefined" && document.getElementById('hidden_article_friendly_url') != null) ? document.getElementById('hidden_article_friendly_url').value : '',
+    documentUrl: (typeof document.getElementById('hidden_article_document_url') != "undefined" && document.getElementById('hidden_article_document_url') != null) ? document.getElementById('hidden_article_document_url').value : '',
+    articleId: (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null) ? document.getElementById('hidden_article_id').value : '',
     socialMedia: {
       id: '',
       name: ''
@@ -29,10 +28,17 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
       errorCode: ''
     },
     stage: 1,
-    socialMediaJson: ''
+    socialMediaJson: '',
+    errorMessage: '',
+    submittingMessage: '',
+    noSocialMediaAvailableMessage: (typeof document.getElementById('hidden_social_medias_id') != "undefined" && document.getElementById('hidden_social_medias_id') != null) ? '' : 'All social medias registered has a post for this article'
+
   }
+  var teste = new Date();
+  console.log(teste);
 
   $scope.serializeJson = function(){
+    $scope.socialArticle.errorMessage = '';
     $scope.socialArticle.socialMedia = JSON.parse($scope.socialArticle.socialMediaJson);
 
   }
@@ -45,7 +51,7 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
         case 'subtitle':
             $scope.socialArticle.subtitle.errorCode = '';
             break;
-        case 'post_title':
+        case 'post-title':
             $scope.socialArticle.postTitle.errorCode = '';
             break;
         default:   
@@ -72,16 +78,21 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
               if($scope.socialArticle.socialMedia.name === "Facebook"){
                 $scope.fbAsyncInit();
               }
+            }else{
+              $scope.isSubmitting = false;
+              $scope.socialArticle.errorMessage = "Choose a social media";
             }
             break;
-        default:  
+        default:
     }
   }
 
   $scope.createSocialArticle = function(){
     var request = $scope.createSocialArticleRequest();
     socialArticleServices.createSocialArticle(request).then(function (result) {
-        console.log(result);
+        $scope.isSubmitting = false;
+        $scope.socialArticle.submittingMessage = '';
+        $window.location.href = '/private/articles/show/' + $scope.socialArticle.articleId;
     });
   }
 
@@ -90,9 +101,10 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
         title: $scope.socialArticle.title.value,
         subtitle: $scope.socialArticle.subtitle.value,
         post_title: $scope.socialArticle.postTitle.value,
-        article_id: $scope.socialArticle.articleId.value,
+        article_id: $scope.socialArticle.articleId,
         social_media_id: $scope.socialArticle.socialMedia.id,
         published_id: $scope.socialArticle.socialPostId.value,
+        published_time: new Date(),
         status: "Published"
     }
     console.log(request);
@@ -102,29 +114,35 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
 
   $scope.newsValidation = function(){
     var valid = true;
-    if($scope.socialArticle.title.value === ""){
+    if($scope.socialArticle.title.value === "" || typeof $scope.socialArticle.title.value === "undefined"){
       $scope.socialArticle.title.errorCode = '1';
       valid = false;
     }
-    if($scope.socialArticle.subtitle.value === ""){
-      $scope.socialArticle.subtitle.errorCode = '1';
-      valid = false;
-    }
-    if($scope.socialArticle.postTitle.value === ""){
+    // if($scope.socialArticle.subtitle.value === "" || typeof $scope.socialArticle.subtitle.value === "undefined"){
+    //   $scope.socialArticle.subtitle.errorCode = '1';
+    //   valid = false;
+    // }
+    if($scope.socialArticle.postTitle.value === "" || typeof $scope.socialArticle.postTitle.value === "undefined"){
       $scope.socialArticle.postTitle.errorCode = '1';
       valid = false;
     }
-
     return valid;
   }
 
 
   $scope.previous = function(){
-    $scope.article.stage--;
+    $scope.socialArticle.errorMessage = '';
+    $scope.socialArticle.stage--;
   }
 
   $scope.finish = function(){
-    $scope.postOnFacebook();
+    if($scope.newsValidation()){
+      $scope.socialArticle.errorMessage = '';
+      $scope.isSubmitting = true;
+      $scope.socialArticle.submittingMessage = "Submitting your article, please wait...";
+      $scope.fbAsyncInit();
+      $scope.postOnFacebook();
+    }
   }
 
   $scope.showFacebookPostButton = false;
@@ -136,7 +154,8 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
   $scope.wahigaFacebookPageId = '168321086918235';
   //TODO Include Loading on facebook callout 
   $scope.getFacebookLoginStatus = function(){
-    FB.getLoginStatus(function(response) {
+    socialArticleServices.getFacebookLoginStatus().then(function (response){
+      console.log(response);
       if (response.status === 'connected') {
         $scope.getFacebookPermissions();
         // the user is logged in and has authenticated your
@@ -146,8 +165,10 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
         // and signed request each expire
         //var uid = response.authResponse.userID;
         $scope.pageAccessToken = response.authResponse.accessToken;
+        $scope.showLoginFacebook = false;
       }else if (response.status === 'not_authorized') {
         console.log('not_authorized');
+        $scope.socialArticle.errorMessage = 'This account have no access to facebook page Wahiga';
         $scope.showLoginFacebook = true;
         $timeout(function() {
         }, 10);
@@ -164,12 +185,11 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
   }
 
   $scope.facebookLogin = function(){
-    $scope.errorFacebookMessage = '';
+    $scope.socialArticle.errorMessage = '';
     FB.login(function(response){
+      console.log(response);
       if(response.authResponse){
-        console.log('teste');
-        $scope.showLoginFacebook = false;
-        $scope.showFacebookPostButton = true;
+        $scope.getFacebookLoginStatus();
         $timeout(function() {
         }, 10);
       }
@@ -177,16 +197,18 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
   }
 
   $scope.facebookLogout = function(){
-    FB.logout(function(response) {
-      console.log('logout');
-    });  
+    FB.logout();
+    $scope.socialArticle.errorMessage = '';
   }
   
 
   $scope.getFacebookPermissions = function(){
+    console.log("permissions");
     socialArticleServices.getFacebookPermissions().then(function (result) {
+      console.log(result.data);
       $scope.permissions = result.data;
       if(!$scope.checkPagePermission()){
+        $scope.socialArticle.errorMessage = 'This account have no access to facebook page Wahiga';
         $scope.showLoginFacebook = true;
         $scope.showFacebookPostButton = false;
       }else{
@@ -208,8 +230,7 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
         }
       }
       if(!valid){
-        $scope.errorFacebookMessage = 'This account have no access to facebook page Wahiga';
-        console.log($scope.errorFacebookMessage);
+        $scope.socialArticle.errorMessage = 'This account have no access to facebook page Wahiga';
       }else{
         $scope.getPageAccessToken();
       }
@@ -248,9 +269,13 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
       socialArticleServices.postOnFacebook(request).then(function (result){
         console.log("result facebook post");
         console.log(result);
-        if(result.id != ''){
+        if(result.id != '' && typeof result.id != "undefined"){
           $scope.socialArticle.socialPostId.value = result.id;
           $scope.createSocialArticle();
+        }else{
+          $scope.socialArticle.errorMessage = result.error.message;
+          $scope.isSubmitting = false;
+          $scope.socialArticle.submittingMessage = '';
         }
       });  
     }
@@ -269,12 +294,14 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
   }
 
   $scope.createFacebookPostRequest = function(){
+    console.log($scope.socialArticle.friendlyUrl);
+    console.log($scope.socialArticle.documentUrl);
     var request = {};
     request.access_token = $scope.pageAccessToken;
     request.message = $scope.socialArticle.postTitle.value;
-    request.link = "https://www.wahiga.com/red-dead-redemption-2/news/red-dead-redemption-2-e-as-novidades-que-vem-por-ai";
+    request.link = $scope.socialArticle.friendlyUrl;
     request.name = $scope.socialArticle.title.value;
-    request.picture = "https://www.wahiga.com/images/1577/RedDeadRedemption2-7Riders.jpg";
+    request.picture = $scope.socialArticle.documentUrl;
     request.pageId = $scope.wahigaFacebookPageId;
     request.description = $scope.socialArticle.subtitle.value;
     return request;
@@ -286,7 +313,7 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
       status: true, 
       cookie: true, 
       xfbml: true,
-      version: 'v2.4'
+      version: 'v2.8'
     });
 
     $scope.getFacebookLoginStatus();
