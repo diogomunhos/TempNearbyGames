@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304223606) do
+ActiveRecord::Schema.define(version: 20170304134219) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -185,13 +185,13 @@ ActiveRecord::Schema.define(version: 20170304223606) do
     t.integer  "social_media_id"
     t.string   "published_id"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "article_id"
-    t.integer  "document_id"
     t.string   "title"
     t.string   "subtitle"
     t.string   "post_title"
+    t.integer  "document_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "social_identities", force: :cascade do |t|
