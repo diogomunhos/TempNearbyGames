@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304134219) do
+ActiveRecord::Schema.define(version: 20170306201053) do
 
   create_table "advertisings", force: :cascade do |t|
     t.boolean  "is_active"
@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(version: 20170304134219) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "media_api"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -98,11 +98,11 @@ class SocialMediasSecuredController < ApplicationController
 
 	private 
 	def update_social_media_params
-		params.require(:social_media).permit(:name)
+		params.require(:social_media).permit(:name, :media_api)
 	end
 
 	private 
 	def create_social_media_params
-		params.require(:social_media).permit(:name)
+		params.require(:social_media).permit(:name, :media_api)
 	end
 end
