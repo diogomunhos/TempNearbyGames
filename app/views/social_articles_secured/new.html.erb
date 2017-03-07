@@ -50,7 +50,7 @@
                                             <select class="form-control" data-style="btn-primary" name="social_article[social_media]" id="social_article_media" ng-model="socialArticle.socialMediaJson" ng-change="serializeJson();">
                                                 <% if @socialMedias != nil %>
                                                     <% @socialMedias.each do |media| %>
-                                                            <option value='{"id": <%= media.id %>, "name": "<%= media.name %>"}'><%= media.name %></option>
+                                                            <option value='{"id": <%= media.id %>, "name": "<%= media.name %>", "api": "<%= media.media_api %>"}'><%= media.name %></option>
                                                     <% end %>
                                                 <% end %>
                                             </select>

@@ -66,9 +66,8 @@ class SocialMediasSecuredController < ApplicationController
 	def update
 		@socialMedia = SocialMedia.find(session[:socialMediaid])
 		session[:socialMediaid] = nil
-		@socialMedia.name = update_social_media_params["name"]
 
-		if @socialMedia.update(id: @socialMedia.id)
+		if @socialMedia.update_attributes(update_social_media_params)
 			redirect_to "/private/social-medias/#{@socialMedia.id}/show"
 		end
 	end

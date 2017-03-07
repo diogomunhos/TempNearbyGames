@@ -185,13 +185,13 @@ ActiveRecord::Schema.define(version: 20170306201053) do
     t.integer  "social_media_id"
     t.string   "published_id"
     t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "article_id"
+    t.integer  "document_id"
     t.string   "title"
     t.string   "subtitle"
     t.string   "post_title"
-    t.integer  "document_id"
-    t.integer  "article_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "social_identities", force: :cascade do |t|

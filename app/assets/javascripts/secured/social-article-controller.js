@@ -21,7 +21,8 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
     articleId: (typeof document.getElementById('hidden_article_id') != "undefined" && document.getElementById('hidden_article_id') != null) ? document.getElementById('hidden_article_id').value : '',
     socialMedia: {
       id: '',
-      name: ''
+      name: '',
+      api: ''
     },
     socialPostId: {
       value: '',
@@ -75,8 +76,12 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
             if($scope.socialArticle.socialMedia.id != ''){
               $scope.isSubmitting = false;
               $scope.socialArticle.stage++;
-              if($scope.socialArticle.socialMedia.name === "Facebook"){
+              if($scope.socialArticle.socialMedia.api === "Facebook"){
                 $scope.fbAsyncInit();
+              }else if($scope.socialArticle.socialMedia.api === "Google+"){
+                $scope.loadGooglePlusAPI();
+              }else if($scope.socialArticle.socialMedia.api === "Twitter"){
+
               }
             }else{
               $scope.isSubmitting = false;
@@ -317,6 +322,29 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
     });
 
     $scope.getFacebookLoginStatus();
+  }
+
+
+  //Google Plus 
+  $scope.googlePlusClientId = "66539190941-7ocangji238qj6ird6gtb9l2e53bjfvn.apps.googleusercontent.com";
+  $scope.googlePlusSecretKey = "jhVGbSCO-ITBDTgvA-Q2e9AI";
+  $scope.GoogleAuth;
+  $scope.googleAccessToken = "";
+  $scope.loadGooglePlusAPI = function(){
+    gapi.load('auth2', function() {
+        gapi.auth2.init({
+          client_id: $scope.googlePlusClientId
+        }).then(function(GoogleAuth){
+          $scope.GoogleAuth = GoogleAuth;
+          $scope.GoogleAuth.signIn().then(function(callback){
+            console.log(callback);
+            $scope.googleAccessToken = callback.access_token;
+
+          });
+        })
+    });
+    
+    
   }
 
 }]);

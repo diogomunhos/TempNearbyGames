@@ -27,11 +27,14 @@
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <select class="form-control selectpicker" name="social_media[media_api]" id="article_platforms" id="social_media_media_api">
-                            <option value="Google+" <% if @socialMedia.media_api == "Google+" %> selected <% end %>>Google+</option>
-                            <option value="Facebook" <% if @socialMedia.media_api == "Facebook" %> selected <% end %>>Facebook</option>
-                            <option value="Twitter" <% if @socialMedia.media_api == "Twitter" %> selected <% end %>>Twitter</option>
-                        </select>
+                        <label class="col-md-4 control-label" for="social_media_name">API:*</label>
+                        <div class="col-md-8">
+                            <select class="form-control selectpicker" name="social_media[media_api]" id="article_platforms" id="social_media_media_api">
+                                <option value="Google+" <% if @socialMedia.media_api == "Google+" %> selected <% end %>>Google+</option>
+                                <option value="Facebook" <% if @socialMedia.media_api == "Facebook" %> selected <% end %>>Facebook</option>
+                                <option value="Twitter" <% if @socialMedia.media_api == "Twitter" %> selected <% end %>>Twitter</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
