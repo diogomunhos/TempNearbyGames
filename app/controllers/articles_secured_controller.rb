@@ -272,6 +272,7 @@ class ArticlesSecuredController < ApplicationController
 		article = Article.getArticleWithDocumentsById(params[:articleid])
 		@article = article[0]
 		@games = Game.all.order("name")
+		@cinemas = Cinema.all.order("name")
 		fileString = "["
 		count = 0
 		article[0].article_documents.each do |doc|
