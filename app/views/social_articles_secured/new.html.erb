@@ -113,7 +113,6 @@
                                 <button type="button" class="next btn" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-show="socialArticle.stage < 2" ng-disabled="isSubmitting" ng-click="next();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Next</span></button>
                                 <button type="button" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === true)" g-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="facebookLogin()"><i class="ion-load-a" ng-show=""></i><span ng-hide="isSubmitting">Sign in</span></button>
                                 <button type="button" ng-disabled="isSubmitting" class="finish btn btn-mint" ng-show="(socialArticle.stage === 2 && showLoginFacebook === false)" ng-class="{'btn-mint': !isSubmitting, 'btn-default': isSubmitting}" ng-click="finish();"><i class="ion-load-a" ng-show="isSubmitting"></i><span ng-hide="isSubmitting">Finish</span></button>
-                                <button type="button" ng-click="callBufferToken();"><span>teste</span></button>
                             </div>
                         </div>
                     </form>
