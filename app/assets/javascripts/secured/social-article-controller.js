@@ -343,14 +343,19 @@ angular.module('admin-module.social-article-controller', ['ngFileUpload'])
           });
         })
     });
-
-    //Twitter
-
-    $scope.twitterClientId = "";
-    $scope.twitterSecretKey = "";
-    
-    
-    
   }
+  
+  $scope.callBufferToken = function(){
+     socialArticleServices.getBufferAccessToken().then(function (response){
+        console.log(response);
+    }); 
+  }
+
+  //Twitter
+
+  $scope.twitterClientId = "";
+  $scope.twitterSecretKey = "";
+    
+
 
 }]);

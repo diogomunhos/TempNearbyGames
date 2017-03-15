@@ -82,5 +82,22 @@ angular.module('admin-module.social-article-services', [])
             return deferred.promise;   
         }
 
+        this.getBufferAccessToken = function(){
+           var deferred = $q.defer();
+            $http({
+                method: 'JSONP',
+                url: 'https://api.bufferapp.com/1/oauth2/token.json',
+                data: {"client_id": "58c9a020768065b033fd623d", 
+                      "client_secret": "9021308ae32f16562e8a71b548e76c42"},
+                headers: {'Content-Type': 'application/json'}      
+            }).then(function successCallback(response){ 
+                deferred.resolve(response);
+            }, function errorCallback(response){
+                deferred.reject(response);
+            });
+                   
+            return deferred.promise;
+        }
+
 
     })

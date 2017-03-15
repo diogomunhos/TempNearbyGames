@@ -27,6 +27,11 @@ Rails.application.configure do
     :enable_starttls_auto => true
 
   }
+
+  config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   # Print deprecation notices to the Rails logger.
