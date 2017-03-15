@@ -85,7 +85,7 @@ angular.module('admin-module.social-article-services', [])
         this.getBufferAccessToken = function(){
            var deferred = $q.defer();
             $http({
-                method: 'JSONP',
+                method: 'POST',
                 url: 'https://api.bufferapp.com/1/oauth2/token.json',
                 data: {"client_id": "58c9a020768065b033fd623d", 
                       "client_secret": "9021308ae32f16562e8a71b548e76c42"},
