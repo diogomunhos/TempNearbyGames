@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('admin-module.social-article-controller', ['ngFileUpload'])
 .controller('new-social-article-controller', ['socialArticleServices', '$scope', '$timeout', 'Upload', '$q', '$window',  function(socialArticleServices, $scope, $timeout, Upload, $q, $window) {
   

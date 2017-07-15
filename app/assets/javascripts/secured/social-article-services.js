@@ -85,14 +85,13 @@ angular.module('admin-module.social-article-services', [])
         this.getBufferAccessToken = function(){
            var deferred = $q.defer();
             $http({
-                method: 'POST',
-                url: 'https://api.bufferapp.com/1/oauth2/token.json',
-                data: {"client_id": "58c9a020768065b033fd623d", 
-                      "client_secret": "9021308ae32f16562e8a71b548e76c42"},
-                headers: {'Content-Type': 'application/json'}      
+                method: 'GET',
+                url: 'https://api.bufferapp.com/1/profiles.json?access_token=1/213029cf28ce64845d773c6b61c5e106'
             }).then(function successCallback(response){ 
+              console.log(response);
                 deferred.resolve(response);
             }, function errorCallback(response){
+                console.log(response);
                 deferred.reject(response);
             });
                    

@@ -19,3 +19,4 @@ angular.module('admin-module', [
     'admin-module.application-controller',
     'admin-module.cinema-controller'
 ])
+
