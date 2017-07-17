@@ -38,11 +38,11 @@ class ArticlesSecuredController < ApplicationController
 		hashDocument[:file] = request['file']
 
 		document = Document.new(hashDocument)
-		image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
-		documentfile = image_optim.optimize_image_data(document.file_contents)
-		if documentfile != nil
-			document.update(file_contents: documentfile)
-		end
+		# image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
+		# documentfile = image_optim.optimize_image_data(document.file_contents)
+		# if documentfile != nil
+		# 	document.update(file_contents: documentfile)
+		# end
 		@result = Array.new
 		hashResult = Hash.new
 		hashResult[:isSuccessful] = true
@@ -473,13 +473,13 @@ class ArticlesSecuredController < ApplicationController
 	def update_image_performance
 		documents = Document.offset(params[:offset]).limit(params[:limit])
 		documents.each do |doc|
-			if doc.file_contents != nil
-				image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
-				documentfile = image_optim.optimize_image_data(doc.file_contents)
-				if documentfile != nil
-					doc.update(file_contents: documentfile)
-				end
-			end 
+			# if doc.file_contents != nil
+			# 	image_optim = ImageOptim.new(:pngout => false, :nice => 20, :svgo => false)
+			# 	documentfile = image_optim.optimize_image_data(doc.file_contents)
+			# 	if documentfile != nil
+			# 		doc.update(file_contents: documentfile)
+			# 	end
+			# end 
 			
 		end
 
