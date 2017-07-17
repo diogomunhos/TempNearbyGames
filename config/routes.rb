@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  match "*path" => redirect("http://www.wahiga.com/%{path}"), :constraints => { :protocol => "https://" }
-  
+
   resources :companies, defaults: { format: 'json' }
   resources :social_medias, defaults: { format: 'json' }
   resources :games, defaults: { format: 'json' }
