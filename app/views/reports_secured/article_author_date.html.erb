@@ -1,0 +1,45 @@
+<div id="content-container" ng-controller="article-author-date-controller as controller">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">Article By Author By Date</h1>
+        <ol class="breadcrumb">
+            <li><a href="/private/index">Home</a></li>
+            <li class="active" >Report</li>
+            <li class="active" >Writer</li>
+            <li class="active" >Article By Author By Date</li>
+        </ol>
+    </div>
+    
+    <div id="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sort &amp; Format Column</h3>
+            </div>
+            <div class="panel-body">
+                <button ng-click='refresh()'>Reset</button>
+                <table id="reportTable"
+                       data-toggle="table"
+                       data-sort-name="id"
+                       data-page-list="[5, 10, 20]"
+                       data-page-size="5"
+                       data-pagination="true" data-show-pagination-switch="true">
+                    <thead>
+                        <tr>
+                            <th data-field="title" data-sortable="true">Title</th>
+                            <th data-field="views" data-sortable="true">Views</th>
+                           <!--  <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Order date</th>
+                            <th data-field="amount" data-align="center" data-sortable="true" data-sorter="priceSorter">Balance</th>
+                            <th data-field="status" data-align="center" data-sortable="true" data-formatter="statusFormatter">Status</th>
+                            <th data-field="track" data-align="center" data-sortable="true" data-formatter="trackFormatter">Tracking Number</th> -->
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+</div>

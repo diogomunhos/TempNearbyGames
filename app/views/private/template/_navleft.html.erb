@@ -85,6 +85,28 @@
 							</a>
 						</li>
 
+						<li ng-show="report.showReport" ng-class=" (activeLinkFirst === 'report') ? 'active-link' : '' ">
+							<a href="#">
+								<i class="pli-diploma"></i>
+								<span class="menu-title">
+									<strong>Reports</strong>
+								</span>
+								<i class="arrow"></i>
+							</a>
+
+							<!--Submenu-->
+							<ul class="collapse">
+								<li class="" ng-show="report.writer.show" ng-class=" (activeLinkSecond === 'writer-report') ? 'active-link' : '' ">
+                                    <a href="#" aria-expanded="true"><i class="fa fa-thumbs-up"></i> Writers<i class="arrow"></i></a>
+
+                                    <!--Submenu-->
+                                    <ul class="collapse" aria-expanded="false" style="height: 0px;">
+                                        <li ng-class=" (activeLinkThird === 'article-author-date-report') ? 'active-link' : '' "><a href="/private/reports/writer/article_author_date" ng-show="report.writer.articleAuthorDate.show">Articles By Author By Date</a></li>
+                                    </ul>
+                                </li>
+							</ul>
+						</li>
+
 						<!--Menu list item-->
 						<li ng-class=" (activeLinkFirst === 'article') ? 'active-link' : '' ">
 							<a href="#" ng-show="articles.showArticles">

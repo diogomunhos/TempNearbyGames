@@ -136,6 +136,12 @@ Rails.application.routes.draw do
 
   get '/private/profiles/:profileid/deactivate' => "profiles_secured#deactivate"
 
+
+  #REPORTS
+
+  get '/private/reports/writer/article_author_date' => "reports_secured#article_author_date"
+
+  post '/private/reports/writer/article_author_date_service' => "reports_secured#article_author_date_service"
   
   #Objects
   get '/private/profiles/:profileid/object/:objectid/edit' => "object_permissions_secured#edit"

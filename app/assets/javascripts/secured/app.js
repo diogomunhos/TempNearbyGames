@@ -9,6 +9,7 @@ angular.module('admin-module', [
 	'admin-module.game-services',
 	'admin-module.application-services',
 	'admin-module.cinema-services',
+	'admin-module.report-services',
     'admin-module.article-controller',
     'admin-module.social-article-controller',
     'admin-module.profile-controller',
@@ -17,6 +18,7 @@ angular.module('admin-module', [
     'admin-module.social-media-controller',
     'admin-module.game-controller',
     'admin-module.application-controller',
-    'admin-module.cinema-controller'
+    'admin-module.cinema-controller',
+    'admin-module.report-controller'
 ])
 

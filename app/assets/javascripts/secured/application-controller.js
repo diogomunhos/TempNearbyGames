@@ -48,6 +48,16 @@ angular.module('admin-module.application-controller', [])
     }
   };
 
+  $scope.report = {
+    showReport: false,
+    writer: {
+      show: false,
+      articleAuthorDate: {
+        show: false
+      }
+    }
+  };
+
   $scope.activeLinkFirst = "home"
   $scope.activeLinkSecond = ""
   $scope.activeLinkThird = ""
@@ -118,6 +128,14 @@ angular.module('admin-module.application-controller', [])
       }else if (path.indexOf("/show") !== -1 || path.indexOf("/edit") !== -1){
         $scope.activeLinkThird = ""
       }
+    }else if(path.indexOf("/reports") !== -1){
+      $scope.activeLinkFirst = "report";
+      if(path.indexOf("/writer") !== -1){
+        $scope.activeLinkSecond = "writer-report"
+        if(path.indexOf("/article-author-date") !== -1){
+          $scope.activeLinkThird = "article-author-date-report";
+        }
+      }
     }else{
       $scope.activeLinkFirst = "home"
       $scope.activeLinkSecond = ""
@@ -184,6 +202,10 @@ angular.module('admin-module.application-controller', [])
           $scope.management.profile.showProfile = true;
           $scope.management.profile.showAll = ($scope.permissions[i].read_all_record === true) ? true : false;
           $scope.management.profile.showNew = ($scope.permissions[i].create_record === true) ? true : false;
+          //TODO IMPLEMENT REPORT PROFILE STATUS
+          $scope.report.showReport = true;
+          $scope.report.writer.show = true;
+          $scope.report.writer.articleAuthorDate.show = ($scope.permissions[i].read_all_record === true) ? true : false;
         }
       }
     } 
