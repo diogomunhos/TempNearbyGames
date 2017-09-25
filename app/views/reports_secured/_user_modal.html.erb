@@ -1,0 +1,36 @@
+<div class="modal fade" id="select-user-modal" role="dialog" tabindex="-1" aria-labelledby="select-user-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
+                <h4 class="modal-title">Choose a User</h4>
+            </div>
+
+            <!--Modal body-->
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @users.each do |u| %>
+                            <tr>
+                                <td><a class="btn-link" href="" ng-click="selectUser('<%= u.id %>', '<%= u.name %> <%= u.last_name %>')" data-dismiss="modal"><%= u.name %> <%= u.last_name %></a></td>
+                            </tr>
+                        <% end %>    
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <!--Modal footer-->
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>

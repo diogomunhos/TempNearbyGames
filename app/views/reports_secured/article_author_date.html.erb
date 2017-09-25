@@ -1,5 +1,5 @@
 <div id="content-container" ng-controller="article-author-date-controller as controller">
-
+    <%= render "reports_secured/user_modal" %>
     <!--Page Title-->
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <div id="page-title">
@@ -11,31 +11,103 @@
             <li class="active" >Article By Author By Date</li>
         </ol>
     </div>
+
+    <script>
+        function dateFormatter(date){
+            var newDate = new Date(date);
+            if(newDate !== null && typeof newDate !== 'undefined'){
+                return newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear();
+            }
+            return '';
+        }
+
+        function footerFormatterViews(data){
+            field = this.field;
+            return data.reduce(function(sum, row) { 
+                return sum + (+row[field]);
+            }, 0);
+        }
+
+        function footerFormatterText(data){
+            return 'Total';
+        }
+
+        function footerStyle(value, row, index) {
+          return {
+            css: { "font-weight": "bold" }
+          };
+        }
+    </script>
     
     <div id="page-content">
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Sort &amp; Format Column</h3>
+                
             </div>
             <div class="panel-body">
-                <button ng-click='refresh()'>Reset</button>
-                <table id="reportTable"
-                       data-toggle="table"
-                       data-sort-name="id"
-                       data-page-list="[5, 10, 20]"
-                       data-page-size="5"
-                       data-pagination="true" data-show-pagination-switch="true">
-                    <thead>
-                        <tr>
-                            <th data-field="title" data-sortable="true">Title</th>
-                            <th data-field="views" data-sortable="true">Views</th>
-                           <!--  <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Order date</th>
-                            <th data-field="amount" data-align="center" data-sortable="true" data-sorter="priceSorter">Balance</th>
-                            <th data-field="status" data-align="center" data-sortable="true" data-formatter="statusFormatter">Status</th>
-                            <th data-field="track" data-align="center" data-sortable="true" data-formatter="trackFormatter">Tracking Number</th> -->
-                        </tr>
-                    </thead>
-                </table>
+                <div class="form-group">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-lg-4">
+                            <p class="text-main text-bold">Date Range</p>
+                            <div id="date-range">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="form-control" name="start" id="startDate" />
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="form-control" name="end"  id="endDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <p class="text-main text-bold">Author</p>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="article_game" ng-disabled="true" ng-model="request.authorName" />
+                            </div>
+                            <a href="" class="col-lg-3 btn btn-default" data-target="#select-user-modal" data-toggle="modal"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="col-lg-3">
+                            <p class="text-main text-bold">Article Status</p>
+                            <div class="col-lg-8">
+                                <select data-placeholder="Choose a status" id="status-select" tabindex="2" data-style="btn-primary" id="article_type" ng-model="request.status">
+                                    <option value="All" >All</option>
+                                    <option value="Published" >Published</option>
+                                    <option value="Approved" >Approved</option>
+                                    <option value="Waiting for approval" >Waiting for approval</option>
+                                    <option value="Rejected" >Rejected</option>
+                                    <option value="Draft" selected="">Draft</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-mint" ng-click="submit();">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- data-page-list="[25, 50, 100]"
+                                   data-page-size="25"
+                                   data-pagination="true" 
+                                   data-show-pagination-switch="true" -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="reportTable"
+                                   data-toggle="table"
+                                   data-sort-name="id"
+                                   data-show-footer="true" >
+                                <thead>
+                                    <tr>
+                                        <th data-field="title" data-sortable="true" data-footer-formatter="footerFormatterText">Title</th>
+                                        <th data-field="views" data-sortable="true" data-footer-formatter="footerFormatterViews" data-footer-style="footerStyle">Views</th>
+                                        <th data-field="created_at" data-sortable="true" data-formatter="dateFormatter">Created Date</th>
+                                        <!-- <th data-field="amount" data-align="center" data-sortable="true" data-sorter="priceSorter">Balance</th>
+                                        <th data-field="status" data-align="center" data-sortable="true" data-formatter="statusFormatter">Status</th>
+                                        <th data-field="track" data-align="center" data-sortable="true" data-formatter="trackFormatter">Tracking Number</th> -->
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+
             </div>
         </div>
     </div>

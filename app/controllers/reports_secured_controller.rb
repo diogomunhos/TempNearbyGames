@@ -5,17 +5,19 @@ class ReportsSecuredController < ApplicationController
 
 
 	def article_author_date
-
+		@users = User.select("id, name, last_name").order("name asc")
 
 	end
 
 	def article_author_date_service
-		puts "DEBUG #{report_article_author_date['startDate']}"
 		@result = Array.new
 		hashResult = Hash.new
 		hashResult[:isSuccessful] = true
-		hashResult[:rows] = Article.select("id, title, views").where("created_at >= ? AND created_at <= ? AND status = ? AND created_by_name = ?", report_article_author_date["startDate"], report_article_author_date["endDate"], report_article_author_date["status"], report_article_author_date["authorName"])
-
+		if(report_article_author_date["status"] == 'All')
+			hashResult[:rows] = Article.select("id, title, views, created_at").where("created_at >= ? AND created_at <= ? AND created_by_name = ?", report_article_author_date["startDate"], report_article_author_date["endDate"], report_article_author_date["authorName"]).order("created_at asc")
+		else
+			hashResult[:rows] = Article.select("id, title, views, created_at").where("created_at >= ? AND created_at <= ? AND status = ? AND created_by_name = ?", report_article_author_date["startDate"], report_article_author_date["endDate"], report_article_author_date["status"], report_article_author_date["authorName"]).order("created_at asc")
+		end
 		@result.push(hashResult)
 		respond_to do |format|
 		    format.json { render json: @result }
