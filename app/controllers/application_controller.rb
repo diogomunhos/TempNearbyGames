@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @currentUser ||= User.find_cached(session[:user_id]) if session[:user_id]
+    @currentUser ||= User.find(session[:user_id]) if session[:user_id]
     unless @currentUser.nil? 
       @profile_image_url = "/assets/images/wahiga/logo-default-profile.jpg"
       if(@currentUser.documents.length > 0)
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_profile
-    @profile = Profile.find_cached(@currentUser.profile_id)
+    @profile = Profile.find(@currentUser.profile_id)
     unless @profile.nil?
       if @profile.name === "Guest"
         return nil
@@ -114,6 +114,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_access_helper(object, permission)
+    puts "DEBUG #{@profile}"
     if @profile.object_permissions.any?
       @profile.object_permissions.each do |ob|
         if(ob.object_name.to_s === object)
