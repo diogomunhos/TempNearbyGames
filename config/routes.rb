@@ -90,7 +90,7 @@ Rails.application.routes.draw do
 
   post '/login' => 'sessions#create'
 
-  get '/logout' => 'sessions#destroy'
+  get '/user/logout' => 'sessions#destroy'
 
   post '/login-service' => "sessions#create_service"
 
